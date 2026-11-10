@@ -2448,13 +2448,13 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <h2
               style={{
-                fontSize: 'clamp(15px, 2.2vw, 19px)',
+                fontSize: 'clamp(17px, 2.4vw, 22px)',
                 fontWeight: 800,
                 letterSpacing: '0.03em',
                 lineHeight: 1.25,
                 color: '#FFFFFF',
-                marginBottom: '14px',
-                maxWidth: '520px',
+                marginBottom: '16px',
+                maxWidth: '540px',
                 textAlign: 'center',
                 textTransform: 'uppercase'
               }}
@@ -2464,43 +2464,28 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <p
               style={{
-                fontSize: '12.5px',
+                fontSize: '14px',
                 color: 'rgba(255,255,255,0.92)',
-                marginBottom: '12px',
-                lineHeight: 1.5,
+                marginBottom: '26px',
+                lineHeight: 1.58,
                 fontWeight: 400,
-                maxWidth: '510px',
+                maxWidth: '520px',
                 textAlign: 'center'
               }}
             >
               You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take the risk, the conviction to think differently, and the ambition to become the exception.
             </p>
 
-            <p
-              style={{
-                fontSize: '13px',
-                color: '#FFFFFF',
-                marginBottom: '20px',
-                lineHeight: 1.4,
-                fontWeight: 600,
-                maxWidth: '490px',
-                textAlign: 'center',
-                fontStyle: 'italic'
-              }}
-            >
-              You weren't here to follow the standard. You were here to set it.
-            </p>
-
             <button
               onClick={onAssessmentClick}
               style={{
-                height: '44px',
+                height: '46px',
                 backgroundColor: '#FFFFFF',
                 color: '#000000',
                 border: 'none',
                 borderRadius: '6px',
-                padding: '0 28px',
-                fontSize: '13px',
+                padding: '0 30px',
+                fontSize: '13.5px',
                 fontWeight: 700,
                 letterSpacing: '0.04em',
                 cursor: 'pointer',
@@ -2515,22 +2500,18 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               I CHOOSE GREATNESS.
             </button>
 
-            <p
+            <span
               style={{
-                fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
-                fontSize: '11px',
-                fontWeight: 600,
-                color: 'rgba(255, 255, 255, 0.88)',
-                letterSpacing: '0.06em',
-                lineHeight: 1.5,
-                textTransform: 'uppercase',
-                marginTop: '10px',
-                marginBottom: 0,
+                fontSize: '12.5px',
+                color: 'rgba(255,255,255,0.9)',
+                marginTop: '12px',
+                fontWeight: 500,
+                letterSpacing: '0.015em',
                 textAlign: 'center'
               }}
             >
               The next move is yours.
-            </p>
+            </span>
           </div>
 
           {/* Envelope Front SVG */}
