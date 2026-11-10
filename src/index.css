@@ -1,0 +1,254 @@
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap";
+
+:root {
+  /* ASENZO OFFICIAL WHITE DESIGN SYSTEM */
+  --color-page-bg: #ffffff;
+  --color-surface-dashboard: #ffffff;
+  --color-surface-elevated: #f8f8fa;
+  --color-surface-secondary: #f4f4f6;
+  --color-border-graphite: #e4e4e7;
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
+  --color-border-hover: rgba(0, 0, 0, 0.16);
+  
+  /* Typography */
+  --color-text-warm-white: #0f0f11;
+  --color-text-pure-white: #000000;
+  --color-text-secondary: #52525b;
+  --color-text-muted: #71717a;
+  
+  /* Brand Accents */
+  --color-burnt-orange: #F16001;
+  --color-burnt-orange-deep: #C10801;
+  --color-champagne-gold: #F3AD42;
+  
+  /* Fonts */
+  --font-display: "Switzer", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0f0f11;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  overflow-x: clip; /* NEVER breaks position: sticky! */
+}
+
+/* Subtle Technical Perspective Grid */
+.technical-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Controlled Ambient Radial Glow (Orange to Gold transition) */
+.ambient-glow-core {
+  background: radial-gradient(
+    ellipse 75% 55% at 50% 25%,
+    rgba(232, 117, 36, 0.14) 0%,
+    rgba(243, 173, 66, 0.05) 35%,
+    rgba(169, 75, 32, 0.02) 60%,
+    transparent 78%
+  );
+}
+
+/* Horizontal Light Diffusion */
+.light-diffusion-line {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(52, 52, 52, 0.3) 15%,
+    rgba(232, 117, 36, 0.45) 50%,
+    rgba(243, 173, 66, 0.4) 65%,
+    rgba(52, 52, 52, 0.3) 85%,
+    transparent 100%
+  );
+  height: 1px;
+}
+
+/* Primary CTA Button (Warm Off-White Background) */
+.btn-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 24px;
+  background-color: var(--color-text-warm-white);
+  color: var(--color-page-bg);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(244, 242, 237, 0.12);
+  white-space: nowrap;
+}
+
+.btn-cta-primary:hover {
+  background-color: #ffffff;
+  /* no expand */
+  box-shadow: 0 6px 22px rgba(244, 242, 237, 0.2);
+}
+
+/* Secondary CTA Button (Transparent with Graphite Border) */
+.btn-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 22px;
+  background-color: transparent;
+  color: var(--color-text-warm-white);
+  border: 1px solid var(--color-border-graphite);
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-cta-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090909;
+}
+::-webkit-scrollbar-thumb {
+  background: #222222;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #343434;
+}
+
+@media (max-width: 900px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+
+/* 6-Group Integrations Responsive Grid */
+@media (max-width: 980px) {
+  .integrations-six-layout {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+
+/* Responsive Mobile Container */
+.mobile-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Asenzo Power Hub Animations */
+@keyframes bottomGlowPulse {
+  0%, 100% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 6px #ff5500) drop-shadow(0 0 14px rgba(255, 85, 0, 0.5));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px #ff8c00) drop-shadow(0 0 24px rgba(255, 140, 0, 0.85));
+  }
+}
+
+@keyframes powerFlowLeft {
+  from {
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes powerFlowRight {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 40;
+  }
+}
+
+@keyframes centerAmbientAura {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.03);
+  }
+}
+
+
+/* Heavy and High Center Power Hub Glow Pulse */
+@keyframes heavyHighGlowPulse {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(0.98);
+    filter: drop-shadow(0 0 30px rgba(255, 85, 0, 0.75)) drop-shadow(0 0 60px rgba(255, 140, 0, 0.45));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 45px rgba(255, 95, 0, 0.95)) drop-shadow(0 0 90px rgba(255, 150, 0, 0.7));
+  }
+}
+
+@keyframes heavyHorizonRise {
+  0%, 100% {
+    opacity: 0.88;
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-8px) scaleY(1.06);
+  }
+}

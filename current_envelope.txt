@@ -1,0 +1,179 @@
+const FinalCTAHero = ({ onAssessmentClick }) => {
+  const [scrollProgress, setScrollProgress] = React.useState(0);
+  const containerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    let animationFrame;
+    const handleScroll = () => {
+      animationFrame = requestAnimationFrame(() => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+
+        // Pinning scroll trigger logic.
+        // Triggers exactly when section's top touches viewport top, scrolling OVER the header!
+        if (rect.top <= 0) {
+          const maxScroll = rect.height - window.innerHeight; // Using viewport math for safe locking duration
+          let progress = -rect.top / maxScroll;
+          progress = Math.min(Math.max(progress, 0), 1);
+          setScrollProgress(progress);
+        } else if (rect.top > 0) {
+          setScrollProgress(0);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
+  return (
+    <section ref={containerRef} style={{
+      background: 'linear-gradient(to bottom, transparent 0%, #000000 15vh, #000000 100%)', // Fades gently over the previous sections instead of an unnatural hard cut
+      height: '300vh', // Massive scroll area to deeply isolate this CTA experience
+      position: 'relative',
+      zIndex: 200 // Paints natively completely ON TOP of the sticky header to swallow it!
+    }}>
+      {/* Sticky container -> This locks at the viewport roof, creating a 100% immersive fullscreen takeover */}
+      <div style={{
+        position: 'sticky',
+        top: 0,
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start', // Anchors layout from the top, guaranteeing the top flap is never hidden
+        paddingTop: '80px', // Perfect consistent gap from the physical screen top
+        zIndex: 1
+      }}>
+        {/* Background ambient dark gradient modified to 'center' so the glowing aura floats beautifully around the envelope instead of chopping abruptly at the ceiling! */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at center, rgba(30, 10, 0, 0.4) 0%, #000000 65%)', zIndex: 0 }}></div>
+
+        <div style={{
+          width: '100%',
+          maxWidth: '640px',
+          position: 'relative',
+          height: '620px', // Exact physical height of envelope base (380) + top flap (240) so Flexbox calculates center gravity accurately
+          clipPath: 'inset(-1000px -100px 0px -100px)', // HARD CLIPS bottom edge so the card NEVER leaks below the envelope!
+          zIndex: 1
+        }}>
+
+          {/* Top Flap (Behind the card) */}
+          <svg style={{ position: 'absolute', bottom: '378px', left: 0, right: 0, zIndex: 1 }} width="100%" height="240" viewBox="0 0 640 240" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="topFlapGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stopColor="rgba(255, 69, 0, 0.12)" />
+                <stop offset="100%" stopColor="#0B0B0B" />
+              </linearGradient>
+            </defs>
+            <polygon points="320,0 0,240 640,240" fill="url(#topFlapGrad)" stroke="rgba(255,255,255,0.02)" strokeWidth="1" />
+          </svg>
+
+          {/* Envelope Back Base */}
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: '380px',
+            backgroundColor: '#0B0B0B',
+            zIndex: 1
+          }}></div>
+
+          {/* The Glowing Card */}
+          <div style={{
+            position: 'absolute',
+            bottom: '-40px', // Exact mathematical placement to sink the card below the top envelope bounds
+            left: '32px',
+            right: '32px',
+            height: '380px', // Ultra dense, deeply embedded layout
+            backgroundColor: '#D83300',
+            borderRadius: '12px',
+            padding: '60px 32px 32px 32px', // Pushes text down perfectly into the visual envelope window
+            boxShadow: '0 -20px 60px rgba(255, 69, 0, 0.4)',
+            // DWELL TIME LOGIC: card fully pulls out in the first ~40% of the long scrolling journey, leaving 60% of purely frozen dead-scroll to comfortably read it.
+            transform: `translateY(${0 - (Math.min(scrollProgress * 2.5, 1) * 140)}px)`,
+            transition: 'transform 0.05s linear',
+
+            zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            borderTop: '1px solid rgba(255,200,150,0.5)',
+            borderLeft: '1px solid rgba(255,100,50,0.2)',
+            borderRight: '1px solid rgba(255,100,50,0.2)'
+          }}>
+            {/* Accent corners */}
+            <div style={{ position: 'absolute', top: '24px', left: '24px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderLeft: '2px solid rgba(255,255,255,0.5)' }}></div>
+            <div style={{ position: 'absolute', top: '24px', right: '24px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderRight: '2px solid rgba(255,255,255,0.5)' }}></div>
+
+            <div style={{ fontSize: '15px', fontWeight: 700, color: '#FFFFFF', marginBottom: '24px', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '22px', height: '22px', backgroundColor: '#FFF', borderRadius: '4px', color: '#CC2200', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 800 }}>H⁺</div>
+              asenzo
+            </div>
+
+            <h2 style={{
+              fontSize: 'clamp(24px, 3.5vw, 32px)',
+              fontWeight: 500,
+              letterSpacing: '-0.02em',
+              lineHeight: 1.15,
+              color: '#FFFFFF',
+              marginBottom: '16px',
+              maxWidth: '460px',
+              textAlign: 'center'
+            }}>
+              Let AI do the Work so you can Scale Faster.
+            </h2>
+
+            <p style={{
+              fontSize: '14px',
+              color: 'rgba(255,255,255,0.95)',
+              marginBottom: '32px',
+              lineHeight: 1.5,
+              fontWeight: 400,
+              maxWidth: '380px',
+              textAlign: 'center'
+            }}>
+              Book a Call Today and Start Automating.
+            </p>
+
+            <button onClick={onAssessmentClick} style={{
+              height: '48px',
+              backgroundColor: '#FFFFFF',
+              color: '#000000',
+              border: 'none',
+              borderRadius: '6px',
+              padding: '0 28px',
+              fontSize: '14px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              pointerEvents: 'auto',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+            }} onMouseOver={(e) => { e.target.style.backgroundColor = '#E5E5E5'; }} onMouseOut={(e) => { e.target.style.backgroundColor = '#FFFFFF'; }}>
+              Book a free call
+            </button>
+          </div>
+
+          {/* Envelope Front SVG */}
+          <svg style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 3, pointerEvents: 'none' }} width="100%" height="380" viewBox="0 0 640 380" preserveAspectRatio="none">
+            <defs>
+              <filter id="envelopeShadow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="-4" stdDeviation="6" floodColor="#000000" floodOpacity="0.5" />
+              </filter>
+            </defs>
+            <polygon points="0,0 320,280 640,0 640,380 0,380" fill="#0C0C0C" stroke="rgba(255,255,255,0.06)" strokeWidth="1" filter="url(#envelopeShadow)" />
+            <polygon points="0,380 320,280 640,380" fill="#111111" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+          </svg>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// 12. Calendar Booking Section

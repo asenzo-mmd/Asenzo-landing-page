@@ -1,0 +1,109 @@
+function AccretionHorizonWaveTop() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // When at top (scrollY = 0), wave is offset downwards by 120px.
+  // As user scrolls down, translateY smoothly glides up to 0px.
+  const translateY = Math.max(0, 120 - scrollY * 0.35);
+  const opacity = Math.min(1, 0.5 + scrollY * 0.0018);
+
+  return (
+    <div
+      style={{
+        backgroundColor: "#000000",
+        position: "relative",
+        overflow: "hidden",
+        marginTop: -2,
+        paddingTop: 10
+      }}
+    >
+      {/* Animated Wave Wrapper that rises from bottom to up on scroll */}
+      <div
+        style={{
+          transform: `translateY(${translateY}px)`,
+          opacity: opacity,
+          transition: "transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease-out",
+          willChange: "transform, opacity"
+        }}
+      >
+        {/* Floating Centered Pill */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 10,
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: -32
+          }}
+        >
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "8px 18px",
+              borderRadius: 10,
+              backgroundColor: "#0d0d0e",
+              border: "1px solid rgba(250, 175, 1, 0.35)",
+              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.4)",
+              fontSize: 13,
+              fontWeight: 600,
+              color: "#faaf01"
+            }}
+          >
+            <span>✦ Everything in one place</span>
+          </div>
+        </div>
+
+        {/* The Iconic Sunset Curve Wave Image */}
+        <img
+          src="/accretion/images/7JW5hiKTuIExiSp00XQILMZFt8.png"
+          alt="Horizon Sunset Curve Wave"
+          style={{
+            width: "100%",
+            display: "block",
+            transform: "scaleY(1.02)",
+            marginBottom: -4
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// 4. 4-COLUMN USP TEASERS
+// ==========================================
+function AccretionUSPTeasers() {
+  const usps = [
+    {
+      title: "Smart automation",
+      desc: "Automate recurring tasks and streamline handoffs without writing complex rules.",
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff6207" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+        </svg>
+      )
+    },
+    {
+      title: "Live collaboration",
+      desc: "Share updates, comment on work, and keep everyone aligned in real time.",
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff6207" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      )
+    },
+    {
+      title: "Custom workflows",
+      desc: "Adapt board

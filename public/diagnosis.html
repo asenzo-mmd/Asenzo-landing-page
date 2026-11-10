@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASENZO — The Diagnosis</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root {
+  --bg: #000000;
+  --panel: rgba(255, 255, 255, 0.05);
+  --panel-2: rgba(255, 255, 255, 0.02);
+  --text-main: #FFFFFF;
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --gold: #C9A24B;
+  --gold-bright: #E8C87E;
+  --gold-dim: #7C6026;
+  --gold-glow: rgba(201, 162, 75, 0.4);
+  --gold-bg: rgba(201, 162, 75, 0.08);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-light: rgba(255, 255, 255, 0.22);
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-in: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; min-height: 100vh; }
+
+body {
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
+
+.screen {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  padding: 30px 24px;
+}
+
+/* Typography styles */
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.brand-word {
+  margin-bottom: 32px;
+}
+.top-brand {
+  margin-bottom: 40px;
+}
+.cover-title {
+  font-size: 46px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+.cover-sub {
+  color: var(--text-muted);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 42px;
+  max-width: 44ch;
+  font-weight: 400;
+}
+
+.cover-loop-wrap { display: flex; justify-content: center; margin-bottom: 32px; }
+
+/* Progress Area */
+.progress-container { margin-bottom: 36px; }
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.progress-bar-bg {
+  height: 2px;
+  background: var(--panel-2);
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: width 0.7s var(--ease);
+}
+
+/* Headings */
+.step-badge {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.q-title {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+.q-sub {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+/* Choices Stack */
+.choices-stack { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.choice-card {
+  width: 100%;
+  text-align: left;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px;
+  color: var(--text-main);
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1.45;
+  transition: all 0.25s var(--ease);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.choice-card:hover { border-color: var(--border-light); background: rgba(255, 255, 255, 0.08); }
+.choice-card.selected {
+  border-color: var(--gold);
+  background: var(--gold-bg);
+  box-shadow: 0 0 0 1px var(--gold-glow);
+}
+
+textarea.input-ta {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px;
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 160px;
+  resize: vertical;
+  transition: all 0.25s var(--ease);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+textarea.input-ta:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold-glow);
+  background: rgba(255, 255, 255, 0.08);
+}
+textarea::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+.cluster-group { margin-bottom: 24px; }
+.cluster-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+/* Nav Footer */
+.nav-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 48px;
+  gap: 16px;
+  bottom: 0;
+  padding: 24px 0;
+}
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 20px 36px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.4s var(--ease);
+}
+.btn:active { transform: scale(0.96); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold), var(--gold-dim));
+  color: #111;
+  font-weight: 600;
+  flex: 1;
+}
+.btn-primary:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+.btn-primary:disabled { opacity: 0.25; cursor: not-allowed; box-shadow: none; filter: grayscale(1); }
+
+.btn-back {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  padding: 20px 32px;
+}
+.btn-back:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Complex Framework UI */
+.fw-wrap { max-width: 660px; margin: 0 auto; padding: 34px 24px 80px; }
+.fw-header-sticky {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  z-index: 20;
+  padding: 24px 22px 16px;
+}
+.fw-header-inner { max-width: 620px; margin: 0 auto; }
+.fw-top-row { display: flex; justify-content: space-between; margin-bottom: 12px; }
+.fw-track { display: flex; gap: 6px; }
+.fw-node { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,0.1); transition: background 0.6s var(--ease); }
+.fw-node.passed { background: var(--gold-dim); }
+.fw-node.weak { background: #E44848; }
+
+.fw-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(12px);
+}
+.fw-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  margin-bottom: 14px;
+}
+.fw-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.fw-badge.weak { background: rgba(228, 72, 72, 0.15); color: #FC8181; border: 1px solid rgba(228, 72, 72, 0.3); }
+.fw-badge.ok { background: rgba(43, 168, 74, 0.15); color: #68D391; border: 1px solid rgba(43, 168, 74, 0.3); }
+
+.fw-title { font-size: 28px; margin-bottom: 8px; color: var(--text-main); font-weight: 600; letter-spacing: -0.03em;}
+.fw-tagline { font-family: 'Inter', serif; font-style: italic; font-weight: 400; color: var(--text-muted); font-size: 16px; margin-bottom: 32px; }
+.fw-teach { font-size: 16px; line-height: 1.7; color: var(--text-main); margin-bottom: 0; font-weight: 400; }
+.fw-builds {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+}
+.fw-builds .lbl {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.fw-builds ul { margin: 0; padding-left: 0; list-style: none; }
+.fw-builds li {
+  font-size: 15px;
+  color: var(--text-main);
+  margin-bottom: 12px;
+  line-height: 1.5;
+  padding-left: 24px;
+  position: relative;
+}
+.fw-builds li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 12px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.fis-ring-wrap { display: flex; justify-content: center; margin: 32px 0; }
+.fis-scale-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stack-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+.stack-row .val { font-family: 'IBM Plex Mono', monospace; color: var(--gold); font-size: 14px; }
+.stack-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 24px;
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.wall-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-align: center;
+}
+
+/* Clean UI Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.animate-in { animation: fadeUp 0.6s var(--ease) both; }
+.del-1 { animation-delay: 0.1s;} .del-2 { animation-delay: 0.2s;} .del-3 { animation-delay: 0.3s;}
+.del-4 { animation-delay: 0.4s;} .del-5 { animation-delay: 0.5s;} .del-6 { animation-delay: 0.6s;}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+const state = { revenue:'', niche:'', experience:'', checked:new Set(), cost:'' };
+
+const CLUSTERS = {
+  segmentation:{ label:'Segmentation', letter:'S', prompt:'Getting the right eyes on you, and sorting who’s actually a buyer',
+    obstacles:[
+      {id:'o1', t:"I don't really know which content converts vs. which just gets likes"},
+      {id:'o2', t:'Every DM gets treated the same, regardless of whether they’re a fit'},
+      {id:'o5', t:"I can't tell cold curiosity from real buying intent before the call"},
+      {id:'o12', t:'I sound like every other coach in my DMs and content'}
+    ]},
+  extraction:{ label:'Extraction', letter:'E', prompt:'Turning interest into an actual booked, closed call',
+    obstacles:[
+      {id:'o6', t:"My show-up rate is inconsistent — I don't have a real booked-call sequence"},
+      {id:'o9', t:'Every sales call is improvised — there’s no repeatable script'}
+    ]},
+  nurture:{ label:'Nurture', letter:'N', prompt:'What happens after someone says yes — or almost says yes',
+    obstacles:[
+      {id:'o4', t:'Every new client gets a different, improvised onboarding experience'},
+      {id:'o13', t:'Leads that don’t close just go cold — there’s no consistent follow-up'}
+    ]},
+  optimisation:{ label:'Optimisation', letter:'O', prompt:'Knowing what’s actually working, without guessing',
+    obstacles:[
+      {id:'o7', t:"I don't really know my own numbers — close rate, show-up rate, lead-to-call"},
+      {id:'o15', t:"I have no visibility into what's working, so I can't double down or cut what's failing"}
+    ]},
+  zenith:{ label:'Zenith', letter:'Z', prompt:'The ceiling only you can feel',
+    obstacles:[
+      {id:'o3', t:'I manually reply to every DM — it eats 2-3 hours of my day'},
+      {id:'o8', t:'My content is reactive and last-minute, never planned in advance'},
+      {id:'o10', t:'I’m scared to hire help because training someone would take even more time'},
+      {id:'o14', t:'My business growth is capped by my own hours in the day'},
+      {id:'o16', t:"I'm overwhelmed enough that burnout is a real risk, but I can't afford to slow down"}
+    ]},
+  trust:{ label:'Trust in the System', letter:'A', prompt:'Whether you’d actually hand this part over',
+    obstacles:[
+      {id:'o11', t:"I don't fully trust automation or AI tools with real client conversations"},
+      {id:'o17', t:"I've tried generic tools (Notion templates, CRMs) that never fit my actual voice"}
+    ]}
+};
+const CLUSTER_ORDER = ['segmentation','extraction','nurture','optimisation','zenith','trust'];
+
+function computeResults(){
+  const scores = {};
+  CLUSTER_ORDER.forEach(k=>{
+    const total = CLUSTERS[k].obstacles.length;
+    const hit = CLUSTERS[k].obstacles.filter(o=>state.checked.has(o.id)).length;
+    scores[k] = { hit, total, pct: total? Math.round((hit/total)*100) : 0 };
+  });
+  const totalObstacles = 17;
+  const totalChecked = state.checked.size;
+  const fis = Math.max(8, Math.round(100 - (totalChecked/totalObstacles)*88));
+  let primary = CLUSTER_ORDER.filter(k=>k!=='trust').reduce((a,b)=> scores[b].pct > scores[a].pct ? b : a, 'segmentation');
+  return { scores, fis, primary, totalChecked };
+}
+
+function svgAsenzoLoop(activeLetters, opts={}){
+  const R=90, cx=150, cy=150; 
+  let arcs='', nodes='', labels='';
+  const letters = [{k:'A',f:'ATTENTION'},{k:'S',f:'SEGMENTATION'},{k:'E',f:'EXTRACTION'},{k:'N',f:'NURTURE'},{k:'Z',f:'ZENITH'},{k:'O',f:'OPTIMISATION'}];
+  
+  letters.forEach((l, i)=>{
+    const angle = (Math.PI*2 * i / 6) - Math.PI/2;
+    const isActive = activeLetters.includes(l.k);
+    const nx = cx + Math.cos(angle)*R;
+    const ny = cy + Math.sin(angle)*R;
+    const color = isActive ? '#C9A24B' : '#27272A';
+    
+    // Line to next
+    const nextA = (Math.PI*2 * (i+1) / 6) - Math.PI/2;
+    const endX = cx + Math.cos(nextA)*R;
+    const endY = cy + Math.sin(nextA)*R;
+    
+    arcs += `<path d="M ${nx} ${ny} L ${endX} ${endY}" stroke="${color}" stroke-width="${isActive?2:1}" opacity="0.5"/>`;
+    nodes += `<circle cx="${nx}" cy="${ny}" r="14" fill="${isActive?'#E8C87E':'#141415'}" stroke="${color}" stroke-width="2"/>
+    <text x="${nx}" y="${ny+4}" font-family="Inter" font-size="12" font-weight="700" fill="${isActive?'#000':'#555'}" text-anchor="middle">${l.k}</text>`;
+  });
+  
+  return `<svg width="300" height="300" viewBox="0 0 300 300">
+    <circle cx="150" cy="150" r="${R}" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    ${arcs}${nodes}
+  </svg>`;
+}
+
+function svgGauge(fis){
+  const cx=150, cy=140, R=110;
+  const pct = fis/100;
+  const endA = Math.PI - Math.PI*pct;
+  const x1 = cx-R, y1 = cy;
+  const arcLen = Math.PI*R;
+  return `<svg width="300" height="170" viewBox="0 0 300 170">
+    <defs><linearGradient id="ggrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#C1553F"/><stop offset="55%" stop-color="#C9A24B"/><stop offset="100%" stop-color="#5FA671"/></linearGradient></defs>
+    <path d="M ${cx-R} ${cy} A ${R} ${R} 0 0 1 ${cx+R} ${cy}" fill="none" stroke="#27272A" stroke-width="14" stroke-linecap="round"/>
+    <path d="M ${cx-R} ${cy} A ${R} ${R} 0 0 1 ${cx+Math.cos(endA)*R} ${cy+Math.sin(endA)*R}" fill="none" stroke="url(#ggrad)" stroke-width="14" stroke-linecap="round"/>
+    <text x="150" y="130" text-anchor="middle" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#F3F3F3">${fis}</text>
+  </svg>`;
+}
+
+const ASENZO_LAYERS = [
+  { key:'segmentation', letter:'A', title:'Attention', tagline:'Impossible to scroll past.',
+    diagram: ()=>svgAsenzoLoop(['A']),
+    teach:"Before anything else in the ASENZO system works, a qualified stranger has to actually stop scrolling.",
+    builds:['Personal + business brand positioning, built with you','Monthly content pillar planning, scripted in advance','Full conversion funnel: profile, landing page, booking flow']
+  },
+  { key:'segmentation', letter:'S', title:'Segmentation', tagline:'Not everyone who notices is the right buyer.',
+    diagram: ()=>svgAsenzoLoop(['A','S']),
+    teach:"Attention alone floods you with the wrong people. Segmentation separates your dream client automatically.",
+    builds:['AI DM qualifier, trained on your real conversations','Profile funnel: bio, story sequence, full optimisation','Positioning sharp enough that the wrong leads self-select out']
+  },
+  { key:'extraction', letter:'E', title:'Extraction', tagline:'Curiosity becomes commitment.',
+    diagram: ()=>svgAsenzoLoop(['A','S','E']),
+    teach:"This is where segmented interest turns into an actual booked, closed call.",
+    builds:['Trained sales script in your voice, built from how you actually sell','Pre-call nurture + reminder sequence to fix inconsistent show-ups','Booking flow wired directly into the qualifier']
+  },
+  { key:'nurture', letter:'N', title:'Nurture', tagline:'Every relationship stays warm, automatically.',
+    diagram: ()=>svgAsenzoLoop(['A','S','E','N']),
+    teach:"Everyone who doesn't buy immediately, and everyone who does, needs to enter an ongoing relationship.",
+    builds:['Automated onboarding, fires the moment someone pays','Automated re-engagement flow for leads who don’t close']
+  },
+  { key:'optimisation', letter:'O', title:'Optimisation', tagline:'The loop never closes.',
+    diagram: ()=>svgAsenzoLoop(['A','S','E','N','O']),
+    teach:"Every number about your business, refreshed continuously, in one place.",
+    builds:['Live dashboard — leads, calls, close rate, all in one screen','Weekly plain-language performance summary']
+  },
+  { key:'zenith', letter:'Z', title:'Zenith', tagline:'The ceiling becomes the floor.',
+    diagram: ()=>svgAsenzoLoop(['A','S','E','N','Z','O']),
+    teach:"Zenith isn't a system you install — it's the promise the other five layers add up to.",
+    builds:['A business that runs whether you’re behind the screen or not','Your time back — no more 2-3 hours a day in DMs']
+  }
+];
+
+const QUESTIONS = [
+  { id:'revenue', kind:'radio', step:1, title:'How much revenue are you generating?', sub:'Scoping diagnosis to your actual stage.', options:['$0 - $1,000/month', '$1,000 - $5,000/month', '$5,000 - $10,000/month', '$10,000 - $25,000/month', '$25,000+/month'] },
+  { id:'niche', kind:'radio', step:2, title:'What kind of business are you running?', sub:'This shapes the language used.', options:['1:1 coaching','Group coaching / cohort','Consulting','Service-based (agency, done-for-you)','Other'] },
+  { id:'experience', kind:'radio', step:3, title:'How long have you had inbound interest?', sub:'Founders hit bottlenecks differently based on timeline.', options:['Under 6 months','6 months – 2 years','2+ years'] },
+  { id:'obstacles', kind:'multi', step:4, title:'Which of these are true for you right now?', sub:'Select everything that applies.' },
+  { id:'cost', kind:'text', step:5, title:'What do you think is stopping you right now?', sub:'', placeholder:'Example: I know what to do but I never get to it because I’m too involved in client delivery.' }
+];
+
+let mode = 'cover';
+let qIndex = 0;
+let fwIndex = 0;
+let RESULTS = null;
+const app = document.getElementById('app');
+
+function renderTopBrand() {
+  return `<div class="top-brand animate-in del-1">
+    <img src="logo.jpg" alt="ASENZO" style="height: 52px; object-fit: contain;">
+  </div>`;
+}
+
+function renderCover(){
+  app.innerHTML = `
+  <div class="cover-wrap">
+    <div class="brand-word animate-in del-1">
+      <img src="logo.jpg" alt="ASENZO" style="height: 140px; object-fit: contain; margin-bottom: 24px;">
+    </div>
+    <div class="cover-loop-wrap animate-in del-2">${svgAsenzoLoop(['A','S','E','N','Z','O'])}</div>
+    <h1 class="cover-title animate-in del-3">The ASENZO<br>Diagnosis</h1>
+    <p class="cover-sub animate-in del-4">Six layers, one machine. Growth stops at the weakest one.</p>
+    <button class="btn btn-primary animate-in del-5" id="startBtn" style="padding: 18px 48px; flex: unset;">Begin My Diagnosis</button>
+  </div>`;
+  document.getElementById('startBtn').addEventListener('click', ()=>{ mode='question'; qIndex=0; render(); });
+}
+
+function renderQuestion(){
+  const q = QUESTIONS[qIndex];
+  const pct = Math.round(((qIndex)/QUESTIONS.length)*100);
+  
+  let bodyHtml = '';
+  if(q.kind==='radio'){
+    bodyHtml = `<div class="choices-stack animate-in del-4">
+      ${q.options.map((o)=> `<div class="choice-card ${state[q.id]===o?'selected':''}" data-val="${o}">${o}</div>`).join('')}
+    </div>`;
+  } else if(q.kind==='multi'){
+    bodyHtml = CLUSTER_ORDER.map((ck, i)=>{
+      const c = CLUSTERS[ck];
+      return `<div class="cluster-group animate-in" style="animation-delay:${0.3 + i*0.05}s">
+        <div class="cluster-label">${c.prompt}</div>
+        <div class="choices-stack">
+        ${c.obstacles.map(o=> `<div class="choice-card ${state.checked.has(o.id)?'selected':''}" data-oid="${o.id}">${o.t}</div>`).join('')}
+        </div>
+      </div>`;
+    }).join('');
+  } else if(q.kind==='text'){
+    bodyHtml = `<div class="animate-in del-4"><textarea class="input-ta" id="textInput" placeholder="${q.placeholder}">${state.cost}</textarea></div>`;
+  }
+
+  const isNextDisabled = q.kind==='text'?false:(q.kind==='radio'?!state[q.id]:state.checked.size===0);
+
+  app.innerHTML = `
+  <div class="screen" style="max-width: 660px;">
+    ${renderTopBrand()}
+    <div class="progress-container animate-in del-2">
+      <div class="progress-text"><span>Question ${q.step} of ${QUESTIONS.length}</span><span>${pct}%</span></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+    </div>
+    
+    <div class="step-badge animate-in del-3">STEP 0${q.step}</div>
+    <h2 class="q-title animate-in del-3">${q.title}</h2>
+    ${q.sub ? `<p class="q-sub animate-in del-3">${q.sub}</p>`:''}
+    
+    ${bodyHtml}
+    
+    <div class="nav-footer animate-in del-6">
+      ${qIndex>0 ? `<button class="btn btn-back" id="backBtn">← Back</button>` : `<div></div>`}
+      <button class="btn btn-primary" id="nextBtn" ${isNextDisabled?'disabled':''}>${qIndex===QUESTIONS.length-1 ? 'Score My Diagnosis' : 'Next →'}</button>
+    </div>
+  </div>`;
+
+  if (q.kind==='radio') {
+    document.querySelectorAll('.choice-card[data-val]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        document.querySelectorAll('.choice-card').forEach(n=>n.classList.remove('selected'));
+        b.classList.add('selected');
+        state[q.id] = b.dataset.val; 
+        document.getElementById('nextBtn').disabled = false;
+      });
+    });
+  } else if (q.kind==='multi') {
+    document.querySelectorAll('.choice-card[data-oid]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const id=b.dataset.oid;
+        if(state.checked.has(id)) {
+          state.checked.delete(id); b.classList.remove('selected');
+        } else {
+          state.checked.add(id); b.classList.add('selected');
+        }
+        document.getElementById('nextBtn').disabled = state.checked.size===0;
+      });
+    });
+  } else if (q.kind==='text') {
+    document.getElementById('textInput').addEventListener('input', e=>{ state.cost=e.target.value; });
+  }
+
+  const backBtn = document.getElementById('backBtn');
+  if(backBtn) backBtn.addEventListener('click', ()=>{ window.scrollTo(0,0); qIndex--; render(); });
+
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    window.scrollTo(0,0); 
+    if (qIndex === QUESTIONS.length-1) {
+      RESULTS = computeResults();
+      mode = 'fis'; render();
+    } else {
+      qIndex++; render();
+    }
+  });
+}
+
+function renderFIS(){
+  const primaryLabel = CLUSTERS[RESULTS.primary].label;
+  app.innerHTML = `
+  <div class="screen animate-in">
+    ${renderTopBrand()}
+    <div class="fw-card animate-in del-2" style="text-align:center;">
+      <div class="fw-eyebrow">YOUR FOUNDER INDEPENDENCE SCORE</div>
+      <p class="q-sub" style="margin: 0 auto; max-width: 400px;">Scored based on the obstacles stalling your business operation.</p>
+      <div class="fis-ring-wrap">${svgGauge(RESULTS.fis)}</div>
+      <div class="fis-scale-label"><span>Bottlenecked</span><span>Independent</span></div>
+      <p style="margin-top:24px; color:var(--text-main); font-weight:500;">You checked ${RESULTS.totalChecked} flags. Primary bottleneck: <span style="color:var(--gold);">${primaryLabel}</span>.</p>
+    </div>
+    <div class="nav-footer animate-in del-4" style="justify-content:center;">
+      <button class="btn btn-primary" style="flex:unset;" id="sysBtn">See how ASENZO resolves this</button>
+    </div>
+  </div>`;
+  document.getElementById('sysBtn').addEventListener('click', ()=>{ fwIndex=0; mode='framework'; render(); window.scrollTo(0,0);});
+}
+
+function renderFramework(){
+  const f = ASENZO_LAYERS[fwIndex];
+  const isWeak = (f.key === RESULTS.primary);
+  
+  app.innerHTML = `
+  <div class="fw-header-sticky">
+    <div class="fw-header-inner">
+      <div class="fw-top-row"><span class="eyebrow" style="color:var(--text-main);">Layer ${fwIndex+1} of 6</span><span class="eyebrow" style="color:var(--gold);">${f.title}</span></div>
+      <div class="fw-track">${ASENZO_LAYERS.map((_,i) => `<div class="fw-node ${i<fwIndex?'passed':(i===fwIndex&&isWeak?'weak':'')}"></div>`).join('')}</div>
+    </div>
+  </div>
+  
+  <div class="fw-wrap">
+    <div class="fw-card animate-in del-1">
+      <div class="fw-badge ${isWeak?'weak':'ok'}">${isWeak ? 'Your primary bottleneck' : 'Layer check'}</div>
+      <div class="fw-eyebrow">${f.letter} — LAYER ${fwIndex+1}</div>
+      <h2 class="fw-title">${f.title}</h2>
+      <p class="fw-tagline">"${f.tagline}"</p>
+      <div style="display:flex; justify-content:center; margin-bottom: 24px;">${f.diagram()}</div>
+      <p class="fw-teach">${f.teach}</p>
+      <div class="fw-builds">
+        <div class="lbl">Installed Features</div>
+        <ul>${f.builds.map(b=> `<li>${b}</li>`).join('')}</ul>
+      </div>
+    </div>
+    
+    <div class="nav-footer" style="padding-bottom:0; border:none; margin-top:24px;">
+      <button class="btn btn-primary animate-in del-3" id="fwNextBtn">
+        ${fwIndex === ASENZO_LAYERS.length-1 ? 'Final Diagnosis & Value Stack' : `Next Layer: ${ASENZO_LAYERS[fwIndex+1].title}`}
+      </button>
+    </div>
+  </div>`;
+  
+  document.getElementById('fwNextBtn').addEventListener('click', ()=>{
+    if (fwIndex === ASENZO_LAYERS.length-1) { mode='wall'; render(); }
+    else { fwIndex++; render(); window.scrollTo(0,0); }
+  });
+}
+
+function renderWall(){
+  app.innerHTML = `
+  <div class="screen animate-in">
+    ${renderTopBrand()}
+    <h2 class="q-title" style="margin-bottom:8px; text-align:center;">Your Complete Diagnosis</h2>
+    <p class="q-sub" style="text-align:center;">Value stack mapped to fix your ${CLUSTERS[RESULTS.primary].label} bottleneck.</p>
+    
+    <div class="fw-card animate-in del-2" style="position:relative; overflow:hidden;">
+      <div>
+        <div class="stack-row"><span>Personal + business positioning</span><span class="val">$1,500</span></div>
+        <div class="stack-row"><span>Full conversion funnel</span><span class="val">$2,000</span></div>
+        <div class="stack-row"><span>AI DM qualifier trained on you</span><span class="val">$3,000</span></div>
+        <div class="stack-row"><span>Automated onboarding workflows</span><span class="val">$1,000</span></div>
+        <div class="stack-row"><span>Live analytics dashboard</span><span class="val">$2,500</span></div>
+        <div class="stack-total"><span>Total value stack</span><span style="color:var(--gold);">$10,000</span></div>
+      </div>
+      
+      <div class="wall-overlay">
+        <div style="font-size: 28px; margin-bottom: 12px;">🔒</div>
+        <h3 style="margin-bottom: 8px;">Action Locked</h3>
+        <p style="color:var(--text-muted); font-size:14px; max-width:280px;">The exact pricing scoped to solve your bottleneck is finalized on our strategy call.</p>
+      </div>
+    </div>
+    
+    <div class="nav-footer animate-in del-4" style="flex-direction:column; gap:16px;">
+      <a href="#book-a-call" class="btn btn-primary" style="width:100%; text-decoration:none;">Book Your Strategy Session</a>
+    </div>
+  </div>`;
+}
+
+function render(){
+  app.innerHTML = '';
+  if (mode === 'cover') renderCover();
+  else if (mode === 'question') renderQuestion();
+  else if (mode === 'fis') renderFIS();
+  else if (mode === 'framework') renderFramework();
+  else if (mode === 'wall') renderWall();
+}
+
+render();
+</script>
+</body>
+</html>
