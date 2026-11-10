@@ -2518,16 +2518,16 @@ const LetsConnectSwipeButton = ({ onClick }) => {
 // 11. Master Footer
 const MasterFooter = ({ onAssessmentClick }) => (
   <footer style={{ backgroundColor: '#fafafa', borderTop: '1px solid #e4e4e7', paddingTop: '64px', paddingBottom: '32px', overflow: 'hidden' }}>
-    <div className="mobile-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
+    <div className="mobile-container" style={{ maxWidth: '1140px', margin: '0 auto', padding: '0 24px' }}>
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-        gap: '40px',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: '36px',
         alignItems: 'start',
-        marginBottom: '48px'
+        marginBottom: '40px'
       }}>
-        {/* Brand Column with User's Asenzo Logo in Small Black Icon */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        {/* Brand & Connect Column */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '340px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{
               width: '30px',
@@ -2538,7 +2538,8 @@ const MasterFooter = ({ onAssessmentClick }) => (
               alignItems: 'center',
               justifyContent: 'center',
               boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              flexShrink: 0
             }}>
               <img
                 src="/asenzo-logo.jpg"
@@ -2553,27 +2554,16 @@ const MasterFooter = ({ onAssessmentClick }) => (
                 }}
               />
             </div>
-            {/* Removed the (R) symbol as requested */}
-            <span style={{ fontSize: '15px', fontWeight: 700, letterSpacing: '-0.02em', color: '#0f0f11' }}>Asenzo</span>
+            <span style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.02em', color: '#0f0f11' }}>
+              Have a cool idea?
+            </span>
           </div>
-          <p style={{ fontSize: '13px', color: '#71717a', margin: 0 }}>
-            Proven Systems. Dedicated Service.
+          <p style={{ fontSize: '13.5px', color: '#71717a', lineHeight: 1.55, margin: 0 }}>
+            We love talking with ambitious founders who are ready to take action. Whether you have a project in mind or just want to say hello.
           </p>
-          <button onClick={onAssessmentClick} style={{
-            backgroundColor: '#000000',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '6px',
-            padding: '8px 16px',
-            fontSize: '12px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            alignSelf: 'flex-start',
-            marginTop: '8px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-          }}>
-            Take Free Assessment
-          </button>
+          <div style={{ marginTop: '4px', width: 'fit-content' }}>
+            <LetsConnectSwipeButton onClick={onAssessmentClick} />
+          </div>
         </div>
 
         {/* SOLUTIONS Column */}
@@ -2606,14 +2596,6 @@ const MasterFooter = ({ onAssessmentClick }) => (
             <span>LinkedIn</span>
             <span>Instagram</span>
           </div>
-        </div>
-
-        {/* Have a cool idea? Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: 'fit-content' }}>
-          <h4 style={{ fontSize: '15px', color: '#0f0f11', fontWeight: 600, letterSpacing: '-0.01em', margin: 0, whiteSpace: 'nowrap' }}>
-            Have a cool idea?
-          </h4>
-          <LetsConnectSwipeButton onClick={onAssessmentClick} />
         </div>
       </div>
 
