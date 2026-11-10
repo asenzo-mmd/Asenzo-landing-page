@@ -384,35 +384,12 @@ function AccretionHero({ onOpenModal }) {
             lineHeight: 1.08,
             letterSpacing: "-0.035em",
             color: "#0f0f11",
-            margin: "0 auto 24px auto",
+            margin: "0 auto 32px auto",
             maxWidth: 920
           }}
         >
           Your Business Has the Expertise. Does It Have the Infrastructure to Turn It Into Growth?
         </h1>
-
-        {/* Supporting Description */}
-        <div
-          style={{
-            fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
-            fontSize: "clamp(13.5px, 1.4vw, 15px)",
-            lineHeight: 1.65,
-            color: "#52525b",
-            maxWidth: 720,
-            margin: "0 auto 36px auto",
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px",
-            letterSpacing: "-0.01em"
-          }}
-        >
-          <p style={{ margin: 0 }}>
-            Your positioning, content, enquiries, and business operations all contribute to growth. But when they operate separately, opportunities get lost between them.
-          </p>
-          <p style={{ margin: 0, fontWeight: 500, color: "#27272a" }}>
-            ASENZO designs, builds, and operates the infrastructure connecting these functions into one coordinated growth system.
-          </p>
-        </div>
 
         {/* Primary CTA Button: Solid flat black (#000000), white text, zero hover expansion */}
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -445,45 +422,29 @@ function AccretionHero({ onOpenModal }) {
           </button>
         </div>
 
-        {/* Social Proof: Coded Component with High-Res Avatars & Crisp, Highly Readable Typography */}
+        {/* Supporting Brand Positioning Statement in Monospace Caps */}
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "18px",
-            marginTop: "32px",
-            flexWrap: "wrap"
+            marginTop: "26px",
+            textAlign: "center",
+            padding: "0 16px"
           }}
         >
-          {/* Exact Avatar Stack (3 Founders + 120+ Badge) */}
-          <img
-            src="/avatars-stack.png"
-            alt="120+ Founders"
-            style={{
-              height: "46px",
-              width: "auto",
-              display: "block",
-              objectFit: "contain"
-            }}
-          />
-
-          {/* Crisp, Clear, Monospace Editorial Typography - Super Easy to Read! */}
-          <div
+          <p
             style={{
               fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
-              fontSize: "12.5px",
+              fontSize: "12px",
               fontWeight: 600,
-              color: "#27272a",
+              color: "#52525b",
               letterSpacing: "0.06em",
-              lineHeight: 1.45,
-              textAlign: "left",
-              textTransform: "uppercase"
+              lineHeight: 1.55,
+              textTransform: "uppercase",
+              maxWidth: 720,
+              margin: "0 auto"
             }}
           >
-            <div>FOUNDERS AND MARKETING TEAMS</div>
-            <div>WHO TRUST US WITH THEIR BRAND</div>
-          </div>
+            ASENZO DESIGNS, BUILDS, AND OPERATES THE INFRASTRUCTURE CONNECTING THESE FUNCTIONS INTO ONE COORDINATED GROWTH SYSTEM.
+          </p>
         </div>
       </div>
     </section>
