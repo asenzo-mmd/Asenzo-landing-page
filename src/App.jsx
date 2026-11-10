@@ -146,7 +146,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: isScrolled ? 18 : 28,
+          gap: isScrolled ? 16 : 28,
           padding: isScrolled ? "6px 8px 6px 14px" : "8px 12px 8px 20px",
           borderRadius: 14,
           backdropFilter: "blur(20px)",
@@ -158,10 +158,12 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           borderRight: "1px solid rgba(0, 0, 0, 0.05)",
           borderBottom: "1px solid rgba(0, 0, 0, 0.01)",
           boxShadow: "0 12px 36px rgba(0, 0, 0, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95)",
-          maxWidth: isScrolled ? 580 : 980,
+          maxWidth: isScrolled ? 760 : 980,
+          minWidth: isScrolled ? "fit-content" : undefined,
           width: "100%",
+          boxSizing: "border-box",
           minHeight: 52,
-          transition: "max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease"
+          transition: "max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, gap 0.35s ease"
         }}
       >
         {/* Top-to-Bottom Fading Gradient Outline Overlay */}
@@ -246,7 +248,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: isScrolled ? 18 : 28,
+            gap: isScrolled ? 16 : 28,
             fontSize: 13.5,
             fontWeight: 500,
             color: "#27272a",
@@ -354,25 +356,24 @@ function AccretionHero({ onOpenModal }) {
           zIndex: 5
         }}
       >
-                {/* Eyebrow Pill */}
+        {/* Booking Quarter Pill Badge */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              padding: "5px 16px",
+              padding: "5px 14px",
               borderRadius: 20,
               backgroundColor: "#f4f4f5",
               border: "1px solid #e4e4e7",
-              fontSize: 12,
-              fontWeight: 700,
+              fontSize: 12.5,
+              fontWeight: 600,
               color: "#0f0f11",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase"
+              letterSpacing: "0.02em"
             }}
           >
-            <span>90 DAY GROWTH INFRASTRUCTURE</span>
+            <span>Booking Q4 2027</span>
           </div>
         </div>
 
