@@ -384,12 +384,27 @@ function AccretionHero({ onOpenModal }) {
             lineHeight: 1.05,
             letterSpacing: "-0.038em",
             color: "#0f0f11",
-            margin: "0 auto 32px auto",
+            margin: "0 auto 24px auto",
             maxWidth: 920
           }}
         >
           Your Business Has the Expertise. Does It Have the Infrastructure to Turn It Into Growth?
         </h1>
+
+        {/* Supporting Description */}
+        <p
+          style={{
+            fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
+            fontSize: "clamp(13.5px, 1.4vw, 15px)",
+            lineHeight: 1.65,
+            color: "#52525b",
+            maxWidth: 720,
+            margin: "0 auto 36px auto",
+            letterSpacing: "-0.01em"
+          }}
+        >
+          Your positioning, content, enquiries, and business operations all contribute to growth. But when they operate separately, opportunities get lost between them.
+        </p>
 
         {/* Primary CTA Button: Solid flat black (#000000), white text, zero hover expansion */}
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -2506,59 +2521,18 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 };
 
 const CalendarBookingSection = ({ onAssessmentClick }) => {
-  useEffect(() => {
-    (function (C, A, L) {
-      let p = function (a, ar) { a.q.push(ar); };
-      let d = C.document;
-      C.Cal = C.Cal || function () {
-        let cal = C.Cal;
-        let ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {};
-          cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () { p(api, arguments); };
-          const namespace = ar[1];
-          api.q = api.q || [];
-          if (typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar);
-            p(cal, ["initNamespace", namespace]);
-          } else p(cal, ar);
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, "https://app.cal.com/embed/embed.js", "init");
+  const [selectedDate, setSelectedDate] = useState(20);
+  const [selectedTime, setSelectedTime] = useState("10:00 AM");
 
-    const calNamespace = import.meta.env.VITE_CAL_NAMESPACE || "brandgrowth-strategy-call";
-    const calOrigin = import.meta.env.VITE_CAL_ORIGIN || "https://app.cal.com";
-    const calLink = import.meta.env.VITE_CAL_LINK || "mmd-asenzo/brandgrowth-strategy-call";
+  const timeSlots = ["09:00 AM", "10:00 AM", "11:30 AM", "02:00 PM", "03:30 PM", "05:00 PM"];
 
-    if (window.Cal) {
-      window.Cal("init", calNamespace, { origin: calOrigin });
-      window.Cal.config = window.Cal.config || {};
-      window.Cal.config.forwardQueryParams = true;
-
-      window.Cal.ns[calNamespace]("inline", {
-        elementOrSelector: "#my-cal-inline-brandgrowth-strategy-call",
-        config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
-        calLink: calLink
-      });
-
-      window.Cal.ns[calNamespace]("ui", {
-        cssVarsPerTheme: {
-          light: { "cal-brand": "#000000" },
-          dark: { "cal-brand": "#ffffff" }
-        },
-        hideEventTypeDetails: true,
-        layout: "month_view"
-      });
-    }
-  }, []);
+  const days = [
+    { num: '', avail: false }, { num: '', avail: false }, { num: '', avail: false }, { num: '', avail: false }, { num: '', avail: false }, { num: 1, avail: false }, { num: 2, avail: false },
+    { num: 3, avail: false }, { num: 4, avail: false }, { num: 5, avail: false }, { num: 6, avail: false }, { num: 7, avail: false }, { num: 8, avail: false }, { num: 9, avail: false },
+    { num: 10, avail: false }, { num: 11, avail: false }, { num: 12, avail: false }, { num: 13, avail: false }, { num: 14, avail: false }, { num: 15, avail: false }, { num: 16, avail: false },
+    { num: 17, avail: false }, { num: 18, avail: false }, { num: 19, avail: true }, { num: 20, avail: true }, { num: 21, avail: true }, { num: 22, avail: true }, { num: 23, avail: false },
+    { num: 24, avail: true }, { num: 25, avail: true }, { num: 26, avail: true }, { num: 27, avail: true }, { num: 28, avail: true }, { num: 29, avail: false }, { num: 30, avail: false }
+  ];
 
   return (
     <section id="booking" style={{ backgroundColor: '#ffffff', padding: '120px 24px', borderBottom: '1px solid #f0f0f0' }}>
@@ -2593,22 +2567,126 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
             Let's understand how your positioning, content, and acquisition process currently work, identify the biggest gaps, and explore how ASENZO would connect them.
           </p>
 
-          <p style={{ fontSize: '13.5px', fontWeight: 600, color: '#71717a', letterSpacing: '0.02em', margin: 0 }}>
+          <p style={{ fontSize: '13.5px', fontWeight: 600, color: '#71717a', letterSpacing: '0.02em', marginBottom: '28px' }}>
             30 minute private conversation. No obligation to proceed.
           </p>
+
+          {/* Availability Metric Badge */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', padding: '12px 18px', backgroundColor: '#fafafa', borderRadius: '10px', border: '1px solid #e4e4e7' }}>
+            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 8px #22c55e' }} />
+            <div style={{ fontSize: '13px', color: '#27272a', fontWeight: 500 }}>
+              <span style={{ color: '#0f0f11', fontWeight: 700 }}>2 spots available</span> for this sprint
+            </div>
+          </div>
         </div>
 
-        {/* Right Column: Real Cal.com Inline Booking Container */}
+        {/* Right Column: Interactive Calendar Booking Widget */}
         <div style={{
           backgroundColor: '#ffffff',
           border: '1px solid #e4e4e7',
           borderRadius: '16px',
-          padding: '16px',
-          boxShadow: '0 16px 48px rgba(0, 0, 0, 0.06)',
-          minHeight: '620px',
-          overflow: 'hidden'
+          padding: '32px',
+          boxShadow: '0 16px 48px rgba(0, 0, 0, 0.06)'
         }}>
-          <div style={{ width: '100%', height: '100%', minHeight: '580px', overflow: 'auto' }} id="my-cal-inline-brandgrowth-strategy-call"></div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#0f0f11', margin: 0 }}>Select a Date & Time</h3>
+            <span style={{ fontSize: '13px', fontWeight: 600, color: '#52525b' }}>November 2026</span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px', textAlign: 'center', marginBottom: '24px' }}>
+            {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, idx) => (
+              <span key={idx} style={{ fontSize: '11.5px', fontWeight: 600, color: '#71717a', paddingBottom: '4px' }}>{day}</span>
+            ))}
+            {days.map((day, idx) => {
+              if (!day.num) return <div key={idx} />;
+              const isSelected = selectedDate === day.num;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  disabled={!day.avail}
+                  onClick={() => setSelectedDate(day.num)}
+                  style={{
+                    height: '38px',
+                    borderRadius: '8px',
+                    border: isSelected ? '1px solid #f94500' : '1px solid #f0f0f0',
+                    backgroundColor: isSelected ? '#f94500' : day.avail ? '#f4f4f5' : '#ffffff',
+                    color: isSelected ? '#ffffff' : day.avail ? '#0f0f11' : '#d4d4d8',
+                    fontSize: '13px',
+                    fontWeight: day.avail ? 600 : 400,
+                    cursor: day.avail ? 'pointer' : 'default',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  {day.num}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Time Slot Selection */}
+          <div style={{ marginBottom: '24px' }}>
+            <div style={{ fontSize: '12px', fontWeight: 600, color: '#71717a', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Available Times (30 min)
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+              {timeSlots.map((time, idx) => {
+                const isTimeSelected = selectedTime === time;
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setSelectedTime(time)}
+                    style={{
+                      padding: '8px 0',
+                      borderRadius: '6px',
+                      border: isTimeSelected ? '1px solid #0f0f11' : '1px solid #e4e4e7',
+                      backgroundColor: isTimeSelected ? '#0f0f11' : '#ffffff',
+                      color: isTimeSelected ? '#ffffff' : '#27272a',
+                      fontSize: '12.5px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    {time}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Confirm Button */}
+          <button
+            type="button"
+            onClick={onAssessmentClick}
+            style={{
+              width: '100%',
+              height: '46px',
+              backgroundColor: '#000000',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '14.5px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'filter 0.2s ease',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.filter = 'brightness(1.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.filter = 'brightness(1)';
+            }}
+          >
+            <span>Confirm for Nov {selectedDate} at {selectedTime}</span>
+            <ArrowRight size={16} />
+          </button>
         </div>
 
       </div>
