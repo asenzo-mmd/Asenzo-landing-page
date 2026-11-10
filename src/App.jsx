@@ -394,14 +394,16 @@ function AccretionHero({ onOpenModal }) {
         {/* Supporting Description */}
         <div
           style={{
-            fontSize: "clamp(15.5px, 1.7vw, 17.5px)",
+            fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
+            fontSize: "clamp(13.5px, 1.4vw, 15px)",
             lineHeight: 1.65,
             color: "#52525b",
             maxWidth: 720,
             margin: "0 auto 36px auto",
             display: "flex",
             flexDirection: "column",
-            gap: "12px"
+            gap: "12px",
+            letterSpacing: "-0.01em"
           }}
         >
           <p style={{ margin: 0 }}>
