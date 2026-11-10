@@ -2423,15 +2423,15 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
           <div
             style={{
               position: 'absolute',
-              bottom: '-40px',
-              left: '32px',
-              right: '32px',
-              height: '380px',
+              bottom: '-60px',
+              left: '24px',
+              right: '24px',
+              minHeight: '410px',
               backgroundColor: '#D83300',
               borderRadius: '12px',
-              padding: '60px 32px 32px 32px',
+              padding: '40px 28px 28px 28px',
               boxShadow: '0 -20px 60px rgba(255, 69, 0, 0.45)',
-              transform: `translateY(${0 - (Math.min(scrollProgress * 2.5, 1) * 160)}px)`,
+              transform: `translateY(${0 - (Math.min(scrollProgress * 2.5, 1) * 170)}px)`,
               transition: 'transform 0.05s linear',
               zIndex: 2,
               display: 'flex',
@@ -2444,64 +2444,90 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             }}
           >
             {/* Accent corners */}
-            <div style={{ position: 'absolute', top: '24px', left: '24px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderLeft: '2px solid rgba(255,255,255,0.5)' }} />
-            <div style={{ position: 'absolute', top: '24px', right: '24px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderRight: '2px solid rgba(255,255,255,0.5)' }} />
-
-            <div style={{ fontSize: '15px', fontWeight: 700, color: '#FFFFFF', marginBottom: '24px', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ width: '22px', height: '22px', backgroundColor: '#FFF', borderRadius: '4px', color: '#CC2200', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 800 }}>✦</div>
-              ASENZO
-            </div>
+            <div style={{ position: 'absolute', top: '20px', left: '20px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderLeft: '2px solid rgba(255,255,255,0.5)' }} />
+            <div style={{ position: 'absolute', top: '20px', right: '20px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderRight: '2px solid rgba(255,255,255,0.5)' }} />
 
             <h2
               style={{
-                fontSize: 'clamp(22px, 3.2vw, 30px)',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                lineHeight: 1.15,
+                fontSize: 'clamp(15px, 2.2vw, 19px)',
+                fontWeight: 800,
+                letterSpacing: '0.03em',
+                lineHeight: 1.25,
                 color: '#FFFFFF',
                 marginBottom: '14px',
-                maxWidth: '480px',
-                textAlign: 'center'
+                maxWidth: '520px',
+                textAlign: 'center',
+                textTransform: 'uppercase'
               }}
             >
-              The Infrastructure Behind Business Growth.
+              NOT EVERYONE IS WILLING TO CHOOSE GREATNESS. YOU AREN'T EVERYONE.
             </h2>
 
             <p
               style={{
-                fontSize: '13.5px',
-                color: 'rgba(255,255,255,0.95)',
-                marginBottom: '28px',
+                fontSize: '12.5px',
+                color: 'rgba(255,255,255,0.92)',
+                marginBottom: '12px',
                 lineHeight: 1.5,
                 fontWeight: 400,
-                maxWidth: '420px',
+                maxWidth: '510px',
                 textAlign: 'center'
               }}
             >
-              We design, build, and operate the systems connecting market positioning, demand generation, and customer acquisition.
+              You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take the risk, the conviction to think differently, and the ambition to become the exception.
+            </p>
+
+            <p
+              style={{
+                fontSize: '13px',
+                color: '#FFFFFF',
+                marginBottom: '20px',
+                lineHeight: 1.4,
+                fontWeight: 600,
+                maxWidth: '490px',
+                textAlign: 'center',
+                fontStyle: 'italic'
+              }}
+            >
+              You weren't here to follow the standard. You were here to set it.
             </p>
 
             <button
               onClick={onAssessmentClick}
               style={{
-                height: '46px',
+                height: '44px',
                 backgroundColor: '#FFFFFF',
                 color: '#000000',
                 border: 'none',
                 borderRadius: '6px',
                 padding: '0 28px',
-                fontSize: '13.5px',
-                fontWeight: 600,
+                fontSize: '13px',
+                fontWeight: 700,
+                letterSpacing: '0.04em',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
                 pointerEvents: 'auto',
-                boxShadow: '0 4px 14px rgba(0,0,0,0.15)'
+                boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
+                textTransform: 'uppercase'
               }}
               onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#E5E5E5'; }}
               onMouseOut={(e) => { e.currentTarget.style.backgroundColor = '#FFFFFF'; }}
             >
-              Book a Growth Infrastructure Review
+              I CHOOSE GREATNESS.
             </button>
+
+            <span
+              style={{
+                fontSize: '12px',
+                color: 'rgba(255,255,255,0.85)',
+                marginTop: '10px',
+                fontWeight: 500,
+                letterSpacing: '0.02em',
+                textAlign: 'center'
+              }}
+            >
+              The next move is yours.
+            </span>
           </div>
 
           {/* Envelope Front SVG */}
