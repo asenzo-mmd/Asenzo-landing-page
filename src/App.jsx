@@ -2522,53 +2522,57 @@ const MasterFooter = ({ onAssessmentClick }) => (
           </div>
         </div>
 
-        {/* Newsletter Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', minWidth: '260px' }}>
-          <h4 style={{ fontSize: '15px', color: '#0f0f11', fontWeight: 600, letterSpacing: '-0.01em', margin: 0 }}>
-            What's new, straight to you
+        {/* Have a cool idea? Column */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: 'fit-content' }}>
+          <h4 style={{ fontSize: '15px', color: '#0f0f11', fontWeight: 600, letterSpacing: '-0.01em', margin: 0, whiteSpace: 'nowrap' }}>
+            Have a cool idea?
           </h4>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <input
-              type="email"
-              placeholder="jane@framer.com"
-              style={{
-                backgroundColor: '#ffffff',
-                border: '1px solid #e4e4e7',
-                borderRadius: '6px',
-                padding: '0 14px',
-                height: '40px',
-                flex: 1,
-                color: '#0f0f11',
-                fontSize: '13.5px',
-                outline: 'none',
-                minWidth: '0',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
-              }}
-            />
-            <button
-              style={{
-                backgroundColor: '#000000',
-                color: '#ffffff',
-                border: '1px solid #000000',
-                borderRadius: '6px',
-                padding: '0 16px',
-                height: '40px',
-                fontSize: '13px',
-                fontWeight: 600,
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272a'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
-            >
-              Subscribe
-            </button>
-          </div>
-          <p style={{ fontSize: '12.5px', color: '#71717a', margin: 0, lineHeight: 1.5 }}>
-            Includes the latest product updates, productivity tips, and insights.
-          </p>
+          <button
+            onClick={onAssessmentClick}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              width: '100%',
+              height: '40px',
+              backgroundColor: '#f94500',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '6px',
+              padding: '0 12px',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              boxShadow: '0 2px 10px rgba(249, 69, 0, 0.22)',
+              transition: 'background-color 0.2s ease, transform 0.15s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#e03e00';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#f94500';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            {/* Mini Cube with Plus Icon on Left */}
+            <div style={{
+              width: '18px',
+              height: '18px',
+              backgroundColor: 'rgba(255, 255, 255, 0.22)',
+              border: '1px solid rgba(255, 255, 255, 0.35)',
+              borderRadius: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <Plus size={11} color="#ffffff" strokeWidth={3} />
+            </div>
+            <span>Lets connect</span>
+          </button>
         </div>
       </div>
 
