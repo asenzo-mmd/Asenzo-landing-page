@@ -379,10 +379,10 @@ function AccretionHero({ onOpenModal }) {
         <h1
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: "clamp(38px, 5.2vw, 72px)",
+            fontSize: "clamp(42px, 6vw, 80px)",
             fontWeight: 700,
-            lineHeight: 1.08,
-            letterSpacing: "-0.035em",
+            lineHeight: 1.05,
+            letterSpacing: "-0.038em",
             color: "#0f0f11",
             margin: "0 auto 32px auto",
             maxWidth: 920
