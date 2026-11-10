@@ -2448,13 +2448,13 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <h2
               style={{
-                fontSize: 'clamp(17px, 2.4vw, 22px)',
+                fontSize: 'clamp(15px, 2.2vw, 19px)',
                 fontWeight: 800,
                 letterSpacing: '0.03em',
                 lineHeight: 1.25,
                 color: '#FFFFFF',
-                marginBottom: '16px',
-                maxWidth: '540px',
+                marginBottom: '14px',
+                maxWidth: '520px',
                 textAlign: 'center',
                 textTransform: 'uppercase'
               }}
@@ -2464,28 +2464,43 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <p
               style={{
-                fontSize: '14px',
+                fontSize: '12.5px',
                 color: 'rgba(255,255,255,0.92)',
-                marginBottom: '26px',
-                lineHeight: 1.58,
+                marginBottom: '12px',
+                lineHeight: 1.5,
                 fontWeight: 400,
-                maxWidth: '520px',
+                maxWidth: '510px',
                 textAlign: 'center'
               }}
             >
               You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take the risk, the conviction to think differently, and the ambition to become the exception.
             </p>
 
+            <p
+              style={{
+                fontSize: '13px',
+                color: '#FFFFFF',
+                marginBottom: '18px',
+                lineHeight: 1.4,
+                fontWeight: 600,
+                maxWidth: '490px',
+                textAlign: 'center',
+                fontStyle: 'italic'
+              }}
+            >
+              You weren't here to follow the standard. You were here to set it.
+            </p>
+
             <button
               onClick={onAssessmentClick}
               style={{
-                height: '46px',
+                height: '44px',
                 backgroundColor: '#FFFFFF',
                 color: '#000000',
                 border: 'none',
                 borderRadius: '6px',
-                padding: '0 30px',
-                fontSize: '13.5px',
+                padding: '0 28px',
+                fontSize: '13px',
                 fontWeight: 700,
                 letterSpacing: '0.04em',
                 cursor: 'pointer',
@@ -2502,11 +2517,11 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <span
               style={{
-                fontSize: '12.5px',
-                color: 'rgba(255,255,255,0.9)',
-                marginTop: '12px',
+                fontSize: '12px',
+                color: 'rgba(255,255,255,0.85)',
+                marginTop: '10px',
                 fontWeight: 500,
-                letterSpacing: '0.015em',
+                letterSpacing: '0.02em',
                 textAlign: 'center'
               }}
             >
