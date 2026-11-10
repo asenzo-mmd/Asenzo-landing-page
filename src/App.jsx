@@ -379,17 +379,16 @@ function AccretionHero({ onOpenModal }) {
         <h1
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: "clamp(38px, 5.5vw, 76px)",
+            fontSize: "clamp(38px, 5.2vw, 72px)",
             fontWeight: 700,
-            lineHeight: 1.06,
+            lineHeight: 1.08,
             letterSpacing: "-0.035em",
             color: "#0f0f11",
             margin: "0 auto 24px auto",
-            maxWidth: 920,
-            textTransform: "uppercase"
+            maxWidth: 960
           }}
         >
-          TURN MARKET ATTENTION INTO QUALIFIED SALES CALLS.
+          We Build Authority Growth System Into Your Business That Turn Attention Into Qualified Sales Call
         </h1>
 
         {/* Supporting Description */}
@@ -399,11 +398,11 @@ function AccretionHero({ onOpenModal }) {
             fontSize: "clamp(16px, 1.8vw, 18px)",
             lineHeight: 1.6,
             color: "#52525b",
-            maxWidth: 680,
+            maxWidth: 720,
             margin: "0 auto 36px auto"
           }}
         >
-          We design, build and operate the growth infrastructure connecting positioning, demand generation, prospect acquisition and booking — moving the right prospects from discovery to sales conversations.
+          ASENZO helps you design, build and operate the growth infrastructure connecting positioning, demand generation, prospect acquisition and booking — moving the right prospects from discovery to sales conversations.
         </p>
 
         {/* Primary CTA Button: Solid flat black (#000000), white text, zero hover expansion */}
