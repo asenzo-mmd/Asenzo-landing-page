@@ -146,7 +146,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: isScrolled ? 16 : 28,
+          gap: isScrolled ? 18 : 28,
           padding: isScrolled ? "6px 8px 6px 14px" : "8px 12px 8px 20px",
           borderRadius: 14,
           backdropFilter: "blur(20px)",
@@ -158,12 +158,10 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           borderRight: "1px solid rgba(0, 0, 0, 0.05)",
           borderBottom: "1px solid rgba(0, 0, 0, 0.01)",
           boxShadow: "0 12px 36px rgba(0, 0, 0, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95)",
-          maxWidth: isScrolled ? 760 : 980,
-          minWidth: isScrolled ? "fit-content" : undefined,
+          maxWidth: isScrolled ? 624 : 980,
           width: "100%",
-          boxSizing: "border-box",
           minHeight: 52,
-          transition: "max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, gap 0.35s ease"
+          transition: "max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease"
         }}
       >
         {/* Top-to-Bottom Fading Gradient Outline Overlay */}
@@ -248,7 +246,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: isScrolled ? 16 : 28,
+            gap: isScrolled ? 18 : 28,
             fontSize: 13.5,
             fontWeight: 500,
             color: "#27272a",
@@ -261,8 +259,8 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             { label: "Infrastructure", href: "#integrations" },
             { label: "Engagements", href: "#pricing" },
             { label: "Implementation", href: "#timeline" },
-            { label: "FAQ", href: "#faq" }
-          ].map((item) => (
+            { label: "FAQ", href: "#faq", hideOnScroll: true }
+          ].filter((item) => !isScrolled || !item.hideOnScroll).map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -472,17 +470,17 @@ function AccretionHero({ onOpenModal }) {
           <div
             style={{
               fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
-              fontSize: "12px",
-              fontWeight: 700,
+              fontSize: "12.5px",
+              fontWeight: 600,
               color: "#27272a",
-              letterSpacing: "0.07em",
+              letterSpacing: "0.06em",
               lineHeight: 1.45,
               textAlign: "left",
               textTransform: "uppercase"
             }}
           >
-            <div>ONE CONNECTED GROWTH SYSTEM</div>
-            <div style={{ color: "#71717a", fontWeight: 500, fontSize: "11px", marginTop: "2px" }}>THE SIX ESSENTIAL LAYERS BEHIND YOUR BUSINESS GROWTH.</div>
+            <div>FOUNDERS AND MARKETING TEAMS</div>
+            <div>WHO TRUST US WITH THEIR BRAND</div>
           </div>
         </div>
       </div>
@@ -875,23 +873,25 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
               }}
             />
 
-            {/* CENTER LOGO BOX WITH CENTRAL INDICATOR */}
+            {/* CENTER LOGO BOX:
+                - STRICTLY SOLID DARK #151515 INSIDE (NO gradient inside the logo box per requirement)
+                - Contains User's Silver Star/A Logo
+                - Bottom Rim catches the heavy incandescent glow!
+            */}
             <div
               style={{
-                width: 110,
-                height: 110,
-                borderRadius: 22,
+                width: 96,
+                height: 96,
+                borderRadius: 20,
                 backgroundColor: "#151515",
                 border: "1px solid rgba(255, 255, 255, 0.14)",
                 boxShadow: "0 14px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 85, 0, 0.4)",
                 position: "relative",
                 zIndex: 5,
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                overflow: "hidden",
-                gap: 6
+                overflow: "hidden"
               }}
             >
               {/* User's Uploaded Silver Star/A Logo */}
@@ -899,8 +899,8 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
                 src="/asenzo-logo.jpg"
                 alt="Asenzo Core Logo"
                 style={{
-                  width: 44,
-                  height: 44,
+                  width: 52,
+                  height: 52,
                   objectFit: "cover",
                   mixBlendMode: "screen",
                   display: "block",
@@ -909,21 +909,6 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
                   filter: "drop-shadow(0 2px 10px rgba(0, 0, 0, 0.7))"
                 }}
               />
-              <span
-                style={{
-                  fontSize: 8.5,
-                  fontWeight: 700,
-                  color: "rgba(255, 255, 255, 0.8)",
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  textAlign: "center",
-                  lineHeight: 1.15,
-                  zIndex: 4,
-                  padding: "0 6px"
-                }}
-              >
-                Connected through ASENZO
-              </span>
 
               {/* Glowing Rim at Bottom of Logo Box catching the heavy illumination */}
               <div
@@ -1245,93 +1230,52 @@ function KeyBenefitsSection() {
 }
 
 const HandHoldingPhoneSection = () => (
-  <section style={{ backgroundColor: '#ffffff', padding: '110px 0', borderBottom: '1px solid #f0f0f0', overflow: 'hidden' }}>
-    <div className="mobile-container" style={{ maxWidth: '1040px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+  <section style={{ backgroundColor: '#ffffff', padding: '100px 0', borderBottom: '1px solid #f0f0f0', overflow: 'hidden' }}>
+    <div className="mobile-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
 
-      {/* Eyebrow Pill */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '4px 14px',
-            borderRadius: '20px',
-            backgroundColor: '#f4f4f5',
-            border: '1px solid #e4e4e7',
-            fontSize: '11.5px',
-            fontWeight: 700,
-            color: '#0f0f11',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase'
-          }}
-        >
-          <span>✦ A CLIENT STORY</span>
-        </div>
-      </div>
-
-      {/* Headline */}
-      <h2
-        style={{
-          fontFamily: "'Switzer', 'Inter', sans-serif",
-          fontSize: "clamp(30px, 4vw, 48px)",
-          fontWeight: 700,
-          lineHeight: 1.15,
-          letterSpacing: "-0.03em",
-          color: "#0f0f11",
-          margin: "0 auto 36px auto",
-          maxWidth: "780px"
-        }}
-      >
-        From Starting With Zero to Becoming Impossible to Ignore.
-      </h2>
-
-      {/* Hand Holding Phone Mockup */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '44px' }}>
+      {/* Hand Holding Phone Image */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '48px' }}>
         <img
           src="/testimonial-hand.jpg"
-          alt="Client Story Proof"
-          style={{ maxWidth: '400px', width: '100%', height: 'auto', objectFit: 'contain' }}
+          alt="Hand Holding Phone Mockup"
+          style={{ maxWidth: '420px', width: '100%', height: 'auto', objectFit: 'contain' }}
         />
       </div>
 
-      {/* Metrics Row */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '24px',
-          maxWidth: '640px',
-          margin: '0 auto 40px auto'
-        }}
-      >
-        <div style={{ padding: '24px', borderRadius: '10px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7' }}>
-          <div style={{ fontSize: '38px', fontWeight: 800, color: '#0f0f11', letterSpacing: '-0.03em', lineHeight: 1 }}>30,000</div>
-          <div style={{ fontSize: '13.5px', color: '#52525b', marginTop: '8px', fontWeight: 500 }}>Followers built in one month.</div>
+      {/* Editorial Pull-Quote Block */}
+      <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', position: 'relative' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+          <img src="/logo-icon.png" alt="Icon" style={{ width: '32px', height: '32px', filter: 'invert(1)' }} onError={(e) => e.target.style.display = 'none'} />
         </div>
-        <div style={{ padding: '24px', borderRadius: '10px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7' }}>
-          <div style={{ fontSize: '38px', fontWeight: 800, color: '#0f0f11', letterSpacing: '-0.03em', lineHeight: 1 }}>1.9M+</div>
-          <div style={{ fontSize: '13.5px', color: '#52525b', marginTop: '8px', fontWeight: 500 }}>Views on an individual post.</div>
-        </div>
-      </div>
+        <blockquote style={{
+          fontSize: 'clamp(22px, 3.8vw, 42px)',
+          fontWeight: 400,
+          lineHeight: 1.25,
+          letterSpacing: '-0.03em',
+          color: '#0f0f11',
+          margin: '0 0 32px 0',
+          textAlign: 'center'
+        }}>
+          "From starting with zero to becoming impossible to ignore. Within one month, our following grew to 30,000 with 1.9M+ views, and we began receiving consistent, qualified enquiries far beyond our network."
+        </blockquote>
 
-      {/* Narrative Story Block */}
-      <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'left', lineHeight: 1.7, color: '#3f3f46', fontSize: '15.5px' }}>
-        <p style={{ marginBottom: '16px' }}>
-          A B2B founder started with no Instagram audience. Within just one month, his following grew to 30,000. One of his posts reached more than 1.9 million views.
-        </p>
-        <p style={{ marginBottom: '16px' }}>
-          But the bigger shift was what happened beyond the audience. His expertise was reaching people far beyond his existing network. His business gained significantly greater market visibility, and he reported receiving qualified enquiries from that attention.
-        </p>
-        <p style={{ marginBottom: '16px' }}>
-          More people were discovering his perspective, understanding his expertise, and getting introduced to his business. That is what stronger market authority can make possible.
-        </p>
-        <p style={{ marginBottom: '20px', fontWeight: 500, color: '#0f0f11' }}>
-          Imagine what changes when the right people begin discovering your business at that scale.
-        </p>
-        <p style={{ fontSize: '14.5px', color: '#71717a', fontStyle: 'italic', borderLeft: '2px solid #e4e4e7', paddingLeft: '14px', margin: 0 }}>
-          ASENZO builds the infrastructure that connects that market presence to your customer acquisition process.
-        </p>
+        {/* Quiet Inline Avatar + Attribution Line */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', textAlign: 'center' }}>
+          <div style={{
+            width: '48px',
+            height: '48px',
+            borderRadius: '50%',
+            backgroundImage: 'url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80")',
+            backgroundSize: 'cover',
+            filter: 'grayscale(100%)',
+            border: '1px solid #222222',
+            flexShrink: 0
+          }}></div>
+          <div>
+            <div style={{ fontSize: '15px', fontWeight: 500, color: '#0f0f11', lineHeight: 1.2 }}>B2B Founder</div>
+            <div style={{ fontSize: '14px', color: '#71717a', marginTop: '4px' }}>Client Story · 30,000 Followers & 1.9M+ Views</div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -2083,7 +2027,6 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
   </section>
 );
 
-// 8. 1-to-1 Money Back Guarantee
 const GuaranteeBanner = ({ onAssessmentClick }) => (
   <section style={{
     backgroundColor: '#ffffff',
@@ -2092,43 +2035,21 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
     display: 'flex',
     justifyContent: 'center'
   }}>
-    <div style={{ maxWidth: '980px', width: '100%', textAlign: 'center' }}>
+    <div style={{ maxWidth: '1000px', width: '100%', textAlign: 'center' }}>
       
-      {/* Eyebrow Pill */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '4px 14px',
-            borderRadius: '20px',
-            backgroundColor: '#f4f4f5',
-            border: '1px solid #e4e4e7',
-            fontSize: '11.5px',
-            fontWeight: 700,
-            color: '#0f0f11',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase'
-          }}
-        >
-          <span>✦ THE ASENZO COMMITMENT</span>
-        </div>
-      </div>
-
-      {/* Shield Icon */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
+      {/* Grey/black shield icon container from previous */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}>
         <div style={{
-          width: '60px',
-          height: '60px',
-          borderRadius: '14px',
+          width: '64px',
+          height: '64px',
+          borderRadius: '16px',
           backgroundColor: '#f4f4f5',
           border: '1px solid #e4e4e7',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
         }}>
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             <path d="m9 12 2 2 4-4"></path>
           </svg>
@@ -2136,13 +2057,12 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       </div>
 
       <h2 style={{
-        fontFamily: "'Switzer', 'Inter', sans-serif",
-        fontSize: 'clamp(34px, 4.8vw, 54px)',
+        fontSize: 'clamp(36px, 5vw, 60px)',
         fontWeight: 700,
         color: '#0f0f11',
-        lineHeight: 1.1,
-        marginBottom: '20px',
-        letterSpacing: '-0.03em'
+        lineHeight: 1.08,
+        marginBottom: '24px',
+        letterSpacing: '-0.035em'
       }}>
         We Stand Behind the Infrastructure We Build.
       </h2>
@@ -2150,82 +2070,145 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       <p style={{
         fontSize: '16px',
         color: '#52525b',
-        maxWidth: '680px',
-        margin: '0 auto 44px auto',
+        maxWidth: '740px',
+        margin: '0 auto 48px auto',
         lineHeight: 1.6
       }}>
         Your engagement has defined delivery milestones and clear responsibilities.
       </p>
 
-      {/* 3 Pillars Grid */}
+      {/* 3 Reference-Styled Boxes (Horizontal Layout) */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
         gap: '20px',
         textAlign: 'left',
-        marginBottom: '40px'
+        marginBottom: '44px'
       }}>
-        <div style={{ padding: '24px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7', borderRadius: '8px' }}>
-          <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#0f0f11', textTransform: 'uppercase', marginBottom: '8px' }}>
+        {/* Card 1: CORE DELIVERY */}
+        <div style={{
+          backgroundColor: '#ffffff',
+          border: '1px solid #e5e7eb',
+          borderRadius: '16px',
+          padding: '28px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+          transition: 'all 0.2s ease'
+        }}>
+          <Zap size={22} color="#0f0f11" strokeWidth={1.8} />
+          <h3 style={{
+            fontFamily: "'Switzer', 'Inter', sans-serif",
+            fontSize: '18px',
+            fontWeight: 700,
+            color: '#0f0f11',
+            letterSpacing: '-0.015em',
+            margin: '16px 0 8px 0'
+          }}>
             CORE DELIVERY
-          </div>
-          <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+          </h3>
+          <p style={{
+            fontSize: '14.5px',
+            color: '#52525b',
+            lineHeight: 1.55,
+            margin: 0
+          }}>
             The agreed core acquisition path and first 15 videos are targeted for day 30.
           </p>
         </div>
 
-        <div style={{ padding: '24px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7', borderRadius: '8px' }}>
-          <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#0f0f11', textTransform: 'uppercase', marginBottom: '8px' }}>
+        {/* Card 2: FULL INFRASTRUCTURE */}
+        <div style={{
+          backgroundColor: '#ffffff',
+          border: '1px solid #e5e7eb',
+          borderRadius: '16px',
+          padding: '28px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+          transition: 'all 0.2s ease'
+        }}>
+          <Rocket size={22} color="#0f0f11" strokeWidth={1.8} />
+          <h3 style={{
+            fontFamily: "'Switzer', 'Inter', sans-serif",
+            fontSize: '18px',
+            fontWeight: 700,
+            color: '#0f0f11',
+            letterSpacing: '-0.015em',
+            margin: '16px 0 8px 0'
+          }}>
             FULL INFRASTRUCTURE
-          </div>
-          <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+          </h3>
+          <p style={{
+            fontSize: '14.5px',
+            color: '#52525b',
+            lineHeight: 1.55,
+            margin: 0
+          }}>
             The full agreed trust layer is targeted for day 60.
           </p>
         </div>
 
-        <div style={{ padding: '24px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7', borderRadius: '8px' }}>
-          <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#0f0f11', textTransform: 'uppercase', marginBottom: '8px' }}>
+        {/* Card 3: PERFORMANCE REVIEW */}
+        <div style={{
+          backgroundColor: '#ffffff',
+          border: '1px solid #e5e7eb',
+          borderRadius: '16px',
+          padding: '28px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+          transition: 'all 0.2s ease'
+        }}>
+          <Clock size={22} color="#0f0f11" strokeWidth={1.8} />
+          <h3 style={{
+            fontFamily: "'Switzer', 'Inter', sans-serif",
+            fontSize: '18px',
+            fontWeight: 700,
+            color: '#0f0f11',
+            letterSpacing: '-0.015em',
+            margin: '16px 0 8px 0'
+          }}>
             PERFORMANCE REVIEW
-          </div>
-          <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+          </h3>
+          <p style={{
+            fontSize: '14.5px',
+            color: '#52525b',
+            lineHeight: 1.55,
+            margin: 0
+          }}>
             Your starting organic performance and day 90 results are reviewed using the agreed measurement method.
           </p>
         </div>
       </div>
 
       {/* Closing Commitment Statement */}
-      <div style={{
+      <p style={{
+        fontSize: '15px',
+        color: '#52525b',
         maxWidth: '740px',
         margin: '0 auto 40px auto',
-        padding: '20px 24px',
-        backgroundColor: '#ffffff',
-        border: '1px solid #e4e4e7',
-        borderRadius: '8px',
-        fontSize: '13.5px',
-        color: '#52525b',
         lineHeight: 1.6
       }}>
-        <p style={{ margin: '0 0 10px 0' }}>
-          If an agreed workflow is non functional because of our delivery, we fix it without an additional service fee. Applicable refund conditions, responsibilities, and measurement definitions are documented in the signed agreement.
-        </p>
-        <p style={{ margin: 0, fontWeight: 600, color: '#0f0f11' }}>
-          We commit to our delivery. We do not promise unsupported sales or revenue outcomes.
-        </p>
-      </div>
+        If an agreed workflow is non functional because of our delivery, we fix it without an additional service fee. Applicable refund conditions, responsibilities, and measurement definitions are documented in the signed agreement. We commit to our delivery.
+      </p>
 
-      {/* CTA Button */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+      {/* Previous Black Button & Trust Badges */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
         <button onClick={onAssessmentClick} style={{
           backgroundColor: '#000000',
           color: '#ffffff',
           border: 'none',
-          borderRadius: '6px',
-          padding: '0 32px',
-          height: '48px',
+          borderRadius: '8px',
+          padding: '0 34px',
+          height: '50px',
           fontSize: '14px',
           fontWeight: 600,
           cursor: 'pointer',
-          boxShadow: '0 4px 18px rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 4px 18px rgba(0, 0, 0, 0.15)',
           transition: 'background-color 0.2s ease'
         }}
         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#27272a'}
@@ -2233,6 +2216,11 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
         >
           Book a Growth Infrastructure Review
         </button>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '24px', fontSize: '11px', color: '#52525b', fontWeight: 600, letterSpacing: '0.05em' }}>
+          <span>✓ DEFINED DELIVERY COMMITMENTS</span>
+          <span>✓ CLEAR IMPLEMENTATION MILESTONES</span>
+          <span>✓ 90 DAY ENGAGEMENT</span>
+        </div>
       </div>
     </div>
   </section>
