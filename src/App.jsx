@@ -2348,12 +2348,12 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
       ref={containerRef}
       style={{
         backgroundColor: '#ffffff',
-        height: '300vh', // 300vh scroll height for smooth, locked scroll stop animation!
+        height: '135vh', // Compact scroll distance that completes the animation cleanly at this point without dead scroll
         position: 'relative',
         zIndex: 200
       }}
     >
-      {/* Sticky container: Locks cleanly at viewport top while user scrolls through the 300vh distance */}
+      {/* Sticky container: Locks cleanly at viewport top while user scrolls through the reveal */}
       <div
         style={{
           position: 'sticky',
@@ -2417,8 +2417,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
           />
 
           {/* The Glowing Card:
-              - First 40% of scroll: Smoothly pulls up by 160px
-              - Remaining 60% of scroll: Completely FROZEN & LOCKED ("scroll stop dwell time")
+              Smoothly pulls up to exact finished position as user scrolls, ending cleanly
           */}
           <div
             style={{
@@ -2431,7 +2430,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               borderRadius: '12px',
               padding: '40px 28px 28px 28px',
               boxShadow: '0 -20px 60px rgba(255, 69, 0, 0.45)',
-              transform: `translateY(${0 - (Math.min(scrollProgress * 2.5, 1) * 170)}px)`,
+              transform: `translateY(${0 - (Math.min(scrollProgress * 1.15, 1) * 170)}px)`,
               transition: 'transform 0.05s linear',
               zIndex: 2,
               display: 'flex',
@@ -2516,18 +2515,22 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               I CHOOSE GREATNESS.
             </button>
 
-            <span
+            <p
               style={{
-                fontSize: '12px',
-                color: 'rgba(255,255,255,0.85)',
+                fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
+                fontSize: '11px',
+                fontWeight: 600,
+                color: 'rgba(255, 255, 255, 0.88)',
+                letterSpacing: '0.06em',
+                lineHeight: 1.5,
+                textTransform: 'uppercase',
                 marginTop: '10px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
+                marginBottom: 0,
                 textAlign: 'center'
               }}
             >
               The next move is yours.
-            </span>
+            </p>
           </div>
 
           {/* Envelope Front SVG */}
