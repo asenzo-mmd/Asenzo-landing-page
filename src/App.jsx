@@ -1234,16 +1234,21 @@ const HandHoldingPhoneSection = () => (
 
         {/* Quiet Inline Avatar + Attribution Line */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', textAlign: 'center' }}>
-          <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            backgroundImage: 'url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80")',
-            backgroundSize: 'cover',
-            filter: 'grayscale(100%)',
-            border: '1px solid #222222',
-            flexShrink: 0
-          }}></div>
+          <img
+            src="/b2b-founder.jpg"
+            alt="B2B Founder"
+            style={{
+              width: '52px',
+              height: '52px',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              objectPosition: 'center 20%',
+              border: '1.5px solid #e4e4e7',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+              flexShrink: 0,
+              display: 'block'
+            }}
+          />
           <div>
             <div style={{ fontSize: '15px', fontWeight: 500, color: '#0f0f11', lineHeight: 1.2 }}>B2B Founder</div>
             <div style={{ fontSize: '14px', color: '#71717a', marginTop: '4px' }}>Client Story · 30,000 Followers & 1.9M+ Views</div>
