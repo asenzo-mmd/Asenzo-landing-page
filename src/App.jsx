@@ -395,13 +395,12 @@ function AccretionHero({ onOpenModal }) {
         {/* Supporting Description */}
         <p
           style={{
-            fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
-            fontSize: "clamp(13.5px, 1.4vw, 15px)",
-            lineHeight: 1.65,
+            fontFamily: "'Switzer', 'Inter', -apple-system, sans-serif",
+            fontSize: "clamp(16px, 1.8vw, 18px)",
+            lineHeight: 1.6,
             color: "#52525b",
-            maxWidth: 720,
-            margin: "0 auto 36px auto",
-            letterSpacing: "-0.01em"
+            maxWidth: 680,
+            margin: "0 auto 36px auto"
           }}
         >
           We design, build and operate the growth infrastructure connecting positioning, demand generation, prospect acquisition and booking — moving the right prospects from discovery to sales conversations.
