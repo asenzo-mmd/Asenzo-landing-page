@@ -379,17 +379,33 @@ function AccretionHero({ onOpenModal }) {
         <h1
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: "clamp(42px, 6vw, 80px)",
+            fontSize: "clamp(38px, 5.5vw, 76px)",
             fontWeight: 700,
-            lineHeight: 1.05,
-            letterSpacing: "-0.038em",
+            lineHeight: 1.06,
+            letterSpacing: "-0.035em",
             color: "#0f0f11",
-            margin: "0 auto 32px auto",
-            maxWidth: 920
+            margin: "0 auto 24px auto",
+            maxWidth: 920,
+            textTransform: "uppercase"
           }}
         >
-          Your Business Has the Expertise. Does It Have the Infrastructure to Turn It Into Growth?
+          TURN MARKET ATTENTION INTO QUALIFIED SALES CALLS.
         </h1>
+
+        {/* Supporting Description */}
+        <p
+          style={{
+            fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
+            fontSize: "clamp(13.5px, 1.4vw, 15px)",
+            lineHeight: 1.65,
+            color: "#52525b",
+            maxWidth: 720,
+            margin: "0 auto 36px auto",
+            letterSpacing: "-0.01em"
+          }}
+        >
+          We design, build and operate the growth infrastructure connecting positioning, demand generation, prospect acquisition and booking — moving the right prospects from discovery to sales conversations.
+        </p>
 
         {/* Primary CTA Button: Solid flat black (#000000), white text, zero hover expansion */}
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -422,29 +438,45 @@ function AccretionHero({ onOpenModal }) {
           </button>
         </div>
 
-        {/* Supporting Brand Positioning Statement in Monospace Caps */}
+        {/* Social Proof: Coded Component with High-Res Avatars & Crisp Typography */}
         <div
           style={{
-            marginTop: "26px",
-            textAlign: "center",
-            padding: "0 16px"
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "18px",
+            marginTop: "32px",
+            flexWrap: "wrap"
           }}
         >
-          <p
+          {/* Exact Avatar Stack (3 Founders + 120+ Badge) */}
+          <img
+            src="/avatars-stack.png"
+            alt="120+ Founders"
+            style={{
+              height: "46px",
+              width: "auto",
+              display: "block",
+              objectFit: "contain"
+            }}
+          />
+
+          {/* Crisp, Clear, Monospace Editorial Typography */}
+          <div
             style={{
               fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
-              fontSize: "12px",
+              fontSize: "12.5px",
               fontWeight: 600,
-              color: "#52525b",
+              color: "#27272a",
               letterSpacing: "0.06em",
-              lineHeight: 1.55,
-              textTransform: "uppercase",
-              maxWidth: 720,
-              margin: "0 auto"
+              lineHeight: 1.45,
+              textAlign: "left",
+              textTransform: "uppercase"
             }}
           >
-            ASENZO DESIGNS, BUILDS, AND OPERATES THE INFRASTRUCTURE CONNECTING THESE FUNCTIONS INTO ONE COORDINATED GROWTH SYSTEM.
-          </p>
+            <div>FOUNDERS AND MARKETING TEAMS</div>
+            <div>WHO TRUST US WITH THEIR BRAND</div>
+          </div>
         </div>
       </div>
     </section>
