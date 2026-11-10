@@ -2429,6 +2429,94 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
     </section>
   );
 };
+
+// Interactive Swipe Button for "Lets connect" in Footer
+const LetsConnectSwipeButton = ({ onClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef(null);
+  const [maxSlide, setMaxSlide] = useState(115);
+
+  useEffect(() => {
+    const updateSlide = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.offsetWidth;
+        // 34px is black cube width, 8px total padding
+        setMaxSlide(Math.max(0, width - 42));
+      }
+    };
+    updateSlide();
+    window.addEventListener('resize', updateSlide);
+    return () => window.removeEventListener('resize', updateSlide);
+  }, []);
+
+  return (
+    <button
+      ref={containerRef}
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        width: '100%',
+        minWidth: '150px',
+        height: '42px',
+        backgroundColor: '#f94500',
+        borderRadius: '8px',
+        border: 'none',
+        padding: '4px',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        cursor: 'pointer',
+        boxShadow: isHovered
+          ? '0 6px 20px rgba(249, 69, 0, 0.38)'
+          : '0 2px 10px rgba(249, 69, 0, 0.22)',
+        overflow: 'hidden',
+        transition: 'box-shadow 0.25s ease, background-color 0.2s ease',
+        userSelect: 'none'
+      }}
+    >
+      {/* Background track text with swipe indicator */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '4px',
+        pointerEvents: 'none',
+        color: '#ffffff',
+        fontSize: '12.5px',
+        fontWeight: 600,
+        letterSpacing: '0.01em',
+        transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease',
+        transform: isHovered ? 'translateX(-14px)' : 'translateX(12px)',
+        opacity: isHovered ? 0.75 : 1
+      }}>
+        <span>Lets connect</span>
+        <span style={{ fontSize: '13px', opacity: 0.85, letterSpacing: '-1.5px' }}>››</span>
+      </div>
+
+      {/* Black Mini Cube with Plus Icon - Swipes smoothly to the Right */}
+      <div style={{
+        width: '34px',
+        height: '34px',
+        backgroundColor: '#000000',
+        borderRadius: '6px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
+        transform: `translateX(${isHovered ? maxSlide : 0}px)`,
+        transition: 'transform 0.38s cubic-bezier(0.22, 1, 0.36, 1)',
+        zIndex: 2,
+        flexShrink: 0
+      }}>
+        <Plus size={15} color="#ffffff" strokeWidth={2.6} />
+      </div>
+    </button>
+  );
+};
+
 // 11. Master Footer
 const MasterFooter = ({ onAssessmentClick }) => (
   <footer style={{ backgroundColor: '#fafafa', borderTop: '1px solid #e4e4e7', paddingTop: '64px', paddingBottom: '32px', overflow: 'hidden' }}>
@@ -2527,56 +2615,11 @@ const MasterFooter = ({ onAssessmentClick }) => (
           <h4 style={{ fontSize: '15px', color: '#0f0f11', fontWeight: 600, letterSpacing: '-0.01em', margin: 0, whiteSpace: 'nowrap' }}>
             Have a cool idea?
           </h4>
-          <button
-            onClick={onAssessmentClick}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              width: '100%',
-              height: '40px',
-              backgroundColor: '#f94500',
-              color: '#ffffff',
-              border: 'none',
-              borderRadius: '6px',
-              padding: '0 12px',
-              fontSize: '13px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              boxShadow: '0 2px 10px rgba(249, 69, 0, 0.22)',
-              transition: 'background-color 0.2s ease, transform 0.15s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#e03e00';
-              e.currentTarget.style.transform = 'translateY(-1px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#f94500';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
-          >
-            {/* Mini Cube with Plus Icon on Left */}
-            <div style={{
-              width: '18px',
-              height: '18px',
-              backgroundColor: 'rgba(255, 255, 255, 0.22)',
-              border: '1px solid rgba(255, 255, 255, 0.35)',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0
-            }}>
-              <Plus size={11} color="#ffffff" strokeWidth={3} />
-            </div>
-            <span>Lets connect</span>
-          </button>
+          <LetsConnectSwipeButton onClick={onAssessmentClick} />
         </div>
       </div>
 
-      {/* Small Section: Bottom Bar with Copyright, Systems Status & Legal Links */}
+      {/* Small Section: Bottom Bar with Copyright & Legal Links */}
       <div
         style={{
           paddingTop: '28px',
@@ -2590,12 +2633,8 @@ const MasterFooter = ({ onAssessmentClick }) => (
           color: '#71717a'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
+        <div>
           <span>© {new Date().getFullYear()} Asenzo Inc. All rights reserved.</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#16a34a' }}>
-            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#16a34a', display: 'inline-block' }} />
-            <span>All systems operational 99.99%</span>
-          </div>
         </div>
         <div style={{ display: 'flex', gap: '20px' }}>
           <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</a>
