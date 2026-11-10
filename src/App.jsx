@@ -2517,17 +2517,21 @@ const LetsConnectSwipeButton = ({ onClick }) => {
 
 // 11. Master Footer
 const MasterFooter = ({ onAssessmentClick }) => (
-  <footer style={{ backgroundColor: '#fafafa', borderTop: '1px solid #e4e4e7', paddingTop: '64px', paddingBottom: '32px', overflow: 'hidden' }}>
-    <div className="mobile-container" style={{ maxWidth: '1140px', margin: '0 auto', padding: '0 24px' }}>
+  <footer style={{ backgroundColor: '#fafafa', borderTop: '1px solid #e4e4e7', paddingTop: '72px', paddingBottom: '32px', overflow: 'hidden', width: '100%' }}>
+    <div style={{ width: '100%', maxWidth: '100%', padding: '0 clamp(24px, 5vw, 80px)', margin: '0 auto', boxSizing: 'border-box' }}>
+      
+      {/* Top Flex Container: Stretches across the full website width */}
       <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '36px',
-        alignItems: 'start',
-        marginBottom: '40px'
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        flexWrap: 'wrap',
+        gap: '48px',
+        marginBottom: '48px',
+        width: '100%'
       }}>
-        {/* Brand & Connect Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '340px' }}>
+        {/* Left Side: Brand & Connect Column */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '420px', flex: '1 1 320px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{
               width: '30px',
@@ -2554,11 +2558,11 @@ const MasterFooter = ({ onAssessmentClick }) => (
                 }}
               />
             </div>
-            <span style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.02em', color: '#0f0f11' }}>
+            <span style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.02em', color: '#0f0f11' }}>
               Have a cool idea?
             </span>
           </div>
-          <p style={{ fontSize: '13.5px', color: '#71717a', lineHeight: 1.55, margin: 0 }}>
+          <p style={{ fontSize: '14px', color: '#71717a', lineHeight: 1.6, margin: 0 }}>
             We love talking with ambitious founders who are ready to take action. Whether you have a project in mind or just want to say hello.
           </p>
           <div style={{ marginTop: '4px', width: 'fit-content' }}>
@@ -2566,42 +2570,52 @@ const MasterFooter = ({ onAssessmentClick }) => (
           </div>
         </div>
 
-        {/* SOLUTIONS Column */}
-        <div>
-          <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
-          <div style={{ fontSize: '13px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <a href="#buy" style={{ color: 'inherit', textDecoration: 'none' }}>Builder OS</a>
-            <a href="#community" style={{ color: 'inherit', textDecoration: 'none' }}>Private Mastermind</a>
-            <a href="#dfy" style={{ color: 'inherit', textDecoration: 'none' }}>Done For You</a>
+        {/* Right Side: Columns stretched across to the right edge */}
+        <div style={{
+          display: 'flex',
+          gap: 'clamp(40px, 8vw, 120px)',
+          flexWrap: 'wrap',
+          justifyContent: 'flex-end',
+          flex: '2 1 480px'
+        }}>
+          {/* SOLUTIONS Column */}
+          <div>
+            <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
+            <div style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <a href="#buy" style={{ color: 'inherit', textDecoration: 'none' }}>Builder OS</a>
+              <a href="#community" style={{ color: 'inherit', textDecoration: 'none' }}>Private Mastermind</a>
+              <a href="#dfy" style={{ color: 'inherit', textDecoration: 'none' }}>Done For You</a>
+            </div>
           </div>
-        </div>
 
-        {/* NAVIGATION Column */}
-        <div>
-          <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
-          <div style={{ fontSize: '13px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <a href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>Features</a>
-            <a href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Integrations</a>
-            <a href="#benefits" style={{ color: 'inherit', textDecoration: 'none' }}>Benefits</a>
-            <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Pricing</a>
-            <a href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
+          {/* NAVIGATION Column */}
+          <div>
+            <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
+            <div style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <a href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>Features</a>
+              <a href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Integrations</a>
+              <a href="#benefits" style={{ color: 'inherit', textDecoration: 'none' }}>Benefits</a>
+              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Pricing</a>
+              <a href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
+            </div>
           </div>
-        </div>
 
-        {/* SOCIAL Column */}
-        <div>
-          <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOCIAL</div>
-          <div style={{ fontSize: '13px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <span>Twitter</span>
-            <span>LinkedIn</span>
-            <span>Instagram</span>
+          {/* SOCIAL Column */}
+          <div>
+            <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOCIAL</div>
+            <div style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <span>Twitter</span>
+              <span>LinkedIn</span>
+              <span>Instagram</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Small Section: Bottom Bar with Copyright & Legal Links */}
+      {/* Small Section: Bottom Bar stretched to full width */}
       <div
         style={{
+          width: '100%',
           paddingTop: '28px',
           borderTop: '1px solid #e4e4e7',
           display: 'flex',
@@ -2616,7 +2630,7 @@ const MasterFooter = ({ onAssessmentClick }) => (
         <div>
           <span>© {new Date().getFullYear()} Asenzo Inc. All rights reserved.</span>
         </div>
-        <div style={{ display: 'flex', gap: '20px' }}>
+        <div style={{ display: 'flex', gap: '24px' }}>
           <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</a>
           <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Terms of Service</a>
           <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Cookie Settings</a>
