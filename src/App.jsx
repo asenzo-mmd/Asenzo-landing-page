@@ -388,7 +388,7 @@ function AccretionHero({ onOpenModal }) {
             maxWidth: 960
           }}
         >
-          We Build Authority Growth System Into Your Business That Turn Attention Into Qualified Sales Call
+          We Build Authority Growth System Into Your Business That Turns Attention Into Qualified Sales Call
         </h1>
 
         {/* Supporting Description */}
@@ -402,7 +402,7 @@ function AccretionHero({ onOpenModal }) {
             margin: "0 auto 36px auto"
           }}
         >
-          ASENZO helps you design, build and operate the growth infrastructure connecting positioning, demand generation, prospect acquisition and booking — moving the right prospects from discovery to sales conversations.
+          ASENZO helps you build and operate the growth infrastructure that turns market attention into qualified sales calls through connected systems
         </p>
 
         {/* Primary CTA Button: Solid flat black (#000000), white text, zero hover expansion */}
