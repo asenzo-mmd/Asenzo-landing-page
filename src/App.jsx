@@ -2440,8 +2440,8 @@ const LetsConnectSwipeButton = ({ onClick }) => {
     const updateSlide = () => {
       if (containerRef.current) {
         const width = containerRef.current.offsetWidth;
-        // 34px is black cube width, 8px total padding
-        setMaxSlide(Math.max(0, width - 42));
+        // 26px cube width + 12px padding margin = 38px offset
+        setMaxSlide(Math.max(0, width - 38));
       }
     };
     updateSlide();
@@ -2458,60 +2458,58 @@ const LetsConnectSwipeButton = ({ onClick }) => {
       style={{
         width: '100%',
         minWidth: '150px',
-        height: '42px',
+        height: '40px',
         backgroundColor: '#f94500',
-        borderRadius: '8px',
+        borderRadius: '7px',
         border: 'none',
-        padding: '4px',
+        padding: '0 6px',
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
         cursor: 'pointer',
         boxShadow: isHovered
-          ? '0 6px 20px rgba(249, 69, 0, 0.38)'
+          ? '0 6px 18px rgba(249, 69, 0, 0.35)'
           : '0 2px 10px rgba(249, 69, 0, 0.22)',
         overflow: 'hidden',
         transition: 'box-shadow 0.25s ease, background-color 0.2s ease',
         userSelect: 'none'
       }}
     >
-      {/* Background track text with swipe indicator */}
+      {/* Background track text: "Lets connect" without >> arrow */}
       <div style={{
         position: 'absolute',
         inset: 0,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '4px',
         pointerEvents: 'none',
         color: '#ffffff',
-        fontSize: '12.5px',
+        fontSize: '13px',
         fontWeight: 600,
         letterSpacing: '0.01em',
         transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease',
-        transform: isHovered ? 'translateX(-14px)' : 'translateX(12px)',
-        opacity: isHovered ? 0.75 : 1
+        transform: isHovered ? 'translateX(-10px)' : 'translateX(10px)',
+        opacity: isHovered ? 0.85 : 1
       }}>
         <span>Lets connect</span>
-        <span style={{ fontSize: '13px', opacity: 0.85, letterSpacing: '-1.5px' }}>››</span>
       </div>
 
-      {/* Black Mini Cube with Plus Icon - Swipes smoothly to the Right */}
+      {/* Reduced-size White Mini Cube with Black Plus Icon - Swipes smoothly to the Right */}
       <div style={{
-        width: '34px',
-        height: '34px',
-        backgroundColor: '#000000',
-        borderRadius: '6px',
+        width: '26px',
+        height: '26px',
+        backgroundColor: '#ffffff',
+        borderRadius: '5px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
+        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
         transform: `translateX(${isHovered ? maxSlide : 0}px)`,
         transition: 'transform 0.38s cubic-bezier(0.22, 1, 0.36, 1)',
         zIndex: 2,
         flexShrink: 0
       }}>
-        <Plus size={15} color="#ffffff" strokeWidth={2.6} />
+        <Plus size={13} color="#0f0f11" strokeWidth={2.8} />
       </div>
     </button>
   );
