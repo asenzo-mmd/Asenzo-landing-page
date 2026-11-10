@@ -255,10 +255,10 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           }}
         >
           {[
-            { label: "Features", href: "#features" },
-            { label: "Integrations", href: "#integrations" },
-            { label: "Pricing", href: "#pricing" },
-            { label: "Timeline", href: "#timeline" },
+            { label: "The System", href: "#features" },
+            { label: "Infrastructure", href: "#integrations" },
+            { label: "Engagements", href: "#pricing" },
+            { label: "Implementation", href: "#timeline" },
             { label: "FAQ", href: "#faq" }
           ].map((item) => (
             <a
@@ -306,7 +306,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
               e.currentTarget.style.filter = "brightness(1)";
             }}
           >
-            Get started
+            Book a Review
           </button>
         </div>
       </nav>
@@ -354,24 +354,25 @@ function AccretionHero({ onOpenModal }) {
           zIndex: 5
         }}
       >
-        {/* Dynamic Booking Quarter Pill Badge (No Green Dot) */}
+                {/* Eyebrow Pill */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              padding: "5px 14px",
+              padding: "5px 16px",
               borderRadius: 20,
               backgroundColor: "#f4f4f5",
               border: "1px solid #e4e4e7",
-              fontSize: 12.5,
-              fontWeight: 600,
+              fontSize: 12,
+              fontWeight: 700,
               color: "#0f0f11",
-              letterSpacing: "0.02em"
+              letterSpacing: "0.08em",
+              textTransform: "uppercase"
             }}
           >
-            <span>Booking {bookingQuarter}</span>
+            <span>90 DAY GROWTH INFRASTRUCTURE</span>
           </div>
         </div>
 
@@ -379,30 +380,38 @@ function AccretionHero({ onOpenModal }) {
         <h1
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: "clamp(42px, 6vw, 80px)",
+            fontSize: "clamp(38px, 5.2vw, 72px)",
             fontWeight: 700,
-            lineHeight: 1.05,
-            letterSpacing: "-0.038em",
+            lineHeight: 1.08,
+            letterSpacing: "-0.035em",
             color: "#0f0f11",
-            margin: "0 auto 20px auto",
-            maxWidth: 880
+            margin: "0 auto 24px auto",
+            maxWidth: 920
           }}
         >
-          All your work pulled<br />into one powerful place
+          Your Business Has the Expertise. Does It Have the Infrastructure to Turn It Into Growth?
         </h1>
 
         {/* Supporting Description */}
-        <p
+        <div
           style={{
-            fontSize: "clamp(16px, 1.8vw, 18px)",
-            lineHeight: 1.6,
+            fontSize: "clamp(15.5px, 1.7vw, 17.5px)",
+            lineHeight: 1.65,
             color: "#52525b",
-            maxWidth: 600,
-            margin: "0 auto 36px auto"
+            maxWidth: 720,
+            margin: "0 auto 36px auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px"
           }}
         >
-          Organize tasks and projects in one connected, accessible platform.
-        </p>
+          <p style={{ margin: 0 }}>
+            Your positioning, content, enquiries, and business operations all contribute to growth. But when they operate separately, opportunities get lost between them.
+          </p>
+          <p style={{ margin: 0, fontWeight: 500, color: "#27272a" }}>
+            ASENZO designs, builds, and operates the infrastructure connecting these functions into one coordinated growth system.
+          </p>
+        </div>
 
         {/* Primary CTA Button: Solid flat black (#000000), white text, zero hover expansion */}
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -462,17 +471,17 @@ function AccretionHero({ onOpenModal }) {
           <div
             style={{
               fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
-              fontSize: "12.5px",
-              fontWeight: 600,
+              fontSize: "12px",
+              fontWeight: 700,
               color: "#27272a",
-              letterSpacing: "0.06em",
+              letterSpacing: "0.07em",
               lineHeight: 1.45,
               textAlign: "left",
               textTransform: "uppercase"
             }}
           >
-            <div>FOUNDERS AND MARKETING TEAMS</div>
-            <div>WHO TRUST US WITH THEIR BRAND</div>
+            <div>ONE CONNECTED GROWTH SYSTEM</div>
+            <div style={{ color: "#71717a", fontWeight: 500, fontSize: "11px", marginTop: "2px" }}>THE SIX ESSENTIAL LAYERS BEHIND YOUR BUSINESS GROWTH.</div>
           </div>
         </div>
       </div>
@@ -501,89 +510,49 @@ function AccretionHero({ onOpenModal }) {
 function AsenzoIntegrationsSection({ onOpenModal }) {
   const leftGroups = [
     {
-      id: "content",
-      category: "CONTENT & DISTRIBUTION",
-      count: "6 tools",
-      desc: "Connect content creation and publishing channels to your authority workflow.",
-      tools: [
-        { name: "YouTube", icon: "M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" },
-        { name: "Instagram", icon: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" },
-        { name: "X (Twitter)", icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
-        { name: "LinkedIn", icon: "M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" },
-        { name: "Notion", icon: "M4.459 4.208c.746.606 1.026.56 2.428.466l11.455-.839c.373 0 .466-.28.373-.56L17.522 1.5c-.373-.373-.746-.466-1.306-.466L3.246 2.06c-.466 0-.653.28-.466.653zm14.367 15.207l1.026-11.455c.093-.746-.28-1.12-1.026-1.12l-14.739.933c-.746.093-1.026.56-1.026 1.213l.839 12.388c.093.84.56 1.213 1.306 1.12l13.619-.933c.746-.093 1.026-.56 1.026-1.213z" },
-        { name: "Substack", icon: "M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" }
-      ]
+      id: "layer-1",
+      layerNum: "LAYER 01",
+      category: "Market Positioning & Authority",
+      desc: "Establish how your business is understood and remembered in the market. Develop a distinctive position that communicates your expertise.",
+      capabilities: ["Positioning", "Differentiation", "Buyer Messaging"]
     },
     {
-      id: "lead-capture",
-      category: "LEAD CAPTURE",
-      count: "5 tools",
-      desc: "Bring inbound enquiries, forms, and lead information into one capture system.",
-      tools: [
-        { name: "Typeform", icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-5H9V9h4v7z" },
-        { name: "Webflow", icon: "M18.8 6.7c-.8 0-1.5.3-2 .8-.5-.5-1.2-.8-2-.8-1.3 0-2.4.9-2.7 2.1-.3-1.2-1.4-2.1-2.7-2.1-.8 0-1.5.3-2 .8-.5-.5-1.2-.8-2-.8C3.6 6.7 2 8.3 2 10.3v7h2.8v-7c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6v7h2.8v-7c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6v7h2.8v-7c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6v7H22v-7c0-2-1.6-3.6-3.2-3.6z" },
-        { name: "Beehiiv", icon: "M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zm0 2.5L6.5 8.6v6.8L12 18.5l5.5-3.1V8.6L12 5.5z" },
-        { name: "Tally", icon: "M4 4h16v3H4V4zm0 6h16v3H4v-3zm0 6h10v3H4v-3z" },
-        { name: "Framer", icon: "M4 2h16v8h-8zM4 10h8l8 7H4zm0 7h8v7z" }
-      ]
+      id: "layer-2",
+      layerNum: "LAYER 02",
+      category: "Demand Generation & Content",
+      desc: "Turn your expertise, knowledge, and perspectives into a structured content operation designed to attract relevant audiences and build trust.",
+      capabilities: ["Research", "Content Strategy", "Production & Publishing"]
     },
     {
-      id: "crm",
-      category: "CRM & PIPELINE",
-      count: "6 tools",
-      desc: "Organize prospect information, qualification, and pipeline visibility.",
-      tools: [
-        { name: "HubSpot", icon: "M18.5 7.5a2.5 2.5 0 1 0-2.5-2.5v1.2l-3.2 1.8a3.5 3.5 0 0 0-4.8 1.5L4.5 7.8A2.5 2.5 0 1 0 3 9.8l3.4 1.7a3.5 3.5 0 0 0 1.6 4.3v2.7a2.5 2.5 0 1 0 2 0v-2.7a3.5 3.5 0 0 0 4-2.8l3.5 2a2.5 2.5 0 1 0 1-1.7l-3.4-1.9a3.5 3.5 0 0 0-.1-3.6l3.4-1.9v1.6a2.5 2.5 0 0 0 0 0z" },
-        { name: "Salesforce", icon: "M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" },
-        { name: "Attio", icon: "M12 2L2 22h20L12 2zm0 6l5 10H7l5-10z" },
-        { name: "Close", icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z" },
-        { name: "Airtable", icon: "M12.5 2.5L2 7.8v8.4l10.5 5.3 10.5-5.3V7.8L12.5 2.5zm0 2.8l7.5 3.8-7.5 3.8-7.5-3.8 7.5-3.8z" },
-        { name: "Pipedrive", icon: "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 4a4 4 0 0 1 4 4c0 2.21-1.79 4-4 4h-2v4H8V6h4z" }
-      ]
+      id: "layer-3",
+      layerNum: "LAYER 03",
+      category: "Prospect Capture",
+      desc: "Create clear entry points for interested people through your Instagram presence, content, resources, and direct enquiries.",
+      capabilities: ["Direct Enquiries", "Keyword Capture", "Resource Delivery"]
     }
   ];
 
   const rightGroups = [
     {
-      id: "messaging",
-      category: "MESSAGING & AUTOMATION",
-      count: "6 tools",
-      desc: "Connect messaging channels and automation to streamline lead handling.",
-      tools: [
-        { name: "Slack", icon: "M6 15a2 2 0 1 1-2-2h2v2zm1 0a2 2 0 1 1 2 2V9a2 2 0 1 1-2-2v8zm8-9a2 2 0 1 1 2 2h-2V6zm-1 0a2 2 0 1 1-2-2v8a2 2 0 1 1 2 2V6zm-8 8a2 2 0 1 1 2-2v2H6zm0-1a2 2 0 1 1-2-2h8a2 2 0 1 1 2 2H6zm9 8a2 2 0 1 1-2 2v-2h2zm0-1a2 2 0 1 1 2 2h-8a2 2 0 1 1-2-2h8z" },
-        { name: "Zapier", icon: "M13 2L3 14h8v8l10-12h-8V2z" },
-        { name: "Make", icon: "M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V15a1 1 0 0 0-2 0v1.93A8 8 0 0 1 4.07 13H6a1 1 0 0 0 0-2H4.07A8 8 0 0 1 11 4.07V6a1 1 0 0 0 2 0V4.07A8 8 0 0 1 19.93 11H18a1 1 0 0 0 0 2h1.93A8 8 0 0 1 13 16.93z" },
-        { name: "WhatsApp", icon: "M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.27-2.42 5.82a8.19 8.19 0 0 1-5.82 2.42c-1.45 0-2.88-.38-4.14-1.11l-.3-.17-3.12.82.83-3.04-.19-.31a8.19 8.19 0 0 1-1.26-4.43c0-4.54 3.7-8.24 8.24-8.24" },
-        { name: "ManyChat", icon: "M12 2a10 10 0 0 0-10 10c0 5.52 4.48 10 10 10s10-4.48 10-10A10 10 0 0 0 12 2zm-1 14H8v-2h3v2zm5 0h-3v-2h3v2zm-5-4H8v-2h3v2zm5 0h-3v-2h3v2z" },
-        { name: "Discord", icon: "M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028z" }
-      ]
+      id: "layer-4",
+      layerNum: "LAYER 04",
+      category: "Qualification & Booking",
+      desc: "Organise prospect information and connect applications, human qualification, and scheduling into a structured booking process.",
+      capabilities: ["Initial Information", "Team Qualification", "Applications & Booking"]
     },
     {
-      id: "booking",
-      category: "BOOKING & SALES",
-      count: "5 tools",
-      desc: "Connect scheduling, calendar management, and sales conversation workflows.",
-      tools: [
-        { name: "Calendly", icon: "M19.5 3h-1V1h-2v2h-9V1h-2v2h-1A2.5 2.5 0 0 0 2 5.5v14A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-14A2.5 2.5 0 0 0 19.5 3zm.5 16.5a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5v-11h16v11zm0-13H4v-1a.5.5 0 0 1 .5-.5h1V6h2V5h9v1h2V5h1a.5.5 0 0 1 .5.5v1z" },
-        { name: "Cal.com", icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-5V7h2v4h3v2z" },
-        { name: "Stripe", icon: "M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.977 15.613.5 12.776.5 6.78.5 2.82 3.655 2.82 8.784c0 6.643 8.354 5.922 8.354 9.176 0 1.054-.925 1.493-2.222 1.493-2.508 0-5.308-1.157-7.248-2.227l-.925 5.584C3.032 23.957 6.064 24.5 8.91 24.5c6.262 0 10.39-3.084 10.39-8.406 0-6.953-8.324-6.138-8.324-9.944z" },
-        { name: "Zoom", icon: "M18 4H6C4.9 4 4 4.9 4 6v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-3 9.5l4 3V7.5l-4 3v3z" },
-        { name: "Google Meet", icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z" }
-      ]
+      id: "layer-5",
+      layerNum: "LAYER 05",
+      category: "CRM & Workflow Infrastructure",
+      desc: "Bring prospect information, enquiries, bookings, and follow-up activity into one organised operational environment.",
+      capabilities: ["Centralised CRM", "Automations & Workflows", "Reminders & Follow-up"]
     },
     {
-      id: "analytics",
-      category: "ANALYTICS & ATTRIBUTION",
-      count: "6 tools",
-      desc: "Bring acquisition and conversion data together to understand what drives sales.",
-      tools: [
-        { name: "PostHog", icon: "M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" },
-        { name: "Google Analytics", icon: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" },
-        { name: "Mixpanel", icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" },
-        { name: "Fathom", icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" },
-        { name: "Segment", icon: "M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" },
-        { name: "Plausible", icon: "M4 19h16v2H4v-2zm2-4h3v2H6v-2zm5-4h3v6h-3v-6zm5-6h3v12h-3V5z" }
-      ]
+      id: "layer-6",
+      layerNum: "LAYER 06",
+      category: "Reporting & Optimisation",
+      desc: "Understand how your growth infrastructure performs, identify where opportunities are dropping off, and prioritise improvements.",
+      capabilities: ["Reporting & Analytics", "Acquisition Tracking", "Bottleneck ID"]
     }
   ];
 
@@ -618,15 +587,16 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
               gap: 8,
               padding: "4px 12px",
               borderRadius: 20,
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
+              backgroundColor: "#f4f4f5",
+              border: "1px solid #e4e4e7",
               fontSize: 11.5,
-              fontWeight: 600,
-              color: "#F16001",
-              letterSpacing: "0.04em"
+              fontWeight: 700,
+              color: "#0f0f11",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase"
             }}
           >
-            <span>✦ CONNECTED ECOSYSTEM</span>
+            <span>✦ CONNECTED GROWTH INFRASTRUCTURE</span>
           </div>
         </div>
 
@@ -641,24 +611,24 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
             textAlign: "center",
             color: "#0f0f11",
             margin: "0 auto 12px auto",
-            maxWidth: 720
+            maxWidth: 780
           }}
         >
-          Connect effortlessly to your workflow
+          Everything Behind Your Growth. Connected.
         </h2>
 
         {/* Supporting Description */}
         <p
           style={{
-            fontSize: "clamp(14px, 1.5vw, 16px)",
-            lineHeight: 1.55,
+            fontSize: "clamp(14.5px, 1.5vw, 16.5px)",
+            lineHeight: 1.6,
             color: "#52525b",
             textAlign: "center",
-            maxWidth: 580,
+            maxWidth: 680,
             margin: "0 auto 48px auto"
           }}
         >
-          Over 50+ integrations connecting your content, capture, pipeline, and sales infrastructure into one unified system.
+          Your positioning, content, prospect acquisition, and business operations should work as one connected system. ASENZO brings these essential functions together through one coordinated growth infrastructure.
         </p>
 
         {/* 6-GROUP ECOSYSTEM: NEATLY SPACED & PERFECTLY ALIGNED (Total height 438px) */}
@@ -904,25 +874,23 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
               }}
             />
 
-            {/* CENTER LOGO BOX:
-                - STRICTLY SOLID DARK #151515 INSIDE (NO gradient inside the logo box per requirement)
-                - Contains User's Silver Star/A Logo
-                - Bottom Rim catches the heavy incandescent glow!
-            */}
+            {/* CENTER LOGO BOX WITH CENTRAL INDICATOR */}
             <div
               style={{
-                width: 96,
-                height: 96,
-                borderRadius: 20,
+                width: 110,
+                height: 110,
+                borderRadius: 22,
                 backgroundColor: "#151515",
                 border: "1px solid rgba(255, 255, 255, 0.14)",
                 boxShadow: "0 14px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 85, 0, 0.4)",
                 position: "relative",
                 zIndex: 5,
                 display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                overflow: "hidden"
+                overflow: "hidden",
+                gap: 6
               }}
             >
               {/* User's Uploaded Silver Star/A Logo */}
@@ -930,8 +898,8 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
                 src="/asenzo-logo.jpg"
                 alt="Asenzo Core Logo"
                 style={{
-                  width: 52,
-                  height: 52,
+                  width: 44,
+                  height: 44,
                   objectFit: "cover",
                   mixBlendMode: "screen",
                   display: "block",
@@ -940,6 +908,21 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
                   filter: "drop-shadow(0 2px 10px rgba(0, 0, 0, 0.7))"
                 }}
               />
+              <span
+                style={{
+                  fontSize: 8.5,
+                  fontWeight: 700,
+                  color: "rgba(255, 255, 255, 0.8)",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  lineHeight: 1.15,
+                  zIndex: 4,
+                  padding: "0 6px"
+                }}
+              >
+                Connected through ASENZO
+              </span>
 
               {/* Glowing Rim at Bottom of Logo Box catching the heavy illumination */}
               <div
@@ -965,6 +948,16 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
             ))}
           </div>
         </div>
+
+        {/* Closing Statement */}
+        <div style={{ textAlign: "center", marginTop: 56, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
+          <p style={{ fontSize: 15, fontWeight: 700, color: "#0f0f11", letterSpacing: "-0.01em", margin: "0 0 8px 0" }}>
+            Different functions. One connected growth infrastructure.
+          </p>
+          <p style={{ fontSize: 13.5, color: "#52525b", lineHeight: 1.5, margin: 0 }}>
+            ASENZO designs, builds, and operates the system connecting your positioning, content, and customer acquisition.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -981,13 +974,14 @@ function CompactIntegrationCard({ group }) {
         backgroundColor: "#ffffff",
         border: "1px solid rgba(0, 0, 0, 0.08)",
         borderRadius: 14,
-        padding: "15px 18px",
+        padding: "16px 18px",
         width: 320,
-        height: 130,
+        minHeight: 132,
         boxShadow: "0 6px 20px rgba(0, 0, 0, 0.04)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        gap: 10,
         transition: "border-color 0.2s ease, box-shadow 0.2s ease",
         position: "relative",
         boxSizing: "border-box"
@@ -1001,40 +995,42 @@ function CompactIntegrationCard({ group }) {
         e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.04)";
       }}
     >
-      {/* Title & Count Badge */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+      {/* Title & Layer Badge */}
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
         <h3
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: 12.5,
+            fontSize: 13,
             fontWeight: 700,
-            letterSpacing: "0.02em",
+            letterSpacing: "-0.01em",
             color: "#0f0f11",
-            margin: 0
+            margin: 0,
+            lineHeight: 1.3
           }}
         >
           {group.category}
         </h3>
         <span
           style={{
-            fontSize: 10.5,
-            fontWeight: 600,
+            fontSize: 10,
+            fontWeight: 700,
             color: "#F16001",
             backgroundColor: "rgba(241, 96, 1, 0.08)",
             padding: "2px 7px",
             borderRadius: 5,
-            letterSpacing: "0.02em"
+            letterSpacing: "0.04em",
+            whiteSpace: "nowrap"
           }}
         >
-          {group.count}
+          {group.layerNum}
         </span>
       </div>
 
-      {/* Concise Description */}
+      {/* Description */}
       <p
         style={{
           fontSize: 11.5,
-          lineHeight: 1.4,
+          lineHeight: 1.45,
           color: "#52525b",
           margin: 0
         }}
@@ -1042,49 +1038,32 @@ function CompactIntegrationCard({ group }) {
         {group.desc}
       </p>
 
-      {/* Tool Logos Row */}
+      {/* Capabilities Tags Row */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 7,
+          gap: 6,
           flexWrap: "wrap",
-          paddingTop: 2
+          paddingTop: 8,
+          borderTop: "1px solid #f4f4f5"
         }}
       >
-        {group.tools.map((tool) => (
-          <div
-            key={tool.name}
-            title={tool.name}
+        {group.capabilities.map((cap, i) => (
+          <span
+            key={i}
             style={{
-              width: 27,
-              height: 27,
-              borderRadius: 6,
-              backgroundColor: "rgba(0, 0, 0, 0.03)",
-              border: "1px solid rgba(0, 0, 0, 0.06)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              transition: "background-color 0.15s ease"
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.07)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.03)";
+              fontSize: 10,
+              fontWeight: 600,
+              color: "#3f3f46",
+              backgroundColor: "#f4f4f5",
+              padding: "2px 7px",
+              borderRadius: 4,
+              letterSpacing: "0.01em"
             }}
           >
-            <svg
-              width="13"
-              height="13"
-              viewBox="0 0 24 24"
-              fill="rgba(0, 0, 0, 0.75)"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d={tool.icon} />
-            </svg>
-          </div>
+            {cap}
+          </span>
         ))}
       </div>
     </div>
@@ -1092,51 +1071,43 @@ function CompactIntegrationCard({ group }) {
 }
 
 // ==========================================
-// SECTIONS FROM ORIGINAL ASENZO DESIGN
-// ==========================================
-
-
-// ==========================================
-// 4. KEY BENEFITS OF AI FOR YOUR BUSINESS GROWTH
-// (Exact replica of user's reference image in clean white theme)
-// ==========================================
 function KeyBenefitsSection() {
   const benefits = [
     {
       icon: <Zap size={20} color="#F16001" strokeWidth={2.2} />,
-      title: "Increased Productivity",
-      desc: "Gain actionable insights with AI-driven analytics to improve decision-making and strategy."
+      title: "Clear Market Positioning",
+      desc: "Make your expertise, differentiation, and business value easier for the market to understand."
     },
     {
       icon: <ShieldCheck size={20} color="#F16001" strokeWidth={2.2} />,
-      title: "Better Customer Experience",
-      desc: "Personalized AI interactions improve response times, customer engagement, and overall satisfaction."
+      title: "Strategic Content Direction",
+      desc: "Give your content a defined purpose in attracting, educating, and building buyer trust."
     },
     {
       icon: <Clock size={20} color="#F16001" strokeWidth={2.2} />,
-      title: "24/7 Availability",
-      desc: "AI-powered systems operate around the clock, ensuring seamless support and execution without downtime."
+      title: "Consistent Demand Generation",
+      desc: "Build a structured content operation around your expertise and market."
     },
     {
       icon: <DollarSign size={20} color="#F16001" strokeWidth={2.2} />,
-      title: "Cost Reduction",
-      desc: "AI automation minimizes manual work, cuts operational costs, and optimizes resource allocation for better profitability."
+      title: "Structured Prospect Capture",
+      desc: "Give interested prospects clear entry points through your content, resources, and enquiries."
     },
     {
       icon: <PieChart size={20} color="#F16001" strokeWidth={2.2} />,
-      title: "Data-Driven Insights",
-      desc: "Leverage AI to analyze vast data sets, identify trends, and make smarter, faster, and more accurate business decisions."
+      title: "Prepared Sales Conversations",
+      desc: "Organise prospect information and give your team the context needed before calls."
     },
     {
       icon: <BarChart3 size={20} color="#F16001" strokeWidth={2.2} />,
-      title: "Scalability & Growth",
-      desc: "AI adapts to your business needs, allowing you to scale efficiently without increasing workload or costs."
+      title: "Acquisition Visibility",
+      desc: "Understand prospect sources, enquiries, qualification, bookings, and recorded sales outcomes."
     }
   ];
 
   return (
     <section
-      id="benefits"
+      id="features"
       style={{
         backgroundColor: "#ffffff",
         padding: "110px 24px",
@@ -1154,15 +1125,16 @@ function KeyBenefitsSection() {
               gap: "8px",
               padding: "5px 14px",
               borderRadius: "20px",
-              backgroundColor: "rgba(241, 96, 1, 0.08)",
-              border: "1px solid rgba(241, 96, 1, 0.22)",
-              fontSize: "12px",
-              fontWeight: 600,
-              color: "#F16001",
-              letterSpacing: "0.04em"
+              backgroundColor: "#f4f4f5",
+              border: "1px solid #e4e4e7",
+              fontSize: "11.5px",
+              fontWeight: 700,
+              color: "#0f0f11",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase"
             }}
           >
-            <span>✦ Benefits</span>
+            <span>✦ THE ADVANTAGE</span>
           </div>
         </div>
 
@@ -1180,7 +1152,7 @@ function KeyBenefitsSection() {
             maxWidth: "760px"
           }}
         >
-          The Key Benefits of AI<br />for Your Business Growth
+          Growth Works Better When Everything Connects.
         </h2>
 
         {/* Subtitle */}
@@ -1191,10 +1163,10 @@ function KeyBenefitsSection() {
             color: "#52525b",
             textAlign: "center",
             margin: "0 auto 64px auto",
-            maxWidth: "640px"
+            maxWidth: "680px"
           }}
         >
-          Discover how AI automation enhances efficiency, reduces costs, and drives business growth with smarter, faster processes.
+          Give every part of your growth process a clear role, from how your business is positioned to how interested prospects enter your acquisition process.
         </p>
 
         {/* 6 Grid Cards */}
@@ -1211,55 +1183,51 @@ function KeyBenefitsSection() {
               style={{
                 backgroundColor: "#ffffff",
                 border: "1px solid #e4e4e7",
-                borderRadius: "14px",
-                padding: "36px 32px",
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.03)",
+                borderRadius: "12px",
+                padding: "32px 28px",
                 display: "flex",
                 flexDirection: "column",
-                transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)"
+                gap: "16px",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.03)",
+                transition: "all 0.2s ease"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-3px)";
-                e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.4)";
-                e.currentTarget.style.boxShadow = "0 12px 30px rgba(241, 96, 1, 0.08), 0 4px 12px rgba(0,0,0,0.04)";
+                e.currentTarget.style.borderColor = "#0f0f11";
+                e.currentTarget.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.borderColor = "#e4e4e7";
-                e.currentTarget.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.03)";
+                e.currentTarget.style.transform = "translateY(0)";
               }}
             >
               <div
                 style={{
-                  width: "42px",
-                  height: "42px",
+                  width: "44px",
+                  height: "44px",
                   borderRadius: "10px",
                   backgroundColor: "rgba(241, 96, 1, 0.08)",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: "20px"
+                  justifyContent: "center"
                 }}
               >
                 {item.icon}
               </div>
-
               <h3
                 style={{
                   fontFamily: "'Switzer', 'Inter', sans-serif",
-                  fontSize: "18px",
+                  fontSize: "19px",
                   fontWeight: 600,
                   letterSpacing: "-0.015em",
                   color: "#0f0f11",
-                  marginBottom: "10px"
+                  margin: 0
                 }}
               >
                 {item.title}
               </h3>
-
               <p
                 style={{
-                  fontSize: "13.5px",
+                  fontSize: "14.5px",
                   lineHeight: 1.55,
                   color: "#52525b",
                   margin: 0
@@ -1276,52 +1244,93 @@ function KeyBenefitsSection() {
 }
 
 const HandHoldingPhoneSection = () => (
-  <section style={{ backgroundColor: '#ffffff', padding: '100px 0', borderBottom: '1px solid #f0f0f0', overflow: 'hidden' }}>
-    <div className="mobile-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+  <section style={{ backgroundColor: '#ffffff', padding: '110px 0', borderBottom: '1px solid #f0f0f0', overflow: 'hidden' }}>
+    <div className="mobile-container" style={{ maxWidth: '1040px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
 
-      {/* Hand Holding Phone Image */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '48px' }}>
+      {/* Eyebrow Pill */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '4px 14px',
+            borderRadius: '20px',
+            backgroundColor: '#f4f4f5',
+            border: '1px solid #e4e4e7',
+            fontSize: '11.5px',
+            fontWeight: 700,
+            color: '#0f0f11',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase'
+          }}
+        >
+          <span>✦ A CLIENT STORY</span>
+        </div>
+      </div>
+
+      {/* Headline */}
+      <h2
+        style={{
+          fontFamily: "'Switzer', 'Inter', sans-serif",
+          fontSize: "clamp(30px, 4vw, 48px)",
+          fontWeight: 700,
+          lineHeight: 1.15,
+          letterSpacing: "-0.03em",
+          color: "#0f0f11",
+          margin: "0 auto 36px auto",
+          maxWidth: "780px"
+        }}
+      >
+        From Starting With Zero to Becoming Impossible to Ignore.
+      </h2>
+
+      {/* Hand Holding Phone Mockup */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '44px' }}>
         <img
           src="/testimonial-hand.jpg"
-          alt="Hand Holding Phone Mockup"
-          style={{ maxWidth: '420px', width: '100%', height: 'auto', objectFit: 'contain' }}
+          alt="Client Story Proof"
+          style={{ maxWidth: '400px', width: '100%', height: 'auto', objectFit: 'contain' }}
         />
       </div>
 
-      {/* Editorial Pull-Quote Block */}
-      <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', position: 'relative' }}>
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-          <img src="/logo-icon.png" alt="Icon" style={{ width: '32px', height: '32px', filter: 'invert(1)' }} onError={(e) => e.target.style.display = 'none'} />
+      {/* Metrics Row */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: '24px',
+          maxWidth: '640px',
+          margin: '0 auto 40px auto'
+        }}
+      >
+        <div style={{ padding: '24px', borderRadius: '10px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7' }}>
+          <div style={{ fontSize: '38px', fontWeight: 800, color: '#0f0f11', letterSpacing: '-0.03em', lineHeight: 1 }}>30,000</div>
+          <div style={{ fontSize: '13.5px', color: '#52525b', marginTop: '8px', fontWeight: 500 }}>Followers built in one month.</div>
         </div>
-        <blockquote style={{
-          fontSize: 'clamp(22px, 3.8vw, 42px)',
-          fontWeight: 400,
-          lineHeight: 1.25,
-          letterSpacing: '-0.03em',
-          color: '#0f0f11',
-          margin: '0 0 32px 0',
-          textAlign: 'center'
-        }}>
-          "Nathan and the ASENZO team are the best funnel builders we've ever worked with. They helped us go from $0 to $40k/month in just 27 days, and that momentum helped us scale to $230k/month."
-        </blockquote>
+        <div style={{ padding: '24px', borderRadius: '10px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7' }}>
+          <div style={{ fontSize: '38px', fontWeight: 800, color: '#0f0f11', letterSpacing: '-0.03em', lineHeight: 1 }}>1.9M+</div>
+          <div style={{ fontSize: '13.5px', color: '#52525b', marginTop: '8px', fontWeight: 500 }}>Views on an individual post.</div>
+        </div>
+      </div>
 
-        {/* Quiet Inline Avatar + Attribution Line */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', textAlign: 'center' }}>
-          <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            backgroundImage: 'url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80")',
-            backgroundSize: 'cover',
-            filter: 'grayscale(100%)',
-            border: '1px solid #222222',
-            flexShrink: 0
-          }}></div>
-          <div>
-            <div style={{ fontSize: '15px', fontWeight: 500, color: '#0f0f11', lineHeight: 1.2 }}>Max Perzon</div>
-            <div style={{ fontSize: '14px', color: '#71717a', marginTop: '4px' }}>Founder, Kourse.com</div>
-          </div>
-        </div>
+      {/* Narrative Story Block */}
+      <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'left', lineHeight: 1.7, color: '#3f3f46', fontSize: '15.5px' }}>
+        <p style={{ marginBottom: '16px' }}>
+          A B2B founder started with no Instagram audience. Within just one month, his following grew to 30,000. One of his posts reached more than 1.9 million views.
+        </p>
+        <p style={{ marginBottom: '16px' }}>
+          But the bigger shift was what happened beyond the audience. His expertise was reaching people far beyond his existing network. His business gained significantly greater market visibility, and he reported receiving qualified enquiries from that attention.
+        </p>
+        <p style={{ marginBottom: '16px' }}>
+          More people were discovering his perspective, understanding his expertise, and getting introduced to his business. That is what stronger market authority can make possible.
+        </p>
+        <p style={{ marginBottom: '20px', fontWeight: 500, color: '#0f0f11' }}>
+          Imagine what changes when the right people begin discovering your business at that scale.
+        </p>
+        <p style={{ fontSize: '14.5px', color: '#71717a', fontStyle: 'italic', borderLeft: '2px solid #e4e4e7', paddingLeft: '14px', margin: 0 }}>
+          ASENZO builds the infrastructure that connects that market presence to your customer acquisition process.
+        </p>
       </div>
 
     </div>
@@ -1349,7 +1358,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
           marginBottom: '56px'
         }}>
           <div>
-            {/* Grey Highlight Pill with Black Font (Zero Orange) */}
+            {/* Technical Eyebrow Pill */}
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -1366,7 +1375,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               marginBottom: '16px'
             }}>
               <span style={{ letterSpacing: '-1px', color: '#71717a', fontSize: '11px', fontWeight: 900 }}>|||||||</span>
-              <span>PRICING</span>
+              <span>ENGAGEMENT OPTIONS</span>
             </div>
 
             <h2 style={{
@@ -1378,7 +1387,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               color: '#0f0f11',
               margin: 0
             }}>
-              Built to scale
+              Built Around Your Growth.
             </h2>
           </div>
 
@@ -1386,14 +1395,14 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             fontSize: '14.5px',
             color: '#52525b',
             lineHeight: 1.5,
-            maxWidth: '380px',
+            maxWidth: '420px',
             margin: 0
           }}>
-            Clear subscription options, structured to support different needs while keeping scope, expectations, and delivery transparent.
+            Clear engagement structures. Defined scope. A connected approach to building your growth infrastructure.
           </p>
         </div>
 
-        {/* 3-Box Technical Grid Layout from Reference */}
+        {/* 3-Box Technical Grid Layout */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -1401,7 +1410,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
           alignItems: 'stretch'
         }}>
 
-          {/* Card 1: Core */}
+          {/* Card 1: CORE */}
           <div style={{
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
@@ -1419,30 +1428,49 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
 
-            <div style={{ marginBottom: '32px' }}>
-              <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#0f0f11', margin: '0 0 6px 0', letterSpacing: '-0.01em' }}>
-                Core
+            <div style={{ marginBottom: '28px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#71717a', textTransform: 'uppercase', marginBottom: '6px' }}>
+                Growth Foundation
+              </div>
+              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f0f11', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
+                CORE
               </h3>
-              <p style={{ fontSize: '13px', color: '#71717a', margin: 0 }}>
-                For teams with focused design needs.
+              <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.5, margin: 0 }}>
+                Establish the essential foundations connecting your online presence to prospect enquiries.
               </p>
+            </div>
+
+            {/* Scope Badge */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              padding: '4px 10px',
+              borderRadius: '4px',
+              backgroundColor: '#f4f4f5',
+              border: '1px solid #e4e4e7',
+              fontSize: '11px',
+              fontWeight: 600,
+              color: '#27272a',
+              marginBottom: '28px',
+              width: 'fit-content'
+            }}>
+              Scoped to requirements
             </div>
 
             {/* What's included Checklist with (+) icons */}
             <div style={{ flex: 1, marginBottom: '36px' }}>
-              <div style={{ fontSize: '12.5px', color: '#0f0f11', marginBottom: '16px', fontWeight: 600 }}>
+              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
                 {[
-                  "Unlimited requests",
-                  "One request at a time",
-                  "Fixed monthly rate",
-                  "Async communication",
-                  "Flexible scope",
-                  "Pause anytime"
+                  "Content and acquisition funnel review",
+                  "Instagram profile optimisation",
+                  "Foundational keyword based DM automations",
+                  "Prospect capture workflows",
+                  "Resource delivery setup"
                 ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: '#27272a' }}>
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: '#27272a' }}>
                     <div style={{
                       width: '15px',
                       height: '15px',
@@ -1451,17 +1479,18 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      flexShrink: 0
+                      flexShrink: 0,
+                      marginTop: '2px'
                     }}>
                       <Plus size={10} color="#0f0f11" strokeWidth={2.5} />
                     </div>
-                    <span>{feat}</span>
+                    <span style={{ lineHeight: 1.4 }}>{feat}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Start a project Button */}
+            {/* Explore Core Button */}
             <button
               onClick={onAssessmentClick}
               style={{
@@ -1474,17 +1503,17 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 fontSize: '13px',
                 fontWeight: 600,
                 cursor: 'pointer',
-                transition: 'background-color 0.2s ease, opacity 0.2s ease',
+                transition: 'background-color 0.2s ease',
                 boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)'
               }}
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272a'; }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
             >
-              Start a project
+              Explore Core
             </button>
           </div>
 
-          {/* Card 2: Growth (POPULAR) - Matching Clean Border without Black Outline */}
+          {/* Card 2: GROWTH (FLAGSHIP ENGAGEMENT) */}
           <div style={{
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
@@ -1493,7 +1522,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
-            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
+            boxShadow: '0 6px 28px rgba(0, 0, 0, 0.05)',
             transition: 'all 0.2s ease'
           }}>
             {/* Technical Corner Brackets */}
@@ -1502,46 +1531,70 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
 
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '32px' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '28px' }}>
               <div>
-                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#0f0f11', margin: '0 0 6px 0', letterSpacing: '-0.01em' }}>
-                  Growth
+                <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#71717a', textTransform: 'uppercase', marginBottom: '6px' }}>
+                  Authority Growth System
+                </div>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f0f11', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
+                  GROWTH
                 </h3>
-                <p style={{ fontSize: '13px', color: '#71717a', margin: 0 }}>
-                  For teams scaling design output.
+                <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.5, margin: 0 }}>
+                  The complete ASENZO engagement connecting positioning, demand gen, content, and acquisition infrastructure.
                 </p>
               </div>
-              {/* Clean POPULAR Badge without Black Border */}
+              {/* Flagship Badge */}
               <div style={{
                 border: '1px solid #e4e4e7',
-                padding: '3px 9px',
-                fontSize: '10px',
-                fontWeight: 700,
+                padding: '4px 8px',
+                fontSize: '9.5px',
+                fontWeight: 800,
                 letterSpacing: '0.08em',
                 color: '#0f0f11',
                 textTransform: 'uppercase',
                 borderRadius: '3px',
-                backgroundColor: '#f4f4f5'
+                backgroundColor: '#f4f4f5',
+                whiteSpace: 'nowrap'
               }}>
-                POPULAR
+                FLAGSHIP
               </div>
+            </div>
+
+            {/* Scope Badge */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              padding: '4px 10px',
+              borderRadius: '4px',
+              backgroundColor: '#f4f4f5',
+              border: '1px solid #e4e4e7',
+              fontSize: '11px',
+              fontWeight: 600,
+              color: '#27272a',
+              marginBottom: '28px',
+              width: 'fit-content'
+            }}>
+              90 Day Build and Operate
             </div>
 
             {/* What's included Checklist with (+) icons */}
             <div style={{ flex: 1, marginBottom: '36px' }}>
-              <div style={{ fontSize: '12.5px', color: '#0f0f11', marginBottom: '16px', fontWeight: 600 }}>
+              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
                 {[
-                  "Unlimited requests",
-                  "Two request at a time",
-                  "Fixed monthly rate",
-                  "Async communication",
-                  "Flexible scope",
-                  "Pause anytime"
+                  "Market positioning and buyer messaging",
+                  "15 researched & scripted videos monthly",
+                  "15 professionally edited videos monthly",
+                  "Multi-platform publishing (IG, FB, YT Shorts)",
+                  "Eight educational PDF resources & Story sequences",
+                  "Four prospect entry routes & keyword capture",
+                  "Public VSL & qualification application page",
+                  "Centralised CRM & booking diagnostics",
+                  "Acquisition tracking & monthly performance review"
                 ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: '#27272a' }}>
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: '#27272a' }}>
                     <div style={{
                       width: '15px',
                       height: '15px',
@@ -1550,17 +1603,18 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      flexShrink: 0
+                      flexShrink: 0,
+                      marginTop: '2px'
                     }}>
                       <Plus size={10} color="#0f0f11" strokeWidth={2.5} />
                     </div>
-                    <span>{feat}</span>
+                    <span style={{ lineHeight: 1.4 }}>{feat}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Start a project Button */}
+            {/* Explore Growth Button */}
             <button
               onClick={onAssessmentClick}
               style={{
@@ -1579,11 +1633,11 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272a'; }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
             >
-              Start a project
+              Explore Growth
             </button>
           </div>
 
-          {/* Card 3: Custom work */}
+          {/* Card 3: CUSTOM */}
           <div style={{
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
@@ -1601,30 +1655,50 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
 
-            <div style={{ marginBottom: '32px' }}>
-              <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#0f0f11', margin: '0 0 6px 0', letterSpacing: '-0.01em' }}>
-                Custom work
+            <div style={{ marginBottom: '28px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#71717a', textTransform: 'uppercase', marginBottom: '6px' }}>
+                Custom Infrastructure
+              </div>
+              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f0f11', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
+                CUSTOM
               </h3>
-              <p style={{ fontSize: '13px', color: '#71717a', margin: 0 }}>
-                For one-off or specialised projects.
+              <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.5, margin: 0 }}>
+                Specialised growth and operational systems developed around individual business requirements.
               </p>
+            </div>
+
+            {/* Scope Badge */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              padding: '4px 10px',
+              borderRadius: '4px',
+              backgroundColor: '#f4f4f5',
+              border: '1px solid #e4e4e7',
+              fontSize: '11px',
+              fontWeight: 600,
+              color: '#27272a',
+              marginBottom: '28px',
+              width: 'fit-content'
+            }}>
+              Custom Scope
             </div>
 
             {/* What's included Checklist with (+) icons */}
             <div style={{ flex: 1, marginBottom: '36px' }}>
-              <div style={{ fontSize: '12.5px', color: '#0f0f11', marginBottom: '16px', fontWeight: 600 }}>
+              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
                 {[
-                  "Dedicated team of experts",
-                  "End-to-End Web Development",
-                  "Fully Custom Timeline & Scope",
-                  "Async communication",
-                  "Advanced SEO & Marketing",
-                  "Updates every 48 hours"
+                  "Custom CRM architecture",
+                  "Advanced operational workflows",
+                  "Internal business tools",
+                  "Custom integrations",
+                  "Bespoke data and reporting systems",
+                  "Tailored automation infrastructure"
                 ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: '#27272a' }}>
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: '#27272a' }}>
                     <div style={{
                       width: '15px',
                       height: '15px',
@@ -1633,17 +1707,18 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      flexShrink: 0
+                      flexShrink: 0,
+                      marginTop: '2px'
                     }}>
                       <Plus size={10} color="#0f0f11" strokeWidth={2.5} />
                     </div>
-                    <span>{feat}</span>
+                    <span style={{ lineHeight: 1.4 }}>{feat}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Start a project Button */}
+            {/* Discuss a Custom Project Button */}
             <button
               onClick={onAssessmentClick}
               style={{
@@ -1662,7 +1737,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272a'; }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
             >
-              Start a project
+              Discuss a Custom Project
             </button>
           </div>
 
@@ -1677,7 +1752,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
   <section id="timeline" style={{ backgroundColor: '#ffffff', padding: '120px 24px', borderBottom: '1px solid #f0f0f0' }}>
     <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
 
-      {/* Header Grid matching Pricing Section layout */}
+      {/* Header Grid */}
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -1687,7 +1762,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
         marginBottom: '64px'
       }}>
         <div>
-          {/* Grey Highlight Pill with Black Font (Zero Orange) */}
+          {/* Eyebrow Pill */}
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -1704,7 +1779,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
             marginBottom: '16px'
           }}>
             <span style={{ letterSpacing: '-1px', color: '#71717a', fontSize: '11px', fontWeight: 900 }}>|||||||</span>
-            <span>TIMELINE</span>
+            <span>IMPLEMENTATION</span>
           </div>
 
           <h2 style={{
@@ -1716,23 +1791,23 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
             color: '#0f0f11',
             margin: 0
           }}>
-            Live in 30 Days.<br />
-            Everything Done For You.
+            From Strategy to a<br />
+            Connected Growth System.
           </h2>
         </div>
 
         <p style={{
           fontSize: '14.5px',
           color: '#52525b',
-          lineHeight: 1.5,
-          maxWidth: '380px',
+          lineHeight: 1.55,
+          maxWidth: '400px',
           margin: 0
         }}>
-          The whole point is speed to a win. We get you live and bringing in leads fast, not stuck in a three-month build. Here's the path.
+          A structured 90 day implementation that establishes your foundation, builds the infrastructure, and improves its operation.
         </p>
       </div>
 
-      {/* 3 Step Timeline Cards with Technical Design Rules */}
+      {/* 3 Step Timeline Cards */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -1741,7 +1816,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
         marginBottom: '28px'
       }}>
 
-        {/* Step 1: Build */}
+        {/* Step 1: DAYS 01 TO 15 */}
         <div style={{
           backgroundColor: '#ffffff',
           border: '1px solid #e4e4e7',
@@ -1750,7 +1825,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          minHeight: '230px',
+          minHeight: '260px',
           position: 'relative',
           boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
           transition: 'all 0.2s ease'
@@ -1762,8 +1837,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
           <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
 
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '36px' }}>
-              {/* Technical Badge */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
               <div style={{
                 border: '1px solid #e4e4e7',
                 padding: '3px 10px',
@@ -1775,9 +1849,8 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
                 borderRadius: '3px',
                 backgroundColor: '#f4f4f5'
               }}>
-                WEEK 1
+                DAYS 01 TO 15
               </div>
-              {/* Technical Cube SVG */}
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="none">
                 <path d="M12 2L2 7.5L12 13L22 7.5L12 2Z" fill="#18181b" />
                 <path d="M2 7.5V16.5L12 22V13L2 7.5Z" fill="#71717a" />
@@ -1785,16 +1858,29 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
               </svg>
             </div>
 
-            <h3 style={{ fontSize: '22px', fontWeight: 600, color: '#0f0f11', marginBottom: '14px', letterSpacing: '-0.02em' }}>
-              Build
+            <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#0f0f11', marginBottom: '12px', letterSpacing: '-0.02em' }}>
+              Strategy and Foundation
             </h3>
-            <p style={{ fontSize: '14px', color: '#52525b', lineHeight: 1.6, margin: 0 }}>
-              Strategy call, then we build. We map your system, write the copy, design the pages, and wire up every automation to your brand.
+            <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: '0 0 20px 0' }}>
+              We understand your business, offer, audience, and existing acquisition process. We establish your positioning, messaging, audience strategy, content direction, and Instagram profile foundations.
             </p>
+          </div>
+
+          <div style={{
+            padding: '10px 14px',
+            backgroundColor: '#fafafa',
+            border: '1px solid #e4e4e7',
+            borderRadius: '4px',
+            fontSize: '12px',
+            fontWeight: 600,
+            color: '#27272a'
+          }}>
+            <span style={{ color: '#71717a', fontSize: '11px', textTransform: 'uppercase', display: 'block', marginBottom: '2px', fontWeight: 700 }}>Milestone</span>
+            Strategic foundation completed and approved.
           </div>
         </div>
 
-        {/* Step 2: Launch */}
+        {/* Step 2: DAYS 15 TO 60 */}
         <div style={{
           backgroundColor: '#ffffff',
           border: '1px solid #e4e4e7',
@@ -1803,7 +1889,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          minHeight: '230px',
+          minHeight: '260px',
           position: 'relative',
           boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
           transition: 'all 0.2s ease'
@@ -1815,8 +1901,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
           <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
 
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '36px' }}>
-              {/* Technical Badge */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
               <div style={{
                 border: '1px solid #e4e4e7',
                 padding: '3px 10px',
@@ -1828,9 +1913,8 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
                 borderRadius: '3px',
                 backgroundColor: '#f4f4f5'
               }}>
-                WEEKS 2-3
+                DAYS 15 TO 60
               </div>
-              {/* Technical Rocket SVG */}
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="none">
                 <path d="M12 2C12 2 8 6.5 8 13C8 17.5 10.5 20 12 20C13.5 20 16 17.5 16 13C16 6.5 12 2 12 2Z" fill="#18181b" />
                 <path d="M8 13C6.5 14.5 4 15 4 15L7.5 18L8 15Z" fill="#71717a" />
@@ -1839,16 +1923,29 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
               </svg>
             </div>
 
-            <h3 style={{ fontSize: '22px', fontWeight: 600, color: '#0f0f11', marginBottom: '14px', letterSpacing: '-0.02em' }}>
-              Launch
+            <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#0f0f11', marginBottom: '12px', letterSpacing: '-0.02em' }}>
+              Build and Implementation
             </h3>
-            <p style={{ fontSize: '14px', color: '#52525b', lineHeight: 1.6, margin: 0 }}>
-              The system goes live. Funnel deployed, follow-up switched on, traffic campaign launched. Leads start flowing in.
+            <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: '0 0 20px 0' }}>
+              We develop the content operation and install the central CRM, prospect capture, resource delivery, applications, VSL, booking, and preparation workflows.
             </p>
+          </div>
+
+          <div style={{
+            padding: '10px 14px',
+            backgroundColor: '#fafafa',
+            border: '1px solid #e4e4e7',
+            borderRadius: '4px',
+            fontSize: '12px',
+            fontWeight: 600,
+            color: '#27272a'
+          }}>
+            <span style={{ color: '#71717a', fontSize: '11px', textTransform: 'uppercase', display: 'block', marginBottom: '2px', fontWeight: 700 }}>Milestone</span>
+            Core acquisition path by day 30. Full trust layer by day 60.
           </div>
         </div>
 
-        {/* Step 3: Scale */}
+        {/* Step 3: DAYS 60 TO 90 */}
         <div style={{
           backgroundColor: '#ffffff',
           border: '1px solid #e4e4e7',
@@ -1857,7 +1954,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          minHeight: '230px',
+          minHeight: '260px',
           position: 'relative',
           boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
           transition: 'all 0.2s ease'
@@ -1869,8 +1966,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
           <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
 
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '36px' }}>
-              {/* Technical Badge */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
               <div style={{
                 border: '1px solid #e4e4e7',
                 padding: '3px 10px',
@@ -1882,9 +1978,8 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
                 borderRadius: '3px',
                 backgroundColor: '#f4f4f5'
               }}>
-                WEEK 4
+                DAYS 60 TO 90
               </div>
-              {/* Technical Growth SVG */}
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="none">
                 <rect x="2" y="16" width="4" height="6" fill="#d4d4d8" />
                 <rect x="8" y="11" width="4" height="11" fill="#a1a1aa" />
@@ -1893,18 +1988,31 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
               </svg>
             </div>
 
-            <h3 style={{ fontSize: '22px', fontWeight: 600, color: '#0f0f11', marginBottom: '14px', letterSpacing: '-0.02em' }}>
-              Scale
+            <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#0f0f11', marginBottom: '12px', letterSpacing: '-0.02em' }}>
+              Operation and Optimisation
             </h3>
-            <p style={{ fontSize: '14px', color: '#52525b', lineHeight: 1.6, margin: 0 }}>
-              We optimise on real data and hand you the keys. You're live, acquiring clients, and in full control of the machine.
+            <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: '0 0 20px 0' }}>
+              We continue content production, monitor performance, review acquisition activity, identify bottlenecks, and improve relevant workflows.
             </p>
+          </div>
+
+          <div style={{
+            padding: '10px 14px',
+            backgroundColor: '#fafafa',
+            border: '1px solid #e4e4e7',
+            borderRadius: '4px',
+            fontSize: '12px',
+            fontWeight: 600,
+            color: '#27272a'
+          }}>
+            <span style={{ color: '#71717a', fontSize: '11px', textTransform: 'uppercase', display: 'block', marginBottom: '2px', fontWeight: 700 }}>Milestone</span>
+            Performance review and complete handover documentation.
           </div>
         </div>
 
       </div>
 
-      {/* Optional Management Banner styled with matching technical border & corner brackets */}
+      {/* After the Initial Engagement Banner */}
       <div style={{
         backgroundColor: '#fafafa',
         border: '1px solid #e4e4e7',
@@ -1926,10 +2034,13 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
 
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: '10px', letterSpacing: '0.12em', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px' }}>
-            AFTER LAUNCH, OPTIONAL
+            AFTER THE INITIAL ENGAGEMENT
           </div>
-          <p style={{ fontSize: '14px', color: '#52525b', lineHeight: 1.5, margin: 0 }}>
-            <strong style={{ color: '#0f0f11', fontWeight: 600 }}>Want us to keep running it?</strong> Once you're live, you can keep us on for ongoing management and growth. We scale the traffic, sharpen the funnel, and push toward bigger months. Or take the keys and run it yourself. Your call.
+          <div style={{ fontSize: '16px', fontWeight: 700, color: '#0f0f11', marginBottom: '6px' }}>
+            Continue With ASENZO
+          </div>
+          <p style={{ fontSize: '14px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+            Continue with ASENZO for recurring content operation, monitoring, reporting, and optimisation. Or take the handover and operate the infrastructure with your team. Your decision. No automatic renewal.
           </p>
         </div>
         <div style={{ flexShrink: 0, opacity: 0.8 }}>
@@ -1940,7 +2051,7 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
         </div>
       </div>
 
-      {/* CTA Button & Microcopy */}
+      {/* CTA Button & Defined Milestones */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
         <button onClick={onAssessmentClick} style={{
           height: '46px',
@@ -1958,12 +2069,12 @@ const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#27272a'}
         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#000000'}
         >
-          Book Your Free Assessment Call
+          Book a Growth Infrastructure Review
         </button>
-        <div style={{ display: 'flex', gap: '16px', fontSize: '11px', color: '#52525b', marginTop: '16px', fontWeight: 600, letterSpacing: '0.05em' }}>
-          <span>✓ ZERO-RISK GUARANTEE</span>
-          <span>✓ SPLIT-PAY AVAILABLE</span>
-          <span>✓ LIVE IN ~30 DAYS</span>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', fontSize: '11px', color: '#52525b', marginTop: '16px', fontWeight: 700, letterSpacing: '0.05em' }}>
+          <span>✓ DEFINED DELIVERY COMMITMENTS</span>
+          <span>✓ CLEAR IMPLEMENTATION MILESTONES</span>
+          <span>✓ 90 DAY ENGAGEMENT</span>
         </div>
       </div>
 
@@ -1980,20 +2091,43 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
     display: 'flex',
     justifyContent: 'center'
   }}>
-    <div style={{ maxWidth: '960px', width: '100%', textAlign: 'center' }}>
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}>
-        {/* Grey/black shield icon container */}
+    <div style={{ maxWidth: '980px', width: '100%', textAlign: 'center' }}>
+      
+      {/* Eyebrow Pill */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '4px 14px',
+            borderRadius: '20px',
+            backgroundColor: '#f4f4f5',
+            border: '1px solid #e4e4e7',
+            fontSize: '11.5px',
+            fontWeight: 700,
+            color: '#0f0f11',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase'
+          }}
+        >
+          <span>✦ THE ASENZO COMMITMENT</span>
+        </div>
+      </div>
+
+      {/* Shield Icon */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
         <div style={{
-          width: '64px',
-          height: '64px',
-          borderRadius: '16px',
+          width: '60px',
+          height: '60px',
+          borderRadius: '14px',
           backgroundColor: '#f4f4f5',
           border: '1px solid #e4e4e7',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
         }}>
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             <path d="m9 12 2 2 4-4"></path>
           </svg>
@@ -2001,50 +2135,103 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       </div>
 
       <h2 style={{
-        fontSize: 'clamp(36px, 5vw, 60px)',
+        fontFamily: "'Switzer', 'Inter', sans-serif",
+        fontSize: 'clamp(34px, 4.8vw, 54px)',
         fontWeight: 700,
         color: '#0f0f11',
-        lineHeight: 1.08,
-        marginBottom: '28px',
-        letterSpacing: '-0.035em'
+        lineHeight: 1.1,
+        marginBottom: '20px',
+        letterSpacing: '-0.03em'
       }}>
-        We Work With You 1-to-1 Until <br /> You Make Your Money Back.
+        We Stand Behind the Infrastructure We Build.
       </h2>
 
       <p style={{
         fontSize: '16px',
         color: '#52525b',
-        maxWidth: '740px',
-        margin: '0 auto 48px auto',
+        maxWidth: '680px',
+        margin: '0 auto 44px auto',
         lineHeight: 1.6
       }}>
-        We're confident this system will make you far more than it costs. But you carry none of the risk. If for any reason you haven't recouped your investment, <strong style={{ color: '#0f0f11', fontWeight: 600 }}>we keep consulting you one-to-one, adjusting and optimising, until you do.</strong> You don't build it alone, and you don't lose alone. That's the deal.
+        Your engagement has defined delivery milestones and clear responsibilities.
       </p>
 
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+      {/* 3 Pillars Grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gap: '20px',
+        textAlign: 'left',
+        marginBottom: '40px'
+      }}>
+        <div style={{ padding: '24px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7', borderRadius: '8px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#0f0f11', textTransform: 'uppercase', marginBottom: '8px' }}>
+            CORE DELIVERY
+          </div>
+          <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+            The agreed core acquisition path and first 15 videos are targeted for day 30.
+          </p>
+        </div>
+
+        <div style={{ padding: '24px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7', borderRadius: '8px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#0f0f11', textTransform: 'uppercase', marginBottom: '8px' }}>
+            FULL INFRASTRUCTURE
+          </div>
+          <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+            The full agreed trust layer is targeted for day 60.
+          </p>
+        </div>
+
+        <div style={{ padding: '24px', backgroundColor: '#fafafa', border: '1px solid #e4e4e7', borderRadius: '8px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#0f0f11', textTransform: 'uppercase', marginBottom: '8px' }}>
+            PERFORMANCE REVIEW
+          </div>
+          <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+            Your starting organic performance and day 90 results are reviewed using the agreed measurement method.
+          </p>
+        </div>
+      </div>
+
+      {/* Closing Commitment Statement */}
+      <div style={{
+        maxWidth: '740px',
+        margin: '0 auto 40px auto',
+        padding: '20px 24px',
+        backgroundColor: '#ffffff',
+        border: '1px solid #e4e4e7',
+        borderRadius: '8px',
+        fontSize: '13.5px',
+        color: '#52525b',
+        lineHeight: 1.6
+      }}>
+        <p style={{ margin: '0 0 10px 0' }}>
+          If an agreed workflow is non functional because of our delivery, we fix it without an additional service fee. Applicable refund conditions, responsibilities, and measurement definitions are documented in the signed agreement.
+        </p>
+        <p style={{ margin: 0, fontWeight: 600, color: '#0f0f11' }}>
+          We commit to our delivery. We do not promise unsupported sales or revenue outcomes.
+        </p>
+      </div>
+
+      {/* CTA Button */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
         <button onClick={onAssessmentClick} style={{
           backgroundColor: '#000000',
           color: '#ffffff',
           border: 'none',
-          borderRadius: '8px',
-          padding: '0 34px',
-          height: '50px',
+          borderRadius: '6px',
+          padding: '0 32px',
+          height: '48px',
           fontSize: '14px',
           fontWeight: 600,
           cursor: 'pointer',
-          boxShadow: '0 4px 18px rgba(0, 0, 0, 0.15)',
+          boxShadow: '0 4px 18px rgba(0, 0, 0, 0.12)',
           transition: 'background-color 0.2s ease'
         }}
         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#27272a'}
         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#000000'}
         >
-          Book Your Free Assessment Call
+          Book a Growth Infrastructure Review
         </button>
-        <div style={{ display: 'flex', gap: '24px', fontSize: '11px', color: '#52525b', fontWeight: 600, letterSpacing: '0.05em' }}>
-          <span>✓ ZERO-RISK GUARANTEE</span>
-          <span>✓ SPLIT-PAY AVAILABLE</span>
-          <span>✓ LIVE IN ~30 DAYS</span>
-        </div>
       </div>
     </div>
   </section>
@@ -2055,22 +2242,65 @@ const FAQSection = () => {
   const [openIdx, setOpenIdx] = useState(null);
 
   const faqs = [
-    { num: "01", q: "What exactly does ASENZO do?", a: "We build complete done-for-you client generation systems, including high-converting websites, sales funnels, AI follow-up automations, and persuasive copywriting to turn your traffic into paying clients." },
-    { num: "02", q: "Who is this for?", a: "This is built specifically for service-based businesses, agency owners, consultants, and enterprise founders doing over $10k/month who want an automated, predictable acquisition infrastructure." },
-    { num: "03", q: "How long does implementation take?", a: "The entire system is completely designed, built, and launched live in 30 days flat. You'll see initial infrastructure within the first 10 days." },
-    { num: "04", q: "What do you need from me?", a: "Only an initial 60-minute strategy call and access to your core brand assets. Our expert engineering team handles the rest entirely done-for-you." },
-    { num: "05", q: "What if it doesn't work?", a: "You're backed by our 100% Risk-Free Guarantee: if you aren't thoroughly blown away by your new system in 30 days, you receive a full 100% immediate refund with zero questions asked." }
+    {
+      num: "01",
+      q: "What exactly does ASENZO do?",
+      a: "ASENZO designs, builds, and operates growth infrastructure connecting market positioning, content production, prospect capture, CRM, and booking workflows."
+    },
+    {
+      num: "02",
+      q: "Who is this for?",
+      a: "The Authority Growth System is designed for businesses with established expertise and an offer that want their positioning, content, and acquisition process to work together. Fit is established during the booking process."
+    },
+    {
+      num: "03",
+      q: "How long does implementation take?",
+      a: "The core acquisition path is targeted for day 30. The full trust infrastructure is targeted for day 60. The initial engagement continues through day 90 for operation and optimisation."
+    },
+    {
+      num: "04",
+      q: "What do you need from us?",
+      a: "We need business information, account access, recordings, timely approvals, and a designated person to handle incoming enquiries and sales conversations."
+    },
+    {
+      num: "05",
+      q: "What if something does not work?",
+      a: "If an agreed workflow is non functional because of our delivery, we fix it without an additional service fee. Applicable refund provisions are documented in your signed agreement."
+    }
   ];
 
   return (
     <section id="faq" style={{ backgroundColor: '#ffffff', padding: '120px 24px', borderBottom: '1px solid #f0f0f0' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        
+        {/* Eyebrow Pill */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '4px 14px',
+              borderRadius: '20px',
+              backgroundColor: '#f4f4f5',
+              border: '1px solid #e4e4e7',
+              fontSize: '11.5px',
+              fontWeight: 700,
+              color: '#0f0f11',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase'
+            }}
+          >
+            <span>✦ FREQUENTLY ASKED QUESTIONS</span>
+          </div>
+        </div>
+
         <div style={{ textAlign: 'center', marginBottom: '64px' }}>
           <h2 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#0f0f11', marginBottom: '16px', letterSpacing: '-0.02em' }}>
-            Frequently Asked Questions
+            Clear Answers. Before We Begin.
           </h2>
           <p style={{ fontSize: '16px', color: '#52525b' }}>
-            Everything you need to know about partnering with ASENZO.
+            Everything you need to understand about working with ASENZO.
           </p>
         </div>
 
@@ -2089,7 +2319,7 @@ const FAQSection = () => {
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-                    <span style={{ fontSize: '13px', color: '#F16001', fontFamily: 'monospace', fontWeight: 600 }}>{faq.num}</span>
+                    <span style={{ fontSize: '13px', color: '#F16001', fontFamily: 'monospace', fontWeight: 700 }}>{faq.num}</span>
                     <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#0f0f11', margin: 0 }}>{faq.q}</h3>
                   </div>
                   <div style={{ color: '#0f0f11' }}>
@@ -2257,43 +2487,43 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <h2
               style={{
-                fontSize: 'clamp(24px, 3.5vw, 32px)',
-                fontWeight: 600,
+                fontSize: 'clamp(22px, 3.2vw, 30px)',
+                fontWeight: 700,
                 letterSpacing: '-0.02em',
                 lineHeight: 1.15,
                 color: '#FFFFFF',
-                marginBottom: '16px',
-                maxWidth: '460px',
+                marginBottom: '14px',
+                maxWidth: '480px',
                 textAlign: 'center'
               }}
             >
-              Let AI do the Work so you can Scale Faster.
+              The Infrastructure Behind Business Growth.
             </h2>
 
             <p
               style={{
-                fontSize: '14px',
+                fontSize: '13.5px',
                 color: 'rgba(255,255,255,0.95)',
-                marginBottom: '32px',
+                marginBottom: '28px',
                 lineHeight: 1.5,
                 fontWeight: 400,
-                maxWidth: '380px',
+                maxWidth: '420px',
                 textAlign: 'center'
               }}
             >
-              Book a Call Today and Start Automating.
+              We design, build, and operate the systems connecting market positioning, demand generation, and customer acquisition.
             </p>
 
             <button
               onClick={onAssessmentClick}
               style={{
-                height: '48px',
+                height: '46px',
                 backgroundColor: '#FFFFFF',
                 color: '#000000',
                 border: 'none',
                 borderRadius: '6px',
                 padding: '0 28px',
-                fontSize: '14px',
+                fontSize: '13.5px',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'all 0.2s',
@@ -2303,7 +2533,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#E5E5E5'; }}
               onMouseOut={(e) => { e.currentTarget.style.backgroundColor = '#FFFFFF'; }}
             >
-              Book a free call
+              Book a Growth Infrastructure Review
             </button>
           </div>
 
@@ -2400,15 +2630,19 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
             marginBottom: '24px'
           }}>
             <span style={{ color: '#0f0f11', fontSize: '11px' }}>✦</span>
-            <span>PRIVATE ACCESS</span>
+            <span>PRIVATE GROWTH INFRASTRUCTURE REVIEW</span>
           </div>
 
-          <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.03em', color: '#0f0f11', marginBottom: '24px' }}>
-            We Install It. You Grow. Live In 30 Days.
+          <h2 style={{ fontSize: 'clamp(34px, 4.2vw, 52px)', fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.03em', color: '#0f0f11', marginBottom: '24px' }}>
+            Your Business Has the Expertise. Let's Build the Infrastructure Behind It.
           </h2>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.6, color: '#52525b', marginBottom: '32px', maxWidth: '500px' }}>
-            Schedule an executive onboarding review. We'll map your complete pipeline, diagnose conversion leaks, and design your bespoke operating system live on the call.
+          <p style={{ fontSize: '16.5px', lineHeight: 1.6, color: '#52525b', marginBottom: '20px', maxWidth: '520px' }}>
+            Let's understand how your positioning, content, and acquisition process currently work, identify the biggest gaps, and explore how ASENZO would connect them.
+          </p>
+
+          <p style={{ fontSize: '13.5px', fontWeight: 600, color: '#71717a', letterSpacing: '0.02em', margin: 0 }}>
+            30 minute private conversation. No obligation to proceed.
           </p>
         </div>
 
@@ -2565,6 +2799,9 @@ const MasterFooter = ({ onAssessmentClick }) => (
           <p style={{ fontSize: '14px', color: '#71717a', lineHeight: 1.6, margin: 0 }}>
             We love talking with ambitious founders who are ready to take action. Whether you have a project in mind or just want to say hello.
           </p>
+          <div style={{ fontSize: '12px', fontWeight: 600, color: '#0f0f11', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+            Growth Infrastructure · Design. Build. Operate.
+          </div>
           <div style={{ marginTop: '4px', width: 'fit-content' }}>
             <LetsConnectSwipeButton onClick={onAssessmentClick} />
           </div>
@@ -2582,9 +2819,9 @@ const MasterFooter = ({ onAssessmentClick }) => (
           <div>
             <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
             <div style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a href="#buy" style={{ color: 'inherit', textDecoration: 'none' }}>Builder OS</a>
-              <a href="#community" style={{ color: 'inherit', textDecoration: 'none' }}>Private Mastermind</a>
-              <a href="#dfy" style={{ color: 'inherit', textDecoration: 'none' }}>Done For You</a>
+              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Core</a>
+              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Growth</a>
+              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Custom</a>
             </div>
           </div>
 
@@ -2592,10 +2829,10 @@ const MasterFooter = ({ onAssessmentClick }) => (
           <div>
             <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
             <div style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>Features</a>
-              <a href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Integrations</a>
-              <a href="#benefits" style={{ color: 'inherit', textDecoration: 'none' }}>Benefits</a>
-              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Pricing</a>
+              <a href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
+              <a href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Infrastructure</a>
+              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Engagements</a>
+              <a href="#timeline" style={{ color: 'inherit', textDecoration: 'none' }}>Implementation</a>
               <a href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
             </div>
           </div>
@@ -2677,9 +2914,10 @@ const DiagnosticModal = ({ isOpen, onClose }) => {
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.85)', backdropFilter: 'blur(10px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ maxWidth: '500px', width: '90%', backgroundColor: '#0A0A0A', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '12px', padding: '40px', position: 'relative' }}>
         <button onClick={onClose} style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: '#FFF', fontSize: '20px', cursor: 'pointer' }}>✕</button>
-        <h2 style={{ fontSize: '24px', fontWeight: 600, color: '#FFF', marginBottom: '16px' }}>Start 2-Minute Assessment</h2>
-        <p style={{ fontSize: '14px', color: '#888', marginBottom: '24px' }}>Analyze your conversion friction and acquisition bottlenecks.</p>
-        <button onClick={onClose} style={{ width: '100%', height: '48px', backgroundColor: '#FFF', color: '#000', border: 'none', borderRadius: '6px', fontWeight: 600, cursor: 'pointer' }}>Begin Assessment Now →</button>
+        <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', color: '#F16001', textTransform: 'uppercase', marginBottom: '10px' }}>PRIVATE REVIEW</div>
+        <h2 style={{ fontSize: '24px', fontWeight: 700, color: '#FFF', marginBottom: '14px', letterSpacing: '-0.02em' }}>Book a Growth Infrastructure Review</h2>
+        <p style={{ fontSize: '14px', color: '#a1a1aa', lineHeight: 1.55, marginBottom: '24px' }}>Let's understand how your positioning, content, and acquisition process currently work, identify the biggest gaps, and explore how ASENZO would connect them.</p>
+        <button onClick={() => { onClose(); window.location.hash = "#booking"; }} style={{ width: '100%', height: '46px', backgroundColor: '#FFF', color: '#000', border: 'none', borderRadius: '6px', fontWeight: 600, fontSize: '14px', cursor: 'pointer' }}>Schedule 30-Minute Review</button>
       </div>
     </div>
   );
