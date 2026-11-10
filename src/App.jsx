@@ -2521,6 +2521,83 @@ const MasterFooter = ({ onAssessmentClick }) => (
             <span>Instagram</span>
           </div>
         </div>
+
+        {/* Newsletter Column */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', minWidth: '260px' }}>
+          <h4 style={{ fontSize: '15px', color: '#0f0f11', fontWeight: 600, letterSpacing: '-0.01em', margin: 0 }}>
+            What's new, straight to you
+          </h4>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <input
+              type="email"
+              placeholder="jane@framer.com"
+              style={{
+                backgroundColor: '#ffffff',
+                border: '1px solid #e4e4e7',
+                borderRadius: '6px',
+                padding: '0 14px',
+                height: '40px',
+                flex: 1,
+                color: '#0f0f11',
+                fontSize: '13.5px',
+                outline: 'none',
+                minWidth: '0',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+              }}
+            />
+            <button
+              style={{
+                backgroundColor: '#000000',
+                color: '#ffffff',
+                border: '1px solid #000000',
+                borderRadius: '6px',
+                padding: '0 16px',
+                height: '40px',
+                fontSize: '13px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                transition: 'background-color 0.2s ease',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272a'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
+            >
+              Subscribe
+            </button>
+          </div>
+          <p style={{ fontSize: '12.5px', color: '#71717a', margin: 0, lineHeight: 1.5 }}>
+            Includes the latest product updates, productivity tips, and insights.
+          </p>
+        </div>
+      </div>
+
+      {/* Small Section: Bottom Bar with Copyright, Systems Status & Legal Links */}
+      <div
+        style={{
+          paddingTop: '28px',
+          borderTop: '1px solid #e4e4e7',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '16px',
+          fontSize: '12.5px',
+          color: '#71717a'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
+          <span>© {new Date().getFullYear()} Asenzo Inc. All rights reserved.</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#16a34a' }}>
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#16a34a', display: 'inline-block' }} />
+            <span>All systems operational 99.99%</span>
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '20px' }}>
+          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</a>
+          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Terms of Service</a>
+          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Cookie Settings</a>
+        </div>
       </div>
     </div>
 
