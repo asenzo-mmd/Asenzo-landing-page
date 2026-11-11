@@ -44,6 +44,18 @@ export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const scrollToBooking = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.getElementById("booking");
+    if (el) {
+      const yOffset = -70; // offset for floating navbar
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    } else {
+      window.location.hash = "#booking";
+    }
+  };
+
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -74,14 +86,14 @@ export default function App() {
       {/* 1. DARK GREY GLASSMORPHISM FLOATING NAVBAR */}
       <AccretionNavbar
         isScrolled={isScrolled}
-        onOpenModal={() => setModalOpen(true)}
+        onOpenModal={scrollToBooking}
       />
 
       {/* 2. FIRST PAGE: COMPLETELY PLAIN BLACK HERO */}
-      <AccretionHero onOpenModal={() => setModalOpen(true)} />
+      <AccretionHero onOpenModal={scrollToBooking} />
 
       {/* 3. SECOND PAGE: ASENZO 6-GROUP INTEGRATIONS SECTION WITH CENTER POWER HUB */}
-      <AsenzoIntegrationsSection onOpenModal={() => setModalOpen(true)} />
+      <AsenzoIntegrationsSection onOpenModal={scrollToBooking} />
 
       {/* 4. KEY BENEFITS OF AI FOR YOUR BUSINESS GROWTH (Requested section in clean white theme) */}
       <KeyBenefitsSection />
@@ -90,22 +102,22 @@ export default function App() {
       <HandHoldingPhoneSection />
 
       {/* 8. OLD DESIGN: THREE WAYS TO WORK (PRICING TIERS) */}
-      <ThreeWaysToWorkSection onAssessmentClick={() => setModalOpen(true)} />
+      <ThreeWaysToWorkSection onAssessmentClick={scrollToBooking} />
 
       {/* 8. 100% RISK-FREE GUARANTEE BANNER */}
-      <GuaranteeBanner onAssessmentClick={() => setModalOpen(true)} />
+      <GuaranteeBanner onAssessmentClick={scrollToBooking} />
 
       {/* 9. CARD ENVELOPE SCROLL ANIMATION */}
-      <FinalCTAHero onAssessmentClick={() => setModalOpen(true)} />
+      <FinalCTAHero onAssessmentClick={scrollToBooking} />
 
       {/* 10. FREQUENTLY ASKED QUESTIONS (Placed below the envelope page as requested) */}
       <FAQSection />
 
       {/* 11. CALENDAR BOOKING SECTION (With Cal.com real embed) */}
-      <CalendarBookingSection onAssessmentClick={() => setModalOpen(true)} />
+      <CalendarBookingSection onAssessmentClick={scrollToBooking} />
 
       {/* 15. OLD DESIGN: MASTER FOOTER */}
-      <MasterFooter onAssessmentClick={() => setModalOpen(true)} />
+      <MasterFooter onAssessmentClick={scrollToBooking} />
 
       {/* INTERACTIVE ASSESSMENT MODAL */}
       <DiagnosticModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
@@ -1239,7 +1251,7 @@ const HandHoldingPhoneSection = () => (
           />
           <div>
             <div style={{ fontSize: '15px', fontWeight: 500, color: '#0f0f11', lineHeight: 1.2 }}>B2B Founder</div>
-            <div style={{ fontSize: '14px', color: '#71717a', marginTop: '4px' }}>Client Story · 30,000 Followers & 1.9M+ Views</div>
+            <div style={{ fontSize: '14px', color: '#71717a', marginTop: '4px' }}>CEO of Alarsh</div>
           </div>
         </div>
       </div>
@@ -1853,9 +1865,9 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
           Book a Growth Infrastructure Review
         </button>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '24px', fontSize: '11px', color: '#52525b', fontWeight: 600, letterSpacing: '0.05em' }}>
-          <span>✓ DEFINED DELIVERY COMMITMENTS</span>
-          <span>✓ CLEAR IMPLEMENTATION MILESTONES</span>
-          <span>✓ 90 DAY ENGAGEMENT</span>
+          <span>✓ WORKING BY DAY 30 OR WE FIX IT FREE</span>
+          <span>✓ FULL REFUND IF DELIVERY FAILS</span>
+          <span>✓ YOU KEEP EVERYTHING WE BUILD</span>
         </div>
       </div>
     </div>
@@ -1869,28 +1881,33 @@ const FAQSection = () => {
   const faqs = [
     {
       num: "01",
-      q: "What exactly does ASENZO do?",
-      a: "ASENZO designs, builds, and operates growth infrastructure connecting market positioning, content production, prospect capture, CRM, and booking workflows."
+      q: "What does ASENZO do, and how is it different from others?",
+      a: "ASENZO designs, builds and operates the growth infrastructure behind your content. Most agencies deliver videos and stop. We build the full path from first view to booked call: positioning, content, funnel, automations, VSL, booking page, CRM and tracking. You can see where prospects drop off, and we fix it using your real data."
     },
     {
       num: "02",
-      q: "Who is this for?",
-      a: "The Authority Growth System is designed for businesses with established expertise and an offer that want their positioning, content, and acquisition process to work together. Fit is established during the booking process."
+      q: "Will this get me clients?",
+      a: "That depends on your offer, your sales process and your expertise, so we don’t promise bookings or revenue. We find where you’re losing prospects, fix those gaps and position your expertise so the right buyers see you as the obvious choice. It works best when the expertise is real. What we do guarantee is delivery, and it’s written in your agreement."
     },
     {
       num: "03",
-      q: "How long does implementation take?",
-      a: "The core acquisition path is targeted for day 30. The full trust infrastructure is targeted for day 60. The initial engagement continues through day 90 for operation and optimisation."
+      q: "Who is this for, and how do I know it’s right for me?",
+      a: "The Authority Growth System is for experts with an established offer who want their positioning, content and acquisition to work together. Fit is confirmed on a Growth Infrastructure Diagnostic call. We audit your brand first, then give you a personalised breakdown, a walkthrough of the system and a roadmap, with no obligation."
     },
     {
       num: "04",
-      q: "What do you need from us?",
-      a: "We need business information, account access, recordings, timely approvals, and a designated person to handle incoming enquiries and sales conversations."
+      q: "What do you need from us, and how much of my time does it take?",
+      a: "We need your business information, account access, a named person to handle enquiries and sales conversations, and your approvals on time. Your time is higher in the first six weeks, then around 4 to 6 hours a month. You join a 45-minute kickoff, record two VSLs and attend a guided shoot that we direct. We handle the research, scripts, editing and posting."
     },
     {
       num: "05",
-      q: "What if something does not work?",
-      a: "If an agreed workflow is non functional because of our delivery, we fix it without an additional service fee. Applicable refund provisions are documented in your signed agreement."
+      q: "How long does it take?",
+      a: "Your acquisition path is built and working by day 30, and your first 15 videos are delivered for approval by day 45. After that, we keep operating and improving the system."
+    },
+    {
+      num: "06",
+      q: "What happens if something doesn’t work?",
+      a: "If something we built isn’t working, we fix it free. If your system still isn’t working by day 45, you get a full refund of what you paid, and you keep what we delivered. Refund terms are in your signed agreement."
     }
   ];
 
@@ -2284,11 +2301,11 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
           </div>
 
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.03em', color: '#0f0f11', marginBottom: '24px' }}>
-            We Install It. You Grow. Live In 30 Days.
+            We Install It. You Own It.
           </h2>
 
           <p style={{ fontSize: '17px', lineHeight: 1.6, color: '#52525b', marginBottom: '32px', maxWidth: '500px' }}>
-            Schedule an executive onboarding review. We'll map your complete pipeline, diagnose conversion leaks, and design your bespoke operating system live on the call.
+            Book a free Diagnostic call. We’ll find where you’re losing prospects, walk you through the system and give you a clear roadmap for your business.
           </p>
         </div>
 
@@ -2511,11 +2528,6 @@ const MasterFooter = ({ onAssessmentClick }) => (
       >
         <div>
           <span>© {new Date().getFullYear()} Asenzo Inc. All rights reserved.</span>
-        </div>
-        <div style={{ display: 'flex', gap: '24px' }}>
-          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</a>
-          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Terms of Service</a>
-          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Cookie Settings</a>
         </div>
       </div>
     </div>
