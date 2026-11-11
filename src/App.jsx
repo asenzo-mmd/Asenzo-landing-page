@@ -134,15 +134,16 @@ export default function App() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("anim-in-view");
+            entry.target.classList.add("is-revealed");
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
     );
 
     const targets = document.querySelectorAll(
-      ".integrations-card-responsive, .benefits-card-item, .pricing-package-card, .envelope-glass-card, #booking .mobile-only-block"
+      ".integrations-card-responsive, .benefits-card-item, .pricing-package-card, .envelope-glass-card, #booking .mobile-only-block, .mobile-reveal-title, .mobile-anim-reveal"
     );
     targets.forEach((el) => observer.observe(el));
 
@@ -494,11 +495,12 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             margin: mobileScrolled ? 0 : "0 auto",
             height: 46,
             borderRadius: 10,
-            backgroundColor: "#111111",
+            backgroundColor: "#0A0A0A",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(255, 255, 255, 0.16)",
-            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.4)",
+            border: "1px solid transparent",
+            background: "linear-gradient(#0A0A0A, #0A0A0A) padding-box, linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(200, 215, 235, 0.45) 35%, rgba(130, 145, 165, 0.12) 70%, transparent 100%) border-box",
+            boxShadow: "0 10px 32px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.55)",
             zIndex: 1000,
             display: "flex",
             alignItems: "center",
@@ -568,14 +570,16 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
                 </span>
               </div>
 
-              {/* Right Text Label "Menu" in boxy rounded squircle */}
+              {/* Right Text Label "Menu" with silver top outline */}
               <div
                 style={{
                   height: 30,
                   padding: "0 12px",
                   borderRadius: 8,
-                  backgroundColor: "rgba(255, 255, 255, 0.08)",
-                  border: "1px solid rgba(255, 255, 255, 0.16)",
+                  backgroundColor: "#161616",
+                  border: "1px solid transparent",
+                  background: "linear-gradient(#161616, #161616) padding-box, linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(190, 205, 225, 0.35) 45%, transparent 100%) border-box",
+                  boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.45)",
                   color: "#ffffff",
                   fontSize: 12.5,
                   fontWeight: 600,
@@ -760,15 +764,13 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
 // Plain black #000000, zero gradients, zero mesh, clean editorial typography, solid buttons
 // ==========================================
 function AccretionHero({ onOpenModal }) {
-  // Dynamically calculate the upcoming booking quarter & year (e.g. Booking Q1 2027)
+  // Dynamically calculate the booking quarter as per current month (1-3: Q1, 4-6: Q2, 7-9: Q3, 10-12: Q4)
   const bookingQuarter = React.useMemo(() => {
     const now = new Date();
-    const currentMonth = now.getMonth(); // 0-11
+    const currentMonth = now.getMonth(); // 0-indexed: 0=Jan..10=Nov, 11=Dec
     const currentYear = now.getFullYear();
-    const currentQuarterIdx = Math.floor(currentMonth / 3);
-    const nextQuarterIdx = (currentQuarterIdx + 1) % 4;
-    const nextQuarterYear = currentQuarterIdx === 3 ? currentYear + 1 : currentYear;
-    return `Q${nextQuarterIdx + 1} ${nextQuarterYear}`;
+    const quarter = Math.floor(currentMonth / 3) + 1; // 1, 2, 3, or 4
+    return `Q${quarter} ${currentYear}`;
   }, []);
 
   return (
@@ -833,7 +835,10 @@ function AccretionHero({ onOpenModal }) {
             wordBreak: "break-word"
           }}
         >
-          We Build the Authority Growth System That Turns Your Attention Into Qualified Sales Calls
+          <span className="hero-anim-line l1">We Build the </span>
+          <span className="hero-anim-line l2">Authority Growth System </span>
+          <span className="hero-anim-line l3">That Turns Your Attention </span>
+          <span className="hero-anim-line l4">Into Qualified Sales Calls</span>
         </h1>
 
         {/* Supporting Description in JetBrains Mono Uppercase Monospace */}
@@ -1280,15 +1285,22 @@ function AsenzoCenterPowerHub({ isMobile = false }) {
         }}
       />
 
-      {/* CENTER LOGO BOX */}
+      {/* CENTER LOGO BOX: Grey Glassmorphism on Mobile */}
       <div
         style={{
           width: isMobile ? 84 : 96,
           height: isMobile ? 84 : 96,
           borderRadius: 20,
-          backgroundColor: "#151515",
-          border: "1px solid rgba(255, 255, 255, 0.14)",
-          boxShadow: "0 14px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 85, 0, 0.4)",
+          background: isMobile
+            ? "linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(150, 160, 175, 0.16) 45%, rgba(60, 65, 75, 0.35) 100%)"
+            : "#151515",
+          backdropFilter: isMobile ? "blur(24px) saturate(150%)" : "none",
+          WebkitBackdropFilter: isMobile ? "blur(24px) saturate(150%)" : "none",
+          border: isMobile ? "1px solid rgba(255, 255, 255, 0.32)" : "1px solid rgba(255, 255, 255, 0.14)",
+          borderTop: isMobile ? "1px solid rgba(255, 255, 255, 0.75)" : "1px solid rgba(255, 255, 255, 0.14)",
+          boxShadow: isMobile
+            ? "0 18px 42px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.65), inset 0 -1px 2px rgba(0, 0, 0, 0.35)"
+            : "0 14px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 85, 0, 0.4)",
           position: "relative",
           zIndex: 5,
           display: "flex",
@@ -1882,15 +1894,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                       width: '16px',
                       height: '16px',
                       borderRadius: '50%',
-                      backgroundColor: 'rgba(241, 96, 1, 0.1)',
-                      border: '1px solid rgba(241, 96, 1, 0.3)',
+                      backgroundColor: '#ffffff',
+                      border: '1.5px solid #0f0f11',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
                       marginTop: '2px'
                     }}>
-                      <Check size={11} color="#F16001" strokeWidth={3} />
+                      <Check size={10} color="#0f0f11" strokeWidth={3.5} />
                     </div>
                     <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
                   </div>
@@ -2020,15 +2032,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                       width: '16px',
                       height: '16px',
                       borderRadius: '50%',
-                      backgroundColor: 'rgba(241, 96, 1, 0.1)',
-                      border: '1px solid rgba(241, 96, 1, 0.3)',
+                      backgroundColor: '#ffffff',
+                      border: '1.5px solid #0f0f11',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
                       marginTop: '2px'
                     }}>
-                      <Check size={11} color="#F16001" strokeWidth={3} />
+                      <Check size={10} color="#0f0f11" strokeWidth={3.5} />
                     </div>
                     <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
                   </div>
@@ -2131,15 +2143,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                       width: '16px',
                       height: '16px',
                       borderRadius: '50%',
-                      backgroundColor: 'rgba(241, 96, 1, 0.1)',
-                      border: '1px solid rgba(241, 96, 1, 0.3)',
+                      backgroundColor: '#ffffff',
+                      border: '1.5px solid #0f0f11',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
                       marginTop: '2px'
                     }}>
-                      <Check size={11} color="#F16001" strokeWidth={3} />
+                      <Check size={10} color="#0f0f11" strokeWidth={3.5} />
                     </div>
                     <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
                   </div>
@@ -2759,7 +2771,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
         id="mobile-envelope-section"
         className="mobile-only-block"
         style={{
-          backgroundColor: '#121212',
+          backgroundColor: '#000000',
           padding: '56px 20px',
           width: '100%',
           boxSizing: 'border-box',
@@ -2769,7 +2781,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
         <div style={{ maxWidth: '440px', margin: '0 auto', width: '100%', position: 'relative' }}>
           {/* Shiny Glassy Orange Card */}
           <div
-            className="envelope-glass-card"
+            className="envelope-glass-card mobile-anim-reveal"
             style={{
               width: '100%',
               backgroundColor: '#E53B00',
@@ -2786,7 +2798,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               flexDirection: 'column',
               alignItems: 'flex-start',
               textAlign: 'left',
-              boxShadow: '0 24px 64px rgba(0, 0, 0, 0.65), 0 0 45px rgba(255, 85, 0, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.55), inset 0 -1px 1px rgba(0, 0, 0, 0.25)',
+              boxShadow: '0 24px 64px rgba(0, 0, 0, 0.7), 0 0 45px rgba(255, 85, 0, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.55), inset 0 -1px 1px rgba(0, 0, 0, 0.25)',
               position: 'relative',
               overflow: 'hidden'
             }}
@@ -3117,7 +3129,7 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
             fontWeight: 700,
             border: '1px solid rgba(255, 185, 130, 0.4)',
             borderTop: '1px solid rgba(255, 255, 255, 0.65)',
-            boxShadow: '0 8px 28px rgba(230, 60, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.55)',
+            boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.55)',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
