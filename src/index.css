@@ -217,136 +217,356 @@ body {
 }
 
 /* Section Responsive Spacing */
-.section-responsive {
+/* Section Responsive Spacing */
+.section-responsive,
+.section-spacious {
   padding: 110px 24px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  /* Global Side & Section Vertical Padding: 72-96px vertical, 20px side */
+  .section-spacious,
   .section-responsive {
-    padding: 60px 16px !important;
+    padding-top: clamp(72px, 10vw, 96px) !important;
+    padding-bottom: clamp(72px, 10vw, 96px) !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
-}
 
-@media (max-width: 430px) {
-  .section-responsive {
-    padding: 52px 14px !important;
-  }
-}
-
-/* Responsive Mobile Container */
-.mobile-container {
-  width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-@media (max-width: 768px) {
+  .container-spacious,
+  .container,
   .mobile-container {
-    padding: 0 16px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    width: 100% !important;
   }
-}
 
-/* Responsive Layout Helpers */
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-@media (max-width: 1023px) {
-  .benefits-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px !important;
+  /* Headings: H1 32-40px, H2 28-32px, line-height 1.15, centred */
+  .mobile-h1 {
+    font-size: clamp(32px, 7.5vw, 40px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.03em !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
   }
-}
 
-@media (max-width: 640px) {
+  .mobile-h2 {
+    font-size: clamp(28px, 6vw, 32px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.025em !important;
+    text-align: center !important;
+    margin-bottom: 18px !important;
+  }
+
+  /* Gap between a heading and intro: 16-20px; gap between intro and content: 32-40px */
+  .mobile-intro-text {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    color: #52525b !important;
+    text-align: center !important;
+    margin-bottom: 36px !important;
+  }
+
+  /* Body text 16px minimum, line-height 1.6 */
+  .mobile-body-16 {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Buttons: at least 52px tall, full width, 16px or more above them */
+  .mobile-btn-52 {
+    min-height: 52px !important;
+    height: 52px !important;
+    width: 100% !important;
+    font-size: 15px !important;
+    margin-top: 16px !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Cards: 24px padding, same radius, 16-20px gap, full width */
+  .mobile-card-24 {
+    padding: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 1. Hero: more space above headline and between headline, subtext, button */
+  .hero-section-wrap {
+    padding-top: 130px !important;
+    padding-bottom: clamp(72px, 10vw, 90px) !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .hero-mono-subtext {
+    font-size: clamp(13px, 3.6vw, 14px) !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0.04em !important;
+    margin: 0 auto 36px auto !important;
+    padding: 0 4px !important;
+  }
+
+  /* 2. Layers Section: 6 Layer Cards */
+  .integrations-card-responsive {
+    padding: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    border-radius: 14px !important;
+    gap: 12px !important;
+  }
+  .integrations-card-responsive .card-cat-title {
+    font-size: 17.5px !important;
+    line-height: 1.3 !important;
+  }
+  .integrations-card-responsive .card-layer-badge {
+    font-size: 12px !important;
+    padding: 3px 8px !important;
+  }
+  .integrations-card-responsive .card-desc {
+    font-size: 15.5px !important;
+    line-height: 1.6 !important;
+    margin: 4px 0 8px 0 !important;
+  }
+  .integrations-card-responsive .card-tags-row {
+    padding-top: 12px !important;
+    gap: 8px !important;
+  }
+  .integrations-card-responsive .card-tag-pill {
+    font-size: 12.5px !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+  }
+
+  /* 3. Benefits (6 cards): single column, 24px padding, 16px gaps */
   .benefits-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
-}
+  .benefits-card-item {
+    padding: 24px !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+  .benefits-card-item h3 {
+    font-size: 19.5px !important;
+  }
+  .benefits-card-item p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
 
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  align-items: stretch;
-}
+  /* 4. Client Story: quote font 22-26px, line-height 1.4, 24px padding */
+  .client-story-quote {
+    font-size: clamp(22px, 5.5vw, 26px) !important;
+    line-height: 1.4 !important;
+    padding: 0 !important;
+    margin: 0 0 24px 0 !important;
+  }
 
-@media (max-width: 1023px) {
+  /* 5. Pricing: stack Core, Growth, Custom full width with 24px gaps */
   .pricing-grid {
     grid-template-columns: 1fr !important;
-    gap: 20px !important;
+    gap: 24px !important;
   }
-}
+  .pricing-card-item {
+    padding: 24px !important;
+    width: 100% !important;
+  }
+  .pricing-items-col {
+    gap: 13px !important;
+  }
+  .pricing-item-text {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+  .pricing-btn-action {
+    min-height: 52px !important;
+    height: 52px !important;
+    margin-top: 24px !important;
+    width: 100% !important;
+    font-size: 15px !important;
+  }
 
-.guarantee-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  text-align: left;
-  margin-bottom: 44px;
-}
-
-@media (max-width: 768px) {
+  /* 6. Guarantee: stack 3 delivery cards, 3 ticks vertical 12px apart at 12-13px min */
   .guarantee-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
     margin-bottom: 32px !important;
   }
-}
-
-.guarantee-ticks-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-  font-size: 11px;
-  color: #52525b;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-@media (max-width: 768px) {
+  .guarantee-card-item {
+    padding: 24px !important;
+  }
+  .guarantee-card-item p {
+    font-size: 15.5px !important;
+    line-height: 1.6 !important;
+  }
   .guarantee-ticks-row {
     flex-direction: column !important;
     align-items: center !important;
-    gap: 10px !important;
-    text-align: center !important;
+    gap: 12px !important;
+    font-size: 13px !important;
+    margin-bottom: 24px !important;
   }
-}
+  .guarantee-btn-action {
+    min-height: 52px !important;
+    height: 52px !important;
+    width: 100% !important;
+    font-size: 15px !important;
+  }
 
-.booking-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 60px;
-  align-items: center;
-}
+  /* 7. Envelope/CTA Graphic: scale to fit screen, 14px min text, 48px above/below */
+  .envelope-outer-section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  .envelope-card-headline {
+    font-size: clamp(16px, 4.4vw, 20px) !important;
+    line-height: 1.25 !important;
+    margin-bottom: 12px !important;
+  }
+  .envelope-card-body {
+    font-size: clamp(14px, 3.8vw, 15px) !important;
+    line-height: 1.6 !important;
+    margin-bottom: 12px !important;
+  }
+  .envelope-card-italic {
+    font-size: clamp(14px, 3.8vw, 15px) !important;
+    line-height: 1.45 !important;
+    margin-bottom: 18px !important;
+  }
+  .envelope-card-btn {
+    min-height: 52px !important;
+    height: 52px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    font-size: 14.5px !important;
+  }
 
-@media (max-width: 1023px) {
+  /* 8. FAQ: rows at least 64px tall, 20px vertical padding, 16px question, plus no shrink */
+  .faq-row-item {
+    min-height: 64px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+  .faq-q-text {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+  }
+  .faq-icon-holder {
+    flex-shrink: 0 !important;
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .faq-ans-text {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* 9. Booking/Calendar: stack text and calendar, cells at least 40px */
   .booking-grid {
     grid-template-columns: 1fr !important;
     gap: 36px !important;
   }
+  .booking-calendar-box {
+    padding: 16px 12px !important;
+    width: 100% !important;
+  }
+  #my-cal-inline-brandgrowth-strategy-call button,
+  #my-cal-inline-brandgrowth-strategy-call [data-cal-date] {
+    min-height: 40px !important;
+    min-width: 40px !important;
+  }
+
+  /* 10. Footer: columns stacked with 32px gaps, Asenzo wordmark 100% width */
+  .footer-links-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+    width: 100% !important;
+  }
+  .footer-watermark-text {
+    font-size: clamp(52px, 19vw, 92px) !important;
+    width: 100% !important;
+  }
 }
 
-.footer-links-grid {
-  display: flex;
-  gap: clamp(40px, 8vw, 120px);
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  flex: 2 1 480px;
-}
-
-@media (max-width: 768px) {
+/* Tablet (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section-spacious {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+  .pricing-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .guarantee-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .booking-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
   .footer-links-grid {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
-    gap: 28px !important;
-    width: 100% !important;
-    justify-content: flex-start !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 32px !important;
+  }
+}
+
+/* Desktop Defaults for Grids (1024px+) */
+@media (min-width: 1024px) {
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+  .guarantee-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+    margin-bottom: 44px;
+  }
+  .guarantee-ticks-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    font-size: 11px;
+    color: #52525b;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .footer-links-grid {
+    display: flex;
+    gap: clamp(40px, 8vw, 120px);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex: 2 1 480px;
   }
 }
 

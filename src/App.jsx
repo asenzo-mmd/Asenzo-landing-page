@@ -437,9 +437,10 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
               onClick={handleMobileCta}
               style={{
                 width: "100%",
-                height: 48,
+                minHeight: 52,
+                height: 52,
                 borderRadius: 8,
-                fontSize: 14.5,
+                fontSize: 15,
                 fontWeight: 600,
                 cursor: "pointer",
                 border: "none",
@@ -480,6 +481,7 @@ function AccretionHero({ onOpenModal }) {
 
   return (
     <section
+      className="hero-section-wrap section-spacious"
       style={{
         backgroundColor: "#ffffff",
         minHeight: "92vh",
@@ -525,6 +527,7 @@ function AccretionHero({ onOpenModal }) {
 
         {/* Hero Title */}
         <h1
+          className="mobile-h1"
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
             fontSize: "clamp(28px, 5.5vw, 72px)",
@@ -542,6 +545,7 @@ function AccretionHero({ onOpenModal }) {
 
         {/* Supporting Description in JetBrains Mono Uppercase Monospace */}
         <p
+          className="hero-mono-subtext"
           style={{
             fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
             fontSize: "clamp(12px, 1.25vw, 13.5px)",
@@ -562,6 +566,7 @@ function AccretionHero({ onOpenModal }) {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <button
             onClick={onOpenModal}
+            className="mobile-btn-52"
             style={{
               minHeight: 48,
               height: 48,
@@ -665,6 +670,7 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
   return (
     <section
       id="integrations"
+      className="section-spacious"
       style={{
         backgroundColor: "#ffffff",
         color: "#0f0f11",
@@ -708,6 +714,7 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
 
         {/* Section Heading */}
         <h2
+          className="mobile-h2"
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
             fontSize: "clamp(26px, 4.2vw, 48px)",
@@ -725,6 +732,7 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
 
         {/* Supporting Description */}
         <p
+          className="mobile-intro-text"
           style={{
             fontSize: "clamp(14px, 1.6vw, 16.5px)",
             lineHeight: 1.6,
@@ -830,26 +838,23 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
           </div>
         </div>
 
-        {/* MOBILE / TABLET 6-GROUP ECOSYSTEM: Single Column Stacked with Center Power Hub */}
+        {/* MOBILE / TABLET 6-GROUP ECOSYSTEM: Hub graphic first, then all 6 layer cards stacked with 18px gaps */}
         <div
           className="mobile-only-block"
           style={{
-            maxWidth: 440,
+            maxWidth: 480,
             margin: "0 auto",
             width: "100%"
           }}
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {/* Layers 01, 02, 03 */}
-            {leftGroups.map((group) => (
-              <CompactIntegrationCard key={group.id} group={group} />
-            ))}
-
-            {/* Glowing Center Power Hub with Logo */}
+          {/* Phone graphic first, centred, at about 70-80% width */}
+          <div style={{ display: "flex", justifyContent: "center", width: "100%", marginBottom: 32 }}>
             <AsenzoCenterPowerHub isMobile={true} />
+          </div>
 
-            {/* Layers 04, 05, 06 */}
-            {rightGroups.map((group) => (
+          {/* All six layer cards in one column with 16-20px gaps */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+            {[...leftGroups, ...rightGroups].map((group) => (
               <CompactIntegrationCard key={group.id} group={group} />
             ))}
           </div>
@@ -857,10 +862,10 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
 
         {/* Closing Statement */}
         <div style={{ textAlign: "center", marginTop: 48, maxWidth: 640, marginLeft: "auto", marginRight: "auto", padding: "0 12px" }}>
-          <p style={{ fontSize: 15, fontWeight: 700, color: "#0f0f11", letterSpacing: "-0.01em", margin: "0 0 8px 0" }}>
+          <p style={{ fontSize: 16, fontWeight: 700, color: "#0f0f11", letterSpacing: "-0.01em", margin: "0 0 10px 0" }}>
             Different functions. One connected growth infrastructure.
           </p>
-          <p style={{ fontSize: 13.5, color: "#52525b", lineHeight: 1.5, margin: 0 }}>
+          <p style={{ fontSize: 15, color: "#52525b", lineHeight: 1.6, margin: 0 }}>
             ASENZO designs, builds, and operates the system connecting your positioning, content, and acquisition.
           </p>
         </div>
@@ -876,10 +881,10 @@ function AsenzoCenterPowerHub({ isMobile = false }) {
   return (
     <div
       style={{
-        width: isMobile ? "100%" : 280,
-        maxWidth: isMobile ? 360 : 280,
-        height: isMobile ? 300 : 438,
-        margin: isMobile ? "10px auto" : "0",
+        width: isMobile ? "76%" : 280,
+        maxWidth: isMobile ? 320 : 280,
+        height: isMobile ? 310 : 438,
+        margin: isMobile ? "0 auto" : "0",
         position: "relative",
         display: "flex",
         flexDirection: "column",
@@ -1047,6 +1052,7 @@ function CompactIntegrationCard({ group }) {
       {/* Title & Layer Badge */}
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
         <h3
+          className="card-cat-title"
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
             fontSize: 13,
@@ -1060,6 +1066,7 @@ function CompactIntegrationCard({ group }) {
           {group.category}
         </h3>
         <span
+          className="card-layer-badge"
           style={{
             fontSize: 10,
             fontWeight: 700,
@@ -1077,6 +1084,7 @@ function CompactIntegrationCard({ group }) {
 
       {/* Description */}
       <p
+        className="card-desc"
         style={{
           fontSize: 11.5,
           lineHeight: 1.45,
@@ -1089,6 +1097,7 @@ function CompactIntegrationCard({ group }) {
 
       {/* Capabilities Tags Row */}
       <div
+        className="card-tags-row"
         style={{
           display: "flex",
           alignItems: "center",
@@ -1101,6 +1110,7 @@ function CompactIntegrationCard({ group }) {
         {group.capabilities.map((cap, i) => (
           <span
             key={i}
+            className="card-tag-pill"
             style={{
               fontSize: 10,
               fontWeight: 600,
@@ -1189,6 +1199,7 @@ function KeyBenefitsSection() {
 
         {/* Section Heading */}
         <h2
+          className="mobile-h2"
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
             fontSize: "clamp(26px, 4.4vw, 50px)",
@@ -1206,6 +1217,7 @@ function KeyBenefitsSection() {
 
         {/* Subtitle */}
         <p
+          className="mobile-intro-text"
           style={{
             fontSize: "clamp(14px, 1.6vw, 16.5px)",
             lineHeight: 1.6,
@@ -1223,6 +1235,7 @@ function KeyBenefitsSection() {
           {benefits.map((item, idx) => (
             <div
               key={idx}
+              className="benefits-card-item"
               style={{
                 backgroundColor: "#ffffff",
                 border: "1px solid #e4e4e7",
@@ -1287,8 +1300,8 @@ function KeyBenefitsSection() {
 }
 
 const HandHoldingPhoneSection = () => (
-  <section style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 100px) 0', borderBottom: '1px solid #f0f0f0', overflow: 'hidden' }}>
-    <div className="mobile-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 clamp(16px, 4vw, 24px)', textAlign: 'center' }}>
+  <section className="section-spacious" style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 100px) 0', borderBottom: '1px solid #f0f0f0', overflow: 'hidden' }}>
+    <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
 
       {/* Client Story Eyebrow Pill */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
@@ -1314,7 +1327,7 @@ const HandHoldingPhoneSection = () => (
 
       {/* Editorial Pull-Quote Block */}
       <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', position: 'relative' }}>
-        <blockquote style={{
+        <blockquote className="client-story-quote" style={{
           fontSize: 'clamp(18px, 3.6vw, 42px)',
           fontWeight: 400,
           lineHeight: 1.3,
@@ -1326,14 +1339,14 @@ const HandHoldingPhoneSection = () => (
           "From starting with zero to becoming impossible to ignore. Within one month, our following grew to 30,000 with 1.9M+ views, and we began receiving consistent, qualified enquiries far beyond our network."
         </blockquote>
 
-        {/* Quiet Inline Avatar + Attribution Line */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', textAlign: 'center' }}>
+        {/* Quiet Inline Avatar + Attribution Line with 20px gap */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', textAlign: 'center', marginTop: '20px' }}>
           <img
             src="/b2b-founder.jpg"
             alt="B2B Founder"
             style={{
-              width: '52px',
-              height: '52px',
+              width: '56px',
+              height: '56px',
               borderRadius: '50%',
               objectFit: 'cover',
               objectPosition: 'center 20%',
@@ -1356,7 +1369,7 @@ const HandHoldingPhoneSection = () => (
 // 6. Built to Scale (Pricing Section - Clean, No Pricing Numbers, No Development Box, No Black Border on Popular)
 const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
   return (
-    <section id="pricing" style={{
+    <section id="pricing" className="section-spacious" style={{
       backgroundColor: '#ffffff',
       padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)',
       borderBottom: '1px solid #f0f0f0'
@@ -1394,7 +1407,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               <span>ENGAGEMENT OPTIONS</span>
             </div>
 
-            <h2 style={{
+            <h2 className="mobile-h2" style={{
               fontFamily: "'Switzer', 'Inter', sans-serif",
               fontSize: 'clamp(28px, 4.8vw, 56px)',
               fontWeight: 700,
@@ -1407,7 +1420,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             </h2>
           </div>
 
-          <p style={{
+          <p className="mobile-intro-text" style={{
             fontSize: '14.5px',
             color: '#52525b',
             lineHeight: 1.5,
@@ -1422,7 +1435,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
         <div className="pricing-grid">
 
           {/* Card 1: CORE */}
-          <div style={{
+          <div className="pricing-card-item mobile-card-24" style={{
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
             borderRadius: '6px',
@@ -1446,7 +1459,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f0f11', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
                 CORE
               </h3>
-              <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.5, margin: 0 }}>
+              <p style={{ fontSize: '14.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
                 Establish the essential foundations connecting your online presence to prospect enquiries, built through focused, project-based work.
               </p>
             </div>
@@ -1468,12 +1481,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               Scoped to requirements
             </div>
 
+            {/* Divider above What's included */}
+            <div style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
+
             {/* What's included Checklist with (+) icons */}
-            <div style={{ flex: 1, marginBottom: '36px' }}>
+            <div style={{ flex: 1, marginBottom: '24px' }}>
               <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
+              <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
                 {[
                   "Content and acquisition funnel review",
                   "Strategic growth playbook",
@@ -1482,7 +1498,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   "VSL strategy and integration",
                   "Conversion-focused page structure"
                 ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: '#27272a' }}>
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
                     <div style={{
                       width: '15px',
                       height: '15px',
@@ -1496,7 +1512,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                     }}>
                       <Plus size={10} color="#0f0f11" strokeWidth={2.5} />
                     </div>
-                    <span style={{ lineHeight: 1.4 }}>{feat}</span>
+                    <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
                   </div>
                 ))}
               </div>
@@ -1505,10 +1521,12 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             {/* Explore Core Button */}
             <button
               onClick={onAssessmentClick}
+              className="pricing-btn-action mobile-btn-52"
               style={{
                 width: '100%',
                 minHeight: '48px',
                 height: '48px',
+                marginTop: '24px',
                 backgroundColor: '#000000',
                 color: '#ffffff',
                 border: '1px solid #000000',
@@ -1527,7 +1545,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
           </div>
 
           {/* Card 2: GROWTH (FLAGSHIP ENGAGEMENT) */}
-          <div style={{
+          <div className="pricing-card-item mobile-card-24" style={{
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
             borderRadius: '6px',
@@ -1552,7 +1570,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f0f11', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
                   GROWTH
                 </h3>
-                <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.5, margin: 0 }}>
+                <p style={{ fontSize: '14.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
                   The complete ASENZO engagement connecting positioning, demand gen, content, and acquisition infrastructure.
                 </p>
               </div>
@@ -1590,12 +1608,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               Build and Operate
             </div>
 
+            {/* Divider above What's included */}
+            <div style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
+
             {/* What's included Checklist with (+) icons */}
-            <div style={{ flex: 1, marginBottom: '36px' }}>
+            <div style={{ flex: 1, marginBottom: '24px' }}>
               <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
+              <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
                 {[
                   "Market positioning and buyer messaging",
                   "Intensive audience research",
@@ -1611,7 +1632,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   "Acquisition tracking & monthly performance review",
                   "Full handover of everything we build"
                 ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: '#27272a' }}>
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
                     <div style={{
                       width: '15px',
                       height: '15px',
@@ -1625,7 +1646,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                     }}>
                       <Plus size={10} color="#0f0f11" strokeWidth={2.5} />
                     </div>
-                    <span style={{ lineHeight: 1.4 }}>{feat}</span>
+                    <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
                   </div>
                 ))}
               </div>
@@ -1634,10 +1655,12 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             {/* Explore Growth Button */}
             <button
               onClick={onAssessmentClick}
+              className="pricing-btn-action mobile-btn-52"
               style={{
                 width: '100%',
                 minHeight: '48px',
                 height: '48px',
+                marginTop: '24px',
                 backgroundColor: '#000000',
                 color: '#ffffff',
                 border: '1px solid #000000',
@@ -1656,7 +1679,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
           </div>
 
           {/* Card 3: CUSTOM */}
-          <div style={{
+          <div className="pricing-card-item mobile-card-24" style={{
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
             borderRadius: '6px',
@@ -1680,7 +1703,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f0f11', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
                 CUSTOM
               </h3>
-              <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.5, margin: 0 }}>
+              <p style={{ fontSize: '14.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
                 Specialised growth and operational systems developed around individual business requirements.
               </p>
             </div>
@@ -1702,12 +1725,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               Custom Scope
             </div>
 
+            {/* Divider above What's included */}
+            <div style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
+
             {/* What's included Checklist with (+) icons */}
-            <div style={{ flex: 1, marginBottom: '36px' }}>
+            <div style={{ flex: 1, marginBottom: '24px' }}>
               <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
+              <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
                 {[
                   "Custom CRM architecture",
                   "Advanced operational workflows",
@@ -1716,7 +1742,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   "Bespoke data and reporting systems",
                   "Tailored automation infrastructure"
                 ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: '#27272a' }}>
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
                     <div style={{
                       width: '15px',
                       height: '15px',
@@ -1730,7 +1756,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                     }}>
                       <Plus size={10} color="#0f0f11" strokeWidth={2.5} />
                     </div>
-                    <span style={{ lineHeight: 1.4 }}>{feat}</span>
+                    <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
                   </div>
                 ))}
               </div>
@@ -1739,10 +1765,12 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             {/* Discuss a Custom Project Button */}
             <button
               onClick={onAssessmentClick}
+              className="pricing-btn-action mobile-btn-52"
               style={{
                 width: '100%',
                 minHeight: '48px',
                 height: '48px',
+                marginTop: '24px',
                 backgroundColor: '#000000',
                 color: '#ffffff',
                 border: '1px solid #000000',
@@ -1767,7 +1795,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 };
 
 const GuaranteeBanner = ({ onAssessmentClick }) => (
-  <section style={{
+  <section className="section-spacious" style={{
     backgroundColor: '#ffffff',
     padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)',
     borderBottom: '1px solid #f0f0f0',
@@ -1795,7 +1823,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
         </div>
       </div>
 
-      <h2 style={{
+      <h2 className="mobile-h2" style={{
         fontSize: 'clamp(26px, 4.8vw, 60px)',
         fontWeight: 700,
         color: '#0f0f11',
@@ -1806,7 +1834,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
         We Stand Behind the Infrastructure We Build.
       </h2>
 
-      <p style={{
+      <p className="mobile-intro-text" style={{
         fontSize: 'clamp(14px, 1.6vw, 16px)',
         color: '#52525b',
         maxWidth: '740px',
@@ -1819,7 +1847,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       {/* 3 Reference-Styled Boxes (Horizontal Layout on desktop, single column on mobile) */}
       <div className="guarantee-grid">
         {/* Card 1: CORE DELIVERY */}
-        <div style={{
+        <div className="guarantee-card-item" style={{
           backgroundColor: '#ffffff',
           border: '1px solid #e5e7eb',
           borderRadius: '16px',
@@ -1852,7 +1880,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
         </div>
 
         {/* Card 2: FULL INFRASTRUCTURE */}
-        <div style={{
+        <div className="guarantee-card-item" style={{
           backgroundColor: '#ffffff',
           border: '1px solid #e5e7eb',
           borderRadius: '16px',
@@ -1885,7 +1913,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
         </div>
 
         {/* Card 3: PERFORMANCE REVIEW */}
-        <div style={{
+        <div className="guarantee-card-item" style={{
           backgroundColor: '#ffffff',
           border: '1px solid #e5e7eb',
           borderRadius: '16px',
@@ -1920,7 +1948,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
 
       {/* Closing Commitment Statement */}
       <p style={{
-        fontSize: '14.5px',
+        fontSize: '15px',
         color: '#52525b',
         maxWidth: '740px',
         margin: '0 auto 36px auto',
@@ -1931,16 +1959,16 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
 
       {/* Black Button & Trust Badges */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-        <button onClick={onAssessmentClick} style={{
+        <button onClick={onAssessmentClick} className="guarantee-btn-action mobile-btn-52" style={{
           backgroundColor: '#000000',
           color: '#ffffff',
           border: 'none',
           borderRadius: '8px',
           padding: '0 28px',
-          minHeight: '50px',
-          height: '50px',
+          minHeight: '52px',
+          height: '52px',
           width: 'min(100%, 360px)',
-          fontSize: '14px',
+          fontSize: '14.5px',
           fontWeight: 600,
           cursor: 'pointer',
           boxShadow: '0 4px 18px rgba(0, 0, 0, 0.15)',
@@ -2111,6 +2139,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
   return (
     <section
       ref={containerRef}
+      className="envelope-outer-section"
       style={{
         backgroundColor: '#ffffff',
         height: '135vh', // Compact scroll distance that completes the animation cleanly at this point without dead scroll
@@ -2147,6 +2176,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
         />
 
         <div
+          className="envelope-mobile-wrap"
           style={{
             width: '100%',
             maxWidth: '640px',
@@ -2214,6 +2244,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             <div style={{ position: 'absolute', top: '16px', right: '16px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderRight: '2px solid rgba(255,255,255,0.5)' }} />
 
             <h2
+              className="envelope-card-headline"
               style={{
                 fontSize: 'clamp(13px, 2.2vw, 19px)',
                 fontWeight: 800,
@@ -2230,6 +2261,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             </h2>
 
             <p
+              className="envelope-card-body"
               style={{
                 fontSize: 'clamp(11px, 1.5vw, 12.5px)',
                 color: 'rgba(255,255,255,0.92)',
@@ -2244,6 +2276,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             </p>
 
             <p
+              className="envelope-card-italic"
               style={{
                 fontSize: 'clamp(11.5px, 1.6vw, 13px)',
                 color: '#FFFFFF',
@@ -2260,6 +2293,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <button
               onClick={onAssessmentClick}
+              className="envelope-card-btn mobile-btn-52"
               style={{
                 minHeight: '44px',
                 height: '44px',
@@ -2285,9 +2319,9 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <span
               style={{
-                fontSize: '11.5px',
+                fontSize: '12px',
                 color: 'rgba(255,255,255,0.85)',
-                marginTop: '8px',
+                marginTop: '10px',
                 fontWeight: 500,
                 letterSpacing: '0.02em',
                 textAlign: 'center'
