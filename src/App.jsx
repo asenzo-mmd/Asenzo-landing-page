@@ -28,7 +28,9 @@ import {
   ChevronRight,
   Globe,
   ArrowUpRight,
-  ChevronDown
+  ChevronDown,
+  Menu,
+  X
 } from "lucide-react";
 import "./index.css";
 
@@ -134,16 +136,43 @@ export default function App() {
 // - Solid flat orange button (#f94500), no gradient, zero hover expansion
 // ==========================================
 function AccretionNavbar({ isScrolled, onOpenModal }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: "The System", href: "#features" },
+    { label: "Infrastructure", href: "#integrations" },
+    { label: "Engagements", href: "#pricing" },
+    { label: "FAQ", href: "#faq", hideOnScroll: true }
+  ];
+
+  const handleMobileNavClick = (e, href) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const targetId = href.replace("#", "");
+    const el = document.getElementById(targetId);
+    if (el) {
+      const yOffset = -70;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
+  const handleMobileCta = (e) => {
+    setMobileMenuOpen(false);
+    onOpenModal(e);
+  };
+
   return (
     <header
       style={{
         position: "fixed",
-        top: 20,
+        top: isScrolled ? 12 : 20,
         left: 0,
         right: 0,
         zIndex: 1000,
         display: "flex",
-        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
         pointerEvents: "none",
         padding: "0 16px"
       }}
@@ -155,12 +184,12 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: isScrolled ? 18 : 28,
-          padding: isScrolled ? "6px 8px 6px 14px" : "8px 12px 8px 20px",
+          gap: isScrolled ? 14 : 24,
+          padding: isScrolled ? "6px 8px 6px 14px" : "8px 12px 8px 18px",
           borderRadius: 14,
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
-          backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.94)" : "rgba(255, 255, 255, 0.88)",
+          backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.9)",
           // Fading outline: Crisp top, subtle sides, transparent bottom
           borderTop: "1px solid rgba(0, 0, 0, 0.09)",
           borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
@@ -249,7 +278,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           </div>
         </a>
 
-        {/* Navigation Links */}
+        {/* Desktop Navigation Links */}
         <div
           className="desktop-only"
           style={{
@@ -263,12 +292,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             zIndex: 2
           }}
         >
-          {[
-            { label: "The System", href: "#features" },
-            { label: "Infrastructure", href: "#integrations" },
-            { label: "Engagements", href: "#pricing" },
-            { label: "FAQ", href: "#faq", hideOnScroll: true }
-          ].filter((item) => !isScrolled || !item.hideOnScroll).map((item) => (
+          {navLinks.filter((item) => !isScrolled || !item.hideOnScroll).map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -286,8 +310,8 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           ))}
         </div>
 
-        {/* Right CTA Button: Solid flat orange (#f94500), no gradient, zero hover expansion */}
-        <div style={{ display: "flex", alignItems: "center", flexShrink: 0, zIndex: 2 }}>
+        {/* Desktop Right CTA Button */}
+        <div className="desktop-only" style={{ display: "flex", alignItems: "center", flexShrink: 0, zIndex: 2 }}>
           <button
             onClick={onOpenModal}
             style={{
@@ -317,7 +341,123 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             Book a Review
           </button>
         </div>
+
+        {/* Mobile Controls: Compact CTA + Hamburger Button */}
+        <div className="mobile-only" style={{ display: "flex", alignItems: "center", gap: 8, zIndex: 2 }}>
+          <button
+            onClick={handleMobileCta}
+            style={{
+              height: 36,
+              padding: "0 14px",
+              borderRadius: 7,
+              fontSize: 12.5,
+              fontWeight: 600,
+              cursor: "pointer",
+              border: "none",
+              backgroundColor: "#f94500",
+              color: "#ffffff",
+              boxShadow: "0 2px 8px rgba(249, 69, 0, 0.35)",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              whiteSpace: "nowrap"
+            }}
+          >
+            Book Review
+          </button>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 7,
+              border: "1px solid rgba(0, 0, 0, 0.08)",
+              backgroundColor: "#f4f4f5",
+              color: "#0f0f11",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              padding: 0
+            }}
+          >
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Drawer Dropdown Menu */}
+      {mobileMenuOpen && (
+        <div
+          className="mobile-nav-drawer"
+          style={{
+            pointerEvents: "auto",
+            width: "100%",
+            maxWidth: isScrolled ? 624 : 980,
+            marginTop: 8,
+            backgroundColor: "rgba(255, 255, 255, 0.98)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
+            borderRadius: 14,
+            border: "1px solid rgba(0, 0, 0, 0.08)",
+            boxShadow: "0 16px 40px rgba(0, 0, 0, 0.12)",
+            padding: "14px 16px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 6
+          }}
+        >
+          {navLinks.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleMobileNavClick(e, item.href)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "12px 14px",
+                borderRadius: 8,
+                fontSize: 15,
+                fontWeight: 600,
+                color: "#0f0f11",
+                textDecoration: "none",
+                backgroundColor: "rgba(0, 0, 0, 0.02)",
+                transition: "background-color 0.15s ease"
+              }}
+            >
+              <span>{item.label}</span>
+              <ArrowUpRight size={16} color="#71717a" />
+            </a>
+          ))}
+
+          <div style={{ paddingTop: 8, borderTop: "1px solid rgba(0, 0, 0, 0.06)", marginTop: 4 }}>
+            <button
+              onClick={handleMobileCta}
+              style={{
+                width: "100%",
+                height: 48,
+                borderRadius: 8,
+                fontSize: 14.5,
+                fontWeight: 600,
+                cursor: "pointer",
+                border: "none",
+                backgroundColor: "#f94500",
+                color: "#ffffff",
+                boxShadow: "0 4px 14px rgba(249, 69, 0, 0.35)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 8
+              }}
+            >
+              <span>Book a Review</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
@@ -349,7 +489,7 @@ function AccretionHero({ onOpenModal }) {
         justifyContent: "center",
         position: "relative",
         textAlign: "center",
-        padding: "140px 24px 90px 24px",
+        padding: "clamp(110px, 16vh, 150px) clamp(16px, 4vw, 24px) clamp(56px, 8vw, 90px) clamp(16px, 4vw, 24px)",
         overflow: "hidden"
       }}
     >
@@ -387,13 +527,14 @@ function AccretionHero({ onOpenModal }) {
         <h1
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: "clamp(38px, 5.2vw, 72px)",
+            fontSize: "clamp(28px, 5.5vw, 72px)",
             fontWeight: 700,
-            lineHeight: 1.08,
+            lineHeight: 1.1,
             letterSpacing: "-0.035em",
             color: "#0f0f11",
             margin: "0 auto 24px auto",
-            maxWidth: 960
+            maxWidth: 960,
+            wordBreak: "break-word"
           }}
         >
           We Build the Authority Growth System That Turns Your Attention Into Qualified Sales Calls
@@ -410,7 +551,8 @@ function AccretionHero({ onOpenModal }) {
             textTransform: "uppercase",
             color: "#52525b",
             maxWidth: 760,
-            margin: "0 auto 36px auto"
+            margin: "0 auto 36px auto",
+            padding: "0 4px"
           }}
         >
           ASENZO helps you build and operate the growth infrastructure that turns attention into sales calls through connected systems.
@@ -421,8 +563,9 @@ function AccretionHero({ onOpenModal }) {
           <button
             onClick={onOpenModal}
             style={{
-              height: 46,
-              padding: "0 30px",
+              minHeight: 48,
+              height: 48,
+              padding: "0 32px",
               borderRadius: 8,
               fontSize: 14.5,
               fontWeight: 600,
@@ -434,7 +577,8 @@ function AccretionHero({ onOpenModal }) {
               boxShadow: "0 4px 18px rgba(0, 0, 0, 0.15)",
               display: "inline-flex",
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
+              width: "min(100%, 280px)"
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.filter = "brightness(1.2)";
@@ -524,8 +668,8 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
       style={{
         backgroundColor: "#ffffff",
         color: "#0f0f11",
-        paddingTop: 90,
-        paddingBottom: 110,
+        paddingTop: "clamp(56px, 8vw, 90px)",
+        paddingBottom: "clamp(64px, 10vw, 110px)",
         position: "relative",
         overflow: "hidden"
       }}
@@ -566,7 +710,7 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
         <h2
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: "clamp(30px, 3.8vw, 48px)",
+            fontSize: "clamp(26px, 4.2vw, 48px)",
             fontWeight: 700,
             lineHeight: 1.12,
             letterSpacing: "-0.03em",
@@ -582,19 +726,20 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
         {/* Supporting Description */}
         <p
           style={{
-            fontSize: "clamp(14.5px, 1.5vw, 16.5px)",
+            fontSize: "clamp(14px, 1.6vw, 16.5px)",
             lineHeight: 1.6,
             color: "#52525b",
             textAlign: "center",
             maxWidth: 680,
-            margin: "0 auto 48px auto"
+            margin: "0 auto 40px auto"
           }}
         >
           Your positioning, content, prospect acquisition and booking process should work as one connected system. ASENZO brings these essential functions together through one coordinated growth infrastructure.
         </p>
 
-        {/* 6-GROUP ECOSYSTEM: NEATLY SPACED & PERFECTLY ALIGNED (Total height 438px) */}
+        {/* DESKTOP 6-GROUP ECOSYSTEM: 3 Columns with SVG Cords & Center Big Box */}
         <div
+          className="desktop-only"
           style={{
             maxWidth: 1140,
             margin: "0 auto",
@@ -606,7 +751,6 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
         >
           {/* 3 SOLID LINES FROM LEFT & 3 SOLID LINES FROM RIGHT CONNECTED TO CENTER BIG BOX */}
           <svg
-            className="desktop-only"
             viewBox="0 0 1140 438"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -621,7 +765,6 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
             }}
           >
             <defs>
-              {/* userSpaceOnUse ensures the middle horizontal line (which has 0 height) renders the full rich gradient identically to the top and bottom paths! */}
               <linearGradient id="solidLeftConduit" x1="320" y1="0" x2="430" y2="0" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#C10801" />
                 <stop offset="50%" stopColor="#F16001" />
@@ -634,107 +777,33 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
               </linearGradient>
             </defs>
 
-            {/* --- LEFT 3 SOLID LINES (Connecting Left 3 Cards to Center Big Box) --- */}
-            {/* Ambient Solid Halo 1: Left Card 1 (Top) */}
-            <path
-              d="M 320 65 C 375 65, 395 145, 430 145"
-              stroke="rgba(241, 96, 1, 0.22)"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            {/* Solid Line 1: Left Card 1 (Top) -> Center Big Box */}
-            <path
-              d="M 320 65 C 375 65, 395 145, 430 145"
-              stroke="url(#solidLeftConduit)"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            />
+            {/* --- LEFT 3 SOLID LINES --- */}
+            <path d="M 320 65 C 375 65, 395 145, 430 145" stroke="rgba(241, 96, 1, 0.22)" strokeWidth="5" strokeLinecap="round" />
+            <path d="M 320 65 C 375 65, 395 145, 430 145" stroke="url(#solidLeftConduit)" strokeWidth="2.2" strokeLinecap="round" />
 
-            {/* Ambient Solid Halo 2: Left Card 2 (Mid) */}
-            <path
-              d="M 320 219 L 430 219"
-              stroke="rgba(241, 96, 1, 0.22)"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            {/* Solid Line 2: Left Card 2 (Mid) -> Center Big Box */}
-            <path
-              d="M 320 219 L 430 219"
-              stroke="url(#solidLeftConduit)"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            />
+            <path d="M 320 219 L 430 219" stroke="rgba(241, 96, 1, 0.22)" strokeWidth="5" strokeLinecap="round" />
+            <path d="M 320 219 L 430 219" stroke="url(#solidLeftConduit)" strokeWidth="2.2" strokeLinecap="round" />
 
-            {/* Ambient Solid Halo 3: Left Card 3 (Bottom) */}
-            <path
-              d="M 320 373 C 375 373, 395 293, 430 293"
-              stroke="rgba(241, 96, 1, 0.22)"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            {/* Solid Line 3: Left Card 3 (Bottom) -> Center Big Box */}
-            <path
-              d="M 320 373 C 375 373, 395 293, 430 293"
-              stroke="url(#solidLeftConduit)"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            />
+            <path d="M 320 373 C 375 373, 395 293, 430 293" stroke="rgba(241, 96, 1, 0.22)" strokeWidth="5" strokeLinecap="round" />
+            <path d="M 320 373 C 375 373, 395 293, 430 293" stroke="url(#solidLeftConduit)" strokeWidth="2.2" strokeLinecap="round" />
 
-            {/* --- RIGHT 3 SOLID LINES (Connecting Right 3 Cards to Center Big Box) --- */}
-            {/* Ambient Solid Halo 4: Right Card 1 (Top) */}
-            <path
-              d="M 820 65 C 765 65, 745 145, 710 145"
-              stroke="rgba(241, 96, 1, 0.22)"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            {/* Solid Line 4: Right Card 1 (Top) -> Center Big Box */}
-            <path
-              d="M 820 65 C 765 65, 745 145, 710 145"
-              stroke="url(#solidRightConduit)"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            />
+            {/* --- RIGHT 3 SOLID LINES --- */}
+            <path d="M 820 65 C 765 65, 745 145, 710 145" stroke="rgba(241, 96, 1, 0.22)" strokeWidth="5" strokeLinecap="round" />
+            <path d="M 820 65 C 765 65, 745 145, 710 145" stroke="url(#solidRightConduit)" strokeWidth="2.2" strokeLinecap="round" />
 
-            {/* Ambient Solid Halo 5: Right Card 2 (Mid) */}
-            <path
-              d="M 820 219 L 710 219"
-              stroke="rgba(241, 96, 1, 0.22)"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            {/* Solid Line 5: Right Card 2 (Mid) -> Center Big Box */}
-            <path
-              d="M 820 219 L 710 219"
-              stroke="url(#solidRightConduit)"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            />
+            <path d="M 820 219 L 710 219" stroke="rgba(241, 96, 1, 0.22)" strokeWidth="5" strokeLinecap="round" />
+            <path d="M 820 219 L 710 219" stroke="url(#solidRightConduit)" strokeWidth="2.2" strokeLinecap="round" />
 
-            {/* Ambient Solid Halo 6: Right Card 3 (Bottom) */}
-            <path
-              d="M 820 373 C 765 373, 745 293, 710 293"
-              stroke="rgba(241, 96, 1, 0.22)"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            {/* Solid Line 6: Right Card 3 (Bottom) -> Center Big Box */}
-            <path
-              d="M 820 373 C 765 373, 745 293, 710 293"
-              stroke="url(#solidRightConduit)"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            />
+            <path d="M 820 373 C 765 373, 745 293, 710 293" stroke="rgba(241, 96, 1, 0.22)" strokeWidth="5" strokeLinecap="round" />
+            <path d="M 820 373 C 765 373, 745 293, 710 293" stroke="url(#solidRightConduit)" strokeWidth="2.2" strokeLinecap="round" />
 
-            {/* Solid Terminal Nodes at Each Card Interface */}
+            {/* Nodes */}
             <circle cx="320" cy="65" r="4" fill="#F16001" />
             <circle cx="320" cy="219" r="4" fill="#F16001" />
             <circle cx="320" cy="373" r="4" fill="#F16001" />
             <circle cx="820" cy="65" r="4" fill="#F16001" />
             <circle cx="820" cy="219" r="4" fill="#F16001" />
             <circle cx="820" cy="373" r="4" fill="#F16001" />
-
-            {/* Solid Terminal Nodes at Center Big Box Interfaces */}
             <circle cx="430" cy="145" r="4" fill="#FFA500" />
             <circle cx="430" cy="219" r="4" fill="#FFA500" />
             <circle cx="430" cy="293" r="4" fill="#FFA500" />
@@ -743,154 +812,17 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
             <circle cx="710" cy="293" r="4" fill="#FFA500" />
           </svg>
 
-          {/* LEFT COLUMN: 3 NEATLY SPACED CARDS (Width 320px, Height 130px each, Gap 24px) */}
+          {/* LEFT COLUMN: 3 NEATLY SPACED CARDS */}
           <div style={{ width: 320, display: "flex", flexDirection: "column", gap: 24, zIndex: 5, flexShrink: 0 }}>
             {leftGroups.map((group) => (
               <CompactIntegrationCard key={group.id} group={group} />
             ))}
           </div>
 
-          {/* CENTER BIG BOX: EXACT HEIGHT (438px) MATCHING THE 3 CARDS
-              Featuring HEAVY & HIGH Molten Orange Radiant Horizon Animation
-          */}
-          <div
-            className="desktop-only"
-            style={{
-              width: 280,
-              height: 438,
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#0d0d0d",
-              border: "1px solid rgba(255, 255, 255, 0.08)",
-              borderBottom: "2px solid #ff7700",
-              borderRadius: 24,
-              boxShadow: "0 24px 70px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 15px 40px rgba(255, 85, 0, 0.35)",
-              overflow: "hidden",
-              zIndex: 4,
-              flexShrink: 0
-            }}
-          >
-            {/* Converging Subtle Background Perspective Filaments */}
-            <img
-              src="/accretion_lines.png"
-              alt="Converging ecosystem filaments"
-              style={{
-                position: "absolute",
-                top: "42%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 440,
-                height: 260,
-                objectFit: "contain",
-                pointerEvents: "none",
-                opacity: 0.45,
-                zIndex: 1
-              }}
-            />
+          {/* CENTER BIG BOX */}
+          <AsenzoCenterPowerHub isMobile={false} />
 
-            {/* HEAVY & HIGH VOLUMETRIC GRADIENT BLOOM (Rises through 75% of the box height!) */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: "-15%",
-                right: "-15%",
-                height: 320,
-                background: "radial-gradient(ellipse 95% 85% at 50% 100%, rgba(255, 85, 0, 0.88) 0%, rgba(241, 96, 1, 0.6) 28%, rgba(193, 8, 1, 0.32) 58%, rgba(15, 15, 15, 0) 88%)",
-                pointerEvents: "none",
-                zIndex: 2,
-                animation: "heavyHighGlowPulse 3.2s ease-in-out infinite"
-              }}
-            />
-
-            {/* INCANDESCENT GOLDEN SUNRISE HOT CORE AT THE BOTTOM */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: -10,
-                left: "5%",
-                right: "5%",
-                height: 165,
-                background: "radial-gradient(ellipse 85% 95% at 50% 100%, #ffe066 0%, #ff8c00 35%, #ff3a00 68%, transparent 92%)",
-                filter: "blur(12px)",
-                pointerEvents: "none",
-                zIndex: 3,
-                animation: "heavyHorizonRise 3.2s ease-in-out infinite"
-              }}
-            />
-
-            {/* RADIANT HORIZON EDGE HIGHLIGHT (Intense razor rim on bottom edge) */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: 3,
-                background: "linear-gradient(90deg, transparent 0%, #ff4500 15%, #ffaa00 48%, #ffffff 52%, #ffaa00 56%, #ff4500 85%, transparent 100%)",
-                boxShadow: "0 0 16px #ff6600, 0 0 32px #ff9900",
-                zIndex: 4
-              }}
-            />
-
-            {/* CENTER LOGO BOX:
-                - STRICTLY SOLID DARK #151515 INSIDE (NO gradient inside the logo box per requirement)
-                - Contains User's Silver Star/A Logo
-                - Bottom Rim catches the heavy incandescent glow!
-            */}
-            <div
-              style={{
-                width: 96,
-                height: 96,
-                borderRadius: 20,
-                backgroundColor: "#151515",
-                border: "1px solid rgba(255, 255, 255, 0.14)",
-                boxShadow: "0 14px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 85, 0, 0.4)",
-                position: "relative",
-                zIndex: 5,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden"
-              }}
-            >
-              {/* User's Uploaded Silver Star/A Logo */}
-              <img
-                src="/asenzo-logo.jpg"
-                alt="Asenzo Core Logo"
-                style={{
-                  width: 52,
-                  height: 52,
-                  objectFit: "cover",
-                  mixBlendMode: "screen",
-                  display: "block",
-                  position: "relative",
-                  zIndex: 4,
-                  filter: "drop-shadow(0 2px 10px rgba(0, 0, 0, 0.7))"
-                }}
-              />
-
-              {/* Glowing Rim at Bottom of Logo Box catching the heavy illumination */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: "6%",
-                  right: "6%",
-                  height: 3,
-                  background: "linear-gradient(90deg, transparent 0%, #ff5500 20%, #ffaa00 50%, #ffffff 58%, #ffaa00 66%, #ff5500 80%, transparent 100%)",
-                  boxShadow: "0 0 14px #ff6207, 0 0 28px #ff9900",
-                  zIndex: 5,
-                  animation: "bottomGlowPulse 2.4s ease-in-out infinite"
-                }}
-              />
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN: 3 NEATLY SPACED CARDS (Width 320px, Height 130px each, Gap 24px) */}
+          {/* RIGHT COLUMN: 3 NEATLY SPACED CARDS */}
           <div style={{ width: 320, display: "flex", flexDirection: "column", gap: 24, zIndex: 5, flexShrink: 0 }}>
             {rightGroups.map((group) => (
               <CompactIntegrationCard key={group.id} group={group} />
@@ -898,8 +830,33 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
           </div>
         </div>
 
+        {/* MOBILE / TABLET 6-GROUP ECOSYSTEM: Single Column Stacked with Center Power Hub */}
+        <div
+          className="mobile-only-block"
+          style={{
+            maxWidth: 440,
+            margin: "0 auto",
+            width: "100%"
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {/* Layers 01, 02, 03 */}
+            {leftGroups.map((group) => (
+              <CompactIntegrationCard key={group.id} group={group} />
+            ))}
+
+            {/* Glowing Center Power Hub with Logo */}
+            <AsenzoCenterPowerHub isMobile={true} />
+
+            {/* Layers 04, 05, 06 */}
+            {rightGroups.map((group) => (
+              <CompactIntegrationCard key={group.id} group={group} />
+            ))}
+          </div>
+        </div>
+
         {/* Closing Statement */}
-        <div style={{ textAlign: "center", marginTop: 56, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
+        <div style={{ textAlign: "center", marginTop: 48, maxWidth: 640, marginLeft: "auto", marginRight: "auto", padding: "0 12px" }}>
           <p style={{ fontSize: 15, fontWeight: 700, color: "#0f0f11", letterSpacing: "-0.01em", margin: "0 0 8px 0" }}>
             Different functions. One connected growth infrastructure.
           </p>
@@ -913,19 +870,162 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
 }
 
 // ==========================================
+// ASENZO CENTER POWER HUB (Reusable Desktop & Mobile)
+// ==========================================
+function AsenzoCenterPowerHub({ isMobile = false }) {
+  return (
+    <div
+      style={{
+        width: isMobile ? "100%" : 280,
+        maxWidth: isMobile ? 360 : 280,
+        height: isMobile ? 300 : 438,
+        margin: isMobile ? "10px auto" : "0",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#0d0d0d",
+        border: "1px solid rgba(255, 255, 255, 0.08)",
+        borderBottom: "2px solid #ff7700",
+        borderRadius: 24,
+        boxShadow: "0 24px 70px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 15px 40px rgba(255, 85, 0, 0.35)",
+        overflow: "hidden",
+        zIndex: 4,
+        flexShrink: 0
+      }}
+    >
+      {/* Converging Subtle Background Perspective Filaments */}
+      <img
+        src="/accretion_lines.png"
+        alt="Converging ecosystem filaments"
+        style={{
+          position: "absolute",
+          top: "42%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 440,
+          height: 260,
+          objectFit: "contain",
+          pointerEvents: "none",
+          opacity: 0.45,
+          zIndex: 1
+        }}
+      />
+
+      {/* HEAVY & HIGH VOLUMETRIC GRADIENT BLOOM */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: "-15%",
+          right: "-15%",
+          height: isMobile ? 220 : 320,
+          background: "radial-gradient(ellipse 95% 85% at 50% 100%, rgba(255, 85, 0, 0.88) 0%, rgba(241, 96, 1, 0.6) 28%, rgba(193, 8, 1, 0.32) 58%, rgba(15, 15, 15, 0) 88%)",
+          pointerEvents: "none",
+          zIndex: 2,
+          animation: "heavyHighGlowPulse 3.2s ease-in-out infinite"
+        }}
+      />
+
+      {/* INCANDESCENT GOLDEN SUNRISE HOT CORE */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: -10,
+          left: "5%",
+          right: "5%",
+          height: isMobile ? 120 : 165,
+          background: "radial-gradient(ellipse 85% 95% at 50% 100%, #ffe066 0%, #ff8c00 35%, #ff3a00 68%, transparent 92%)",
+          filter: "blur(12px)",
+          pointerEvents: "none",
+          zIndex: 3,
+          animation: "heavyHorizonRise 3.2s ease-in-out infinite"
+        }}
+      />
+
+      {/* RADIANT HORIZON EDGE HIGHLIGHT */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 3,
+          background: "linear-gradient(90deg, transparent 0%, #ff4500 15%, #ffaa00 48%, #ffffff 52%, #ffaa00 56%, #ff4500 85%, transparent 100%)",
+          boxShadow: "0 0 16px #ff6600, 0 0 32px #ff9900",
+          zIndex: 4
+        }}
+      />
+
+      {/* CENTER LOGO BOX */}
+      <div
+        style={{
+          width: isMobile ? 84 : 96,
+          height: isMobile ? 84 : 96,
+          borderRadius: 20,
+          backgroundColor: "#151515",
+          border: "1px solid rgba(255, 255, 255, 0.14)",
+          boxShadow: "0 14px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 85, 0, 0.4)",
+          position: "relative",
+          zIndex: 5,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden"
+        }}
+      >
+        <img
+          src="/asenzo-logo.jpg"
+          alt="Asenzo Core Logo"
+          style={{
+            width: isMobile ? 46 : 52,
+            height: isMobile ? 46 : 52,
+            objectFit: "cover",
+            mixBlendMode: "screen",
+            display: "block",
+            position: "relative",
+            zIndex: 4,
+            filter: "drop-shadow(0 2px 10px rgba(0, 0, 0, 0.7))"
+          }}
+        />
+
+        {/* Glowing Rim at Bottom of Logo Box */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: "6%",
+            right: "6%",
+            height: 3,
+            background: "linear-gradient(90deg, transparent 0%, #ff5500 20%, #ffaa00 50%, #ffffff 58%, #ffaa00 66%, #ff5500 80%, transparent 100%)",
+            boxShadow: "0 0 14px #ff6207, 0 0 28px #ff9900",
+            zIndex: 5,
+            animation: "bottomGlowPulse 2.4s ease-in-out infinite"
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
 // COMPACT INTEGRATION CARD
-// Neatly proportioned: width 320px, fixed height 130px for exact vertical alignment
+// Neatly proportioned: responsive width (100% on mobile, max 360px; contained in 320px column on desktop)
 // ==========================================
 function CompactIntegrationCard({ group }) {
   return (
     <div
+      className="integrations-card-responsive"
       style={{
         backgroundColor: "#ffffff",
         border: "1px solid rgba(0, 0, 0, 0.08)",
         borderRadius: 14,
         padding: "16px 18px",
-        width: 320,
-        minHeight: 132,
+        width: "100%",
+        maxWidth: 360,
+        margin: "0 auto",
+        minHeight: 124,
         boxShadow: "0 6px 20px rgba(0, 0, 0, 0.04)",
         display: "flex",
         flexDirection: "column",
@@ -1059,7 +1159,7 @@ function KeyBenefitsSection() {
       id="features"
       style={{
         backgroundColor: "#ffffff",
-        padding: "110px 24px",
+        padding: "clamp(56px, 8vw, 110px) clamp(16px, 4vw, 24px)",
         borderBottom: "1px solid #f0f0f0",
         position: "relative"
       }}
@@ -1091,7 +1191,7 @@ function KeyBenefitsSection() {
         <h2
           style={{
             fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: "clamp(32px, 4.4vw, 50px)",
+            fontSize: "clamp(26px, 4.4vw, 50px)",
             fontWeight: 700,
             lineHeight: 1.1,
             letterSpacing: "-0.03em",
@@ -1107,11 +1207,11 @@ function KeyBenefitsSection() {
         {/* Subtitle */}
         <p
           style={{
-            fontSize: "clamp(15px, 1.6vw, 16.5px)",
+            fontSize: "clamp(14px, 1.6vw, 16.5px)",
             lineHeight: 1.6,
             color: "#52525b",
             textAlign: "center",
-            margin: "0 auto 64px auto",
+            margin: "0 auto clamp(32px, 5vw, 64px) auto",
             maxWidth: "680px"
           }}
         >
@@ -1119,13 +1219,7 @@ function KeyBenefitsSection() {
         </p>
 
         {/* 6 Grid Cards */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "24px"
-          }}
-        >
+        <div className="benefits-grid">
           {benefits.map((item, idx) => (
             <div
               key={idx}
@@ -1133,7 +1227,7 @@ function KeyBenefitsSection() {
                 backgroundColor: "#ffffff",
                 border: "1px solid #e4e4e7",
                 borderRadius: "12px",
-                padding: "32px 28px",
+                padding: "clamp(24px, 3.5vw, 32px) clamp(20px, 3vw, 28px)",
                 display: "flex",
                 flexDirection: "column",
                 gap: "16px",
@@ -1193,11 +1287,11 @@ function KeyBenefitsSection() {
 }
 
 const HandHoldingPhoneSection = () => (
-  <section style={{ backgroundColor: '#ffffff', padding: '100px 0', borderBottom: '1px solid #f0f0f0', overflow: 'hidden' }}>
-    <div className="mobile-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+  <section style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 100px) 0', borderBottom: '1px solid #f0f0f0', overflow: 'hidden' }}>
+    <div className="mobile-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 clamp(16px, 4vw, 24px)', textAlign: 'center' }}>
 
       {/* Client Story Eyebrow Pill */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
         <div
           style={{
             display: 'inline-flex',
@@ -1221,12 +1315,12 @@ const HandHoldingPhoneSection = () => (
       {/* Editorial Pull-Quote Block */}
       <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', position: 'relative' }}>
         <blockquote style={{
-          fontSize: 'clamp(22px, 3.8vw, 42px)',
+          fontSize: 'clamp(18px, 3.6vw, 42px)',
           fontWeight: 400,
-          lineHeight: 1.25,
-          letterSpacing: '-0.03em',
+          lineHeight: 1.3,
+          letterSpacing: '-0.025em',
           color: '#0f0f11',
-          margin: '0 0 32px 0',
+          margin: '0 0 28px 0',
           textAlign: 'center'
         }}>
           "From starting with zero to becoming impossible to ignore. Within one month, our following grew to 30,000 with 1.9M+ views, and we began receiving consistent, qualified enquiries far beyond our network."
@@ -1264,7 +1358,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
   return (
     <section id="pricing" style={{
       backgroundColor: '#ffffff',
-      padding: '120px 24px',
+      padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)',
       borderBottom: '1px solid #f0f0f0'
     }}>
       <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
@@ -1276,8 +1370,8 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
           justifyContent: 'space-between',
           alignItems: 'flex-end',
           flexWrap: 'wrap',
-          gap: '24px',
-          marginBottom: '56px'
+          gap: '20px',
+          marginBottom: 'clamp(32px, 5vw, 56px)'
         }}>
           <div>
             {/* Technical Eyebrow Pill */}
@@ -1302,9 +1396,9 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
             <h2 style={{
               fontFamily: "'Switzer', 'Inter', sans-serif",
-              fontSize: 'clamp(36px, 4.5vw, 56px)',
+              fontSize: 'clamp(28px, 4.8vw, 56px)',
               fontWeight: 700,
-              lineHeight: 1.05,
+              lineHeight: 1.08,
               letterSpacing: '-0.035em',
               color: '#0f0f11',
               margin: 0
@@ -1325,19 +1419,14 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
         </div>
 
         {/* 3-Box Technical Grid Layout */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '24px',
-          alignItems: 'stretch'
-        }}>
+        <div className="pricing-grid">
 
           {/* Card 1: CORE */}
           <div style={{
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
             borderRadius: '6px',
-            padding: '38px 30px',
+            padding: 'clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
@@ -1418,12 +1507,13 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               onClick={onAssessmentClick}
               style={{
                 width: '100%',
-                height: '42px',
+                minHeight: '48px',
+                height: '48px',
                 backgroundColor: '#000000',
                 color: '#ffffff',
                 border: '1px solid #000000',
-                borderRadius: '4px',
-                fontSize: '13px',
+                borderRadius: '6px',
+                fontSize: '13.5px',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'background-color 0.2s ease',
@@ -1441,7 +1531,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
             borderRadius: '6px',
-            padding: '38px 30px',
+            padding: 'clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
@@ -1546,12 +1636,13 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               onClick={onAssessmentClick}
               style={{
                 width: '100%',
-                height: '42px',
+                minHeight: '48px',
+                height: '48px',
                 backgroundColor: '#000000',
                 color: '#ffffff',
                 border: '1px solid #000000',
-                borderRadius: '4px',
-                fontSize: '13px',
+                borderRadius: '6px',
+                fontSize: '13.5px',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'background-color 0.2s ease',
@@ -1569,7 +1660,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
             borderRadius: '6px',
-            padding: '38px 30px',
+            padding: 'clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
@@ -1650,12 +1741,13 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               onClick={onAssessmentClick}
               style={{
                 width: '100%',
-                height: '42px',
+                minHeight: '48px',
+                height: '48px',
                 backgroundColor: '#000000',
                 color: '#ffffff',
                 border: '1px solid #000000',
-                borderRadius: '4px',
-                fontSize: '13px',
+                borderRadius: '6px',
+                fontSize: '13.5px',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'background-color 0.2s ease',
@@ -1677,7 +1769,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 const GuaranteeBanner = ({ onAssessmentClick }) => (
   <section style={{
     backgroundColor: '#ffffff',
-    padding: '120px 24px',
+    padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)',
     borderBottom: '1px solid #f0f0f0',
     display: 'flex',
     justifyContent: 'center'
@@ -1685,7 +1777,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
     <div style={{ maxWidth: '1000px', width: '100%', textAlign: 'center' }}>
       
       {/* Grey/black shield icon container from previous */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
         <div style={{
           width: '64px',
           height: '64px',
@@ -1704,40 +1796,34 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       </div>
 
       <h2 style={{
-        fontSize: 'clamp(36px, 5vw, 60px)',
+        fontSize: 'clamp(26px, 4.8vw, 60px)',
         fontWeight: 700,
         color: '#0f0f11',
-        lineHeight: 1.08,
-        marginBottom: '24px',
+        lineHeight: 1.1,
+        marginBottom: '20px',
         letterSpacing: '-0.035em'
       }}>
         We Stand Behind the Infrastructure We Build.
       </h2>
 
       <p style={{
-        fontSize: '16px',
+        fontSize: 'clamp(14px, 1.6vw, 16px)',
         color: '#52525b',
         maxWidth: '740px',
-        margin: '0 auto 48px auto',
+        margin: '0 auto 40px auto',
         lineHeight: 1.6
       }}>
         Your engagement has defined delivery milestones and clear responsibilities.
       </p>
 
-      {/* 3 Reference-Styled Boxes (Horizontal Layout) */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '20px',
-        textAlign: 'left',
-        marginBottom: '44px'
-      }}>
+      {/* 3 Reference-Styled Boxes (Horizontal Layout on desktop, single column on mobile) */}
+      <div className="guarantee-grid">
         {/* Card 1: CORE DELIVERY */}
         <div style={{
           backgroundColor: '#ffffff',
           border: '1px solid #e5e7eb',
           borderRadius: '16px',
-          padding: '28px 24px',
+          padding: 'clamp(22px, 3.5vw, 28px) clamp(18px, 3vw, 24px)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
@@ -1770,7 +1856,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
           backgroundColor: '#ffffff',
           border: '1px solid #e5e7eb',
           borderRadius: '16px',
-          padding: '28px 24px',
+          padding: 'clamp(22px, 3.5vw, 28px) clamp(18px, 3vw, 24px)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
@@ -1803,7 +1889,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
           backgroundColor: '#ffffff',
           border: '1px solid #e5e7eb',
           borderRadius: '16px',
-          padding: '28px 24px',
+          padding: 'clamp(22px, 3.5vw, 28px) clamp(18px, 3vw, 24px)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
@@ -1834,36 +1920,41 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
 
       {/* Closing Commitment Statement */}
       <p style={{
-        fontSize: '15px',
+        fontSize: '14.5px',
         color: '#52525b',
         maxWidth: '740px',
-        margin: '0 auto 40px auto',
+        margin: '0 auto 36px auto',
         lineHeight: 1.6
       }}>
         If an agreed workflow is non functional because of our delivery, we fix it without an additional service fee. Applicable refund conditions, responsibilities, and measurement definitions are documented in the signed agreement. We commit to our delivery.
       </p>
 
-      {/* Previous Black Button & Trust Badges */}
+      {/* Black Button & Trust Badges */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
         <button onClick={onAssessmentClick} style={{
           backgroundColor: '#000000',
           color: '#ffffff',
           border: 'none',
           borderRadius: '8px',
-          padding: '0 34px',
+          padding: '0 28px',
+          minHeight: '50px',
           height: '50px',
+          width: 'min(100%, 360px)',
           fontSize: '14px',
           fontWeight: 600,
           cursor: 'pointer',
           boxShadow: '0 4px 18px rgba(0, 0, 0, 0.15)',
-          transition: 'background-color 0.2s ease'
+          transition: 'background-color 0.2s ease',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#27272a'}
         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#000000'}
         >
           Book a Growth Infrastructure Review
         </button>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '24px', fontSize: '11px', color: '#52525b', fontWeight: 600, letterSpacing: '0.05em' }}>
+        <div className="guarantee-ticks-row">
           <span>✓ WORKING BY DAY 30 OR WE FIX IT FREE</span>
           <span>✓ FULL REFUND IF DELIVERY FAILS</span>
           <span>✓ YOU KEEP EVERYTHING WE BUILD</span>
@@ -1911,7 +2002,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" style={{ backgroundColor: '#ffffff', padding: '120px 24px', borderBottom: '1px solid #f0f0f0' }}>
+    <section id="faq" style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid #f0f0f0' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         
         {/* Eyebrow Pill */}
@@ -1936,11 +2027,11 @@ const FAQSection = () => {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-          <h2 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#0f0f11', marginBottom: '16px', letterSpacing: '-0.02em' }}>
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 64px)' }}>
+          <h2 style={{ fontSize: 'clamp(26px, 4.2vw, 48px)', fontWeight: 700, color: '#0f0f11', marginBottom: '14px', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
             Clear Answers. Before We Begin.
           </h2>
-          <p style={{ fontSize: '16px', color: '#52525b' }}>
+          <p style={{ fontSize: 'clamp(14px, 1.6vw, 16px)', color: '#52525b', margin: 0 }}>
             Everything you need to understand about working with ASENZO.
           </p>
         </div>
@@ -1953,23 +2044,23 @@ const FAQSection = () => {
                 key={faq.num}
                 style={{
                   borderBottom: '1px solid #e4e4e7',
-                  padding: '28px 0',
+                  padding: 'clamp(20px, 3vw, 28px) 0',
                   cursor: 'pointer'
                 }}
                 onClick={() => setOpenIdx(isOpen ? null : i)}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-                    <span style={{ fontSize: '13px', color: '#F16001', fontFamily: 'monospace', fontWeight: 700 }}>{faq.num}</span>
-                    <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#0f0f11', margin: 0 }}>{faq.q}</h3>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span style={{ fontSize: '13px', color: '#F16001', fontFamily: 'monospace', fontWeight: 700, flexShrink: 0 }}>{faq.num}</span>
+                    <h3 style={{ fontSize: 'clamp(15.5px, 2.2vw, 18px)', fontWeight: 600, color: '#0f0f11', margin: 0, lineHeight: 1.35 }}>{faq.q}</h3>
                   </div>
-                  <div style={{ color: '#0f0f11' }}>
+                  <div style={{ color: '#0f0f11', flexShrink: 0 }}>
                     {isOpen ? <Minus size={18} /> : <Plus size={18} />}
                   </div>
                 </div>
 
                 {isOpen && (
-                  <div style={{ paddingTop: '16px', paddingLeft: '44px', paddingRight: '24px' }}>
+                  <div style={{ paddingTop: '14px', paddingLeft: 'clamp(0px, 3vw, 36px)', paddingRight: '8px' }}>
                     <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#52525b', margin: 0 }}>
                       {faq.a}
                     </p>
@@ -2037,7 +2128,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          paddingTop: '80px',
+          paddingTop: 'clamp(95px, 12vh, 110px)',
           zIndex: 1,
           overflow: 'hidden'
         }}
@@ -2062,7 +2153,9 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             position: 'relative',
             height: '620px',
             clipPath: 'inset(-1000px -100px 0px -100px)',
-            zIndex: 1
+            zIndex: 1,
+            padding: '0 clamp(8px, 2vw, 16px)',
+            boxSizing: 'border-box'
           }}
         >
           {/* Top Flap (Behind the card) */}
@@ -2096,15 +2189,15 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
           <div
             style={{
               position: 'absolute',
-              bottom: '-60px',
-              left: '24px',
-              right: '24px',
-              minHeight: '410px',
+              bottom: '-50px',
+              left: 'clamp(10px, 2.5vw, 24px)',
+              right: 'clamp(10px, 2.5vw, 24px)',
+              minHeight: '390px',
               backgroundColor: '#D83300',
               borderRadius: '12px',
-              padding: '40px 28px 28px 28px',
+              padding: 'clamp(22px, 3.5vw, 36px) clamp(14px, 3vw, 28px) clamp(18px, 2.8vw, 26px) clamp(14px, 3vw, 28px)',
               boxShadow: '0 -20px 60px rgba(255, 69, 0, 0.45)',
-              transform: `translateY(${0 - (Math.min(scrollProgress * 1.15, 1) * 170)}px)`,
+              transform: `translateY(${0 - (Math.min(scrollProgress * 1.15, 1) * 155)}px)`,
               transition: 'transform 0.05s linear',
               zIndex: 2,
               display: 'flex',
@@ -2117,17 +2210,17 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             }}
           >
             {/* Accent corners */}
-            <div style={{ position: 'absolute', top: '20px', left: '20px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderLeft: '2px solid rgba(255,255,255,0.5)' }} />
-            <div style={{ position: 'absolute', top: '20px', right: '20px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderRight: '2px solid rgba(255,255,255,0.5)' }} />
+            <div style={{ position: 'absolute', top: '16px', left: '16px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderLeft: '2px solid rgba(255,255,255,0.5)' }} />
+            <div style={{ position: 'absolute', top: '16px', right: '16px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderRight: '2px solid rgba(255,255,255,0.5)' }} />
 
             <h2
               style={{
-                fontSize: 'clamp(15px, 2.2vw, 19px)',
+                fontSize: 'clamp(13px, 2.2vw, 19px)',
                 fontWeight: 800,
                 letterSpacing: '0.03em',
                 lineHeight: 1.25,
                 color: '#FFFFFF',
-                marginBottom: '14px',
+                marginBottom: '10px',
                 maxWidth: '520px',
                 textAlign: 'center',
                 textTransform: 'uppercase'
@@ -2138,10 +2231,10 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <p
               style={{
-                fontSize: '12.5px',
+                fontSize: 'clamp(11px, 1.5vw, 12.5px)',
                 color: 'rgba(255,255,255,0.92)',
-                marginBottom: '12px',
-                lineHeight: 1.5,
+                marginBottom: '10px',
+                lineHeight: 1.45,
                 fontWeight: 400,
                 maxWidth: '510px',
                 textAlign: 'center'
@@ -2152,10 +2245,10 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <p
               style={{
-                fontSize: '13px',
+                fontSize: 'clamp(11.5px, 1.6vw, 13px)',
                 color: '#FFFFFF',
-                marginBottom: '18px',
-                lineHeight: 1.4,
+                marginBottom: '14px',
+                lineHeight: 1.35,
                 fontWeight: 600,
                 maxWidth: '490px',
                 textAlign: 'center',
@@ -2168,12 +2261,13 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             <button
               onClick={onAssessmentClick}
               style={{
+                minHeight: '44px',
                 height: '44px',
                 backgroundColor: '#FFFFFF',
                 color: '#000000',
                 border: 'none',
                 borderRadius: '6px',
-                padding: '0 28px',
+                padding: '0 clamp(18px, 3vw, 28px)',
                 fontSize: '13px',
                 fontWeight: 700,
                 letterSpacing: '0.04em',
@@ -2191,9 +2285,9 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
             <span
               style={{
-                fontSize: '12px',
+                fontSize: '11.5px',
                 color: 'rgba(255,255,255,0.85)',
-                marginTop: '10px',
+                marginTop: '8px',
                 fontWeight: 500,
                 letterSpacing: '0.02em',
                 textAlign: 'center'
@@ -2271,8 +2365,8 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
   }, []);
 
   return (
-    <section id="booking" style={{ backgroundColor: '#ffffff', padding: '120px 24px', borderBottom: '1px solid #f0f0f0' }}>
-      <div style={{ maxWidth: '1240px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '60px', alignItems: 'center' }}>
+    <section id="booking" style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid #f0f0f0' }}>
+      <div className="booking-grid" style={{ maxWidth: '1240px', margin: '0 auto' }}>
         
         {/* Left Column: Context & Proof */}
         <div>
@@ -2289,17 +2383,17 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
             letterSpacing: '0.12em',
             color: '#0f0f11',
             textTransform: 'uppercase',
-            marginBottom: '24px'
+            marginBottom: '20px'
           }}>
             <span style={{ color: '#0f0f11', fontSize: '11px' }}>✦</span>
             <span>PRIVATE ACCESS</span>
           </div>
 
-          <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.03em', color: '#0f0f11', marginBottom: '24px' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 4.8vw, 56px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.03em', color: '#0f0f11', marginBottom: '20px' }}>
             We Install It. You Own It.
           </h2>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.6, color: '#52525b', marginBottom: '32px', maxWidth: '500px' }}>
+          <p style={{ fontSize: 'clamp(15px, 1.8vw, 17px)', lineHeight: 1.6, color: '#52525b', marginBottom: '28px', maxWidth: '500px' }}>
             Book a free Diagnostic call. We’ll find where you’re losing prospects, walk you through the system and give you a clear roadmap for your business.
           </p>
         </div>
@@ -2309,12 +2403,12 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
           backgroundColor: '#ffffff',
           border: '1px solid #e4e4e7',
           borderRadius: '16px',
-          padding: '16px',
+          padding: 'clamp(8px, 2vw, 16px)',
           boxShadow: '0 16px 48px rgba(0, 0, 0, 0.06)',
-          minHeight: '620px',
+          minHeight: '560px',
           overflow: 'hidden'
         }}>
-          <div style={{ width: '100%', height: '100%', minHeight: '580px', overflow: 'auto' }} id="my-cal-inline-brandgrowth-strategy-call"></div>
+          <div style={{ width: '100%', height: '100%', minHeight: '540px', overflow: 'auto' }} id="my-cal-inline-brandgrowth-strategy-call"></div>
         </div>
 
       </div>
@@ -2350,7 +2444,7 @@ const LetsConnectSwipeButton = ({ onClick }) => {
       style={{
         width: '100%',
         minWidth: '150px',
-        height: '40px',
+        height: '42px',
         backgroundColor: '#f94500',
         borderRadius: '7px',
         border: 'none',
@@ -2409,8 +2503,8 @@ const LetsConnectSwipeButton = ({ onClick }) => {
 
 // 11. Master Footer
 const MasterFooter = ({ onAssessmentClick }) => (
-  <footer style={{ backgroundColor: '#fafafa', borderTop: '1px solid #e4e4e7', paddingTop: '72px', paddingBottom: '32px', overflow: 'hidden', width: '100%' }}>
-    <div style={{ width: '100%', maxWidth: '100%', padding: '0 clamp(24px, 5vw, 80px)', margin: '0 auto', boxSizing: 'border-box' }}>
+  <footer style={{ backgroundColor: '#fafafa', borderTop: '1px solid #e4e4e7', paddingTop: 'clamp(48px, 6vw, 72px)', paddingBottom: '32px', overflow: 'hidden', width: '100%' }}>
+    <div style={{ width: '100%', maxWidth: '100%', padding: '0 clamp(16px, 4vw, 80px)', margin: '0 auto', boxSizing: 'border-box' }}>
       
       {/* Top Flex Container: Stretches across the full website width */}
       <div style={{
@@ -2418,12 +2512,12 @@ const MasterFooter = ({ onAssessmentClick }) => (
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         flexWrap: 'wrap',
-        gap: '48px',
-        marginBottom: '48px',
+        gap: 'clamp(32px, 5vw, 48px)',
+        marginBottom: '36px',
         width: '100%'
       }}>
         {/* Left Side: Brand & Connect Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '420px', flex: '1 1 320px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '420px', flex: '1 1 300px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{
               width: '30px',
@@ -2469,13 +2563,7 @@ const MasterFooter = ({ onAssessmentClick }) => (
         </div>
 
         {/* Right Side: Columns stretched across to the right edge */}
-        <div style={{
-          display: 'flex',
-          gap: 'clamp(40px, 8vw, 120px)',
-          flexWrap: 'wrap',
-          justifyContent: 'flex-end',
-          flex: '2 1 480px'
-        }}>
+        <div className="footer-links-grid">
           {/* SOLUTIONS Column */}
           <div>
             <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
@@ -2514,7 +2602,7 @@ const MasterFooter = ({ onAssessmentClick }) => (
     {/* Full-Width Giant Asenzo Watermark - Pure Grey Font with Soft Bottom Vertical Fade via CSS Mask */}
     <div style={{
       width: '100%',
-      marginTop: '60px',
+      marginTop: '40px',
       marginBottom: '-10px',
       textAlign: 'center',
       userSelect: 'none',
@@ -2528,11 +2616,12 @@ const MasterFooter = ({ onAssessmentClick }) => (
       <span style={{
         display: 'block',
         fontFamily: "'Switzer', 'Inter', -apple-system, sans-serif",
-        fontSize: 'clamp(100px, 22vw, 360px)',
+        fontSize: 'clamp(48px, 17vw, 360px)',
         fontWeight: 800,
         letterSpacing: '-0.045em',
-        lineHeight: 0.82,
+        lineHeight: 0.85,
         width: '100%',
+        maxWidth: '100%',
         whiteSpace: 'nowrap',
         color: '#a1a1aa',
         textAlign: 'center'
