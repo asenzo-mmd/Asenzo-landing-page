@@ -470,14 +470,14 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
       id: "layer-2",
       layerNum: "LAYER 02",
       category: "Demand Generation & Content",
-      desc: "Turn your expertise, knowledge, and perspectives into a structured content operation designed to attract relevant audiences and build trust.",
+      desc: "Turn your expertise, knowledge and perspectives into a structured content operation designed to attract relevant audiences and build trust.",
       capabilities: ["Research", "Content Strategy", "Production & Publishing"]
     },
     {
       id: "layer-3",
       layerNum: "LAYER 03",
       category: "Prospect Capture",
-      desc: "Create clear entry points for interested people through your Instagram presence, content, resources, and direct enquiries.",
+      desc: "Create clear entry points for interested people through your Instagram presence, content, resources and direct enquiries.",
       capabilities: ["Direct Enquiries", "Keyword Capture", "Resource Delivery"]
     }
   ];
@@ -487,22 +487,22 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
       id: "layer-4",
       layerNum: "LAYER 04",
       category: "Qualification & Booking",
-      desc: "Organise prospect information and connect applications, human qualification, and scheduling into a structured booking process.",
-      capabilities: ["Initial Information", "Team Qualification", "Applications & Booking"]
+      desc: "Organise prospect information and connect applications, diagnosis forms and your sales process into a structured booking path.",
+      capabilities: ["Initial Information", "Application & Diagnosis", "Booking"]
     },
     {
       id: "layer-5",
       layerNum: "LAYER 05",
       category: "CRM & Workflow Infrastructure",
-      desc: "Bring prospect information, enquiries, bookings, and follow-up activity into one organised operational environment.",
-      capabilities: ["Centralised CRM", "Automations & Workflows", "Reminders & Follow-up"]
+      desc: "Bring prospect information, enquiries, bookings and follow-up activity into one organised operational environment.",
+      capabilities: ["Centralised CRM", "Automations & Workflows", "Reminders & Email Follow-up"]
     },
     {
       id: "layer-6",
       layerNum: "LAYER 06",
       category: "Reporting & Optimisation",
-      desc: "Understand how your growth infrastructure performs, identify where opportunities are dropping off, and prioritise improvements.",
-      capabilities: ["Reporting & Analytics", "Acquisition Tracking", "Bottleneck ID"]
+      desc: "Understand how your growth infrastructure performs, identify where opportunities are dropping off and prioritise improvements.",
+      capabilities: ["Reporting & Analytics", "Acquisition Tracking", "Bottleneck Identification"]
     }
   ];
 
@@ -578,7 +578,7 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
             margin: "0 auto 48px auto"
           }}
         >
-          Your positioning, content, prospect acquisition, and business operations should work as one connected system. ASENZO brings these essential functions together through one coordinated growth infrastructure.
+          Your positioning, content, prospect acquisition and booking process should work as one connected system. ASENZO brings these essential functions together through one coordinated growth infrastructure.
         </p>
 
         {/* 6-GROUP ECOSYSTEM: NEATLY SPACED & PERFECTLY ALIGNED (Total height 438px) */}
