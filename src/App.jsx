@@ -92,9 +92,6 @@ export default function App() {
       {/* 8. OLD DESIGN: THREE WAYS TO WORK (PRICING TIERS) */}
       <ThreeWaysToWorkSection onAssessmentClick={() => setModalOpen(true)} />
 
-      {/* 9. OLD DESIGN: BUILD, LAUNCH, SCALE IN 30 DAYS TIMELINE */}
-      <LiveIn30DaysTimeline onAssessmentClick={() => setModalOpen(true)} />
-
       {/* 8. 100% RISK-FREE GUARANTEE BANNER */}
       <GuaranteeBanner onAssessmentClick={() => setModalOpen(true)} />
 
@@ -258,7 +255,6 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             { label: "The System", href: "#features" },
             { label: "Infrastructure", href: "#integrations" },
             { label: "Engagements", href: "#pricing" },
-            { label: "Implementation", href: "#timeline" },
             { label: "FAQ", href: "#faq", hideOnScroll: true }
           ].filter((item) => !isScrolled || !item.hideOnScroll).map((item) => (
             <a
@@ -388,7 +384,7 @@ function AccretionHero({ onOpenModal }) {
             maxWidth: 960
           }}
         >
-          We Build Authority Growth System Into Your Business That Turns Attention Into Qualified Sales Call
+          We Build the Authority Growth System That Turns Your Attention Into Qualified Sales Calls
         </h1>
 
         {/* Supporting Description in JetBrains Mono Uppercase Monospace */}
@@ -405,7 +401,7 @@ function AccretionHero({ onOpenModal }) {
             margin: "0 auto 36px auto"
           }}
         >
-          ASENZO helps you build and operate the growth infrastructure that turns market attention into qualified sales calls through connected systems
+          ASENZO helps you build and operate the growth infrastructure that turns attention into sales calls through connected systems.
         </p>
 
         {/* Primary CTA Button: Solid flat black (#000000), white text, zero hover expansion */}
@@ -1351,7 +1347,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 CORE
               </h3>
               <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.5, margin: 0 }}>
-                Establish the essential foundations connecting your online presence to prospect enquiries.
+                Establish the essential foundations connecting your online presence to prospect enquiries, built through focused, project-based work.
               </p>
             </div>
 
@@ -1380,10 +1376,11 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
                 {[
                   "Content and acquisition funnel review",
-                  "Instagram profile optimisation",
-                  "Foundational keyword based DM automations",
-                  "Prospect capture workflows",
-                  "Resource delivery setup"
+                  "Strategic growth playbook",
+                  "Funnel strategy and planning",
+                  "Landing page design and development",
+                  "VSL strategy and integration",
+                  "Conversion-focused page structure"
                 ].map((feat, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: '#27272a' }}>
                     <div style={{
@@ -1500,14 +1497,18 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
                 {[
                   "Market positioning and buyer messaging",
-                  "15 researched & scripted videos monthly",
-                  "15 professionally edited videos monthly",
-                  "Multi-platform publishing (IG, FB, YT Shorts)",
-                  "Eight educational PDF resources & Story sequences",
-                  "Four prospect entry routes & keyword capture",
+                  "Intensive audience research",
+                  "Clear, tailored scripts engineered to hold attention",
+                  "Professionally edited videos built to perform",
+                  "Guided shoots, directed by us, so you show up as the expert you are",
+                  "Multi-platform Distribution (IG, FB, YT Shorts)",
+                  "Educational PDF resources & Story sequences that build trust",
+                  "Prospect entry routes & keyword capture",
                   "Public VSL & qualification application page",
+                  "Post-booking pages that prepare prospects before the call",
                   "Centralised CRM & booking diagnostics",
-                  "Acquisition tracking & monthly performance review"
+                  "Acquisition tracking & monthly performance review",
+                  "Full handover of everything we build"
                 ].map((feat, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: '#27272a' }}>
                     <div style={{
@@ -1661,341 +1662,6 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
     </section>
   );
 };
-
-// 7. Live In 30 Days Timeline (Matching Pricing Section Grid & Technical Style)
-const LiveIn30DaysTimeline = ({ onAssessmentClick }) => (
-  <section id="timeline" style={{ backgroundColor: '#ffffff', padding: '120px 24px', borderBottom: '1px solid #f0f0f0' }}>
-    <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
-
-      {/* Header Grid */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end',
-        flexWrap: 'wrap',
-        gap: '32px',
-        marginBottom: '64px'
-      }}>
-        <div>
-          {/* Eyebrow Pill */}
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '4px 12px',
-            borderRadius: '4px',
-            backgroundColor: '#f4f4f5',
-            border: '1px solid #e4e4e7',
-            fontSize: '11px',
-            fontWeight: 700,
-            letterSpacing: '0.12em',
-            color: '#0f0f11',
-            textTransform: 'uppercase',
-            marginBottom: '16px'
-          }}>
-            <span style={{ letterSpacing: '-1px', color: '#71717a', fontSize: '11px', fontWeight: 900 }}>|||||||</span>
-            <span>IMPLEMENTATION</span>
-          </div>
-
-          <h2 style={{
-            fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: 'clamp(36px, 4.5vw, 56px)',
-            fontWeight: 700,
-            lineHeight: 1.05,
-            letterSpacing: '-0.035em',
-            color: '#0f0f11',
-            margin: 0
-          }}>
-            From Strategy to a<br />
-            Connected Growth System.
-          </h2>
-        </div>
-
-        <p style={{
-          fontSize: '14.5px',
-          color: '#52525b',
-          lineHeight: 1.55,
-          maxWidth: '400px',
-          margin: 0
-        }}>
-          A structured 90 day implementation that establishes your foundation, builds the infrastructure, and improves its operation.
-        </p>
-      </div>
-
-      {/* 3 Step Timeline Cards */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: '24px',
-        alignItems: 'stretch',
-        marginBottom: '28px'
-      }}>
-
-        {/* Step 1: DAYS 01 TO 15 */}
-        <div style={{
-          backgroundColor: '#ffffff',
-          border: '1px solid #e4e4e7',
-          borderRadius: '6px',
-          padding: '36px 30px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          minHeight: '260px',
-          position: 'relative',
-          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
-          transition: 'all 0.2s ease'
-        }}>
-          {/* Technical Corner Brackets */}
-          <div style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-              <div style={{
-                border: '1px solid #e4e4e7',
-                padding: '3px 10px',
-                fontSize: '10.5px',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                color: '#0f0f11',
-                textTransform: 'uppercase',
-                borderRadius: '3px',
-                backgroundColor: '#f4f4f5'
-              }}>
-                DAYS 01 TO 15
-              </div>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="none">
-                <path d="M12 2L2 7.5L12 13L22 7.5L12 2Z" fill="#18181b" />
-                <path d="M2 7.5V16.5L12 22V13L2 7.5Z" fill="#71717a" />
-                <path d="M22 7.5V16.5L12 22V13L22 7.5Z" fill="#a1a1aa" />
-              </svg>
-            </div>
-
-            <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#0f0f11', marginBottom: '12px', letterSpacing: '-0.02em' }}>
-              Strategy and Foundation
-            </h3>
-            <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: '0 0 20px 0' }}>
-              We understand your business, offer, audience, and existing acquisition process. We establish your positioning, messaging, audience strategy, content direction, and Instagram profile foundations.
-            </p>
-          </div>
-
-          <div style={{
-            padding: '10px 14px',
-            backgroundColor: '#fafafa',
-            border: '1px solid #e4e4e7',
-            borderRadius: '4px',
-            fontSize: '12px',
-            fontWeight: 600,
-            color: '#27272a'
-          }}>
-            <span style={{ color: '#71717a', fontSize: '11px', textTransform: 'uppercase', display: 'block', marginBottom: '2px', fontWeight: 700 }}>Milestone</span>
-            Strategic foundation completed and approved.
-          </div>
-        </div>
-
-        {/* Step 2: DAYS 15 TO 60 */}
-        <div style={{
-          backgroundColor: '#ffffff',
-          border: '1px solid #e4e4e7',
-          borderRadius: '6px',
-          padding: '36px 30px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          minHeight: '260px',
-          position: 'relative',
-          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
-          transition: 'all 0.2s ease'
-        }}>
-          {/* Technical Corner Brackets */}
-          <div style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-              <div style={{
-                border: '1px solid #e4e4e7',
-                padding: '3px 10px',
-                fontSize: '10.5px',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                color: '#0f0f11',
-                textTransform: 'uppercase',
-                borderRadius: '3px',
-                backgroundColor: '#f4f4f5'
-              }}>
-                DAYS 15 TO 60
-              </div>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="none">
-                <path d="M12 2C12 2 8 6.5 8 13C8 17.5 10.5 20 12 20C13.5 20 16 17.5 16 13C16 6.5 12 2 12 2Z" fill="#18181b" />
-                <path d="M8 13C6.5 14.5 4 15 4 15L7.5 18L8 15Z" fill="#71717a" />
-                <path d="M16 13C17.5 14.5 20 15 20 15L16.5 18L16 15Z" fill="#71717a" />
-                <path d="M10.5 20L12 23L13.5 20H10.5Z" fill="#a1a1aa" />
-              </svg>
-            </div>
-
-            <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#0f0f11', marginBottom: '12px', letterSpacing: '-0.02em' }}>
-              Build and Implementation
-            </h3>
-            <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: '0 0 20px 0' }}>
-              We develop the content operation and install the central CRM, prospect capture, resource delivery, applications, VSL, booking, and preparation workflows.
-            </p>
-          </div>
-
-          <div style={{
-            padding: '10px 14px',
-            backgroundColor: '#fafafa',
-            border: '1px solid #e4e4e7',
-            borderRadius: '4px',
-            fontSize: '12px',
-            fontWeight: 600,
-            color: '#27272a'
-          }}>
-            <span style={{ color: '#71717a', fontSize: '11px', textTransform: 'uppercase', display: 'block', marginBottom: '2px', fontWeight: 700 }}>Milestone</span>
-            Core acquisition path by day 30. Full trust layer by day 60.
-          </div>
-        </div>
-
-        {/* Step 3: DAYS 60 TO 90 */}
-        <div style={{
-          backgroundColor: '#ffffff',
-          border: '1px solid #e4e4e7',
-          borderRadius: '6px',
-          padding: '36px 30px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          minHeight: '260px',
-          position: 'relative',
-          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
-          transition: 'all 0.2s ease'
-        }}>
-          {/* Technical Corner Brackets */}
-          <div style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-              <div style={{
-                border: '1px solid #e4e4e7',
-                padding: '3px 10px',
-                fontSize: '10.5px',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                color: '#0f0f11',
-                textTransform: 'uppercase',
-                borderRadius: '3px',
-                backgroundColor: '#f4f4f5'
-              }}>
-                DAYS 60 TO 90
-              </div>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="none">
-                <rect x="2" y="16" width="4" height="6" fill="#d4d4d8" />
-                <rect x="8" y="11" width="4" height="11" fill="#a1a1aa" />
-                <rect x="14" y="6" width="4" height="16" fill="#71717a" />
-                <rect x="20" y="2" width="4" height="20" fill="#18181b" />
-              </svg>
-            </div>
-
-            <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#0f0f11', marginBottom: '12px', letterSpacing: '-0.02em' }}>
-              Operation and Optimisation
-            </h3>
-            <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: 1.55, margin: '0 0 20px 0' }}>
-              We continue content production, monitor performance, review acquisition activity, identify bottlenecks, and improve relevant workflows.
-            </p>
-          </div>
-
-          <div style={{
-            padding: '10px 14px',
-            backgroundColor: '#fafafa',
-            border: '1px solid #e4e4e7',
-            borderRadius: '4px',
-            fontSize: '12px',
-            fontWeight: 600,
-            color: '#27272a'
-          }}>
-            <span style={{ color: '#71717a', fontSize: '11px', textTransform: 'uppercase', display: 'block', marginBottom: '2px', fontWeight: 700 }}>Milestone</span>
-            Performance review and complete handover documentation.
-          </div>
-        </div>
-
-      </div>
-
-      {/* After the Initial Engagement Banner */}
-      <div style={{
-        backgroundColor: '#fafafa',
-        border: '1px solid #e4e4e7',
-        borderRadius: '6px',
-        padding: '28px 30px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '24px',
-        marginBottom: '40px',
-        position: 'relative',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.02)'
-      }}>
-        {/* Technical Corner Brackets */}
-        <div style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: '10px', letterSpacing: '0.12em', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px' }}>
-            AFTER THE INITIAL ENGAGEMENT
-          </div>
-          <div style={{ fontSize: '16px', fontWeight: 700, color: '#0f0f11', marginBottom: '6px' }}>
-            Continue With ASENZO
-          </div>
-          <p style={{ fontSize: '14px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
-            Continue with ASENZO for recurring content operation, monitoring, reporting, and optimisation. Or take the handover and operate the infrastructure with your team. Your decision. No automatic renewal.
-          </p>
-        </div>
-        <div style={{ flexShrink: 0, opacity: 0.8 }}>
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
-            <circle cx="12" cy="12" r="3" fill="#71717a" stroke="none"></circle>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-          </svg>
-        </div>
-      </div>
-
-      {/* CTA Button & Defined Milestones */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-        <button onClick={onAssessmentClick} style={{
-          height: '46px',
-          backgroundColor: '#000000',
-          color: '#ffffff',
-          border: 'none',
-          borderRadius: '4px',
-          padding: '0 28px',
-          fontSize: '13.5px',
-          fontWeight: 600,
-          cursor: 'pointer',
-          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
-          transition: 'background-color 0.2s ease'
-        }}
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#27272a'}
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#000000'}
-        >
-          Book a Growth Infrastructure Review
-        </button>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', fontSize: '11px', color: '#52525b', marginTop: '16px', fontWeight: 700, letterSpacing: '0.05em' }}>
-          <span>✓ DEFINED DELIVERY COMMITMENTS</span>
-          <span>✓ CLEAR IMPLEMENTATION MILESTONES</span>
-          <span>✓ 90 DAY ENGAGEMENT</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-);
 
 const GuaranteeBanner = ({ onAssessmentClick }) => (
   <section style={{
@@ -2465,7 +2131,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
                 textAlign: 'center'
               }}
             >
-              You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take the risk, the conviction to think differently, and the ambition to become the exception.
+              You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take action, the conviction to think differently, and the ambition to become the exception.
             </p>
 
             <p
@@ -2812,7 +2478,6 @@ const MasterFooter = ({ onAssessmentClick }) => (
               <a href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
               <a href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Infrastructure</a>
               <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Engagements</a>
-              <a href="#timeline" style={{ color: 'inherit', textDecoration: 'none' }}>Implementation</a>
               <a href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
             </div>
           </div>
