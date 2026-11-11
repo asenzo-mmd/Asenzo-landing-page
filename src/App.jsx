@@ -391,14 +391,17 @@ function AccretionHero({ onOpenModal }) {
           We Build Authority Growth System Into Your Business That Turns Attention Into Qualified Sales Call
         </h1>
 
-        {/* Supporting Description */}
+        {/* Supporting Description in JetBrains Mono Uppercase Monospace */}
         <p
           style={{
-            fontFamily: "'Switzer', 'Inter', -apple-system, sans-serif",
-            fontSize: "clamp(16px, 1.8vw, 18px)",
-            lineHeight: 1.6,
+            fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
+            fontSize: "clamp(12px, 1.25vw, 13.5px)",
+            fontWeight: 600,
+            lineHeight: 1.65,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
             color: "#52525b",
-            maxWidth: 720,
+            maxWidth: 760,
             margin: "0 auto 36px auto"
           }}
         >
@@ -434,47 +437,6 @@ function AccretionHero({ onOpenModal }) {
           >
             Get started
           </button>
-        </div>
-
-        {/* Social Proof: Coded Component with High-Res Avatars & Crisp Typography */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "18px",
-            marginTop: "32px",
-            flexWrap: "wrap"
-          }}
-        >
-          {/* Exact Avatar Stack (3 Founders + 120+ Badge) */}
-          <img
-            src="/avatars-stack.png"
-            alt="120+ Founders"
-            style={{
-              height: "46px",
-              width: "auto",
-              display: "block",
-              objectFit: "contain"
-            }}
-          />
-
-          {/* Crisp, Clear, Monospace Editorial Typography */}
-          <div
-            style={{
-              fontFamily: "'JetBrains Mono', 'SF Mono', Consolas, monospace",
-              fontSize: "12.5px",
-              fontWeight: 600,
-              color: "#27272a",
-              letterSpacing: "0.06em",
-              lineHeight: 1.45,
-              textAlign: "left",
-              textTransform: "uppercase"
-            }}
-          >
-            <div>FOUNDERS AND MARKETING TEAMS</div>
-            <div>WHO TRUST US WITH THEIR BRAND</div>
-          </div>
         </div>
       </div>
     </section>
