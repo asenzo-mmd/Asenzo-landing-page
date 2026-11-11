@@ -1251,7 +1251,6 @@ const HandHoldingPhoneSection = () => (
           />
           <div>
             <div style={{ fontSize: '15px', fontWeight: 500, color: '#0f0f11', lineHeight: 1.2 }}>B2B Founder</div>
-            <div style={{ fontSize: '14px', color: '#71717a', marginTop: '4px' }}>CEO of Alarsh</div>
           </div>
         </div>
       </div>
@@ -1498,7 +1497,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               marginBottom: '28px',
               width: 'fit-content'
             }}>
-              90 Day Build and Operate
+              Build and Operate
             </div>
 
             {/* What's included Checklist with (+) icons */}
@@ -1762,7 +1761,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
             lineHeight: 1.55,
             margin: 0
           }}>
-            The agreed core acquisition path and first 15 videos are targeted for day 30.
+            The agreed core acquisition path and deliverables are targeted for day 30.
           </p>
         </div>
 
@@ -2265,11 +2264,7 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
       });
 
       window.Cal.ns[calNamespace]("ui", {
-        cssVarsPerTheme: {
-          light: { "cal-brand": "#000000" },
-          dark: { "cal-brand": "#ffffff" }
-        },
-        hideEventTypeDetails: true,
+        hideEventTypeDetails: false,
         layout: "month_view"
       });
     }
@@ -2307,6 +2302,34 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
           <p style={{ fontSize: '17px', lineHeight: 1.6, color: '#52525b', marginBottom: '32px', maxWidth: '500px' }}>
             Book a free Diagnostic call. We’ll find where you’re losing prospects, walk you through the system and give you a clear roadmap for your business.
           </p>
+
+          <button
+            data-cal-link="mmd-asenzo/brandgrowth-strategy-call"
+            data-cal-namespace="brandgrowth-strategy-call"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            style={{
+              height: 48,
+              padding: "0 32px",
+              borderRadius: 8,
+              fontSize: 14.5,
+              fontWeight: 600,
+              cursor: "pointer",
+              transition: "filter 0.2s ease",
+              border: "none",
+              backgroundColor: "#000000",
+              color: "#ffffff",
+              boxShadow: "0 4px 18px rgba(0, 0, 0, 0.15)",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.filter = "brightness(1.2)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.filter = "brightness(1)"; }}
+          >
+            <span>Book a Strategy Call</span>
+            <span style={{ fontSize: 16 }}>→</span>
+          </button>
         </div>
 
         {/* Right Column: Real Cal.com Inline Booking Container */}
@@ -2468,6 +2491,9 @@ const MasterFooter = ({ onAssessmentClick }) => (
           <div style={{ marginTop: '4px', width: 'fit-content' }}>
             <LetsConnectSwipeButton onClick={onAssessmentClick} />
           </div>
+          <div style={{ fontSize: '12px', color: '#71717a', marginTop: '12px' }}>
+            © 2026 Asenzo Inc. All rights reserved.
+          </div>
         </div>
 
         {/* Right Side: Columns stretched across to the right edge */}
@@ -2511,25 +2537,6 @@ const MasterFooter = ({ onAssessmentClick }) => (
         </div>
       </div>
 
-      {/* Small Section: Bottom Bar stretched to full width */}
-      <div
-        style={{
-          width: '100%',
-          paddingTop: '28px',
-          borderTop: '1px solid #e4e4e7',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '16px',
-          fontSize: '12.5px',
-          color: '#71717a'
-        }}
-      >
-        <div>
-          <span>© {new Date().getFullYear()} Asenzo Inc. All rights reserved.</span>
-        </div>
-      </div>
     </div>
 
     {/* Full-Width Giant Asenzo Watermark - Pure Grey Font with Soft Bottom Vertical Fade via CSS Mask */}
