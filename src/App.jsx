@@ -188,13 +188,15 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileScrolled, setMobileScrolled] = useState(false);
 
-  // Monitor scroll for mobile compact state (> 40px)
+  // Monitor scroll for mobile compact state - triggers when reaching second page (#integrations)
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setMobileScrolled(window.scrollY > 40);
+          const intEl = document.getElementById("integrations");
+          const threshold = intEl ? (intEl.offsetTop - 140) : 480;
+          setMobileScrolled(window.scrollY >= threshold);
           ticking = false;
         });
         ticking = true;
@@ -464,7 +466,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             maxWidth: mobileScrolled ? 48 : 460,
             margin: mobileScrolled ? 0 : "0 auto",
             height: 48,
-            borderRadius: 9999,
+            borderRadius: 12,
             backgroundColor: "rgba(17, 17, 19, 0.94)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
@@ -754,6 +756,7 @@ function AccretionHero({ onOpenModal }) {
         {/* Booking Quarter Pill Badge */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
           <div
+            className="hero-badge-pill"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -768,7 +771,7 @@ function AccretionHero({ onOpenModal }) {
               letterSpacing: "0.02em"
             }}
           >
-            <span>Booking Q4 2027</span>
+            <span>Booking {bookingQuarter}</span>
           </div>
         </div>
 
@@ -1130,11 +1133,11 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
         </div>
 
         {/* Closing Statement */}
-        <div style={{ textAlign: "center", marginTop: 48, maxWidth: 640, marginLeft: "auto", marginRight: "auto", padding: "0 12px" }}>
-          <p style={{ fontSize: 16, fontWeight: 700, color: "#0f0f11", letterSpacing: "-0.01em", margin: "0 0 10px 0" }}>
+        <div className="layers-closing-block" style={{ textAlign: "center", marginTop: 48, maxWidth: 640, marginLeft: "auto", marginRight: "auto", padding: "0 12px" }}>
+          <p className="layers-closing-title" style={{ fontSize: 16, fontWeight: 700, color: "#0f0f11", letterSpacing: "-0.01em", margin: "0 0 10px 0" }}>
             Different functions. One connected growth infrastructure.
           </p>
-          <p style={{ fontSize: 15, color: "#52525b", lineHeight: 1.6, margin: 0 }}>
+          <p className="layers-closing-desc" style={{ fontSize: 15, color: "#52525b", lineHeight: 1.6, margin: 0 }}>
             ASENZO designs, builds, and operates the system connecting your positioning, content, and acquisition.
           </p>
         </div>
@@ -1179,7 +1182,8 @@ function AsenzoCenterPowerHub({ isMobile = false }) {
           top: "42%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 440,
+          width: isMobile ? "100%" : 440,
+          maxWidth: "100%",
           height: 260,
           objectFit: "contain",
           pointerEvents: "none",
@@ -1193,8 +1197,8 @@ function AsenzoCenterPowerHub({ isMobile = false }) {
         style={{
           position: "absolute",
           bottom: 0,
-          left: "-15%",
-          right: "-15%",
+          left: isMobile ? "-2%" : "-15%",
+          right: isMobile ? "-2%" : "-15%",
           height: isMobile ? 220 : 320,
           background: "radial-gradient(ellipse 95% 85% at 50% 100%, rgba(255, 85, 0, 0.88) 0%, rgba(241, 96, 1, 0.6) 28%, rgba(193, 8, 1, 0.32) 58%, rgba(15, 15, 15, 0) 88%)",
           pointerEvents: "none",
@@ -1470,6 +1474,7 @@ function KeyBenefitsSection() {
         {/* Eyebrow Pill */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
           <div
+            className="section-eyebrow-badge"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -1599,6 +1604,7 @@ const HandHoldingPhoneSection = () => (
       {/* Client Story Eyebrow Pill */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
         <div
+          className="section-eyebrow-badge"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -1650,7 +1656,8 @@ const HandHoldingPhoneSection = () => (
             }}
           />
           <div>
-            <div style={{ fontSize: '15px', fontWeight: 500, color: '#0f0f11', lineHeight: 1.2 }}>B2B Founder</div>
+            <div className="client-author-name" style={{ fontSize: '15px', fontWeight: 600, color: '#0f0f11', lineHeight: 1.2 }}>B2B Founder</div>
+            <div className="client-author-role" style={{ fontSize: '13px', color: '#52525b', marginTop: '4px' }}>CEO of Alarsh</div>
           </div>
         </div>
       </div>
@@ -1681,21 +1688,24 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
         }}>
           <div>
             {/* Technical Eyebrow Pill */}
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '4px 12px',
-              borderRadius: '4px',
-              backgroundColor: '#f4f4f5',
-              border: '1px solid #e4e4e7',
-              fontSize: '11px',
-              fontWeight: 700,
-              letterSpacing: '0.12em',
-              color: '#0f0f11',
-              textTransform: 'uppercase',
-              marginBottom: '16px'
-            }}>
+            <div
+              className="section-eyebrow-badge"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '4px 12px',
+                borderRadius: '4px',
+                backgroundColor: '#f4f4f5',
+                border: '1px solid #e4e4e7',
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                color: '#0f0f11',
+                textTransform: 'uppercase',
+                marginBottom: '16px'
+              }}
+            >
               <span style={{ letterSpacing: '-1px', color: '#71717a', fontSize: '11px', fontWeight: 900 }}>|||||||</span>
               <span>ENGAGEMENT OPTIONS</span>
             </div>
@@ -1804,7 +1814,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
             {/* What's included Checklist with orange check icons */}
             <div className="pricing-card-included" style={{ flex: 1, marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+              <div className="pricing-included-title" style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
               <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
@@ -1932,7 +1942,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
             {/* What's included Checklist with orange check icons */}
             <div className="pricing-card-included" style={{ flex: 1, marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+              <div className="pricing-included-title" style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
               <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
@@ -2050,7 +2060,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
             {/* What's included Checklist with orange check icons */}
             <div className="pricing-card-included" style={{ flex: 1, marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+              <div className="pricing-included-title" style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
               <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
@@ -2102,16 +2112,19 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       
       {/* Grey/black shield icon container from previous */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
-        <div style={{
-          width: '64px',
-          height: '64px',
-          borderRadius: '16px',
-          backgroundColor: '#f4f4f5',
-          border: '1px solid #e4e4e7',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
+        <div
+          className="section-eyebrow-badge"
+          style={{
+            width: '64px',
+            height: '64px',
+            borderRadius: '16px',
+            backgroundColor: '#f4f4f5',
+            border: '1px solid #e4e4e7',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             <path d="m9 12 2 2 4-4"></path>
@@ -2243,7 +2256,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       </div>
 
       {/* Closing Commitment Statement */}
-      <p style={{
+      <p className="guarantee-commitment-text" style={{
         fontSize: '15px',
         color: '#52525b',
         maxWidth: '740px',
@@ -2332,6 +2345,7 @@ const FAQSection = () => {
         {/* Eyebrow Pill */}
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <div
+            className="section-eyebrow-badge"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -2414,6 +2428,8 @@ const FAQSection = () => {
 const FinalCTAHero = ({ onAssessmentClick }) => {
   const [scrollProgress, setScrollProgress] = React.useState(0);
   const containerRef = React.useRef(null);
+  const [mobileProgress, setMobileProgress] = React.useState(1);
+  const mobileContainerRef = React.useRef(null);
 
   React.useEffect(() => {
     let animationFrame;
@@ -2429,6 +2445,26 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             setScrollProgress(progress);
           } else if (rect.top > 0) {
             setScrollProgress(0);
+          }
+        }
+
+        // Mobile scroll-stop reveal logic
+        if (mobileContainerRef.current) {
+          const isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (isReduced) {
+            setMobileProgress(1);
+            return;
+          }
+          const mRect = mobileContainerRef.current.getBoundingClientRect();
+          const startOffset = 80;
+          const totalDist = mRect.height - window.innerHeight;
+          if (mRect.top <= startOffset && totalDist > 0) {
+            const p = (startOffset - mRect.top) / (totalDist * 0.65);
+            setMobileProgress(Math.min(Math.max(p, 0), 1));
+          } else if (mRect.top > startOffset) {
+            setMobileProgress(0);
+          } else {
+            setMobileProgress(1);
           }
         }
       });
@@ -2648,61 +2684,60 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
         </div>
       </section>
 
-      {/* 2. MOBILE CARD (OUTLINED BACKGROUND CARD, MINIMIZED HEIGHT, NO ENVELOPE) */}
+      {/* 2. MOBILE CARD SECTION (< 1024px): CLEAN OUTLINE CARD WITH GLOWING ORANGE LETTER */}
       <section
         id="mobile-envelope-section"
         className="mobile-only-block"
         style={{
           backgroundColor: '#121212',
-          padding: '48px 20px',
-          position: 'relative',
+          padding: '56px 20px',
           width: '100%',
           boxSizing: 'border-box'
         }}
       >
         <div style={{ maxWidth: '440px', margin: '0 auto', width: '100%' }}>
-          {/* Background outline card */}
           <div
             style={{
+              width: '100%',
               backgroundColor: '#161616',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              borderRadius: '20px',
-              padding: '12px',
-              boxSizing: 'border-box'
+              borderRadius: '24px',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              padding: '16px',
+              boxSizing: 'border-box',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
             }}
           >
-            {/* The minimized card */}
+            {/* Letter: Full-width orange card inside outline card */}
             <div
               style={{
                 width: '100%',
                 backgroundColor: '#D83300',
-                borderRadius: '14px',
-                padding: '24px 18px',
-                border: '1px solid rgba(255, 255, 255, 0.18)',
+                borderRadius: '18px',
+                padding: '24px 20px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 textAlign: 'center',
                 boxSizing: 'border-box',
-                position: 'relative'
+                boxShadow: '0 8px 32px rgba(216, 51, 0, 0.35)',
+                borderTop: '1px solid rgba(255, 200, 150, 0.4)'
               }}
             >
-              {/* Corner brackets */}
-              <div style={{ position: 'absolute', top: 12, left: 12, width: 8, height: 8, borderTop: '2px solid rgba(255,255,255,0.4)', borderLeft: '2px solid rgba(255,255,255,0.4)' }} />
-              <div style={{ position: 'absolute', top: 12, right: 12, width: 8, height: 8, borderTop: '2px solid rgba(255,255,255,0.4)', borderRight: '2px solid rgba(255,255,255,0.4)' }} />
-
               {/* Headline */}
               <h2
                 style={{
                   fontFamily: "'Switzer', 'Inter', sans-serif",
-                  fontSize: 'clamp(16px, 4.4vw, 19px)',
+                  fontSize: 'clamp(20px, 5.2vw, 22px)',
                   fontWeight: 800,
                   letterSpacing: '0.02em',
-                  lineHeight: 1.25,
+                  lineHeight: 1.2,
                   color: '#FFFFFF',
                   textTransform: 'uppercase',
-                  margin: '0 0 10px 0',
-                  textAlign: 'center'
+                  margin: '0 0 16px 0',
+                  textAlign: 'center',
+                  width: '100%'
                 }}
               >
                 NOT EVERYONE IS WILLING TO CHOOSE GREATNESS. YOU AREN'T EVERYONE.
@@ -2711,10 +2746,10 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               {/* Body */}
               <p
                 style={{
-                  fontSize: '13px',
-                  lineHeight: 1.48,
-                  color: 'rgba(255, 255, 255, 0.92)',
-                  margin: '0 0 10px 0',
+                  fontSize: '15px',
+                  lineHeight: 1.55,
+                  color: 'rgba(255, 255, 255, 0.95)',
+                  margin: '0 0 16px 0',
                   textAlign: 'center',
                   fontWeight: 400
                 }}
@@ -2725,11 +2760,11 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               {/* Italic line */}
               <p
                 style={{
-                  fontSize: '13px',
+                  fontSize: '15px',
                   fontStyle: 'italic',
                   fontWeight: 600,
                   color: '#FFFFFF',
-                  margin: '0 0 14px 0',
+                  margin: '0 0 16px 0',
                   textAlign: 'center',
                   lineHeight: 1.4
                 }}
@@ -2737,18 +2772,18 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
                 You weren't here to follow the standard. You were here to set it.
               </p>
 
-              {/* Button */}
+              {/* Full-width 52px button */}
               <button
                 onClick={onAssessmentClick}
                 style={{
                   width: '100%',
-                  minHeight: '48px',
-                  height: '48px',
+                  minHeight: '52px',
+                  height: '52px',
                   backgroundColor: '#FFFFFF',
                   color: '#000000',
                   border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '13.5px',
+                  borderRadius: '14px',
+                  fontSize: '15px',
                   fontWeight: 700,
                   letterSpacing: '0.03em',
                   cursor: 'pointer',
@@ -2756,19 +2791,18 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  whiteSpace: 'nowrap',
-                  boxShadow: '0 4px 14px rgba(0,0,0,0.2)'
+                  whiteSpace: 'nowrap'
                 }}
               >
                 I CHOOSE GREATNESS.
               </button>
 
-              {/* Small subtext */}
+              {/* Small line below */}
               <span
                 style={{
-                  fontSize: '12px',
-                  color: 'rgba(255, 255, 255, 0.85)',
-                  marginTop: '10px',
+                  fontSize: '13px',
+                  color: 'rgba(255, 255, 255, 0.88)',
+                  marginTop: '12px',
                   fontWeight: 500,
                   letterSpacing: '0.02em',
                   textAlign: 'center',
@@ -2959,16 +2993,12 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
             alignItems: 'center',
             justifyContent: 'center',
             letterSpacing: '0.01em',
-            margin: '0 auto 16px auto',
+            margin: '0 auto',
             maxWidth: '420px'
           }}
         >
-          Book a Growth Infrastructure Diagnostic
+          Book a Free Diagnostic Call
         </button>
-
-        <div style={{ fontSize: '13px', color: '#A3A3A3', fontWeight: 500, letterSpacing: '0.02em', textAlign: 'center' }}>
-          Free · 30 minutes · No obligation
-        </div>
       </div>
     </section>
   );
@@ -3102,20 +3132,20 @@ const MasterFooter = ({ onAssessmentClick }) => (
                 }}
               />
             </div>
-            <span style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.02em', color: '#0f0f11' }}>
+            <span className="footer-idea-title" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.02em', color: '#0f0f11' }}>
               Have a cool idea?
             </span>
           </div>
-          <p style={{ fontSize: '14px', color: '#71717a', lineHeight: 1.6, margin: 0 }}>
+          <p className="footer-idea-desc" style={{ fontSize: '14px', color: '#71717a', lineHeight: 1.6, margin: 0 }}>
             We love talking with ambitious founders who are ready to take action. Whether you have a project in mind or just want to say hello.
           </p>
-          <div style={{ fontSize: '12px', fontWeight: 600, color: '#0f0f11', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+          <div className="footer-arch-tag" style={{ fontSize: '12px', fontWeight: 600, color: '#0f0f11', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
             Growth Infrastructure · Design. Build. Operate.
           </div>
           <div style={{ marginTop: '4px', width: 'fit-content' }}>
             <LetsConnectSwipeButton onClick={onAssessmentClick} />
           </div>
-          <div style={{ fontSize: '12px', color: '#71717a', marginTop: '12px' }}>
+          <div className="footer-copy-text" style={{ fontSize: '12px', color: '#71717a', marginTop: '12px' }}>
             © 2026 Asenzo Inc. All rights reserved.
           </div>
         </div>
@@ -3124,32 +3154,22 @@ const MasterFooter = ({ onAssessmentClick }) => (
         <div className="footer-links-grid">
           {/* SOLUTIONS Column */}
           <div>
-            <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
-            <div style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Core</a>
-              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Growth</a>
-              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Custom</a>
+            <div className="footer-col-heading" style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
+            <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Core</a>
+              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Growth</a>
+              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Custom</a>
             </div>
           </div>
 
           {/* NAVIGATION Column */}
           <div>
-            <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
-            <div style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
-              <a href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Infrastructure</a>
-              <a href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Engagements</a>
-              <a href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
-            </div>
-          </div>
-
-          {/* SOCIAL Column */}
-          <div>
-            <div style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOCIAL</div>
-            <div style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <span>Twitter</span>
-              <span>LinkedIn</span>
-              <span>Instagram</span>
+            <div className="footer-col-heading" style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
+            <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <a className="footer-nav-link" href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
+              <a className="footer-nav-link" href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Infrastructure</a>
+              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Engagements</a>
+              <a className="footer-nav-link" href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
             </div>
           </div>
         </div>
