@@ -74,8 +74,57 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Mobile scroll-stacking card animation visual scaling fallback
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let ticking = false;
+    const handleStackScroll = () => {
+      if (window.innerWidth >= 768) return;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (isReduced) {
+            ticking = false;
+            return;
+          }
+
+          const cardContainers = document.querySelectorAll(".stacking-cards-container");
+          cardContainers.forEach((container) => {
+            const cards = container.querySelectorAll(".sticky-stack-card");
+            cards.forEach((card, idx) => {
+              const nextCard = cards[idx + 1];
+              if (!nextCard) return;
+
+              const cardRect = card.getBoundingClientRect();
+              const nextRect = nextCard.getBoundingClientRect();
+              const overlap = cardRect.bottom - nextRect.top;
+
+              if (overlap > 20) {
+                const factor = Math.min(overlap / 180, 1);
+                const scale = 1 - 0.04 * factor;
+                const brightness = 1 - 0.3 * factor;
+                card.style.transform = `scale(${scale})`;
+                card.style.filter = `brightness(${brightness})`;
+              } else {
+                card.style.transform = "scale(1)";
+                card.style.filter = "brightness(1)";
+              }
+            });
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleStackScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleStackScroll);
+  }, []);
+
   return (
     <div
+      className="app-main-root"
       style={{
         backgroundColor: "#ffffff",
         minHeight: "100vh",
@@ -137,12 +186,59 @@ export default function App() {
 // ==========================================
 function AccretionNavbar({ isScrolled, onOpenModal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileScrolled, setMobileScrolled] = useState(false);
 
-  const navLinks = [
+  // Monitor scroll for mobile compact state (> 40px)
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setMobileScrolled(window.scrollY > 40);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Lock body scroll when mobile full-screen menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  // Handle escape key to close menu
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const navLinksDesktop = [
     { label: "The System", href: "#features" },
     { label: "Infrastructure", href: "#integrations" },
     { label: "Engagements", href: "#pricing" },
     { label: "FAQ", href: "#faq", hideOnScroll: true }
+  ];
+
+  const navLinksMobile = [
+    { label: "The System", href: "#features" },
+    { label: "Infrastructure", href: "#integrations" },
+    { label: "Engagements", href: "#pricing" },
+    { label: "Guarantee", href: "#guarantee" },
+    { label: "FAQ", href: "#faq" }
   ];
 
   const handleMobileNavClick = (e, href) => {
@@ -163,303 +259,454 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
   };
 
   return (
-    <header
-      style={{
-        position: "fixed",
-        top: isScrolled ? 12 : 20,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        pointerEvents: "none",
-        padding: "0 16px"
-      }}
-    >
-      <nav
+    <>
+      {/* ==================================================== */}
+      {/* 1. DESKTOP NAVBAR (1024px and above) - PIXEL IDENTICAL */}
+      {/* ==================================================== */}
+      <header
+        className="desktop-nav-root"
         style={{
-          pointerEvents: "auto",
-          position: "relative",
+          position: "fixed",
+          top: isScrolled ? 12 : 20,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
-          justifyContent: "space-between",
-          gap: isScrolled ? 14 : 24,
-          padding: isScrolled ? "6px 8px 6px 14px" : "8px 12px 8px 18px",
-          borderRadius: 14,
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.9)",
-          // Fading outline: Crisp top, subtle sides, transparent bottom
-          borderTop: "1px solid rgba(0, 0, 0, 0.09)",
-          borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
-          borderRight: "1px solid rgba(0, 0, 0, 0.05)",
-          borderBottom: "1px solid rgba(0, 0, 0, 0.01)",
-          boxShadow: "0 12px 36px rgba(0, 0, 0, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95)",
-          maxWidth: isScrolled ? 624 : 980,
-          width: "100%",
-          minHeight: 52,
-          transition: "max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease"
+          pointerEvents: "none",
+          padding: "0 16px"
         }}
       >
-        {/* Top-to-Bottom Fading Gradient Outline Overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            borderRadius: 14,
-            padding: 1,
-            background: "linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 60%, rgba(0, 0, 0, 0) 100%)",
-            WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-            WebkitMaskComposite: "xor",
-            maskComposite: "exclude",
-            pointerEvents: "none"
-          }}
-        />
-
-        {/* Brand: User's Silver Star/A Logo in Dark Emblem Badge + ASENZO text */}
-        <a
-          href="#"
-          style={{
-            textDecoration: "none",
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            flexShrink: 0,
-            zIndex: 2
-          }}
-        >
-          <div
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: 7,
-              backgroundColor: "#111111",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)"
-            }}
-          >
-            <img
-              src="/asenzo-logo.jpg"
-              alt="Asenzo"
-              style={{
-                width: 22,
-                height: 22,
-                borderRadius: 4,
-                objectFit: "cover",
-                mixBlendMode: "screen",
-                display: "block"
-              }}
-            />
-          </div>
-          <div
-            style={{
-              overflow: "hidden",
-              maxWidth: isScrolled ? 0 : 100,
-              opacity: isScrolled ? 0 : 1,
-              transform: isScrolled ? "translateX(-6px)" : "translateX(0)",
-              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-              whiteSpace: "nowrap"
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "'Switzer', 'Inter', sans-serif",
-                fontSize: 16.5,
-                fontWeight: 700,
-                letterSpacing: "-0.015em",
-                color: "#0f0f11"
-              }}
-            >
-              ASENZO
-            </span>
-          </div>
-        </a>
-
-        {/* Desktop Navigation Links */}
-        <div
-          className="desktop-only"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: isScrolled ? 18 : 28,
-            fontSize: 13.5,
-            fontWeight: 500,
-            color: "#27272a",
-            transition: "gap 0.3s ease",
-            zIndex: 2
-          }}
-        >
-          {navLinks.filter((item) => !isScrolled || !item.hideOnScroll).map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              style={{
-                color: "#27272a",
-                textDecoration: "none",
-                transition: "color 0.2s ease",
-                whiteSpace: "nowrap"
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#000000")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#27272a")}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-
-        {/* Desktop Right CTA Button */}
-        <div className="desktop-only" style={{ display: "flex", alignItems: "center", flexShrink: 0, zIndex: 2 }}>
-          <button
-            onClick={onOpenModal}
-            style={{
-              height: 38,
-              padding: isScrolled ? "0 18px" : "0 22px",
-              borderRadius: 8,
-              fontSize: 13.5,
-              fontWeight: 600,
-              cursor: "pointer",
-              transition: "filter 0.2s ease",
-              border: "none",
-              backgroundColor: "#f94500",
-              color: "#ffffff",
-              boxShadow: "0 2px 10px rgba(249, 69, 0, 0.35)",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              whiteSpace: "nowrap"
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.filter = "brightness(1.08)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.filter = "brightness(1)";
-            }}
-          >
-            Book a Review
-          </button>
-        </div>
-
-        {/* Mobile Controls: Compact CTA + Hamburger Button */}
-        <div className="mobile-only" style={{ display: "flex", alignItems: "center", gap: 8, zIndex: 2 }}>
-          <button
-            onClick={handleMobileCta}
-            style={{
-              height: 36,
-              padding: "0 14px",
-              borderRadius: 7,
-              fontSize: 12.5,
-              fontWeight: 600,
-              cursor: "pointer",
-              border: "none",
-              backgroundColor: "#f94500",
-              color: "#ffffff",
-              boxShadow: "0 2px 8px rgba(249, 69, 0, 0.35)",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              whiteSpace: "nowrap"
-            }}
-          >
-            Book Review
-          </button>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-            style={{
-              width: 36,
-              height: 36,
-              borderRadius: 7,
-              border: "1px solid rgba(0, 0, 0, 0.08)",
-              backgroundColor: "#f4f4f5",
-              color: "#0f0f11",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              padding: 0
-            }}
-          >
-            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Drawer Dropdown Menu */}
-      {mobileMenuOpen && (
-        <div
-          className="mobile-nav-drawer"
+        <nav
           style={{
             pointerEvents: "auto",
-            width: "100%",
-            maxWidth: isScrolled ? 624 : 980,
-            marginTop: 8,
-            backgroundColor: "rgba(255, 255, 255, 0.98)",
-            backdropFilter: "blur(24px)",
-            WebkitBackdropFilter: "blur(24px)",
-            borderRadius: 14,
-            border: "1px solid rgba(0, 0, 0, 0.08)",
-            boxShadow: "0 16px 40px rgba(0, 0, 0, 0.12)",
-            padding: "14px 16px",
+            position: "relative",
             display: "flex",
-            flexDirection: "column",
-            gap: 6
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: isScrolled ? 14 : 24,
+            padding: isScrolled ? "6px 8px 6px 14px" : "8px 12px 8px 18px",
+            borderRadius: 14,
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.9)",
+            borderTop: "1px solid rgba(0, 0, 0, 0.09)",
+            borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
+            borderRight: "1px solid rgba(0, 0, 0, 0.05)",
+            borderBottom: "1px solid rgba(0, 0, 0, 0.01)",
+            boxShadow: "0 12px 36px rgba(0, 0, 0, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95)",
+            maxWidth: isScrolled ? 624 : 980,
+            width: "100%",
+            minHeight: 52,
+            transition: "max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease"
           }}
         >
-          {navLinks.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleMobileNavClick(e, item.href)}
+          {/* Top-to-Bottom Fading Gradient Outline Overlay */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: 14,
+              padding: 1,
+              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 60%, rgba(0, 0, 0, 0) 100%)",
+              WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              WebkitMaskComposite: "xor",
+              maskComposite: "exclude",
+              pointerEvents: "none"
+            }}
+          />
+
+          {/* Brand: User's Silver Star/A Logo in Dark Emblem Badge + ASENZO text */}
+          <a
+            href="#"
+            style={{
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              flexShrink: 0,
+              zIndex: 2
+            }}
+          >
+            <div
+              style={{
+                width: 30,
+                height: 30,
+                borderRadius: 7,
+                backgroundColor: "#111111",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)"
+              }}
+            >
+              <img
+                src="/asenzo-logo.jpg"
+                alt="Asenzo"
+                style={{
+                  width: 22,
+                  height: 22,
+                  borderRadius: 4,
+                  objectFit: "cover",
+                  mixBlendMode: "screen",
+                  display: "block"
+                }}
+              />
+            </div>
+            <div
+              style={{
+                overflow: "hidden",
+                maxWidth: isScrolled ? 0 : 100,
+                opacity: isScrolled ? 0 : 1,
+                transform: isScrolled ? "translateX(-6px)" : "translateX(0)",
+                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                whiteSpace: "nowrap"
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Switzer', 'Inter', sans-serif",
+                  fontSize: 16.5,
+                  fontWeight: 700,
+                  letterSpacing: "-0.015em",
+                  color: "#0f0f11"
+                }}
+              >
+                ASENZO
+              </span>
+            </div>
+          </a>
+
+          {/* Desktop Navigation Links */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: isScrolled ? 18 : 28,
+              fontSize: 13.5,
+              fontWeight: 500,
+              color: "#27272a",
+              transition: "gap 0.3s ease",
+              zIndex: 2
+            }}
+          >
+            {navLinksDesktop.filter((item) => !isScrolled || !item.hideOnScroll).map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                style={{
+                  color: "#27272a",
+                  textDecoration: "none",
+                  transition: "color 0.2s ease",
+                  whiteSpace: "nowrap"
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#000000")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#27272a")}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          {/* Desktop Right CTA Button */}
+          <div style={{ display: "flex", alignItems: "center", flexShrink: 0, zIndex: 2 }}>
+            <button
+              onClick={onOpenModal}
+              style={{
+                height: 38,
+                padding: isScrolled ? "0 18px" : "0 22px",
+                borderRadius: 8,
+                fontSize: 13.5,
+                fontWeight: 600,
+                cursor: "pointer",
+                transition: "filter 0.2s ease",
+                border: "none",
+                backgroundColor: "#f94500",
+                color: "#ffffff",
+                boxShadow: "0 2px 10px rgba(249, 69, 0, 0.35)",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                whiteSpace: "nowrap"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.filter = "brightness(1.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.filter = "brightness(1)";
+              }}
+            >
+              Book a Review
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* ==================================================== */}
+      {/* 2. ACCRETION MOBILE FLOATING NAVBAR (< 1024px) */}
+      {/* ==================================================== */}
+      <div className="mobile-nav-root">
+        {/* Top State: Floating Pill Bar (Full width inset 12px) */}
+        {/* Scrolled State: Compact Logo Pill in Corner (>= 48x48px) */}
+        <div
+          onClick={() => setMobileMenuOpen(true)}
+          role="button"
+          tabIndex={0}
+          aria-label={mobileScrolled ? "Open navigation menu" : "Navigation bar with menu"}
+          aria-expanded={mobileMenuOpen}
+          style={{
+            position: "fixed",
+            top: "calc(env(safe-area-inset-top, 0px) + 12px)",
+            right: 12,
+            left: mobileScrolled ? "auto" : 12,
+            width: mobileScrolled ? 48 : "calc(100% - 24px)",
+            maxWidth: mobileScrolled ? 48 : 460,
+            margin: mobileScrolled ? 0 : "0 auto",
+            height: 48,
+            borderRadius: 9999,
+            backgroundColor: "rgba(17, 17, 19, 0.94)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.3)",
+            zIndex: 1000,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: mobileScrolled ? "center" : "space-between",
+            padding: mobileScrolled ? 0 : "0 12px 0 14px",
+            cursor: "pointer",
+            transition: "all 0.28s cubic-bezier(0.16, 1, 0.3, 1)",
+            overflow: "hidden",
+            boxSizing: "border-box"
+          }}
+        >
+          {/* Brand Logo & Name */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+            <div
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: 8,
+                backgroundColor: "#111111",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0
+              }}
+            >
+              <img
+                src="/asenzo-logo.jpg"
+                alt="Asenzo"
+                style={{
+                  width: 22,
+                  height: 22,
+                  borderRadius: 4,
+                  objectFit: "cover",
+                  mixBlendMode: "screen",
+                  display: "block"
+                }}
+              />
+            </div>
+
+            {!mobileScrolled && (
+              <span
+                style={{
+                  fontFamily: "'Switzer', 'Inter', sans-serif",
+                  fontSize: 15.5,
+                  fontWeight: 700,
+                  letterSpacing: "-0.015em",
+                  color: "#ffffff"
+                }}
+              >
+                ASENZO
+              </span>
+            )}
+          </div>
+
+          {/* Right Text Label "Menu" (NO hamburger icon) */}
+          {!mobileScrolled && (
+            <div
+              style={{
+                height: 32,
+                padding: "0 14px",
+                borderRadius: 9999,
+                backgroundColor: "rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(255, 255, 255, 0.16)",
+                color: "#ffffff",
+                fontSize: 13,
+                fontWeight: 600,
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                letterSpacing: "0.01em"
+              }}
+            >
+              Menu
+            </div>
+          )}
+        </div>
+
+        {/* Full-Screen Overlay Menu on Tap */}
+        {mobileMenuOpen && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 99999,
+              backgroundColor: "rgba(10, 10, 12, 0.96)",
+              backdropFilter: "blur(28px)",
+              WebkitBackdropFilter: "blur(28px)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              padding: "calc(env(safe-area-inset-top, 0px) + 16px) 24px calc(env(safe-area-inset-bottom, 0px) + 24px) 24px",
+              animation: "menuFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+              boxSizing: "border-box"
+            }}
+          >
+            {/* Top Bar inside Menu: Logo + Close Pill Button */}
+            <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "12px 14px",
-                borderRadius: 8,
-                fontSize: 15,
-                fontWeight: 600,
-                color: "#0f0f11",
-                textDecoration: "none",
-                backgroundColor: "rgba(0, 0, 0, 0.02)",
-                transition: "background-color 0.15s ease"
-              }}
-            >
-              <span>{item.label}</span>
-              <ArrowUpRight size={16} color="#71717a" />
-            </a>
-          ))}
-
-          <div style={{ paddingTop: 8, borderTop: "1px solid rgba(0, 0, 0, 0.06)", marginTop: 4 }}>
-            <button
-              onClick={handleMobileCta}
-              style={{
                 width: "100%",
-                minHeight: 52,
-                height: 52,
-                borderRadius: 8,
-                fontSize: 15,
-                fontWeight: 600,
-                cursor: "pointer",
-                border: "none",
-                backgroundColor: "#f94500",
-                color: "#ffffff",
-                boxShadow: "0 4px 14px rgba(249, 69, 0, 0.35)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 8
+                paddingBottom: 16
               }}
             >
-              <span>Book a Review</span>
-              <ArrowRight size={16} />
-            </button>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: 8,
+                    backgroundColor: "#111111",
+                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                >
+                  <img
+                    src="/asenzo-logo.jpg"
+                    alt="Asenzo"
+                    style={{
+                      width: 22,
+                      height: 22,
+                      borderRadius: 4,
+                      objectFit: "cover",
+                      mixBlendMode: "screen",
+                      display: "block"
+                    }}
+                  />
+                </div>
+                <span
+                  style={{
+                    fontFamily: "'Switzer', 'Inter', sans-serif",
+                    fontSize: 16,
+                    fontWeight: 700,
+                    letterSpacing: "-0.015em",
+                    color: "#ffffff"
+                  }}
+                >
+                  ASENZO
+                </span>
+              </div>
+
+              {/* Close Button ("Close" with subtle X icon) */}
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  height: 36,
+                  padding: "0 14px",
+                  borderRadius: 9999,
+                  backgroundColor: "rgba(255, 255, 255, 0.08)",
+                  border: "1px solid rgba(255, 255, 255, 0.16)",
+                  color: "#ffffff",
+                  fontSize: 13.5,
+                  fontWeight: 600,
+                  cursor: "pointer"
+                }}
+              >
+                <span>Close</span>
+                <X size={15} />
+              </button>
+            </div>
+
+            {/* Menu Items: Centered large rows (>= 56px tall, 20-22px text, 12-16px gaps) */}
+            <nav
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 14,
+                margin: "auto 0",
+                width: "100%"
+              }}
+            >
+              {navLinksMobile.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleMobileNavClick(e, item.href)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    minHeight: 56,
+                    width: "100%",
+                    fontSize: "clamp(21px, 5.8vw, 24px)",
+                    fontWeight: 600,
+                    color: "#ffffff",
+                    textDecoration: "none",
+                    letterSpacing: "-0.02em",
+                    textAlign: "center",
+                    padding: "8px 0"
+                  }}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+            {/* Item 6: Book a Diagnostic (Primary CTA button style, full width, 52px tall, last) */}
+            <div style={{ width: "100%", paddingTop: 16 }}>
+              <button
+                onClick={handleMobileCta}
+                style={{
+                  width: "100%",
+                  minHeight: 52,
+                  height: 52,
+                  borderRadius: 12,
+                  backgroundColor: "#f94500",
+                  color: "#ffffff",
+                  fontSize: 16,
+                  fontWeight: 600,
+                  border: "none",
+                  boxShadow: "0 4px 20px rgba(249, 69, 0, 0.4)",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  letterSpacing: "0.01em"
+                }}
+              >
+                Book a Diagnostic
+              </button>
+            </div>
           </div>
-        </div>
-      )}
-    </header>
+        )}
+      </div>
+    </>
   );
 }
 
@@ -730,9 +977,31 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
           Everything Behind Your Growth. Connected.
         </h2>
 
-        {/* Supporting Description */}
+        {/* Mobile-only pill badge with icon and count */}
+        <div className="mobile-only" style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "5px 14px",
+              borderRadius: 20,
+              backgroundColor: "#1C1C1C",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
+              fontSize: 12,
+              fontWeight: 600,
+              color: "#F5F5F5",
+              letterSpacing: "0.02em"
+            }}
+          >
+            <Zap size={13} color="#F16001" />
+            <span>6 connected layers</span>
+          </div>
+        </div>
+
+        {/* Supporting Description - HIDE on mobile only as requested */}
         <p
-          className="mobile-intro-text"
+          className="mobile-intro-text desktop-only"
           style={{
             fontSize: "clamp(14px, 1.6vw, 16.5px)",
             lineHeight: 1.6,
@@ -847,15 +1116,15 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
             width: "100%"
           }}
         >
-          {/* Phone graphic first, centred, at about 70-80% width */}
+          {/* Phone graphic in large rounded visual card (border-radius 24px, 1px border, background #0B0B0B, zero outer shadow) */}
           <div style={{ display: "flex", justifyContent: "center", width: "100%", marginBottom: 32 }}>
             <AsenzoCenterPowerHub isMobile={true} />
           </div>
 
-          {/* All six layer cards in one column with 16-20px gaps */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-            {[...leftGroups, ...rightGroups].map((group) => (
-              <CompactIntegrationCard key={group.id} group={group} />
+          {/* All six layer cards in one column with scroll-stacking */}
+          <div className="stacking-cards-container" style={{ display: "flex", flexDirection: "column" }}>
+            {[...leftGroups, ...rightGroups].map((group, idx) => (
+              <CompactIntegrationCard key={group.id} group={group} index={idx} />
             ))}
           </div>
         </div>
@@ -880,21 +1149,22 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
 function AsenzoCenterPowerHub({ isMobile = false }) {
   return (
     <div
+      className={isMobile ? "mobile-phone-card" : "desktop-power-hub"}
       style={{
-        width: isMobile ? "76%" : 280,
-        maxWidth: isMobile ? 320 : 280,
-        height: isMobile ? 310 : 438,
+        width: isMobile ? "100%" : 280,
+        maxWidth: isMobile ? 380 : 280,
+        height: isMobile ? 280 : 438,
         margin: isMobile ? "0 auto" : "0",
         position: "relative",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#0d0d0d",
+        backgroundColor: isMobile ? "#0B0B0B" : "#0d0d0d",
         border: "1px solid rgba(255, 255, 255, 0.08)",
-        borderBottom: "2px solid #ff7700",
+        borderBottom: isMobile ? "1px solid rgba(255, 255, 255, 0.08)" : "2px solid #ff7700",
         borderRadius: 24,
-        boxShadow: "0 24px 70px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 15px 40px rgba(255, 85, 0, 0.35)",
+        boxShadow: isMobile ? "none" : "0 24px 70px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 15px 40px rgba(255, 85, 0, 0.35)",
         overflow: "hidden",
         zIndex: 4,
         flexShrink: 0
@@ -1018,11 +1288,12 @@ function AsenzoCenterPowerHub({ isMobile = false }) {
 // COMPACT INTEGRATION CARD
 // Neatly proportioned: responsive width (100% on mobile, max 360px; contained in 320px column on desktop)
 // ==========================================
-function CompactIntegrationCard({ group }) {
+function CompactIntegrationCard({ group, index = 0 }) {
   return (
     <div
-      className="integrations-card-responsive"
+      className="integrations-card-responsive sticky-stack-card"
       style={{
+        '--i': index,
         backgroundColor: "#ffffff",
         border: "1px solid rgba(0, 0, 0, 0.08)",
         borderRadius: 14,
@@ -1065,8 +1336,9 @@ function CompactIntegrationCard({ group }) {
         >
           {group.category}
         </h3>
+        {/* Desktop badge: LAYER 0X */}
         <span
-          className="card-layer-badge"
+          className="card-layer-badge desktop-only"
           style={{
             fontSize: 10,
             fontWeight: 700,
@@ -1079,6 +1351,26 @@ function CompactIntegrationCard({ group }) {
           }}
         >
           {group.layerNum}
+        </span>
+        {/* Mobile notched corner tab showing ONLY the number (1, 2, 3...) */}
+        <span
+          className="card-corner-num mobile-only"
+          style={{
+            fontSize: 15,
+            fontWeight: 600,
+            color: "#F5F5F5",
+            backgroundColor: "#242424",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            width: 32,
+            height: 32,
+            borderRadius: 8,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0
+          }}
+        >
+          {index + 1}
         </span>
       </div>
 
@@ -1230,7 +1522,7 @@ function KeyBenefitsSection() {
           Give every part of your growth process a clear role, from how your business is positioned to how interested prospects enter your acquisition process.
         </p>
 
-        {/* 6 Grid Cards */}
+        {/* 6 Grid Items */}
         <div className="benefits-grid">
           {benefits.map((item, idx) => (
             <div
@@ -1257,6 +1549,7 @@ function KeyBenefitsSection() {
               }}
             >
               <div
+                className="benefit-icon-tile"
                 style={{
                   width: "44px",
                   height: "44px",
@@ -1446,13 +1739,13 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
             transition: 'all 0.2s ease'
           }}>
-            {/* Technical Corner Brackets */}
-            <div style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            {/* Technical Corner Brackets (Desktop Only) */}
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
 
-            <div style={{ marginBottom: '28px' }}>
+            <div className="pricing-card-header" style={{ marginBottom: '28px' }}>
               <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#71717a', textTransform: 'uppercase', marginBottom: '6px' }}>
                 Growth Foundation
               </div>
@@ -1465,7 +1758,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             </div>
 
             {/* Scope Badge */}
-            <div style={{
+            <div className="pricing-card-scope" style={{
               display: 'inline-flex',
               alignItems: 'center',
               padding: '4px 10px',
@@ -1479,43 +1772,6 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               width: 'fit-content'
             }}>
               Scoped to requirements
-            </div>
-
-            {/* Divider above What's included */}
-            <div style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
-
-            {/* What's included Checklist with (+) icons */}
-            <div style={{ flex: 1, marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                What's included
-              </div>
-              <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
-                {[
-                  "Content and acquisition funnel review",
-                  "Strategic growth playbook",
-                  "Funnel strategy and planning",
-                  "Landing page design and development",
-                  "VSL strategy and integration",
-                  "Conversion-focused page structure"
-                ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
-                    <div style={{
-                      width: '15px',
-                      height: '15px',
-                      borderRadius: '50%',
-                      border: '1px solid #71717a',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      marginTop: '2px'
-                    }}>
-                      <Plus size={10} color="#0f0f11" strokeWidth={2.5} />
-                    </div>
-                    <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Explore Core Button */}
@@ -1542,10 +1798,48 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             >
               Explore Core
             </button>
+
+            {/* Divider above What's included */}
+            <div className="pricing-card-divider" style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
+
+            {/* What's included Checklist with orange check icons */}
+            <div className="pricing-card-included" style={{ flex: 1, marginBottom: '24px' }}>
+              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                What's included
+              </div>
+              <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
+                {[
+                  "Content and acquisition funnel review",
+                  "Strategic growth playbook",
+                  "Funnel strategy and planning",
+                  "Landing page design and development",
+                  "VSL strategy and integration",
+                  "Conversion-focused page structure"
+                ].map((feat, idx) => (
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
+                    <div style={{
+                      width: '16px',
+                      height: '16px',
+                      borderRadius: '50%',
+                      backgroundColor: 'rgba(241, 96, 1, 0.1)',
+                      border: '1px solid rgba(241, 96, 1, 0.3)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      marginTop: '2px'
+                    }}>
+                      <Check size={11} color="#F16001" strokeWidth={3} />
+                    </div>
+                    <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Card 2: GROWTH (FLAGSHIP ENGAGEMENT) */}
-          <div className="pricing-card-item mobile-card-24" style={{
+          <div className="pricing-card-item pricing-card-growth mobile-card-24" style={{
             backgroundColor: '#ffffff',
             border: '1px solid #e4e4e7',
             borderRadius: '6px',
@@ -1556,13 +1850,13 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             boxShadow: '0 6px 28px rgba(0, 0, 0, 0.05)',
             transition: 'all 0.2s ease'
           }}>
-            {/* Technical Corner Brackets */}
-            <div style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            {/* Technical Corner Brackets (Desktop Only) */}
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
 
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '28px' }}>
+            <div className="pricing-card-header" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '28px' }}>
               <div>
                 <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#71717a', textTransform: 'uppercase', marginBottom: '6px' }}>
                   Authority Growth System
@@ -1592,7 +1886,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             </div>
 
             {/* Scope Badge */}
-            <div style={{
+            <div className="pricing-card-scope" style={{
               display: 'inline-flex',
               alignItems: 'center',
               padding: '4px 10px',
@@ -1606,50 +1900,6 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               width: 'fit-content'
             }}>
               Build and Operate
-            </div>
-
-            {/* Divider above What's included */}
-            <div style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
-
-            {/* What's included Checklist with (+) icons */}
-            <div style={{ flex: 1, marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                What's included
-              </div>
-              <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
-                {[
-                  "Market positioning and buyer messaging",
-                  "Intensive audience research",
-                  "Clear, tailored scripts engineered to hold attention",
-                  "Professionally edited videos built to perform",
-                  "Guided shoots, directed by us, so you show up as the expert you are",
-                  "Multi-platform Distribution (IG, FB, YT Shorts)",
-                  "Educational PDF resources & Story sequences that build trust",
-                  "Prospect entry routes & keyword capture",
-                  "Public VSL & qualification application page",
-                  "Post-booking pages that prepare prospects before the call",
-                  "Centralised CRM & booking diagnostics",
-                  "Acquisition tracking & monthly performance review",
-                  "Full handover of everything we build"
-                ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
-                    <div style={{
-                      width: '15px',
-                      height: '15px',
-                      borderRadius: '50%',
-                      border: '1px solid #71717a',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      marginTop: '2px'
-                    }}>
-                      <Plus size={10} color="#0f0f11" strokeWidth={2.5} />
-                    </div>
-                    <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Explore Growth Button */}
@@ -1676,6 +1926,51 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             >
               Explore Growth
             </button>
+
+            {/* Divider above What's included */}
+            <div className="pricing-card-divider" style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
+
+            {/* What's included Checklist with orange check icons */}
+            <div className="pricing-card-included" style={{ flex: 1, marginBottom: '24px' }}>
+              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                What's included
+              </div>
+              <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
+                {[
+                  "Market positioning and buyer messaging",
+                  "Intensive audience research",
+                  "Clear, tailored scripts engineered to hold attention",
+                  "Professionally edited videos built to perform",
+                  "Guided shoots, directed by us, so you show up as the expert you are",
+                  "Multi-platform Distribution (IG, FB, YT Shorts)",
+                  "Educational PDF resources & Story sequences that build trust",
+                  "Prospect entry routes & keyword capture",
+                  "Public VSL & qualification application page",
+                  "Post-booking pages that prepare prospects before the call",
+                  "Centralised CRM & booking diagnostics",
+                  "Acquisition tracking & monthly performance review",
+                  "Full handover of everything we build"
+                ].map((feat, idx) => (
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
+                    <div style={{
+                      width: '16px',
+                      height: '16px',
+                      borderRadius: '50%',
+                      backgroundColor: 'rgba(241, 96, 1, 0.1)',
+                      border: '1px solid rgba(241, 96, 1, 0.3)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      marginTop: '2px'
+                    }}>
+                      <Check size={11} color="#F16001" strokeWidth={3} />
+                    </div>
+                    <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Card 3: CUSTOM */}
@@ -1690,13 +1985,13 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
             transition: 'all 0.2s ease'
           }}>
-            {/* Technical Corner Brackets */}
-            <div style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            {/* Technical Corner Brackets (Desktop Only) */}
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
 
-            <div style={{ marginBottom: '28px' }}>
+            <div className="pricing-card-header" style={{ marginBottom: '28px' }}>
               <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#71717a', textTransform: 'uppercase', marginBottom: '6px' }}>
                 Custom Infrastructure
               </div>
@@ -1709,7 +2004,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             </div>
 
             {/* Scope Badge */}
-            <div style={{
+            <div className="pricing-card-scope" style={{
               display: 'inline-flex',
               alignItems: 'center',
               padding: '4px 10px',
@@ -1723,43 +2018,6 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               width: 'fit-content'
             }}>
               Custom Scope
-            </div>
-
-            {/* Divider above What's included */}
-            <div style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
-
-            {/* What's included Checklist with (+) icons */}
-            <div style={{ flex: 1, marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                What's included
-              </div>
-              <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
-                {[
-                  "Custom CRM architecture",
-                  "Advanced operational workflows",
-                  "Internal business tools",
-                  "Custom integrations",
-                  "Bespoke data and reporting systems",
-                  "Tailored automation infrastructure"
-                ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
-                    <div style={{
-                      width: '15px',
-                      height: '15px',
-                      borderRadius: '50%',
-                      border: '1px solid #71717a',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      marginTop: '2px'
-                    }}>
-                      <Plus size={10} color="#0f0f11" strokeWidth={2.5} />
-                    </div>
-                    <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Discuss a Custom Project Button */}
@@ -1786,6 +2044,44 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             >
               Discuss a Custom Project
             </button>
+
+            {/* Divider above What's included */}
+            <div className="pricing-card-divider" style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
+
+            {/* What's included Checklist with orange check icons */}
+            <div className="pricing-card-included" style={{ flex: 1, marginBottom: '24px' }}>
+              <div style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                What's included
+              </div>
+              <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
+                {[
+                  "Custom CRM architecture",
+                  "Advanced operational workflows",
+                  "Internal business tools",
+                  "Custom integrations",
+                  "Bespoke data and reporting systems",
+                  "Tailored automation infrastructure"
+                ].map((feat, idx) => (
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
+                    <div style={{
+                      width: '16px',
+                      height: '16px',
+                      borderRadius: '50%',
+                      backgroundColor: 'rgba(241, 96, 1, 0.1)',
+                      border: '1px solid rgba(241, 96, 1, 0.3)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      marginTop: '2px'
+                    }}>
+                      <Check size={11} color="#F16001" strokeWidth={3} />
+                    </div>
+                    <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
         </div>
@@ -1795,7 +2091,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 };
 
 const GuaranteeBanner = ({ onAssessmentClick }) => (
-  <section className="section-spacious" style={{
+  <section id="guarantee" className="section-spacious" style={{
     backgroundColor: '#ffffff',
     padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)',
     borderBottom: '1px solid #f0f0f0',
@@ -2064,12 +2360,13 @@ const FAQSection = () => {
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className="faq-list-container" style={{ display: 'flex', flexDirection: 'column' }}>
           {faqs.map((faq, i) => {
             const isOpen = openIdx === i;
             return (
               <div
                 key={faq.num}
+                className="faq-row-item"
                 style={{
                   borderBottom: '1px solid #e4e4e7',
                   padding: 'clamp(20px, 3vw, 28px) 0',
@@ -2078,18 +2375,29 @@ const FAQSection = () => {
                 onClick={() => setOpenIdx(isOpen ? null : i)}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                    <span style={{ fontSize: '13px', color: '#F16001', fontFamily: 'monospace', fontWeight: 700, flexShrink: 0 }}>{faq.num}</span>
-                    <h3 style={{ fontSize: 'clamp(15.5px, 2.2vw, 18px)', fontWeight: 600, color: '#0f0f11', margin: 0, lineHeight: 1.35 }}>{faq.q}</h3>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                    <span className="faq-num" style={{ fontSize: '14px', color: '#F16001', fontFamily: 'monospace', fontWeight: 700, flexShrink: 0, marginTop: '2px' }}>{faq.num}</span>
+                    <h3 className="faq-q-text" style={{ fontSize: 'clamp(16.5px, 2.4vw, 19px)', fontWeight: 600, color: '#0f0f11', margin: 0, lineHeight: 1.35 }}>{faq.q}</h3>
                   </div>
-                  <div style={{ color: '#0f0f11', flexShrink: 0 }}>
-                    {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                  <div
+                    className="faq-icon-holder"
+                    style={{
+                      color: '#0f0f11',
+                      flexShrink: 0,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+                      transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)'
+                    }}
+                  >
+                    <Plus size={18} />
                   </div>
                 </div>
 
                 {isOpen && (
-                  <div style={{ paddingTop: '14px', paddingLeft: 'clamp(0px, 3vw, 36px)', paddingRight: '8px' }}>
-                    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#52525b', margin: 0 }}>
+                  <div className="faq-ans-wrap" style={{ paddingTop: '14px', paddingLeft: 'clamp(0px, 3vw, 36px)', paddingRight: '8px' }}>
+                    <p className="faq-ans-text" style={{ fontSize: '15px', lineHeight: 1.6, color: '#52525b', margin: 0 }}>
                       {faq.a}
                     </p>
                   </div>
@@ -2111,19 +2419,17 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
     let animationFrame;
     const handleScroll = () => {
       animationFrame = requestAnimationFrame(() => {
-        if (!containerRef.current) return;
-        const rect = containerRef.current.getBoundingClientRect();
-
-        // Pinning scroll trigger logic:
-        // When section reaches viewport top (rect.top <= 0), it locks in place.
-        // Over the 300vh height, progress maps from 0 to 1.
-        if (rect.top <= 0) {
-          const maxScroll = rect.height - window.innerHeight;
-          let progress = -rect.top / maxScroll;
-          progress = Math.min(Math.max(progress, 0), 1);
-          setScrollProgress(progress);
-        } else if (rect.top > 0) {
-          setScrollProgress(0);
+        // Desktop scroll logic
+        if (containerRef.current) {
+          const rect = containerRef.current.getBoundingClientRect();
+          if (rect.top <= 0) {
+            const maxScroll = rect.height - window.innerHeight;
+            let progress = -rect.top / maxScroll;
+            progress = Math.min(Math.max(progress, 0), 1);
+            setScrollProgress(progress);
+          } else if (rect.top > 0) {
+            setScrollProgress(0);
+          }
         }
       });
     };
@@ -2137,213 +2443,345 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
   }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className="envelope-outer-section"
-      style={{
-        backgroundColor: '#ffffff',
-        height: '135vh', // Compact scroll distance that completes the animation cleanly at this point without dead scroll
-        position: 'relative',
-        zIndex: 200
-      }}
-    >
-      {/* Sticky container: Locks cleanly at viewport top while user scrolls through the reveal */}
-      <div
+    <>
+      {/* 1. DESKTOP ENVELOPE (1024px+): 100% UNCHANGED PIXEL-IDENTICAL PINNED SCROLL ANIMATION */}
+      <section
+        ref={containerRef}
+        className="envelope-outer-section desktop-only"
         style={{
-          position: 'sticky',
-          top: 0,
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          paddingTop: 'clamp(95px, 12vh, 110px)',
-          zIndex: 1,
-          overflow: 'hidden'
+          backgroundColor: '#ffffff',
+          height: '135vh',
+          position: 'relative',
+          zIndex: 200
         }}
       >
-        {/* Soft Warm Radial Aura behind the envelope */}
         <div
           style={{
-            position: 'absolute',
+            position: 'sticky',
             top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'radial-gradient(circle at 50% 55%, rgba(255, 110, 0, 0.14) 0%, rgba(255, 255, 255, 0) 65%)',
-            zIndex: 0
-          }}
-        />
-
-        <div
-          className="envelope-mobile-wrap"
-          style={{
-            width: '100%',
-            maxWidth: '640px',
-            position: 'relative',
-            height: '620px',
-            clipPath: 'inset(-1000px -100px 0px -100px)',
+            height: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            paddingTop: 'clamp(95px, 12vh, 110px)',
             zIndex: 1,
-            padding: '0 clamp(8px, 2vw, 16px)',
-            boxSizing: 'border-box'
+            overflow: 'hidden'
           }}
         >
-          {/* Top Flap (Behind the card) */}
-          <svg style={{ position: 'absolute', bottom: '378px', left: 0, right: 0, zIndex: 1 }} width="100%" height="240" viewBox="0 0 640 240" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="topFlapGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stopColor="rgba(255, 69, 0, 0.18)" />
-                <stop offset="100%" stopColor="#18181b" />
-              </linearGradient>
-            </defs>
-            <polygon points="320,0 0,240 640,240" fill="url(#topFlapGrad)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-          </svg>
-
-          {/* Envelope Back Base */}
           <div
             style={{
               position: 'absolute',
-              bottom: 0,
+              top: 0,
               left: 0,
               right: 0,
-              height: '380px',
-              backgroundColor: '#111113',
-              borderRadius: '6px',
-              zIndex: 1
+              bottom: 0,
+              background: 'radial-gradient(circle at 50% 55%, rgba(255, 110, 0, 0.14) 0%, rgba(255, 255, 255, 0) 65%)',
+              zIndex: 0
             }}
           />
 
-          {/* The Glowing Card:
-              Smoothly pulls up to exact finished position as user scrolls, ending cleanly
-          */}
           <div
+            className="envelope-mobile-wrap"
             style={{
-              position: 'absolute',
-              bottom: '-50px',
-              left: 'clamp(10px, 2.5vw, 24px)',
-              right: 'clamp(10px, 2.5vw, 24px)',
-              minHeight: '390px',
-              backgroundColor: '#D83300',
-              borderRadius: '12px',
-              padding: 'clamp(22px, 3.5vw, 36px) clamp(14px, 3vw, 28px) clamp(18px, 2.8vw, 26px) clamp(14px, 3vw, 28px)',
-              boxShadow: '0 -20px 60px rgba(255, 69, 0, 0.45)',
-              transform: `translateY(${0 - (Math.min(scrollProgress * 1.15, 1) * 155)}px)`,
-              transition: 'transform 0.05s linear',
-              zIndex: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              borderTop: '1px solid rgba(255,200,150,0.5)',
-              borderLeft: '1px solid rgba(255,100,50,0.2)',
-              borderRight: '1px solid rgba(255,100,50,0.2)'
+              width: '100%',
+              maxWidth: '640px',
+              position: 'relative',
+              height: '620px',
+              clipPath: 'inset(-1000px -100px 0px -100px)',
+              zIndex: 1,
+              padding: '0 clamp(8px, 2vw, 16px)',
+              boxSizing: 'border-box'
             }}
           >
-            {/* Accent corners */}
-            <div style={{ position: 'absolute', top: '16px', left: '16px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderLeft: '2px solid rgba(255,255,255,0.5)' }} />
-            <div style={{ position: 'absolute', top: '16px', right: '16px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderRight: '2px solid rgba(255,255,255,0.5)' }} />
+            {/* Top Flap (Behind the card) */}
+            <svg style={{ position: 'absolute', bottom: '378px', left: 0, right: 0, zIndex: 1 }} width="100%" height="240" viewBox="0 0 640 240" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="topFlapGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="rgba(255, 69, 0, 0.18)" />
+                  <stop offset="100%" stopColor="#18181b" />
+                </linearGradient>
+              </defs>
+              <polygon points="320,0 0,240 640,240" fill="url(#topFlapGrad)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            </svg>
 
-            <h2
-              className="envelope-card-headline"
+            {/* Envelope Back Base */}
+            <div
               style={{
-                fontSize: 'clamp(13px, 2.2vw, 19px)',
-                fontWeight: 800,
-                letterSpacing: '0.03em',
-                lineHeight: 1.25,
-                color: '#FFFFFF',
-                marginBottom: '10px',
-                maxWidth: '520px',
-                textAlign: 'center',
-                textTransform: 'uppercase'
-              }}
-            >
-              NOT EVERYONE IS WILLING TO CHOOSE GREATNESS. YOU AREN'T EVERYONE.
-            </h2>
-
-            <p
-              className="envelope-card-body"
-              style={{
-                fontSize: 'clamp(11px, 1.5vw, 12.5px)',
-                color: 'rgba(255,255,255,0.92)',
-                marginBottom: '10px',
-                lineHeight: 1.45,
-                fontWeight: 400,
-                maxWidth: '510px',
-                textAlign: 'center'
-              }}
-            >
-              You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take action, the conviction to think differently, and the ambition to become the exception.
-            </p>
-
-            <p
-              className="envelope-card-italic"
-              style={{
-                fontSize: 'clamp(11.5px, 1.6vw, 13px)',
-                color: '#FFFFFF',
-                marginBottom: '14px',
-                lineHeight: 1.35,
-                fontWeight: 600,
-                maxWidth: '490px',
-                textAlign: 'center',
-                fontStyle: 'italic'
-              }}
-            >
-              You weren't here to follow the standard. You were here to set it.
-            </p>
-
-            <button
-              onClick={onAssessmentClick}
-              className="envelope-card-btn mobile-btn-52"
-              style={{
-                minHeight: '44px',
-                height: '44px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                border: 'none',
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '380px',
+                backgroundColor: '#111113',
                 borderRadius: '6px',
-                padding: '0 clamp(18px, 3vw, 28px)',
-                fontSize: '13px',
-                fontWeight: 700,
-                letterSpacing: '0.04em',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                pointerEvents: 'auto',
-                boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
-                textTransform: 'uppercase'
+                zIndex: 1
               }}
-              onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#E5E5E5'; }}
-              onMouseOut={(e) => { e.currentTarget.style.backgroundColor = '#FFFFFF'; }}
-            >
-              I CHOOSE GREATNESS.
-            </button>
+            />
 
-            <span
+            {/* The Glowing Card */}
+            <div
               style={{
-                fontSize: '12px',
-                color: 'rgba(255,255,255,0.85)',
-                marginTop: '10px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                textAlign: 'center'
+                position: 'absolute',
+                bottom: '-50px',
+                left: 'clamp(10px, 2.5vw, 24px)',
+                right: 'clamp(10px, 2.5vw, 24px)',
+                minHeight: '390px',
+                backgroundColor: '#D83300',
+                borderRadius: '12px',
+                padding: 'clamp(22px, 3.5vw, 36px) clamp(14px, 3vw, 28px) clamp(18px, 2.8vw, 26px) clamp(14px, 3vw, 28px)',
+                boxShadow: '0 -20px 60px rgba(255, 69, 0, 0.45)',
+                transform: `translateY(${0 - (Math.min(scrollProgress * 1.15, 1) * 155)}px)`,
+                transition: 'transform 0.05s linear',
+                zIndex: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                borderTop: '1px solid rgba(255,200,150,0.5)',
+                borderLeft: '1px solid rgba(255,100,50,0.2)',
+                borderRight: '1px solid rgba(255,100,50,0.2)'
               }}
             >
-              The next move is yours.
-            </span>
-          </div>
+              <div style={{ position: 'absolute', top: '16px', left: '16px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderLeft: '2px solid rgba(255,255,255,0.5)' }} />
+              <div style={{ position: 'absolute', top: '16px', right: '16px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderRight: '2px solid rgba(255,255,255,0.5)' }} />
 
-          {/* Envelope Front SVG */}
-          <svg style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 3, pointerEvents: 'none' }} width="100%" height="380" viewBox="0 0 640 380" preserveAspectRatio="none">
-            <defs>
-              <filter id="envelopeShadow" x="-10%" y="-10%" width="120%" height="120%">
-                <feDropShadow dx="0" dy="-4" stdDeviation="6" floodColor="#000000" floodOpacity="0.4" />
-              </filter>
-            </defs>
-            <polygon points="0,0 320,280 640,0 640,380 0,380" fill="#141416" stroke="rgba(255,255,255,0.06)" strokeWidth="1" filter="url(#envelopeShadow)" />
-            <polygon points="0,380 320,280 640,380" fill="#1a1a1e" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-          </svg>
+              <h2
+                className="envelope-card-headline"
+                style={{
+                  fontSize: 'clamp(13px, 2.2vw, 19px)',
+                  fontWeight: 800,
+                  letterSpacing: '0.03em',
+                  lineHeight: 1.25,
+                  color: '#FFFFFF',
+                  marginBottom: '10px',
+                  maxWidth: '520px',
+                  textAlign: 'center',
+                  textTransform: 'uppercase'
+                }}
+              >
+                NOT EVERYONE IS WILLING TO CHOOSE GREATNESS. YOU AREN'T EVERYONE.
+              </h2>
+
+              <p
+                className="envelope-card-body"
+                style={{
+                  fontSize: 'clamp(11px, 1.5vw, 12.5px)',
+                  color: 'rgba(255,255,255,0.92)',
+                  marginBottom: '10px',
+                  lineHeight: 1.45,
+                  fontWeight: 400,
+                  maxWidth: '510px',
+                  textAlign: 'center'
+                }}
+              >
+                You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take action, the conviction to think differently, and the ambition to become the exception.
+              </p>
+
+              <p
+                className="envelope-card-italic"
+                style={{
+                  fontSize: 'clamp(11.5px, 1.6vw, 13px)',
+                  color: '#FFFFFF',
+                  marginBottom: '14px',
+                  lineHeight: 1.35,
+                  fontWeight: 600,
+                  maxWidth: '490px',
+                  textAlign: 'center',
+                  fontStyle: 'italic'
+                }}
+              >
+                You weren't here to follow the standard. You were here to set it.
+              </p>
+
+              <button
+                onClick={onAssessmentClick}
+                className="envelope-card-btn mobile-btn-52"
+                style={{
+                  minHeight: '44px',
+                  height: '44px',
+                  backgroundColor: '#FFFFFF',
+                  color: '#000000',
+                  border: 'none',
+                  borderRadius: '6px',
+                  padding: '0 clamp(18px, 3vw, 28px)',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  letterSpacing: '0.04em',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  pointerEvents: 'auto',
+                  boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
+                  textTransform: 'uppercase'
+                }}
+                onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#E5E5E5'; }}
+                onMouseOut={(e) => { e.currentTarget.style.backgroundColor = '#FFFFFF'; }}
+              >
+                I CHOOSE GREATNESS.
+              </button>
+
+              <span
+                style={{
+                  fontSize: '12px',
+                  color: 'rgba(255,255,255,0.85)',
+                  marginTop: '10px',
+                  fontWeight: 500,
+                  letterSpacing: '0.02em',
+                  textAlign: 'center'
+                }}
+              >
+                The next move is yours.
+              </span>
+            </div>
+
+            {/* Envelope Front SVG */}
+            <svg style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 3, pointerEvents: 'none' }} width="100%" height="380" viewBox="0 0 640 380" preserveAspectRatio="none">
+              <defs>
+                <filter id="envelopeShadow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="-4" stdDeviation="6" floodColor="#000000" floodOpacity="0.4" />
+                </filter>
+              </defs>
+              <polygon points="0,0 320,280 640,0 640,380 0,380" fill="#141416" stroke="rgba(255,255,255,0.06)" strokeWidth="1" filter="url(#envelopeShadow)" />
+              <polygon points="0,380 320,280 640,380" fill="#1a1a1e" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+            </svg>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* 2. MOBILE CARD (OUTLINED BACKGROUND CARD, MINIMIZED HEIGHT, NO ENVELOPE) */}
+      <section
+        id="mobile-envelope-section"
+        className="mobile-only-block"
+        style={{
+          backgroundColor: '#121212',
+          padding: '48px 20px',
+          position: 'relative',
+          width: '100%',
+          boxSizing: 'border-box'
+        }}
+      >
+        <div style={{ maxWidth: '440px', margin: '0 auto', width: '100%' }}>
+          {/* Background outline card */}
+          <div
+            style={{
+              backgroundColor: '#161616',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              borderRadius: '20px',
+              padding: '12px',
+              boxSizing: 'border-box'
+            }}
+          >
+            {/* The minimized card */}
+            <div
+              style={{
+                width: '100%',
+                backgroundColor: '#D83300',
+                borderRadius: '14px',
+                padding: '24px 18px',
+                border: '1px solid rgba(255, 255, 255, 0.18)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+                boxSizing: 'border-box',
+                position: 'relative'
+              }}
+            >
+              {/* Corner brackets */}
+              <div style={{ position: 'absolute', top: 12, left: 12, width: 8, height: 8, borderTop: '2px solid rgba(255,255,255,0.4)', borderLeft: '2px solid rgba(255,255,255,0.4)' }} />
+              <div style={{ position: 'absolute', top: 12, right: 12, width: 8, height: 8, borderTop: '2px solid rgba(255,255,255,0.4)', borderRight: '2px solid rgba(255,255,255,0.4)' }} />
+
+              {/* Headline */}
+              <h2
+                style={{
+                  fontFamily: "'Switzer', 'Inter', sans-serif",
+                  fontSize: 'clamp(16px, 4.4vw, 19px)',
+                  fontWeight: 800,
+                  letterSpacing: '0.02em',
+                  lineHeight: 1.25,
+                  color: '#FFFFFF',
+                  textTransform: 'uppercase',
+                  margin: '0 0 10px 0',
+                  textAlign: 'center'
+                }}
+              >
+                NOT EVERYONE IS WILLING TO CHOOSE GREATNESS. YOU AREN'T EVERYONE.
+              </h2>
+
+              {/* Body */}
+              <p
+                style={{
+                  fontSize: '13px',
+                  lineHeight: 1.48,
+                  color: 'rgba(255, 255, 255, 0.92)',
+                  margin: '0 0 10px 0',
+                  textAlign: 'center',
+                  fontWeight: 400
+                }}
+              >
+                You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take action, the conviction to think differently, and the ambition to become the exception.
+              </p>
+
+              {/* Italic line */}
+              <p
+                style={{
+                  fontSize: '13px',
+                  fontStyle: 'italic',
+                  fontWeight: 600,
+                  color: '#FFFFFF',
+                  margin: '0 0 14px 0',
+                  textAlign: 'center',
+                  lineHeight: 1.4
+                }}
+              >
+                You weren't here to follow the standard. You were here to set it.
+              </p>
+
+              {/* Button */}
+              <button
+                onClick={onAssessmentClick}
+                style={{
+                  width: '100%',
+                  minHeight: '48px',
+                  height: '48px',
+                  backgroundColor: '#FFFFFF',
+                  color: '#000000',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '13.5px',
+                  fontWeight: 700,
+                  letterSpacing: '0.03em',
+                  cursor: 'pointer',
+                  textTransform: 'uppercase',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  whiteSpace: 'nowrap',
+                  boxShadow: '0 4px 14px rgba(0,0,0,0.2)'
+                }}
+              >
+                I CHOOSE GREATNESS.
+              </button>
+
+              {/* Small subtext */}
+              <span
+                style={{
+                  fontSize: '12px',
+                  color: 'rgba(255, 255, 255, 0.85)',
+                  marginTop: '10px',
+                  fontWeight: 500,
+                  letterSpacing: '0.02em',
+                  textAlign: 'center',
+                  display: 'block'
+                }}
+              >
+                The next move is yours.
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 
@@ -2399,9 +2837,9 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
   }, []);
 
   return (
-    <section id="booking" style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid #f0f0f0' }}>
-      <div className="booking-grid" style={{ maxWidth: '1240px', margin: '0 auto' }}>
-        
+    <section id="booking" className="section-spacious" style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid #f0f0f0' }}>
+      {/* DESKTOP CALENDAR VIEW (1024px+) - 100% UNCHANGED */}
+      <div className="booking-grid desktop-only" style={{ maxWidth: '1240px', margin: '0 auto' }}>
         {/* Left Column: Context & Proof */}
         <div>
           <div style={{
@@ -2444,7 +2882,93 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
         }}>
           <div style={{ width: '100%', height: '100%', minHeight: '540px', overflow: 'auto' }} id="my-cal-inline-brandgrowth-strategy-call"></div>
         </div>
+      </div>
 
+      {/* MOBILE CALL-TO-ACTION LAYOUT (< 1024px) - Accretion CTA Style */}
+      <div className="mobile-only-block" style={{ maxWidth: '520px', margin: '0 auto', textAlign: 'center', padding: '0 16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '4px 12px',
+              borderRadius: '20px',
+              backgroundColor: '#1C1C1C',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              fontSize: '11px',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              color: '#F5F5F5',
+              textTransform: 'uppercase'
+            }}
+          >
+            <span style={{ color: '#F16001', fontSize: '11px' }}>✦</span>
+            <span>PRIVATE ACCESS</span>
+          </div>
+        </div>
+
+        <h2
+          className="mobile-h2"
+          style={{
+            fontFamily: "'Switzer', 'Inter', sans-serif",
+            fontSize: 'clamp(28px, 6.2vw, 34px)',
+            fontWeight: 700,
+            lineHeight: 1.15,
+            letterSpacing: '-0.025em',
+            color: '#F5F5F5',
+            margin: '0 0 16px 0',
+            textAlign: 'center'
+          }}
+        >
+          We Install It. You Own It.
+        </h2>
+
+        <p
+          className="mobile-intro-text"
+          style={{
+            fontSize: '15.5px',
+            lineHeight: 1.6,
+            color: '#A3A3A3',
+            maxWidth: '460px',
+            margin: '0 auto 28px auto',
+            textAlign: 'center'
+          }}
+        >
+          Book a free Diagnostic call. We’ll find where you’re losing prospects, walk you through the system and give you a clear roadmap for your business.
+        </p>
+
+        <button
+          onClick={() => {
+            window.location.href = "https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call";
+          }}
+          className="mobile-btn-52"
+          style={{
+            width: '100%',
+            minHeight: '56px',
+            height: '56px',
+            borderRadius: '12px',
+            backgroundColor: '#f94500',
+            color: '#ffffff',
+            fontSize: '15.5px',
+            fontWeight: 600,
+            border: 'none',
+            boxShadow: '0 4px 20px rgba(249, 69, 0, 0.4)',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            letterSpacing: '0.01em',
+            margin: '0 auto 16px auto',
+            maxWidth: '420px'
+          }}
+        >
+          Book a Growth Infrastructure Diagnostic
+        </button>
+
+        <div style={{ fontSize: '13px', color: '#A3A3A3', fontWeight: 500, letterSpacing: '0.02em', textAlign: 'center' }}>
+          Free · 30 minutes · No obligation
+        </div>
       </div>
     </section>
   );
@@ -2647,19 +3171,22 @@ const MasterFooter = ({ onAssessmentClick }) => (
       WebkitMaskImage: 'linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0) 100%)',
       maskImage: 'linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0) 100%)'
     }}>
-      <span style={{
-        display: 'block',
-        fontFamily: "'Switzer', 'Inter', -apple-system, sans-serif",
-        fontSize: 'clamp(48px, 17vw, 360px)',
-        fontWeight: 800,
-        letterSpacing: '-0.045em',
-        lineHeight: 0.85,
-        width: '100%',
-        maxWidth: '100%',
-        whiteSpace: 'nowrap',
-        color: '#a1a1aa',
-        textAlign: 'center'
-      }}>
+      <span
+        className="footer-watermark-text"
+        style={{
+          display: 'block',
+          fontFamily: "'Switzer', 'Inter', -apple-system, sans-serif",
+          fontSize: 'clamp(48px, 17vw, 360px)',
+          fontWeight: 800,
+          letterSpacing: '-0.045em',
+          lineHeight: 0.85,
+          width: '100%',
+          maxWidth: '100%',
+          whiteSpace: 'nowrap',
+          color: '#a1a1aa',
+          textAlign: 'center'
+        }}
+      >
         Asenzo
       </span>
     </div>
