@@ -2302,34 +2302,6 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
           <p style={{ fontSize: '17px', lineHeight: 1.6, color: '#52525b', marginBottom: '32px', maxWidth: '500px' }}>
             Book a free Diagnostic call. We’ll find where you’re losing prospects, walk you through the system and give you a clear roadmap for your business.
           </p>
-
-          <button
-            data-cal-link="mmd-asenzo/brandgrowth-strategy-call"
-            data-cal-namespace="brandgrowth-strategy-call"
-            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            style={{
-              height: 48,
-              padding: "0 32px",
-              borderRadius: 8,
-              fontSize: 14.5,
-              fontWeight: 600,
-              cursor: "pointer",
-              transition: "filter 0.2s ease",
-              border: "none",
-              backgroundColor: "#000000",
-              color: "#ffffff",
-              boxShadow: "0 4px 18px rgba(0, 0, 0, 0.15)",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 8
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.filter = "brightness(1.2)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.filter = "brightness(1)"; }}
-          >
-            <span>Book a Strategy Call</span>
-            <span style={{ fontSize: 16 }}>→</span>
-          </button>
         </div>
 
         {/* Right Column: Real Cal.com Inline Booking Container */}
