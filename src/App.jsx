@@ -450,7 +450,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
       {/* ==================================================== */}
       <div className="mobile-nav-root">
         {/* Top State: Floating Pill Bar (Full width inset 12px) */}
-        {/* Scrolled State: Compact Logo Pill in Corner (>= 48x48px) */}
+        {/* Scrolled State: Single Logo Icon Button in Corner (46x46px) with NO outer grid */}
         <div
           onClick={() => setMobileMenuOpen(true)}
           role="button"
@@ -462,16 +462,16 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             top: "calc(env(safe-area-inset-top, 0px) + 12px)",
             right: 12,
             left: mobileScrolled ? "auto" : 12,
-            width: mobileScrolled ? 48 : "calc(100% - 24px)",
-            maxWidth: mobileScrolled ? 48 : 460,
+            width: mobileScrolled ? 46 : "calc(100% - 24px)",
+            maxWidth: mobileScrolled ? 46 : 460,
             margin: mobileScrolled ? 0 : "0 auto",
-            height: 48,
-            borderRadius: 12,
-            backgroundColor: "rgba(17, 17, 19, 0.94)",
+            height: 46,
+            borderRadius: 10,
+            backgroundColor: "#111111",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(255, 255, 255, 0.12)",
-            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.3)",
+            border: "1px solid rgba(255, 255, 255, 0.16)",
+            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.4)",
             zIndex: 1000,
             display: "flex",
             alignItems: "center",
@@ -483,70 +483,84 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             boxSizing: "border-box"
           }}
         >
-          {/* Brand Logo & Name */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-            <div
+          {/* Scrolled state: ONLY the logo icon itself, no nested bordered box or outer grid */}
+          {mobileScrolled ? (
+            <img
+              src="/asenzo-logo.jpg"
+              alt="Asenzo"
               style={{
-                width: 32,
-                height: 32,
-                borderRadius: 8,
-                backgroundColor: "#111111",
-                border: "1px solid rgba(255, 255, 255, 0.15)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0
+                width: 26,
+                height: 26,
+                borderRadius: 6,
+                objectFit: "cover",
+                mixBlendMode: "screen",
+                display: "block"
               }}
-            >
-              <img
-                src="/asenzo-logo.jpg"
-                alt="Asenzo"
-                style={{
-                  width: 22,
-                  height: 22,
-                  borderRadius: 4,
-                  objectFit: "cover",
-                  mixBlendMode: "screen",
-                  display: "block"
-                }}
-              />
-            </div>
+            />
+          ) : (
+            <>
+              {/* Brand Logo & Name */}
+              <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+                <div
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 8,
+                    backgroundColor: "#151515",
+                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0
+                  }}
+                >
+                  <img
+                    src="/asenzo-logo.jpg"
+                    alt="Asenzo"
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: 4,
+                      objectFit: "cover",
+                      mixBlendMode: "screen",
+                      display: "block"
+                    }}
+                  />
+                </div>
 
-            {!mobileScrolled && (
-              <span
+                <span
+                  style={{
+                    fontFamily: "'Switzer', 'Inter', sans-serif",
+                    fontSize: 15.5,
+                    fontWeight: 700,
+                    letterSpacing: "-0.015em",
+                    color: "#ffffff"
+                  }}
+                >
+                  ASENZO
+                </span>
+              </div>
+
+              {/* Right Text Label "Menu" in boxy rounded squircle */}
+              <div
                 style={{
-                  fontFamily: "'Switzer', 'Inter', sans-serif",
-                  fontSize: 15.5,
-                  fontWeight: 700,
-                  letterSpacing: "-0.015em",
-                  color: "#ffffff"
+                  height: 30,
+                  padding: "0 12px",
+                  borderRadius: 8,
+                  backgroundColor: "rgba(255, 255, 255, 0.08)",
+                  border: "1px solid rgba(255, 255, 255, 0.16)",
+                  color: "#ffffff",
+                  fontSize: 12.5,
+                  fontWeight: 600,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  letterSpacing: "0.01em"
                 }}
               >
-                ASENZO
-              </span>
-            )}
-          </div>
-
-          {/* Right Text Label "Menu" (NO hamburger icon) */}
-          {!mobileScrolled && (
-            <div
-              style={{
-                height: 32,
-                padding: "0 14px",
-                borderRadius: 9999,
-                backgroundColor: "rgba(255, 255, 255, 0.08)",
-                border: "1px solid rgba(255, 255, 255, 0.16)",
-                color: "#ffffff",
-                fontSize: 13,
-                fontWeight: 600,
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                letterSpacing: "0.01em"
-              }}
-            >
-              Menu
-            </div>
+                Menu
+              </div>
+            </>
           )}
         </div>
 
@@ -1677,7 +1691,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
       <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
         
         {/* Top Header Grid: Left Title + Right Description */}
-        <div style={{
+        <div className="pricing-header-wrap" style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -1686,10 +1700,10 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
           gap: '20px',
           marginBottom: 'clamp(32px, 5vw, 56px)'
         }}>
-          <div>
+          <div className="pricing-header-left">
             {/* Technical Eyebrow Pill */}
             <div
-              className="section-eyebrow-badge"
+              className="section-eyebrow-badge pricing-eyebrow-pill"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -1706,7 +1720,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 marginBottom: '16px'
               }}
             >
-              <span style={{ letterSpacing: '-1px', color: '#71717a', fontSize: '11px', fontWeight: 900 }}>|||||||</span>
+              <span className="pricing-barcode" style={{ display: 'inline-flex', alignItems: 'center', gap: '1.5px' }}>
+                <span style={{ width: '1.5px', height: '10px', backgroundColor: 'currentColor', display: 'inline-block' }}></span>
+                <span style={{ width: '2.5px', height: '10px', backgroundColor: 'currentColor', display: 'inline-block' }}></span>
+                <span style={{ width: '1px', height: '10px', backgroundColor: 'currentColor', display: 'inline-block' }}></span>
+                <span style={{ width: '2px', height: '10px', backgroundColor: 'currentColor', display: 'inline-block' }}></span>
+                <span style={{ width: '1px', height: '10px', backgroundColor: 'currentColor', display: 'inline-block' }}></span>
+                <span style={{ width: '2.5px', height: '10px', backgroundColor: 'currentColor', display: 'inline-block' }}></span>
+                <span style={{ width: '1.5px', height: '10px', backgroundColor: 'currentColor', display: 'inline-block' }}></span>
+              </span>
               <span>ENGAGEMENT OPTIONS</span>
             </div>
 
@@ -1827,7 +1849,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   "Conversion-focused page structure"
                 ].map((feat, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
-                    <div style={{
+                    <div className="pricing-check-icon-wrap" style={{
                       width: '16px',
                       height: '16px',
                       borderRadius: '50%',
@@ -1879,18 +1901,21 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 </p>
               </div>
               {/* Flagship Badge */}
-              <div style={{
-                border: '1px solid #e4e4e7',
-                padding: '4px 8px',
-                fontSize: '9.5px',
-                fontWeight: 800,
-                letterSpacing: '0.08em',
-                color: '#0f0f11',
-                textTransform: 'uppercase',
-                borderRadius: '3px',
-                backgroundColor: '#f4f4f5',
-                whiteSpace: 'nowrap'
-              }}>
+              <div
+                className="pricing-flagship-badge"
+                style={{
+                  border: '1px solid #e4e4e7',
+                  padding: '4px 8px',
+                  fontSize: '9.5px',
+                  fontWeight: 800,
+                  letterSpacing: '0.08em',
+                  color: '#0f0f11',
+                  textTransform: 'uppercase',
+                  borderRadius: '3px',
+                  backgroundColor: '#f4f4f5',
+                  whiteSpace: 'nowrap'
+                }}
+              >
                 FLAGSHIP
               </div>
             </div>
@@ -1962,7 +1987,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   "Full handover of everything we build"
                 ].map((feat, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
-                    <div style={{
+                    <div className="pricing-check-icon-wrap" style={{
                       width: '16px',
                       height: '16px',
                       borderRadius: '50%',
@@ -2073,7 +2098,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   "Tailored automation infrastructure"
                 ].map((feat, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
-                    <div style={{
+                    <div className="pricing-check-icon-wrap" style={{
                       width: '16px',
                       height: '16px',
                       borderRadius: '50%',
@@ -2167,17 +2192,19 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
           transition: 'all 0.2s ease'
         }}>
-          <Zap size={22} color="#0f0f11" strokeWidth={1.8} />
-          <h3 style={{
-            fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: '18px',
-            fontWeight: 700,
-            color: '#0f0f11',
-            letterSpacing: '-0.015em',
-            margin: '16px 0 8px 0'
-          }}>
-            CORE DELIVERY
-          </h3>
+          <div className="guarantee-card-header">
+            <Zap size={22} color="#0f0f11" strokeWidth={1.8} />
+            <h3 style={{
+              fontFamily: "'Switzer', 'Inter', sans-serif",
+              fontSize: '18px',
+              fontWeight: 700,
+              color: '#0f0f11',
+              letterSpacing: '-0.015em',
+              margin: '16px 0 8px 0'
+            }}>
+              CORE DELIVERY
+            </h3>
+          </div>
           <p style={{
             fontSize: '14.5px',
             color: '#52525b',
@@ -2200,17 +2227,19 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
           transition: 'all 0.2s ease'
         }}>
-          <Rocket size={22} color="#0f0f11" strokeWidth={1.8} />
-          <h3 style={{
-            fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: '18px',
-            fontWeight: 700,
-            color: '#0f0f11',
-            letterSpacing: '-0.015em',
-            margin: '16px 0 8px 0'
-          }}>
-            FULL INFRASTRUCTURE
-          </h3>
+          <div className="guarantee-card-header">
+            <Rocket size={22} color="#0f0f11" strokeWidth={1.8} />
+            <h3 style={{
+              fontFamily: "'Switzer', 'Inter', sans-serif",
+              fontSize: '18px',
+              fontWeight: 700,
+              color: '#0f0f11',
+              letterSpacing: '-0.015em',
+              margin: '16px 0 8px 0'
+            }}>
+              FULL INFRASTRUCTURE
+            </h3>
+          </div>
           <p style={{
             fontSize: '14.5px',
             color: '#52525b',
@@ -2233,17 +2262,19 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
           transition: 'all 0.2s ease'
         }}>
-          <Clock size={22} color="#0f0f11" strokeWidth={1.8} />
-          <h3 style={{
-            fontFamily: "'Switzer', 'Inter', sans-serif",
-            fontSize: '18px',
-            fontWeight: 700,
-            color: '#0f0f11',
-            letterSpacing: '-0.015em',
-            margin: '16px 0 8px 0'
-          }}>
-            PERFORMANCE REVIEW
-          </h3>
+          <div className="guarantee-card-header">
+            <Clock size={22} color="#0f0f11" strokeWidth={1.8} />
+            <h3 style={{
+              fontFamily: "'Switzer', 'Inter', sans-serif",
+              fontSize: '18px',
+              fontWeight: 700,
+              color: '#0f0f11',
+              letterSpacing: '-0.015em',
+              margin: '16px 0 8px 0'
+            }}>
+              PERFORMANCE REVIEW
+            </h3>
+          </div>
           <p style={{
             fontSize: '14.5px',
             color: '#52525b',
