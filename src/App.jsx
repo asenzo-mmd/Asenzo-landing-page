@@ -892,7 +892,7 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
             Different functions. One connected growth infrastructure.
           </p>
           <p style={{ fontSize: 13.5, color: "#52525b", lineHeight: 1.5, margin: 0 }}>
-            ASENZO designs, builds, and operates the system connecting your positioning, content, and customer acquisition.
+            ASENZO designs, builds, and operates the system connecting your positioning, content, and acquisition.
           </p>
         </div>
       </div>
