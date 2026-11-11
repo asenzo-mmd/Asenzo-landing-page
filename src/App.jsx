@@ -122,6 +122,33 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleStackScroll);
   }, []);
 
+  // Mobile scroll-triggered fade entrance for key areas
+  useEffect(() => {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
+    if (window.innerWidth >= 1024) return;
+
+    document.documentElement.classList.add("mobile-anim-active");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("anim-in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
+    );
+
+    const targets = document.querySelectorAll(
+      ".integrations-card-responsive, .benefits-card-item, .pricing-package-card, .envelope-glass-card, #booking .mobile-only-block"
+    );
+    targets.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
       className="app-main-root"
@@ -564,159 +591,161 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           )}
         </div>
 
-        {/* Full-Screen Overlay Menu on Tap */}
+        {/* Half-Page Floating Menu Card on Tap */}
         {mobileMenuOpen && (
           <div
-            role="dialog"
-            aria-modal="true"
-            aria-label="Navigation menu"
             style={{
               position: "fixed",
               inset: 0,
               zIndex: 99999,
-              backgroundColor: "rgba(10, 10, 12, 0.96)",
-              backdropFilter: "blur(28px)",
-              WebkitBackdropFilter: "blur(28px)",
+              backgroundColor: "rgba(0, 0, 0, 0.65)",
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
+              animation: "menuFadeIn 0.2s ease forwards",
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              padding: "calc(env(safe-area-inset-top, 0px) + 16px) 24px calc(env(safe-area-inset-bottom, 0px) + 24px) 24px",
-              animation: "menuFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              padding: "calc(env(safe-area-inset-top, 0px) + 12px) 12px",
               boxSizing: "border-box"
             }}
+            onClick={() => setMobileMenuOpen(false)}
           >
-            {/* Top Bar inside Menu: Logo + Close Pill Button */}
+            {/* Half-Page Floating Rounded Menu Card */}
             <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+              onClick={(e) => e.stopPropagation()}
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
                 width: "100%",
-                paddingBottom: 16
+                maxWidth: 420,
+                backgroundColor: "#141414",
+                borderRadius: 22,
+                border: "1px solid rgba(255, 255, 255, 0.12)",
+                boxShadow: "0 24px 60px rgba(0, 0, 0, 0.8), 0 0 1px rgba(255, 255, 255, 0.2)",
+                padding: "20px 20px 18px 20px",
+                display: "flex",
+                flexDirection: "column",
+                boxSizing: "border-box",
+                animation: "menuSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards"
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: 8,
-                    backgroundColor: "#111111",
-                    border: "1px solid rgba(255, 255, 255, 0.15)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }}
-                >
-                  <img
-                    src="/asenzo-logo.jpg"
-                    alt="Asenzo"
-                    style={{
-                      width: 22,
-                      height: 22,
-                      borderRadius: 4,
-                      objectFit: "cover",
-                      mixBlendMode: "screen",
-                      display: "block"
-                    }}
-                  />
-                </div>
+              {/* Header: Brand on left, clean X close on right */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  marginBottom: 16
+                }}
+              >
                 <span
                   style={{
                     fontFamily: "'Switzer', 'Inter', sans-serif",
-                    fontSize: 16,
+                    fontSize: 16.5,
                     fontWeight: 700,
                     letterSpacing: "-0.015em",
                     color: "#ffffff"
                   }}
                 >
-                  ASENZO
+                  Asenzo
                 </span>
-              </div>
 
-              {/* Close Button ("Close" with subtle X icon) */}
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close menu"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 6,
-                  height: 36,
-                  padding: "0 14px",
-                  borderRadius: 9999,
-                  backgroundColor: "rgba(255, 255, 255, 0.08)",
-                  border: "1px solid rgba(255, 255, 255, 0.16)",
-                  color: "#ffffff",
-                  fontSize: 13.5,
-                  fontWeight: 600,
-                  cursor: "pointer"
-                }}
-              >
-                <span>Close</span>
-                <X size={15} />
-              </button>
-            </div>
-
-            {/* Menu Items: Centered large rows (>= 56px tall, 20-22px text, 12-16px gaps) */}
-            <nav
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 14,
-                margin: "auto 0",
-                width: "100%"
-              }}
-            >
-              {navLinksMobile.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleMobileNavClick(e, item.href)}
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close menu"
                   style={{
+                    background: "none",
+                    border: "none",
+                    color: "#ffffff",
+                    cursor: "pointer",
+                    padding: 4,
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    minHeight: 56,
-                    width: "100%",
-                    fontSize: "clamp(21px, 5.8vw, 24px)",
-                    fontWeight: 600,
-                    color: "#ffffff",
-                    textDecoration: "none",
-                    letterSpacing: "-0.02em",
-                    textAlign: "center",
-                    padding: "8px 0"
+                    justifyContent: "center"
                   }}
                 >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
+                  <X size={20} strokeWidth={2.2} />
+                </button>
+              </div>
 
-            {/* Item 6: Book a Diagnostic (Primary CTA button style, full width, 52px tall, last) */}
-            <div style={{ width: "100%", paddingTop: 16 }}>
+              {/* Centered Navigation Links */}
+              <nav
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 12,
+                  width: "100%",
+                  margin: "6px 0 18px 0"
+                }}
+              >
+                {[
+                  { label: "Features", href: "#features" },
+                  { label: "Integrations", href: "#integrations" },
+                  { label: "Testimonials", href: "#guarantee" },
+                  { label: "Pricing", href: "#pricing" },
+                  { label: "FAQ", href: "#faq" }
+                ].map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => handleMobileNavClick(e, item.href)}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      textAlign: "center",
+                      fontSize: 16.5,
+                      fontWeight: 500,
+                      color: "#ffffff",
+                      textDecoration: "none",
+                      letterSpacing: "-0.01em",
+                      padding: "4px 0",
+                      transition: "color 0.15s ease"
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+
+              {/* Bottom Orange Button: Get started */}
               <button
                 onClick={handleMobileCta}
                 style={{
                   width: "100%",
-                  minHeight: 52,
-                  height: 52,
+                  minHeight: 48,
+                  height: 48,
                   borderRadius: 12,
-                  backgroundColor: "#f94500",
+                  background: "radial-gradient(ellipse 90% 70% at 25% 15%, #FF6400 0%, #E63B00 45%, #BA1E00 100%)",
+                  border: "1px solid rgba(255, 185, 130, 0.35)",
+                  borderTop: "1px solid rgba(255, 255, 255, 0.6)",
                   color: "#ffffff",
-                  fontSize: 16,
-                  fontWeight: 600,
-                  border: "none",
-                  boxShadow: "0 4px 20px rgba(249, 69, 0, 0.4)",
+                  fontSize: 15.5,
+                  fontWeight: 700,
+                  boxShadow: "0 4px 18px rgba(230, 60, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.5)",
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  letterSpacing: "0.01em"
+                  letterSpacing: "0.01em",
+                  position: "relative",
+                  overflow: "hidden"
                 }}
               >
-                Book a Diagnostic
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: "50%",
+                    background: "linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 100%)",
+                    pointerEvents: "none"
+                  }}
+                />
+                <span style={{ position: "relative", zIndex: 1 }}>Get started</span>
               </button>
             </div>
           </div>
@@ -2440,13 +2469,23 @@ const FAQSection = () => {
                   </div>
                 </div>
 
-                {isOpen && (
-                  <div className="faq-ans-wrap" style={{ paddingTop: '14px', paddingLeft: 'clamp(0px, 3vw, 36px)', paddingRight: '8px' }}>
-                    <p className="faq-ans-text" style={{ fontSize: '15px', lineHeight: 1.6, color: '#52525b', margin: 0 }}>
-                      {faq.a}
-                    </p>
+                <div
+                  className="faq-ans-wrap"
+                  style={{
+                    display: 'grid',
+                    gridTemplateRows: isOpen ? '1fr' : '0fr',
+                    transition: 'grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease',
+                    opacity: isOpen ? 1 : 0
+                  }}
+                >
+                  <div style={{ overflow: 'hidden' }}>
+                    <div style={{ paddingTop: '14px', paddingLeft: 'clamp(0px, 3vw, 36px)', paddingRight: '8px' }}>
+                      <p className="faq-ans-text" style={{ fontSize: '15px', lineHeight: 1.6, color: '#52525b', margin: 0 }}>
+                        {faq.a}
+                      </p>
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
@@ -2715,7 +2754,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
         </div>
       </section>
 
-      {/* 2. MOBILE CARD SECTION (< 1024px): CLEAN OUTLINE CARD WITH GLOWING ORANGE LETTER */}
+      {/* 2. MOBILE CARD SECTION (< 1024px): ULTRA-PREMIUM SHINY SLEEK GLASSY ORANGE CARD */}
       <section
         id="mobile-envelope-section"
         className="mobile-only-block"
@@ -2723,126 +2762,185 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
           backgroundColor: '#121212',
           padding: '56px 20px',
           width: '100%',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
+          position: 'relative'
         }}
       >
-        <div style={{ maxWidth: '440px', margin: '0 auto', width: '100%' }}>
+        <div style={{ maxWidth: '440px', margin: '0 auto', width: '100%', position: 'relative' }}>
+          {/* Shiny Glassy Orange Card */}
           <div
+            className="envelope-glass-card"
             style={{
               width: '100%',
-              backgroundColor: '#161616',
-              borderRadius: '24px',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              padding: '16px',
+              backgroundColor: '#E53B00',
+              background: 'radial-gradient(ellipse 90% 70% at 25% 15%, #FF6400 0%, #E63B00 45%, #BA1E00 100%)',
+              backdropFilter: 'blur(28px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(28px) saturate(180%)',
+              borderRadius: '26px',
+              border: '1px solid rgba(255, 185, 130, 0.35)',
+              borderTop: '1px solid rgba(255, 255, 255, 0.65)',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.35)',
+              padding: '32px 24px 28px 24px',
               boxSizing: 'border-box',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center'
+              alignItems: 'flex-start',
+              textAlign: 'left',
+              boxShadow: '0 24px 64px rgba(0, 0, 0, 0.65), 0 0 45px rgba(255, 85, 0, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.55), inset 0 -1px 1px rgba(0, 0, 0, 0.25)',
+              position: 'relative',
+              overflow: 'hidden'
             }}
           >
-            {/* Letter: Full-width orange card inside outline card */}
+            {/* Fine Luminous Micro-Dot Grid (matching premium reference) */}
             <div
               style={{
+                position: 'absolute',
+                inset: 0,
+                backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px)',
+                backgroundSize: '14px 14px',
+                maskImage: 'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 65%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 65%, transparent 100%)',
+                pointerEvents: 'none',
+                zIndex: 1
+              }}
+            />
+
+            {/* Glossy Specular Glass Reflection Sheen */}
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '55%',
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.08) 35%, transparent 65%)',
+                pointerEvents: 'none',
+                zIndex: 1
+              }}
+            />
+
+            {/* Radiant Ambient Orb in Top-Left */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '-20%',
+                left: '-15%',
+                width: '320px',
+                height: '320px',
+                background: 'radial-gradient(circle, rgba(255, 175, 70, 0.45) 0%, rgba(255, 100, 0, 0.15) 50%, transparent 75%)',
+                filter: 'blur(35px)',
+                pointerEvents: 'none',
+                zIndex: 1
+              }}
+            />
+
+            {/* Headline */}
+            <h2
+              style={{
+                fontFamily: "'Switzer', 'Inter', sans-serif",
+                fontSize: 'clamp(21px, 5.6vw, 25px)',
+                fontWeight: 800,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.18,
+                color: '#FFFFFF',
+                textTransform: 'uppercase',
+                margin: '0 0 16px 0',
+                textAlign: 'left',
                 width: '100%',
-                backgroundColor: '#D83300',
-                borderRadius: '18px',
-                padding: '24px 20px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                textAlign: 'center',
-                boxSizing: 'border-box',
-                boxShadow: '0 8px 32px rgba(216, 51, 0, 0.35)',
-                borderTop: '1px solid rgba(255, 200, 150, 0.4)'
+                position: 'relative',
+                zIndex: 2
               }}
             >
-              {/* Headline */}
-              <h2
-                style={{
-                  fontFamily: "'Switzer', 'Inter', sans-serif",
-                  fontSize: 'clamp(20px, 5.2vw, 22px)',
-                  fontWeight: 800,
-                  letterSpacing: '0.02em',
-                  lineHeight: 1.2,
-                  color: '#FFFFFF',
-                  textTransform: 'uppercase',
-                  margin: '0 0 16px 0',
-                  textAlign: 'center',
-                  width: '100%'
-                }}
-              >
-                NOT EVERYONE IS WILLING TO CHOOSE GREATNESS. YOU AREN'T EVERYONE.
-              </h2>
+              NOT EVERYONE IS WILLING TO CHOOSE GREATNESS. YOU AREN'T EVERYONE.
+            </h2>
 
-              {/* Body */}
+            {/* Body */}
+            <p
+              style={{
+                fontSize: '14.5px',
+                lineHeight: 1.55,
+                color: 'rgba(255, 255, 255, 0.95)',
+                margin: '0 0 18px 0',
+                textAlign: 'left',
+                fontWeight: 400,
+                position: 'relative',
+                zIndex: 2
+              }}
+            >
+              You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take action, the conviction to think differently, and the ambition to become the exception.
+            </p>
+
+            {/* Straight Manifesto Line (Upright & prominent with sleek accent indicator) */}
+            <div
+              style={{
+                borderLeft: '2.5px solid #FFFFFF',
+                paddingLeft: '14px',
+                margin: '0 0 24px 0',
+                position: 'relative',
+                zIndex: 2
+              }}
+            >
               <p
                 style={{
                   fontSize: '15px',
-                  lineHeight: 1.55,
-                  color: 'rgba(255, 255, 255, 0.95)',
-                  margin: '0 0 16px 0',
-                  textAlign: 'center',
-                  fontWeight: 400
-                }}
-              >
-                You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take action, the conviction to think differently, and the ambition to become the exception.
-              </p>
-
-              {/* Italic line */}
-              <p
-                style={{
-                  fontSize: '15px',
-                  fontStyle: 'italic',
-                  fontWeight: 600,
+                  fontStyle: 'normal',
+                  fontWeight: 700,
                   color: '#FFFFFF',
-                  margin: '0 0 16px 0',
-                  textAlign: 'center',
-                  lineHeight: 1.4
+                  margin: 0,
+                  lineHeight: 1.45,
+                  letterSpacing: '-0.01em'
                 }}
               >
                 You weren't here to follow the standard. You were here to set it.
               </p>
-
-              {/* Full-width 52px button */}
-              <button
-                onClick={onAssessmentClick}
-                style={{
-                  width: '100%',
-                  minHeight: '52px',
-                  height: '52px',
-                  backgroundColor: '#FFFFFF',
-                  color: '#000000',
-                  border: 'none',
-                  borderRadius: '14px',
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  letterSpacing: '0.03em',
-                  cursor: 'pointer',
-                  textTransform: 'uppercase',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                I CHOOSE GREATNESS.
-              </button>
-
-              {/* Small line below */}
-              <span
-                style={{
-                  fontSize: '13px',
-                  color: 'rgba(255, 255, 255, 0.88)',
-                  marginTop: '12px',
-                  fontWeight: 500,
-                  letterSpacing: '0.02em',
-                  textAlign: 'center',
-                  display: 'block'
-                }}
-              >
-                The next move is yours.
-              </span>
             </div>
+
+            {/* Full-width 52px button */}
+            <button
+              onClick={onAssessmentClick}
+              className="mobile-btn-52"
+              style={{
+                width: '100%',
+                minHeight: '52px',
+                height: '52px',
+                backgroundColor: '#FFFFFF',
+                color: '#000000',
+                border: 'none',
+                borderRadius: '14px',
+                fontSize: '15px',
+                fontWeight: 700,
+                letterSpacing: '0.04em',
+                cursor: 'pointer',
+                textTransform: 'uppercase',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                whiteSpace: 'nowrap',
+                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.35)',
+                position: 'relative',
+                zIndex: 2
+              }}
+            >
+              I CHOOSE GREATNESS.
+            </button>
+
+            {/* Small line below */}
+            <span
+              style={{
+                fontSize: '13px',
+                color: 'rgba(255, 255, 255, 0.88)',
+                marginTop: '12px',
+                fontWeight: 500,
+                letterSpacing: '0.02em',
+                textAlign: 'center',
+                display: 'block',
+                width: '100%',
+                position: 'relative',
+                zIndex: 2
+              }}
+            >
+              The next move is yours.
+            </span>
           </div>
         </div>
       </section>
@@ -3012,23 +3110,38 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
             width: '100%',
             minHeight: '56px',
             height: '56px',
-            borderRadius: '12px',
-            backgroundColor: '#f94500',
+            borderRadius: '14px',
+            background: 'radial-gradient(ellipse 90% 70% at 25% 15%, #FF6400 0%, #E63B00 45%, #BA1E00 100%)',
             color: '#ffffff',
             fontSize: '15.5px',
-            fontWeight: 600,
-            border: 'none',
-            boxShadow: '0 4px 20px rgba(249, 69, 0, 0.4)',
+            fontWeight: 700,
+            border: '1px solid rgba(255, 185, 130, 0.4)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.65)',
+            boxShadow: '0 8px 28px rgba(230, 60, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.55)',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            letterSpacing: '0.01em',
+            letterSpacing: '0.02em',
             margin: '0 auto',
-            maxWidth: '420px'
+            maxWidth: '420px',
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
-          Book a Free Diagnostic Call
+          {/* Subtle glossy sheen reflection */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '50%',
+              background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 100%)',
+              pointerEvents: 'none'
+            }}
+          />
+          <span style={{ position: 'relative', zIndex: 1 }}>Book a Free Diagnostic Call</span>
         </button>
       </div>
     </section>
@@ -3177,7 +3290,7 @@ const MasterFooter = ({ onAssessmentClick }) => (
             <LetsConnectSwipeButton onClick={onAssessmentClick} />
           </div>
           <div className="footer-copy-text" style={{ fontSize: '12px', color: '#71717a', marginTop: '12px' }}>
-            © 2026 Asenzo Inc. All rights reserved.
+            © 2026 Asenzo. All rights reserved.
           </div>
         </div>
 

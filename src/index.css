@@ -247,7 +247,7 @@ body {
     --s9: 64px;
 
     --bg: #121212;
-    --surface: #161616;
+    --surface: #121212;
     --card: #1C1C1C;
     --card-raised: #242424;
     --border: rgba(255, 255, 255, 0.08);
@@ -295,33 +295,25 @@ body {
     }
   }
 
-  /* Section Vertical Padding: 56px top and bottom, background alternation, borders */
+  /* Section Vertical Padding: 56px top and bottom, pure black #121212 across all sections */
   .section-spacious,
   .section-responsive,
+  #hero,
+  .hero-section-wrap,
   #features,
   #pricing,
   #guarantee,
   #faq,
   #booking,
-  #integrations {
+  #integrations,
+  #mobile-envelope-section,
+  section:has(.client-story-quote),
+  footer {
     padding-top: 56px !important;
     padding-bottom: 56px !important;
     scroll-margin-top: 84px !important;
     border-bottom: 1px solid var(--border) !important;
-  }
-
-  #features,
-  #pricing,
-  #booking {
-    background-color: var(--bg) !important;
-  }
-
-  #integrations,
-  section:has(.client-story-quote),
-  #guarantee,
-  #faq,
-  footer {
-    background-color: var(--surface) !important;
+    background-color: #121212 !important;
   }
 
   /* Global Headings & Typography */
@@ -338,6 +330,7 @@ body {
     color: var(--text) !important;
     margin: 0 auto var(--s4) auto !important;
     text-align: center !important;
+    animation: mobileHeroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
   }
 
   .mobile-h2 {
@@ -426,6 +419,7 @@ body {
     background-color: var(--card) !important;
     border: 1px solid var(--border) !important;
     color: var(--text) !important;
+    animation: mobileHeroFadeDown 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .hero-mono-subtext {
     font-size: 13.5px !important;
@@ -434,6 +428,7 @@ body {
     color: var(--text-muted) !important;
     margin: 0 auto var(--s6) auto !important;
     padding: 0 4px !important;
+    animation: mobileHeroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
   }
   .hero-btn,
   .hero-section-wrap .mobile-btn-52 {
@@ -447,6 +442,62 @@ body {
     color: #ffffff !important;
     border: none !important;
     box-shadow: none !important;
+    animation: mobileHeroBtnPop 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+  }
+
+  /* Keyframes for Mobile Hero Animations */
+  @keyframes mobileHeroFadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes mobileHeroFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes mobileHeroBtnPop {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Scroll Reveal Transitions for Key Areas in Mobile View */
+  .mobile-anim-active .integrations-card-responsive:not(.anim-in-view),
+  .mobile-anim-active .benefits-card-item:not(.anim-in-view),
+  .mobile-anim-active .pricing-package-card:not(.anim-in-view),
+  .mobile-anim-active .envelope-glass-card:not(.anim-in-view),
+  .mobile-anim-active #booking .mobile-only-block:not(.anim-in-view) {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-anim-active .integrations-card-responsive.anim-in-view,
+  .mobile-anim-active .benefits-card-item.anim-in-view,
+  .mobile-anim-active .pricing-package-card.anim-in-view,
+  .mobile-anim-active .envelope-glass-card.anim-in-view,
+  .mobile-anim-active #booking .mobile-only-block.anim-in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   /* ==================================================== */
@@ -478,6 +529,7 @@ body {
     animation: none !important;
   }
   .integrations-card-responsive {
+    position: relative !important;
     border-radius: 20px !important;
     padding: 16px 16px !important;
     width: 100% !important;
@@ -497,11 +549,15 @@ body {
     color: var(--text) !important;
     line-height: 1.25 !important;
     text-align: left !important;
-    min-height: 44px !important;
-    display: flex !important;
-    align-items: center !important;
+    padding-right: 38px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    min-height: auto !important;
   }
   .card-corner-num {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
     font-size: 13.5px !important;
     font-weight: 700 !important;
     color: var(--text) !important;
@@ -514,6 +570,7 @@ body {
     align-items: center !important;
     justify-content: center !important;
     flex-shrink: 0 !important;
+    z-index: 5 !important;
   }
   .integrations-card-responsive .card-desc {
     font-size: 13.5px !important;
@@ -1037,12 +1094,18 @@ body {
     font-size: 12px !important;
   }
   .footer-watermark-text {
-    font-size: clamp(52px, 18.5vw, 92px) !important;
+    font-size: 26.5vw !important;
+    line-height: 0.82 !important;
+    letter-spacing: -0.04em !important;
     width: 100% !important;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.03) 100%) !important;
+    max-width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.04) 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
-    padding-bottom: var(--s4) !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
   }
 
   /* Logo tile border */
