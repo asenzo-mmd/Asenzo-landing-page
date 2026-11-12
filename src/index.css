@@ -1,20 +1,20 @@
 @import "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap";
 
 :root {
-  /* ASENZO OFFICIAL WHITE DESIGN SYSTEM */
-  --color-page-bg: #ffffff;
-  --color-surface-dashboard: #ffffff;
-  --color-surface-elevated: #f8f8fa;
-  --color-surface-secondary: #f4f4f6;
-  --color-border-graphite: #e4e4e7;
-  --color-border-subtle: rgba(0, 0, 0, 0.08);
-  --color-border-hover: rgba(0, 0, 0, 0.16);
+  /* ASENZO OFFICIAL DESIGN SYSTEM: DEEP CHARCOAL / MIDNIGHT TITANIUM */
+  --color-page-bg: #0B0C0E;
+  --color-surface-dashboard: #0E1015;
+  --color-surface-elevated: #13151B;
+  --color-surface-secondary: #171922;
+  --color-border-graphite: rgba(255, 255, 255, 0.08);
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.18);
   
   /* Typography */
-  --color-text-warm-white: #0f0f11;
-  --color-text-pure-white: #000000;
-  --color-text-secondary: #52525b;
-  --color-text-muted: #71717a;
+  --color-text-warm-white: #F4F4F6;
+  --color-text-pure-white: #FFFFFF;
+  --color-text-secondary: #949BA8;
+  --color-text-muted: #6B7280;
   
   /* Brand Accents */
   --color-burnt-orange: #F16001;
@@ -35,12 +35,12 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #ffffff;
+  background-color: #0B0C0E;
 }
 
 body {
-  background-color: #ffffff;
-  color: #0f0f11;
+  background-color: #0B0C0E;
+  color: #F4F4F6;
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.6;
@@ -229,14 +229,14 @@ body {
   align-items: flex-start;
 }
 
-/* Web View (Desktop) Black and White Pricing Checklist Ticks */
+/* Web View (Desktop) Pricing Checklist Ticks */
 .pricing-check-icon-wrap {
-  background-color: #ffffff !important;
-  border: 1.5px solid #0f0f11 !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
 }
 .pricing-check-icon-wrap svg {
-  color: #0f0f11 !important;
-  stroke: #0f0f11 !important;
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
 }
 
 @media (max-width: 767px) {

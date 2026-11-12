@@ -154,9 +154,9 @@ export default function App() {
     <div
       className="app-main-root"
       style={{
-        backgroundColor: "#ffffff",
+        backgroundColor: "#0B0C0E",
         minHeight: "100vh",
-        color: "#0f0f11",
+        color: "#F4F4F6",
         overflowX: "clip",
         position: "relative",
         fontFamily: "'Switzer', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
@@ -320,12 +320,12 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             borderRadius: 14,
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.9)",
-            borderTop: "1px solid rgba(0, 0, 0, 0.09)",
-            borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
-            borderRight: "1px solid rgba(0, 0, 0, 0.05)",
-            borderBottom: "1px solid rgba(0, 0, 0, 0.01)",
-            boxShadow: "0 12px 36px rgba(0, 0, 0, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95)",
+            backgroundColor: isScrolled ? "rgba(14, 16, 20, 0.88)" : "rgba(11, 12, 14, 0.78)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.18)",
+            borderLeft: "1px solid rgba(255, 255, 255, 0.08)",
+            borderRight: "1px solid rgba(255, 255, 255, 0.08)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.02)",
+            boxShadow: "0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12)",
             maxWidth: isScrolled ? 624 : 980,
             width: "100%",
             minHeight: 52,
@@ -339,7 +339,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
               inset: 0,
               borderRadius: 14,
               padding: 1,
-              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 60%, rgba(0, 0, 0, 0) 100%)",
+              background: "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 60%, transparent 100%)",
               WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
               WebkitMaskComposite: "xor",
               maskComposite: "exclude",
@@ -364,11 +364,12 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
                 width: 30,
                 height: 30,
                 borderRadius: 7,
-                backgroundColor: "#111111",
+                backgroundColor: "#161820",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)"
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.4)"
               }}
             >
               <img
@@ -400,7 +401,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
                   fontSize: 16.5,
                   fontWeight: 700,
                   letterSpacing: "-0.015em",
-                  color: "#0f0f11"
+                  color: "#FFFFFF"
                 }}
               >
                 ASENZO
@@ -416,7 +417,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
               gap: isScrolled ? 18 : 28,
               fontSize: 13.5,
               fontWeight: 500,
-              color: "#27272a",
+              color: "#949BA8",
               transition: "gap 0.3s ease",
               zIndex: 2
             }}
@@ -426,13 +427,13 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
                 key={item.label}
                 href={item.href}
                 style={{
-                  color: "#27272a",
+                  color: "#949BA8",
                   textDecoration: "none",
                   transition: "color 0.2s ease",
                   whiteSpace: "nowrap"
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#000000")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#27272a")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#949BA8")}
               >
                 {item.label}
               </a>
@@ -777,7 +778,7 @@ function AccretionHero({ onOpenModal }) {
     <section
       className="hero-section-wrap section-spacious"
       style={{
-        backgroundColor: "#ffffff",
+        backgroundColor: "#0B0C0E",
         minHeight: "92vh",
         display: "flex",
         flexDirection: "column",
@@ -808,11 +809,11 @@ function AccretionHero({ onOpenModal }) {
               gap: 8,
               padding: "5px 14px",
               borderRadius: 20,
-              backgroundColor: "#f4f4f5",
-              border: "1px solid #e4e4e7",
+              backgroundColor: "rgba(255, 255, 255, 0.06)",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
               fontSize: 12.5,
               fontWeight: 600,
-              color: "#0f0f11",
+              color: "#E2E8F0",
               letterSpacing: "0.02em"
             }}
           >
@@ -829,7 +830,7 @@ function AccretionHero({ onOpenModal }) {
             fontWeight: 700,
             lineHeight: 1.1,
             letterSpacing: "-0.035em",
-            color: "#0f0f11",
+            color: "#FFFFFF",
             margin: "0 auto 24px auto",
             maxWidth: 960,
             wordBreak: "break-word"
@@ -851,7 +852,7 @@ function AccretionHero({ onOpenModal }) {
             lineHeight: 1.65,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
-            color: "#52525b",
+            color: "#949BA8",
             maxWidth: 760,
             margin: "0 auto 36px auto",
             padding: "0 4px"
@@ -860,7 +861,7 @@ function AccretionHero({ onOpenModal }) {
           ASENZO helps you build and operate the growth infrastructure that turns attention into sales calls through connected systems.
         </p>
 
-        {/* Primary CTA Button: Solid flat black (#000000), white text, zero hover expansion */}
+        {/* Primary CTA Button: Radiant Orange Gradient with Specular Sheen */}
         <div style={{ display: "flex", justifyContent: "center" }}>
           <button
             onClick={onOpenModal}
@@ -868,26 +869,31 @@ function AccretionHero({ onOpenModal }) {
             style={{
               minHeight: 48,
               height: 48,
-              padding: "0 32px",
-              borderRadius: 8,
+              padding: "0 34px",
+              borderRadius: 10,
               fontSize: 14.5,
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: "pointer",
-              transition: "filter 0.2s ease",
-              border: "none",
-              backgroundColor: "#000000",
+              transition: "filter 0.2s ease, transform 0.15s ease",
+              border: "1px solid rgba(255, 185, 130, 0.4)",
+              borderTop: "1px solid rgba(255, 255, 255, 0.65)",
+              background: "radial-gradient(ellipse 90% 70% at 25% 15%, #FF6400 0%, #E63B00 45%, #BA1E00 100%)",
               color: "#ffffff",
-              boxShadow: "0 4px 18px rgba(0, 0, 0, 0.15)",
+              boxShadow: "0 6px 24px rgba(241, 96, 1, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.55)",
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              width: "min(100%, 280px)"
+              width: "min(100%, 280px)",
+              position: "relative",
+              overflow: "hidden"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.filter = "brightness(1.2)";
+              e.currentTarget.style.filter = "brightness(1.1)";
+              e.currentTarget.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.filter = "brightness(1)";
+              e.currentTarget.style.transform = "translateY(0)";
             }}
           >
             Get started
@@ -970,8 +976,8 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
       id="integrations"
       className="section-spacious"
       style={{
-        backgroundColor: "#ffffff",
-        color: "#0f0f11",
+        backgroundColor: "#0B0C0E",
+        color: "#F4F4F6",
         paddingTop: "clamp(56px, 8vw, 90px)",
         paddingBottom: "clamp(64px, 10vw, 110px)",
         position: "relative",
@@ -997,11 +1003,11 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
               gap: 8,
               padding: "4px 12px",
               borderRadius: 20,
-              backgroundColor: "#f4f4f5",
-              border: "1px solid #e4e4e7",
+              backgroundColor: "rgba(255, 255, 255, 0.06)",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
               fontSize: 11.5,
               fontWeight: 700,
-              color: "#0f0f11",
+              color: "#E2E8F0",
               letterSpacing: "0.08em",
               textTransform: "uppercase"
             }}
@@ -1020,7 +1026,7 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
             lineHeight: 1.12,
             letterSpacing: "-0.03em",
             textAlign: "center",
-            color: "#0f0f11",
+            color: "#FFFFFF",
             margin: "0 auto 12px auto",
             maxWidth: 780
           }}
@@ -1353,15 +1359,15 @@ function CompactIntegrationCard({ group, index = 0 }) {
       className="integrations-card-responsive sticky-stack-card"
       style={{
         '--i': index,
-        backgroundColor: "#ffffff",
-        border: "1px solid rgba(0, 0, 0, 0.08)",
+        backgroundColor: "#13151B",
+        border: "1px solid rgba(255, 255, 255, 0.08)",
         borderRadius: 14,
         padding: "16px 18px",
         width: "100%",
         maxWidth: 360,
         margin: "0 auto",
         minHeight: 124,
-        boxShadow: "0 6px 20px rgba(0, 0, 0, 0.04)",
+        boxShadow: "0 8px 24px rgba(0, 0, 0, 0.4)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -1371,12 +1377,12 @@ function CompactIntegrationCard({ group, index = 0 }) {
         boxSizing: "border-box"
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.4)";
-        e.currentTarget.style.boxShadow = "0 8px 24px rgba(241, 96, 1, 0.08)";
+        e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.5)";
+        e.currentTarget.style.boxShadow = "0 8px 28px rgba(241, 96, 1, 0.12)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "rgba(0, 0, 0, 0.08)";
-        e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.04)";
+        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+        e.currentTarget.style.boxShadow = "0 8px 24px rgba(0, 0, 0, 0.4)";
       }}
     >
       {/* Title & Layer Badge */}
@@ -1388,7 +1394,7 @@ function CompactIntegrationCard({ group, index = 0 }) {
             fontSize: 13,
             fontWeight: 700,
             letterSpacing: "-0.01em",
-            color: "#0f0f11",
+            color: "#FFFFFF",
             margin: 0,
             lineHeight: 1.3
           }}
@@ -1402,7 +1408,8 @@ function CompactIntegrationCard({ group, index = 0 }) {
             fontSize: 10,
             fontWeight: 700,
             color: "#F16001",
-            backgroundColor: "rgba(241, 96, 1, 0.08)",
+            backgroundColor: "rgba(241, 96, 1, 0.12)",
+            border: "1px solid rgba(241, 96, 1, 0.3)",
             padding: "2px 7px",
             borderRadius: 5,
             letterSpacing: "0.04em",
@@ -1439,7 +1446,7 @@ function CompactIntegrationCard({ group, index = 0 }) {
         style={{
           fontSize: 11.5,
           lineHeight: 1.45,
-          color: "#52525b",
+          color: "#949BA8",
           margin: 0
         }}
       >
@@ -1455,7 +1462,7 @@ function CompactIntegrationCard({ group, index = 0 }) {
           gap: 6,
           flexWrap: "wrap",
           paddingTop: 8,
-          borderTop: "1px solid #f4f4f5"
+          borderTop: "1px solid rgba(255, 255, 255, 0.06)"
         }}
       >
         {group.capabilities.map((cap, i) => (
@@ -1465,8 +1472,9 @@ function CompactIntegrationCard({ group, index = 0 }) {
             style={{
               fontSize: 10,
               fontWeight: 600,
-              color: "#3f3f46",
-              backgroundColor: "#f4f4f5",
+              color: "#D1D5DB",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
               padding: "2px 7px",
               borderRadius: 4,
               letterSpacing: "0.01em"
@@ -1519,9 +1527,9 @@ function KeyBenefitsSection() {
     <section
       id="features"
       style={{
-        backgroundColor: "#ffffff",
+        backgroundColor: "#0E1015",
         padding: "clamp(56px, 8vw, 110px) clamp(16px, 4vw, 24px)",
-        borderBottom: "1px solid #f0f0f0",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
         position: "relative"
       }}
     >
@@ -1536,11 +1544,11 @@ function KeyBenefitsSection() {
               gap: "8px",
               padding: "5px 14px",
               borderRadius: "20px",
-              backgroundColor: "#f4f4f5",
-              border: "1px solid #e4e4e7",
+              backgroundColor: "rgba(255, 255, 255, 0.06)",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
               fontSize: "11.5px",
               fontWeight: 700,
-              color: "#0f0f11",
+              color: "#E2E8F0",
               letterSpacing: "0.08em",
               textTransform: "uppercase"
             }}
@@ -1558,7 +1566,7 @@ function KeyBenefitsSection() {
             fontWeight: 700,
             lineHeight: 1.1,
             letterSpacing: "-0.03em",
-            color: "#0f0f11",
+            color: "#FFFFFF",
             textAlign: "center",
             margin: "0 auto 16px auto",
             maxWidth: "760px"
@@ -1573,7 +1581,7 @@ function KeyBenefitsSection() {
           style={{
             fontSize: "clamp(14px, 1.6vw, 16.5px)",
             lineHeight: 1.6,
-            color: "#52525b",
+            color: "#949BA8",
             textAlign: "center",
             margin: "0 auto clamp(32px, 5vw, 64px) auto",
             maxWidth: "680px"
@@ -1589,22 +1597,22 @@ function KeyBenefitsSection() {
               key={idx}
               className="benefits-card-item"
               style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #e4e4e7",
+                backgroundColor: "#13151B",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
                 borderRadius: "12px",
                 padding: "clamp(24px, 3.5vw, 32px) clamp(20px, 3vw, 28px)",
                 display: "flex",
                 flexDirection: "column",
                 gap: "16px",
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.03)",
+                boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35)",
                 transition: "all 0.2s ease"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "#0f0f11";
+                e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.5)";
                 e.currentTarget.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#e4e4e7";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
@@ -1614,7 +1622,8 @@ function KeyBenefitsSection() {
                   width: "44px",
                   height: "44px",
                   borderRadius: "10px",
-                  backgroundColor: "rgba(241, 96, 1, 0.08)",
+                  backgroundColor: "rgba(241, 96, 1, 0.12)",
+                  border: "1px solid rgba(241, 96, 1, 0.25)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center"
@@ -1628,7 +1637,7 @@ function KeyBenefitsSection() {
                   fontSize: "19px",
                   fontWeight: 600,
                   letterSpacing: "-0.015em",
-                  color: "#0f0f11",
+                  color: "#FFFFFF",
                   margin: 0
                 }}
               >
@@ -1638,7 +1647,7 @@ function KeyBenefitsSection() {
                 style={{
                   fontSize: "14.5px",
                   lineHeight: 1.55,
-                  color: "#52525b",
+                  color: "#949BA8",
                   margin: 0
                 }}
               >
@@ -1653,7 +1662,7 @@ function KeyBenefitsSection() {
 }
 
 const HandHoldingPhoneSection = () => (
-  <section className="section-spacious" style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 100px) 0', borderBottom: '1px solid #f0f0f0', overflow: 'hidden' }}>
+  <section className="section-spacious" style={{ backgroundColor: '#0B0C0E', padding: 'clamp(56px, 8vw, 100px) 0', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', overflow: 'hidden' }}>
     <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
 
       {/* Client Story Eyebrow Pill */}
@@ -1666,11 +1675,11 @@ const HandHoldingPhoneSection = () => (
             gap: '8px',
             padding: '5px 14px',
             borderRadius: '20px',
-            backgroundColor: '#f4f4f5',
-            border: '1px solid #e4e4e7',
+            backgroundColor: 'rgba(255, 255, 255, 0.06)',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
             fontSize: '11.5px',
             fontWeight: 700,
-            color: '#0f0f11',
+            color: '#E2E8F0',
             letterSpacing: '0.08em',
             textTransform: 'uppercase'
           }}
@@ -1686,7 +1695,7 @@ const HandHoldingPhoneSection = () => (
           fontWeight: 400,
           lineHeight: 1.3,
           letterSpacing: '-0.025em',
-          color: '#0f0f11',
+          color: '#FFFFFF',
           margin: '0 0 28px 0',
           textAlign: 'center'
         }}>
@@ -1704,15 +1713,15 @@ const HandHoldingPhoneSection = () => (
               borderRadius: '50%',
               objectFit: 'cover',
               objectPosition: 'center 20%',
-              border: '1.5px solid #e4e4e7',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+              border: '1.5px solid rgba(255, 255, 255, 0.15)',
+              boxShadow: '0 2px 12px rgba(0, 0, 0, 0.4)',
               flexShrink: 0,
               display: 'block'
             }}
           />
           <div>
-            <div className="client-author-name" style={{ fontSize: '15px', fontWeight: 600, color: '#0f0f11', lineHeight: 1.2 }}>B2B Founder</div>
-            <div className="client-author-role" style={{ fontSize: '13px', color: '#52525b', marginTop: '4px' }}>CEO of Alarsh</div>
+            <div className="client-author-name" style={{ fontSize: '15px', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.2 }}>B2B Founder</div>
+            <div className="client-author-role" style={{ fontSize: '13px', color: '#949BA8', marginTop: '4px' }}>CEO of Alarsh</div>
           </div>
         </div>
       </div>
@@ -1725,9 +1734,9 @@ const HandHoldingPhoneSection = () => (
 const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
   return (
     <section id="pricing" className="section-spacious" style={{
-      backgroundColor: '#ffffff',
+      backgroundColor: '#0E1015',
       padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)',
-      borderBottom: '1px solid #f0f0f0'
+      borderBottom: '1px solid rgba(255, 255, 255, 0.06)'
     }}>
       <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
         
@@ -1751,12 +1760,12 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 gap: '8px',
                 padding: '4px 12px',
                 borderRadius: '4px',
-                backgroundColor: '#f4f4f5',
-                border: '1px solid #e4e4e7',
+                backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
                 fontSize: '11px',
                 fontWeight: 700,
                 letterSpacing: '0.12em',
-                color: '#0f0f11',
+                color: '#E2E8F0',
                 textTransform: 'uppercase',
                 marginBottom: '16px'
               }}
@@ -1779,7 +1788,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               fontWeight: 700,
               lineHeight: 1.08,
               letterSpacing: '-0.035em',
-              color: '#0f0f11',
+              color: '#FFFFFF',
               margin: 0
             }}>
               Built Around Your Growth.
@@ -1788,7 +1797,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
           <p className="mobile-intro-text" style={{
             fontSize: '14.5px',
-            color: '#52525b',
+            color: '#949BA8',
             lineHeight: 1.5,
             maxWidth: '420px',
             margin: 0
@@ -1802,30 +1811,30 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
           {/* Card 1: CORE */}
           <div className="pricing-card-item mobile-card-24" style={{
-            backgroundColor: '#ffffff',
-            border: '1px solid #e4e4e7',
-            borderRadius: '6px',
+            backgroundColor: '#13151B',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: '8px',
             padding: 'clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
-            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)',
             transition: 'all 0.2s ease'
           }}>
             {/* Technical Corner Brackets (Desktop Only) */}
-            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
 
             <div className="pricing-card-header" style={{ marginBottom: '28px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#71717a', textTransform: 'uppercase', marginBottom: '6px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#949BA8', textTransform: 'uppercase', marginBottom: '6px' }}>
                 Growth Foundation
               </div>
-              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f0f11', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
+              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
                 CORE
               </h3>
-              <p style={{ fontSize: '14.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+              <p style={{ fontSize: '14.5px', color: '#949BA8', lineHeight: 1.55, margin: 0 }}>
                 Establish the essential foundations connecting your online presence to prospect enquiries, built through focused, project-based work.
               </p>
             </div>
@@ -1836,11 +1845,11 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               alignItems: 'center',
               padding: '4px 10px',
               borderRadius: '4px',
-              backgroundColor: '#f4f4f5',
-              border: '1px solid #e4e4e7',
+              backgroundColor: 'rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
               fontSize: '11px',
               fontWeight: 600,
-              color: '#27272a',
+              color: '#E2E8F0',
               marginBottom: '28px',
               width: 'fit-content'
             }}>
@@ -1856,28 +1865,26 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 minHeight: '48px',
                 height: '48px',
                 marginTop: '24px',
-                backgroundColor: '#000000',
-                color: '#ffffff',
-                border: '1px solid #000000',
+                backgroundColor: '#FFFFFF',
+                color: '#0B0C0E',
+                border: 'none',
                 borderRadius: '6px',
                 fontSize: '13.5px',
-                fontWeight: 600,
+                fontWeight: 700,
                 cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)'
+                transition: 'filter 0.2s ease',
+                boxShadow: '0 2px 10px rgba(255, 255, 255, 0.1)'
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272a'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.filter = 'brightness(0.92)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.filter = 'brightness(1)'; }}
             >
               Explore Core
             </button>
 
-            {/* Divider above What's included */}
-            <div className="pricing-card-divider" style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
+            <div className="pricing-card-divider" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.06)', margin: '20px 0 18px 0' }} />
 
-            {/* What's included Checklist with orange check icons */}
             <div className="pricing-card-included" style={{ flex: 1, marginBottom: '24px' }}>
-              <div className="pricing-included-title" style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+              <div className="pricing-included-title" style={{ fontSize: '12px', color: '#FFFFFF', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
               <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
@@ -1889,20 +1896,20 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   "VSL strategy and integration",
                   "Conversion-focused page structure"
                 ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#D1D5DB' }}>
                     <div className="pricing-check-icon-wrap" style={{
                       width: '16px',
                       height: '16px',
                       borderRadius: '50%',
-                      backgroundColor: '#ffffff',
-                      border: '1.5px solid #0f0f11',
+                      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                      border: '1.5px solid rgba(255, 255, 255, 0.22)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
                       marginTop: '2px'
                     }}>
-                      <Check size={10} color="#0f0f11" strokeWidth={3.5} />
+                      <Check size={10} color="#FFFFFF" strokeWidth={3.5} />
                     </div>
                     <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
                   </div>
@@ -1913,31 +1920,31 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
           {/* Card 2: GROWTH (FLAGSHIP ENGAGEMENT) */}
           <div className="pricing-card-item pricing-card-growth mobile-card-24" style={{
-            backgroundColor: '#ffffff',
-            border: '1px solid #e4e4e7',
-            borderRadius: '6px',
+            backgroundColor: '#161922',
+            border: '1px solid rgba(241, 96, 1, 0.45)',
+            borderRadius: '8px',
             padding: 'clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
-            boxShadow: '0 6px 28px rgba(0, 0, 0, 0.05)',
+            boxShadow: '0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(241, 96, 1, 0.12)',
             transition: 'all 0.2s ease'
           }}>
             {/* Technical Corner Brackets (Desktop Only) */}
-            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(241, 96, 1, 0.4)', borderLeft: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(241, 96, 1, 0.4)', borderRight: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(241, 96, 1, 0.4)', borderLeft: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(241, 96, 1, 0.4)', borderRight: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
 
             <div className="pricing-card-header" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '28px' }}>
               <div>
-                <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#71717a', textTransform: 'uppercase', marginBottom: '6px' }}>
+                <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#949BA8', textTransform: 'uppercase', marginBottom: '6px' }}>
                   Authority Growth System
                 </div>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f0f11', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
                   GROWTH
                 </h3>
-                <p style={{ fontSize: '14.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+                <p style={{ fontSize: '14.5px', color: '#949BA8', lineHeight: 1.55, margin: 0 }}>
                   The complete ASENZO engagement connecting positioning, demand gen, content, and acquisition infrastructure.
                 </p>
               </div>
@@ -1945,15 +1952,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               <div
                 className="pricing-flagship-badge"
                 style={{
-                  border: '1px solid #e4e4e7',
+                  border: '1px solid rgba(241, 96, 1, 0.35)',
                   padding: '4px 8px',
                   fontSize: '9.5px',
                   fontWeight: 800,
                   letterSpacing: '0.08em',
-                  color: '#0f0f11',
+                  color: '#FF6400',
                   textTransform: 'uppercase',
                   borderRadius: '3px',
-                  backgroundColor: '#f4f4f5',
+                  backgroundColor: 'rgba(241, 96, 1, 0.12)',
                   whiteSpace: 'nowrap'
                 }}
               >
@@ -1967,11 +1974,11 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               alignItems: 'center',
               padding: '4px 10px',
               borderRadius: '4px',
-              backgroundColor: '#f4f4f5',
-              border: '1px solid #e4e4e7',
+              backgroundColor: 'rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
               fontSize: '11px',
               fontWeight: 600,
-              color: '#27272a',
+              color: '#E2E8F0',
               marginBottom: '28px',
               width: 'fit-content'
             }}>
@@ -1987,28 +1994,29 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 minHeight: '48px',
                 height: '48px',
                 marginTop: '24px',
-                backgroundColor: '#000000',
+                background: 'radial-gradient(ellipse 90% 70% at 25% 15%, #FF6400 0%, #E63B00 45%, #BA1E00 100%)',
                 color: '#ffffff',
-                border: '1px solid #000000',
+                border: '1px solid rgba(255, 185, 130, 0.4)',
+                borderTop: '1px solid rgba(255, 255, 255, 0.65)',
                 borderRadius: '6px',
                 fontSize: '13.5px',
-                fontWeight: 600,
+                fontWeight: 700,
                 cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)'
+                transition: 'filter 0.2s ease, transform 0.15s ease',
+                boxShadow: '0 4px 16px rgba(241, 96, 1, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.55)',
+                position: 'relative',
+                overflow: 'hidden'
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272a'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.filter = 'brightness(1.1)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.filter = 'brightness(1)'; e.currentTarget.style.transform = 'translateY(0)'; }}
             >
               Explore Growth
             </button>
 
-            {/* Divider above What's included */}
-            <div className="pricing-card-divider" style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
+            <div className="pricing-card-divider" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.06)', margin: '20px 0 18px 0' }} />
 
-            {/* What's included Checklist with orange check icons */}
             <div className="pricing-card-included" style={{ flex: 1, marginBottom: '24px' }}>
-              <div className="pricing-included-title" style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+              <div className="pricing-included-title" style={{ fontSize: '12px', color: '#FFFFFF', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
               <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
@@ -2027,20 +2035,20 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   "Acquisition tracking & monthly performance review",
                   "Full handover of everything we build"
                 ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#D1D5DB' }}>
                     <div className="pricing-check-icon-wrap" style={{
                       width: '16px',
                       height: '16px',
                       borderRadius: '50%',
-                      backgroundColor: '#ffffff',
-                      border: '1.5px solid #0f0f11',
+                      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                      border: '1.5px solid rgba(255, 255, 255, 0.22)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
                       marginTop: '2px'
                     }}>
-                      <Check size={10} color="#0f0f11" strokeWidth={3.5} />
+                      <Check size={10} color="#FFFFFF" strokeWidth={3.5} />
                     </div>
                     <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
                   </div>
@@ -2051,30 +2059,30 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
           {/* Card 3: CUSTOM */}
           <div className="pricing-card-item mobile-card-24" style={{
-            backgroundColor: '#ffffff',
-            border: '1px solid #e4e4e7',
-            borderRadius: '6px',
+            backgroundColor: '#13151B',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: '8px',
             padding: 'clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
-            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)',
             transition: 'all 0.2s ease'
           }}>
             {/* Technical Corner Brackets (Desktop Only) */}
-            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderLeft: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid #a1a1aa', borderRight: '1.5px solid #a1a1aa', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
 
             <div className="pricing-card-header" style={{ marginBottom: '28px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#71717a', textTransform: 'uppercase', marginBottom: '6px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#949BA8', textTransform: 'uppercase', marginBottom: '6px' }}>
                 Custom Infrastructure
               </div>
-              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f0f11', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
+              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
                 CUSTOM
               </h3>
-              <p style={{ fontSize: '14.5px', color: '#52525b', lineHeight: 1.55, margin: 0 }}>
+              <p style={{ fontSize: '14.5px', color: '#949BA8', lineHeight: 1.55, margin: 0 }}>
                 Specialised growth and operational systems developed around individual business requirements.
               </p>
             </div>
@@ -2085,11 +2093,11 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               alignItems: 'center',
               padding: '4px 10px',
               borderRadius: '4px',
-              backgroundColor: '#f4f4f5',
-              border: '1px solid #e4e4e7',
+              backgroundColor: 'rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
               fontSize: '11px',
               fontWeight: 600,
-              color: '#27272a',
+              color: '#E2E8F0',
               marginBottom: '28px',
               width: 'fit-content'
             }}>
@@ -2105,28 +2113,26 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 minHeight: '48px',
                 height: '48px',
                 marginTop: '24px',
-                backgroundColor: '#000000',
-                color: '#ffffff',
-                border: '1px solid #000000',
+                backgroundColor: '#FFFFFF',
+                color: '#0B0C0E',
+                border: 'none',
                 borderRadius: '6px',
                 fontSize: '13.5px',
-                fontWeight: 600,
+                fontWeight: 700,
                 cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)'
+                transition: 'filter 0.2s ease',
+                boxShadow: '0 2px 10px rgba(255, 255, 255, 0.1)'
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272a'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.filter = 'brightness(0.92)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.filter = 'brightness(1)'; }}
             >
               Discuss a Custom Project
             </button>
 
-            {/* Divider above What's included */}
-            <div className="pricing-card-divider" style={{ borderTop: '1px solid #e4e4e7', margin: '20px 0 18px 0' }} />
+            <div className="pricing-card-divider" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.06)', margin: '20px 0 18px 0' }} />
 
-            {/* What's included Checklist with orange check icons */}
             <div className="pricing-card-included" style={{ flex: 1, marginBottom: '24px' }}>
-              <div className="pricing-included-title" style={{ fontSize: '12px', color: '#0f0f11', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+              <div className="pricing-included-title" style={{ fontSize: '12px', color: '#FFFFFF', marginBottom: '16px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 What's included
               </div>
               <div className="pricing-items-col" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
@@ -2138,20 +2144,20 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   "Bespoke data and reporting systems",
                   "Tailored automation infrastructure"
                 ].map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#27272a' }}>
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13.5px', color: '#D1D5DB' }}>
                     <div className="pricing-check-icon-wrap" style={{
                       width: '16px',
                       height: '16px',
                       borderRadius: '50%',
-                      backgroundColor: '#ffffff',
-                      border: '1.5px solid #0f0f11',
+                      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                      border: '1.5px solid rgba(255, 255, 255, 0.22)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
                       marginTop: '2px'
                     }}>
-                      <Check size={10} color="#0f0f11" strokeWidth={3.5} />
+                      <Check size={10} color="#FFFFFF" strokeWidth={3.5} />
                     </div>
                     <span className="pricing-item-text" style={{ lineHeight: 1.45 }}>{feat}</span>
                   </div>
@@ -2168,15 +2174,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
 const GuaranteeBanner = ({ onAssessmentClick }) => (
   <section id="guarantee" className="section-spacious" style={{
-    backgroundColor: '#ffffff',
+    backgroundColor: '#0B0C0E',
     padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)',
-    borderBottom: '1px solid #f0f0f0',
+    borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
     display: 'flex',
     justifyContent: 'center'
   }}>
     <div style={{ maxWidth: '1000px', width: '100%', textAlign: 'center' }}>
       
-      {/* Grey/black shield icon container from previous */}
+      {/* Shield icon container */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
         <div
           className="section-eyebrow-badge"
@@ -2184,14 +2190,14 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
             width: '64px',
             height: '64px',
             borderRadius: '16px',
-            backgroundColor: '#f4f4f5',
-            border: '1px solid #e4e4e7',
+            backgroundColor: 'rgba(255, 255, 255, 0.06)',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}
         >
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             <path d="m9 12 2 2 4-4"></path>
           </svg>
@@ -2201,7 +2207,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       <h2 className="mobile-h2" style={{
         fontSize: 'clamp(26px, 4.8vw, 60px)',
         fontWeight: 700,
-        color: '#0f0f11',
+        color: '#FFFFFF',
         lineHeight: 1.1,
         marginBottom: '20px',
         letterSpacing: '-0.035em'
@@ -2211,7 +2217,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
 
       <p className="mobile-intro-text" style={{
         fontSize: 'clamp(14px, 1.6vw, 16px)',
-        color: '#52525b',
+        color: '#949BA8',
         maxWidth: '740px',
         margin: '0 auto 40px auto',
         lineHeight: 1.6
@@ -2223,23 +2229,23 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       <div className="guarantee-grid">
         {/* Card 1: CORE DELIVERY */}
         <div className="guarantee-card-item" style={{
-          backgroundColor: '#ffffff',
-          border: '1px solid #e5e7eb',
+          backgroundColor: '#13151B',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: '16px',
           padding: 'clamp(22px, 3.5vw, 28px) clamp(18px, 3vw, 24px)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
           transition: 'all 0.2s ease'
         }}>
           <div className="guarantee-card-header">
-            <Zap size={22} color="#0f0f11" strokeWidth={1.8} />
+            <Zap size={22} color="#FF6400" strokeWidth={1.8} />
             <h3 style={{
               fontFamily: "'Switzer', 'Inter', sans-serif",
               fontSize: '18px',
               fontWeight: 700,
-              color: '#0f0f11',
+              color: '#FFFFFF',
               letterSpacing: '-0.015em',
               margin: '16px 0 8px 0'
             }}>
@@ -2248,7 +2254,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
           </div>
           <p style={{
             fontSize: '14.5px',
-            color: '#52525b',
+            color: '#949BA8',
             lineHeight: 1.55,
             margin: 0
           }}>
@@ -2258,23 +2264,23 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
 
         {/* Card 2: FULL INFRASTRUCTURE */}
         <div className="guarantee-card-item" style={{
-          backgroundColor: '#ffffff',
-          border: '1px solid #e5e7eb',
+          backgroundColor: '#13151B',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: '16px',
           padding: 'clamp(22px, 3.5vw, 28px) clamp(18px, 3vw, 24px)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
           transition: 'all 0.2s ease'
         }}>
           <div className="guarantee-card-header">
-            <Rocket size={22} color="#0f0f11" strokeWidth={1.8} />
+            <Rocket size={22} color="#FF6400" strokeWidth={1.8} />
             <h3 style={{
               fontFamily: "'Switzer', 'Inter', sans-serif",
               fontSize: '18px',
               fontWeight: 700,
-              color: '#0f0f11',
+              color: '#FFFFFF',
               letterSpacing: '-0.015em',
               margin: '16px 0 8px 0'
             }}>
@@ -2283,7 +2289,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
           </div>
           <p style={{
             fontSize: '14.5px',
-            color: '#52525b',
+            color: '#949BA8',
             lineHeight: 1.55,
             margin: 0
           }}>
@@ -2293,23 +2299,23 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
 
         {/* Card 3: PERFORMANCE REVIEW */}
         <div className="guarantee-card-item" style={{
-          backgroundColor: '#ffffff',
-          border: '1px solid #e5e7eb',
+          backgroundColor: '#13151B',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: '16px',
           padding: 'clamp(22px, 3.5vw, 28px) clamp(18px, 3vw, 24px)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
           transition: 'all 0.2s ease'
         }}>
           <div className="guarantee-card-header">
-            <Clock size={22} color="#0f0f11" strokeWidth={1.8} />
+            <Clock size={22} color="#FF6400" strokeWidth={1.8} />
             <h3 style={{
               fontFamily: "'Switzer', 'Inter', sans-serif",
               fontSize: '18px',
               fontWeight: 700,
-              color: '#0f0f11',
+              color: '#FFFFFF',
               letterSpacing: '-0.015em',
               margin: '16px 0 8px 0'
             }}>
@@ -2318,7 +2324,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
           </div>
           <p style={{
             fontSize: '14.5px',
-            color: '#52525b',
+            color: '#949BA8',
             lineHeight: 1.55,
             margin: 0
           }}>
@@ -2330,7 +2336,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       {/* Closing Commitment Statement */}
       <p className="guarantee-commitment-text" style={{
         fontSize: '15px',
-        color: '#52525b',
+        color: '#949BA8',
         maxWidth: '740px',
         margin: '0 auto 36px auto',
         lineHeight: 1.6
@@ -2338,32 +2344,35 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
         If an agreed workflow is non functional because of our delivery, we fix it without an additional service fee. Applicable refund conditions, responsibilities, and measurement definitions are documented in the signed agreement. We commit to our delivery.
       </p>
 
-      {/* Black Button & Trust Badges */}
+      {/* CTA Button & Trust Badges */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
         <button onClick={onAssessmentClick} className="guarantee-btn-action mobile-btn-52" style={{
-          backgroundColor: '#000000',
+          background: 'radial-gradient(ellipse 90% 70% at 25% 15%, #FF6400 0%, #E63B00 45%, #BA1E00 100%)',
           color: '#ffffff',
-          border: 'none',
-          borderRadius: '8px',
-          padding: '0 28px',
+          border: '1px solid rgba(255, 185, 130, 0.4)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.65)',
+          borderRadius: '10px',
+          padding: '0 32px',
           minHeight: '52px',
           height: '52px',
           width: 'min(100%, 360px)',
           fontSize: '14.5px',
-          fontWeight: 600,
+          fontWeight: 700,
           cursor: 'pointer',
-          boxShadow: '0 4px 18px rgba(0, 0, 0, 0.15)',
-          transition: 'background-color 0.2s ease',
+          boxShadow: '0 6px 20px rgba(241, 96, 1, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.55)',
+          transition: 'filter 0.2s ease, transform 0.15s ease',
           display: 'inline-flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          position: 'relative',
+          overflow: 'hidden'
         }}
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#27272a'}
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#000000'}
+        onMouseEnter={(e) => { e.currentTarget.style.filter = 'brightness(1.1)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.filter = 'brightness(1)'; e.currentTarget.style.transform = 'translateY(0)'; }}
         >
           Book a Growth Infrastructure Review
         </button>
-        <div className="guarantee-ticks-row">
+        <div className="guarantee-ticks-row" style={{ color: '#949BA8' }}>
           <span>✓ WORKING BY DAY 30 OR WE FIX IT FREE</span>
           <span>✓ FULL REFUND IF DELIVERY FAILS</span>
           <span>✓ YOU KEEP EVERYTHING WE BUILD</span>
@@ -2411,7 +2420,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid #f0f0f0' }}>
+    <section id="faq" style={{ backgroundColor: '#0B0C0E', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         
         {/* Eyebrow Pill */}
@@ -2424,11 +2433,11 @@ const FAQSection = () => {
               gap: '8px',
               padding: '4px 14px',
               borderRadius: '20px',
-              backgroundColor: '#f4f4f5',
-              border: '1px solid #e4e4e7',
+              backgroundColor: 'rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
               fontSize: '11.5px',
               fontWeight: 700,
-              color: '#0f0f11',
+              color: '#E2E8F0',
               letterSpacing: '0.08em',
               textTransform: 'uppercase'
             }}
@@ -2438,10 +2447,10 @@ const FAQSection = () => {
         </div>
 
         <div style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 64px)' }}>
-          <h2 style={{ fontSize: 'clamp(26px, 4.2vw, 48px)', fontWeight: 700, color: '#0f0f11', marginBottom: '14px', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+          <h2 style={{ fontSize: 'clamp(26px, 4.2vw, 48px)', fontWeight: 700, color: '#FFFFFF', marginBottom: '14px', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
             Clear Answers. Before We Begin.
           </h2>
-          <p style={{ fontSize: 'clamp(14px, 1.6vw, 16px)', color: '#52525b', margin: 0 }}>
+          <p style={{ fontSize: 'clamp(14px, 1.6vw, 16px)', color: '#949BA8', margin: 0 }}>
             Everything you need to understand about working with ASENZO.
           </p>
         </div>
@@ -2454,7 +2463,7 @@ const FAQSection = () => {
                 key={faq.num}
                 className="faq-row-item"
                 style={{
-                  borderBottom: '1px solid #e4e4e7',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
                   padding: 'clamp(20px, 3vw, 28px) 0',
                   cursor: 'pointer'
                 }}
@@ -2463,12 +2472,12 @@ const FAQSection = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px' }}>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
                     <span className="faq-num" style={{ fontSize: '14px', color: '#F16001', fontFamily: 'monospace', fontWeight: 700, flexShrink: 0, marginTop: '2px' }}>{faq.num}</span>
-                    <h3 className="faq-q-text" style={{ fontSize: 'clamp(16.5px, 2.4vw, 19px)', fontWeight: 600, color: '#0f0f11', margin: 0, lineHeight: 1.35 }}>{faq.q}</h3>
+                    <h3 className="faq-q-text" style={{ fontSize: 'clamp(16.5px, 2.4vw, 19px)', fontWeight: 600, color: '#FFFFFF', margin: 0, lineHeight: 1.35 }}>{faq.q}</h3>
                   </div>
                   <div
                     className="faq-icon-holder"
                     style={{
-                      color: '#0f0f11',
+                      color: '#E2E8F0',
                       flexShrink: 0,
                       display: 'flex',
                       alignItems: 'center',
@@ -2492,7 +2501,7 @@ const FAQSection = () => {
                 >
                   <div style={{ overflow: 'hidden' }}>
                     <div style={{ paddingTop: '14px', paddingLeft: 'clamp(0px, 3vw, 36px)', paddingRight: '8px' }}>
-                      <p className="faq-ans-text" style={{ fontSize: '15px', lineHeight: 1.6, color: '#52525b', margin: 0 }}>
+                      <p className="faq-ans-text" style={{ fontSize: '15px', lineHeight: 1.6, color: '#949BA8', margin: 0 }}>
                         {faq.a}
                       </p>
                     </div>
@@ -2567,7 +2576,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
         ref={containerRef}
         className="envelope-outer-section desktop-only"
         style={{
-          backgroundColor: '#ffffff',
+          backgroundColor: '#0E1015',
           height: '135vh',
           position: 'relative',
           zIndex: 200
@@ -2594,7 +2603,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               left: 0,
               right: 0,
               bottom: 0,
-              background: 'radial-gradient(circle at 50% 55%, rgba(255, 110, 0, 0.14) 0%, rgba(255, 255, 255, 0) 65%)',
+              background: 'radial-gradient(circle at 50% 55%, rgba(255, 110, 0, 0.14) 0%, rgba(14, 16, 21, 0) 65%)',
               zIndex: 0
             }}
           />
@@ -2962,7 +2971,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
 const CalendarBookingSection = ({ onAssessmentClick }) => {
   return (
-    <section id="booking" className="section-spacious" style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid #f0f0f0' }}>
+    <section id="booking" className="section-spacious" style={{ backgroundColor: '#0B0C0E', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
       {/* DESKTOP VIEW (1024px+) - Centered Text with Button (No Calendar) */}
       <div className="desktop-only" style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
@@ -2972,15 +2981,15 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
             gap: '8px',
             padding: '5px 14px',
             borderRadius: '20px',
-            backgroundColor: '#f4f4f5',
-            border: '1px solid #e4e4e7',
+            backgroundColor: 'rgba(255, 255, 255, 0.06)',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
             fontSize: '11px',
             fontWeight: 700,
             letterSpacing: '0.1em',
-            color: '#0f0f11',
+            color: '#E2E8F0',
             textTransform: 'uppercase'
           }}>
-            <span style={{ color: '#0f0f11', fontSize: '11px' }}>✦</span>
+            <span style={{ color: '#FF6400', fontSize: '11px' }}>✦</span>
             <span>PRIVATE ACCESS</span>
           </div>
         </div>
@@ -2991,7 +3000,7 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
           fontWeight: 700,
           lineHeight: 1.15,
           letterSpacing: '-0.03em',
-          color: '#0f0f11',
+          color: '#FFFFFF',
           margin: '0 0 20px 0',
           textAlign: 'center'
         }}>
@@ -3001,7 +3010,7 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
         <p style={{
           fontSize: 'clamp(16px, 1.6vw, 18px)',
           lineHeight: 1.6,
-          color: '#52525b',
+          color: '#949BA8',
           maxWidth: '520px',
           margin: '0 auto 36px auto',
           textAlign: 'center'
@@ -3248,7 +3257,7 @@ const LetsConnectSwipeButton = ({ onClick }) => {
 
 // 11. Master Footer
 const MasterFooter = ({ onAssessmentClick }) => (
-  <footer style={{ backgroundColor: '#fafafa', borderTop: '1px solid #e4e4e7', paddingTop: 'clamp(48px, 6vw, 72px)', paddingBottom: '32px', overflow: 'hidden', width: '100%' }}>
+  <footer style={{ backgroundColor: '#0B0C0E', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: 'clamp(48px, 6vw, 72px)', paddingBottom: '32px', overflow: 'hidden', width: '100%' }}>
     <div style={{ width: '100%', maxWidth: '100%', padding: '0 clamp(16px, 4vw, 80px)', margin: '0 auto', boxSizing: 'border-box' }}>
       
       {/* Top Flex Container: Stretches across the full website width */}
@@ -3289,20 +3298,20 @@ const MasterFooter = ({ onAssessmentClick }) => (
                 }}
               />
             </div>
-            <span className="footer-idea-title" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.02em', color: '#0f0f11' }}>
+            <span className="footer-idea-title" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.02em', color: '#FFFFFF' }}>
               Have a cool idea?
             </span>
           </div>
-          <p className="footer-idea-desc" style={{ fontSize: '14px', color: '#71717a', lineHeight: 1.6, margin: 0 }}>
+          <p className="footer-idea-desc" style={{ fontSize: '14px', color: '#949BA8', lineHeight: 1.6, margin: 0 }}>
             We love talking with ambitious founders who are ready to take action. Whether you have a project in mind or just want to say hello.
           </p>
-          <div className="footer-arch-tag" style={{ fontSize: '12px', fontWeight: 600, color: '#0f0f11', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+          <div className="footer-arch-tag" style={{ fontSize: '12px', fontWeight: 600, color: '#E2E8F0', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
             Growth Infrastructure · Design. Build. Operate.
           </div>
           <div style={{ marginTop: '4px', width: 'fit-content' }}>
             <LetsConnectSwipeButton onClick={onAssessmentClick} />
           </div>
-          <div className="footer-copy-text" style={{ fontSize: '12px', color: '#71717a', marginTop: '12px' }}>
+          <div className="footer-copy-text" style={{ fontSize: '12px', color: '#6B7280', marginTop: '12px' }}>
             © 2026 Asenzo. All rights reserved.
           </div>
         </div>
@@ -3311,8 +3320,8 @@ const MasterFooter = ({ onAssessmentClick }) => (
         <div className="footer-links-grid">
           {/* SOLUTIONS Column */}
           <div>
-            <div className="footer-col-heading" style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
-            <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className="footer-col-heading" style={{ fontSize: '11px', color: '#FFFFFF', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
+            <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#949BA8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Core</a>
               <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Growth</a>
               <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Custom</a>
@@ -3321,8 +3330,8 @@ const MasterFooter = ({ onAssessmentClick }) => (
 
           {/* NAVIGATION Column */}
           <div>
-            <div className="footer-col-heading" style={{ fontSize: '11px', color: '#0f0f11', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
-            <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#71717a', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className="footer-col-heading" style={{ fontSize: '11px', color: '#FFFFFF', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
+            <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#949BA8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <a className="footer-nav-link" href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
               <a className="footer-nav-link" href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Infrastructure</a>
               <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Engagements</a>
@@ -3360,7 +3369,7 @@ const MasterFooter = ({ onAssessmentClick }) => (
           width: '100%',
           maxWidth: '100%',
           whiteSpace: 'nowrap',
-          color: '#a1a1aa',
+          color: 'rgba(255, 255, 255, 0.08)',
           textAlign: 'center'
         }}
       >
