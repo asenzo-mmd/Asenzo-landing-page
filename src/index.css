@@ -1362,6 +1362,12 @@ body {
 .desktop-only {
   display: block;
 }
+.booking-grid.desktop-only {
+  display: grid !important;
+  grid-template-columns: 1fr 1.15fr !important;
+  gap: 60px !important;
+  align-items: center !important;
+}
 .mobile-only-block {
   display: none !important;
 }
@@ -1373,12 +1379,14 @@ body {
   .mobile-nav-root {
     display: flex !important;
   }
-  .desktop-only {
+  .desktop-only,
+  .booking-grid.desktop-only {
     display: none !important;
   }
   .mobile-only-block {
     display: block !important;
   }
 }
+
 
 

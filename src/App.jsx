@@ -2961,102 +2961,103 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 };
 
 const CalendarBookingSection = ({ onAssessmentClick }) => {
-  useEffect(() => {
-    (function (C, A, L) {
-      let p = function (a, ar) { a.q.push(ar); };
-      let d = C.document;
-      C.Cal = C.Cal || function () {
-        let cal = C.Cal;
-        let ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {};
-          cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () { p(api, arguments); };
-          const namespace = ar[1];
-          api.q = api.q || [];
-          if (typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar);
-            p(cal, ["initNamespace", namespace]);
-          } else p(cal, ar);
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, "https://app.cal.com/embed/embed.js", "init");
-
-    const calNamespace = import.meta.env.VITE_CAL_NAMESPACE || "brandgrowth-strategy-call";
-    const calOrigin = import.meta.env.VITE_CAL_ORIGIN || "https://app.cal.com";
-    const calLink = import.meta.env.VITE_CAL_LINK || "mmd-asenzo/brandgrowth-strategy-call";
-
-    if (window.Cal) {
-      window.Cal("init", calNamespace, { origin: calOrigin });
-      window.Cal.config = window.Cal.config || {};
-      window.Cal.config.forwardQueryParams = true;
-
-      window.Cal.ns[calNamespace]("inline", {
-        elementOrSelector: "#my-cal-inline-brandgrowth-strategy-call",
-        config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
-        calLink: calLink
-      });
-
-      window.Cal.ns[calNamespace]("ui", {
-        hideEventTypeDetails: false,
-        layout: "month_view"
-      });
-    }
-  }, []);
-
   return (
     <section id="booking" className="section-spacious" style={{ backgroundColor: '#ffffff', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid #f0f0f0' }}>
-      {/* DESKTOP CALENDAR VIEW (1024px+) - 100% UNCHANGED */}
-      <div className="booking-grid desktop-only" style={{ maxWidth: '1240px', margin: '0 auto' }}>
-        {/* Left Column: Context & Proof */}
-        <div>
+      {/* DESKTOP VIEW (1024px+) - Centered Text with Button (No Calendar) */}
+      <div className="desktop-only" style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            padding: '4px 12px',
-            borderRadius: '4px',
+            padding: '5px 14px',
+            borderRadius: '20px',
             backgroundColor: '#f4f4f5',
             border: '1px solid #e4e4e7',
             fontSize: '11px',
             fontWeight: 700,
-            letterSpacing: '0.12em',
+            letterSpacing: '0.1em',
             color: '#0f0f11',
-            textTransform: 'uppercase',
-            marginBottom: '20px'
+            textTransform: 'uppercase'
           }}>
             <span style={{ color: '#0f0f11', fontSize: '11px' }}>✦</span>
             <span>PRIVATE ACCESS</span>
           </div>
-
-          <h2 style={{ fontSize: 'clamp(28px, 4.8vw, 56px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.03em', color: '#0f0f11', marginBottom: '20px' }}>
-            We Install It. You Own It.
-          </h2>
-
-          <p style={{ fontSize: 'clamp(15px, 1.8vw, 17px)', lineHeight: 1.6, color: '#52525b', marginBottom: '28px', maxWidth: '500px' }}>
-            Book a free Diagnostic call. We’ll find where you’re losing prospects, walk you through the system and give you a clear roadmap for your business.
-          </p>
         </div>
 
-        {/* Right Column: Real Cal.com Inline Booking Container */}
-        <div style={{
-          backgroundColor: '#ffffff',
-          border: '1px solid #e4e4e7',
-          borderRadius: '16px',
-          padding: 'clamp(8px, 2vw, 16px)',
-          boxShadow: '0 16px 48px rgba(0, 0, 0, 0.06)',
-          minHeight: '560px',
-          overflow: 'hidden'
+        <h2 style={{
+          fontFamily: "'Switzer', 'Inter', sans-serif",
+          fontSize: 'clamp(36px, 4.5vw, 54px)',
+          fontWeight: 700,
+          lineHeight: 1.15,
+          letterSpacing: '-0.03em',
+          color: '#0f0f11',
+          margin: '0 0 20px 0',
+          textAlign: 'center'
         }}>
-          <div style={{ width: '100%', height: '100%', minHeight: '540px', overflow: 'auto' }} id="my-cal-inline-brandgrowth-strategy-call"></div>
-        </div>
+          We Install It. You Own It.
+        </h2>
+
+        <p style={{
+          fontSize: 'clamp(16px, 1.6vw, 18px)',
+          lineHeight: 1.6,
+          color: '#52525b',
+          maxWidth: '520px',
+          margin: '0 auto 36px auto',
+          textAlign: 'center'
+        }}>
+          Book a free Diagnostic call. We’ll find where you’re losing prospects, walk you through the system and give you a clear roadmap for your business.
+        </p>
+
+        <button
+          onClick={() => {
+            window.open("https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call", "_blank") || (window.location.href = "https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call");
+          }}
+          className="desktop-booking-btn"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '56px',
+            height: '56px',
+            padding: '0 38px',
+            borderRadius: '14px',
+            background: 'radial-gradient(ellipse 90% 70% at 25% 15%, #FF6400 0%, #E63B00 45%, #BA1E00 100%)',
+            color: '#ffffff',
+            fontSize: '16px',
+            fontWeight: 700,
+            border: '1px solid rgba(255, 185, 130, 0.4)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.65)',
+            boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.55)',
+            cursor: 'pointer',
+            letterSpacing: '0.02em',
+            position: 'relative',
+            overflow: 'hidden',
+            transition: 'transform 0.15s ease, opacity 0.15s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 12px 28px rgba(230, 60, 0, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.55)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'inset 0 1px 1px rgba(255, 255, 255, 0.55)';
+          }}
+        >
+          {/* Subtle glossy sheen reflection */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '50%',
+              background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 100%)',
+              pointerEvents: 'none'
+            }}
+          />
+          <span style={{ position: 'relative', zIndex: 1 }}>Book a Free Diagnostic Call</span>
+        </button>
       </div>
 
       {/* MOBILE CALL-TO-ACTION LAYOUT (< 1024px) - Accretion CTA Style */}
