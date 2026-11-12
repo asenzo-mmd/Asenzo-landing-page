@@ -1,11 +1,12 @@
 {
-  "name": "asenzo-landing-page",
+  "name": "asenzo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "npm run build && wrangler deploy",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -15,9 +16,11 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
+    "@esbuild/win32-x64": "0.24.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.7.0",
+    "esbuild": "0.24.2",
     "oxlint": "^1.75.0",
     "playwright": "^1.65.0",
     "vite": "^6.0.0"
