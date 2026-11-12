@@ -1188,10 +1188,10 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
 
         {/* Closing Statement */}
         <div className="layers-closing-block" style={{ textAlign: "center", marginTop: 48, maxWidth: 640, marginLeft: "auto", marginRight: "auto", padding: "0 12px" }}>
-          <p className="layers-closing-title" style={{ fontSize: 16, fontWeight: 700, color: "#0f0f11", letterSpacing: "-0.01em", margin: "0 0 10px 0" }}>
+          <p className="layers-closing-title" style={{ fontSize: 16, fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.01em", margin: "0 0 10px 0" }}>
             Different functions. One connected growth infrastructure.
           </p>
-          <p className="layers-closing-desc" style={{ fontSize: 15, color: "#52525b", lineHeight: 1.6, margin: 0 }}>
+          <p className="layers-closing-desc" style={{ fontSize: 15, color: "#FFFFFF", lineHeight: 1.6, margin: 0 }}>
             ASENZO designs, builds, and operates the system connecting your positioning, content, and acquisition.
           </p>
         </div>
