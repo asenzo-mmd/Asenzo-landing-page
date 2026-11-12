@@ -154,7 +154,7 @@ export default function App() {
     <div
       className="app-main-root"
       style={{
-        backgroundColor: "#0B0C0E",
+        backgroundColor: "#000000",
         minHeight: "100vh",
         color: "#F4F4F6",
         overflowX: "clip",
@@ -778,7 +778,7 @@ function AccretionHero({ onOpenModal }) {
     <section
       className="hero-section-wrap section-spacious"
       style={{
-        backgroundColor: "#0B0C0E",
+        backgroundColor: "#000000",
         minHeight: "92vh",
         display: "flex",
         flexDirection: "column",
@@ -852,7 +852,7 @@ function AccretionHero({ onOpenModal }) {
             lineHeight: 1.65,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
-            color: "#949BA8",
+            color: "#CBD5E1",
             maxWidth: 760,
             margin: "0 auto 36px auto",
             padding: "0 4px"
@@ -976,7 +976,7 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
       id="integrations"
       className="section-spacious"
       style={{
-        backgroundColor: "#0B0C0E",
+        backgroundColor: "#000000",
         color: "#F4F4F6",
         paddingTop: "clamp(56px, 8vw, 90px)",
         paddingBottom: "clamp(64px, 10vw, 110px)",
@@ -1028,10 +1028,10 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
             textAlign: "center",
             color: "#FFFFFF",
             margin: "0 auto 12px auto",
-            maxWidth: 780
+            maxWidth: 820
           }}
         >
-          Everything Behind Your Growth. Connected.
+          Different functions. One connected growth infrastructure.
         </h2>
 
         {/* Mobile-only pill badge with icon and count */}
@@ -1062,13 +1062,13 @@ function AsenzoIntegrationsSection({ onOpenModal }) {
           style={{
             fontSize: "clamp(14px, 1.6vw, 16.5px)",
             lineHeight: 1.6,
-            color: "#52525b",
+            color: "#FFFFFF",
             textAlign: "center",
-            maxWidth: 680,
+            maxWidth: 720,
             margin: "0 auto 40px auto"
           }}
         >
-          Your positioning, content, prospect acquisition and booking process should work as one connected system. ASENZO brings these essential functions together through one coordinated growth infrastructure.
+          ASENZO designs, builds, and operates the system connecting your positioning, content, and acquisition.
         </p>
 
         {/* DESKTOP 6-GROUP ECOSYSTEM: 3 Columns with SVG Cords & Center Big Box */}
@@ -1446,7 +1446,7 @@ function CompactIntegrationCard({ group, index = 0 }) {
         style={{
           fontSize: 11.5,
           lineHeight: 1.45,
-          color: "#949BA8",
+          color: "#CBD5E1",
           margin: 0
         }}
       >
@@ -1527,7 +1527,7 @@ function KeyBenefitsSection() {
     <section
       id="features"
       style={{
-        backgroundColor: "#0E1015",
+        backgroundColor: "#000000",
         padding: "clamp(56px, 8vw, 110px) clamp(16px, 4vw, 24px)",
         borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
         position: "relative"
@@ -1597,22 +1597,27 @@ function KeyBenefitsSection() {
               key={idx}
               className="benefits-card-item"
               style={{
-                backgroundColor: "#13151B",
-                border: "1px solid rgba(255, 255, 255, 0.08)",
-                borderRadius: "12px",
+                background: "linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(19, 21, 27, 0.6) 100%)",
+                backdropFilter: "blur(18px) saturate(140%)",
+                WebkitBackdropFilter: "blur(18px) saturate(140%)",
+                border: "1px solid rgba(255, 255, 255, 0.12)",
+                borderTop: "1px solid rgba(255, 255, 255, 0.28)",
+                borderRadius: "14px",
                 padding: "clamp(24px, 3.5vw, 32px) clamp(20px, 3vw, 28px)",
                 display: "flex",
                 flexDirection: "column",
                 gap: "16px",
-                boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35)",
-                transition: "all 0.2s ease"
+                boxShadow: "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)",
+                transition: "all 0.25s ease"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.5)";
+                e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
+                e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
                 e.currentTarget.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.12)";
+                e.currentTarget.style.boxShadow = "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)";
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
@@ -1647,7 +1652,7 @@ function KeyBenefitsSection() {
                 style={{
                   fontSize: "14.5px",
                   lineHeight: 1.55,
-                  color: "#949BA8",
+                  color: "#E2E8F0",
                   margin: 0
                 }}
               >
@@ -1662,7 +1667,7 @@ function KeyBenefitsSection() {
 }
 
 const HandHoldingPhoneSection = () => (
-  <section className="section-spacious" style={{ backgroundColor: '#0B0C0E', padding: 'clamp(56px, 8vw, 100px) 0', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', overflow: 'hidden' }}>
+  <section className="section-spacious" style={{ backgroundColor: '#000000', padding: 'clamp(56px, 8vw, 100px) 0', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', overflow: 'hidden' }}>
     <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
 
       {/* Client Story Eyebrow Pill */}
@@ -1734,7 +1739,7 @@ const HandHoldingPhoneSection = () => (
 const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
   return (
     <section id="pricing" className="section-spacious" style={{
-      backgroundColor: '#0E1015',
+      backgroundColor: '#000000',
       padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)',
       borderBottom: '1px solid rgba(255, 255, 255, 0.06)'
     }}>
@@ -1811,16 +1816,30 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
           {/* Card 1: CORE */}
           <div className="pricing-card-item mobile-card-24" style={{
-            backgroundColor: '#13151B',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            borderRadius: '8px',
-            padding: 'clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)',
-            display: 'flex',
-            flexDirection: 'column',
-            position: 'relative',
-            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)',
-            transition: 'all 0.2s ease'
-          }}>
+            background: "linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(19, 21, 27, 0.6) 100%)",
+            backdropFilter: "blur(18px) saturate(140%)",
+            WebkitBackdropFilter: "blur(18px) saturate(140%)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.28)",
+            borderRadius: "14px",
+            padding: "clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)",
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+            boxShadow: "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)",
+            transition: "all 0.25s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.boxShadow = "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+          >
             {/* Technical Corner Brackets (Desktop Only) */}
             <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
             <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
@@ -1866,7 +1885,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 height: '48px',
                 marginTop: '24px',
                 backgroundColor: '#FFFFFF',
-                color: '#0B0C0E',
+                color: '#000000',
                 border: 'none',
                 borderRadius: '6px',
                 fontSize: '13.5px',
@@ -1920,16 +1939,30 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
           {/* Card 2: GROWTH (FLAGSHIP ENGAGEMENT) */}
           <div className="pricing-card-item pricing-card-growth mobile-card-24" style={{
-            backgroundColor: '#161922',
-            border: '1px solid rgba(241, 96, 1, 0.45)',
-            borderRadius: '8px',
-            padding: 'clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)',
-            display: 'flex',
-            flexDirection: 'column',
-            position: 'relative',
-            boxShadow: '0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(241, 96, 1, 0.12)',
-            transition: 'all 0.2s ease'
-          }}>
+            background: "linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(26, 20, 24, 0.65) 100%)",
+            backdropFilter: "blur(18px) saturate(140%)",
+            WebkitBackdropFilter: "blur(18px) saturate(140%)",
+            border: "1px solid rgba(241, 96, 1, 0.48)",
+            borderTop: "1px solid rgba(255, 185, 130, 0.65)",
+            borderRadius: "14px",
+            padding: "clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)",
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+            boxShadow: "0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(241, 96, 1, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.2)",
+            transition: "all 0.25s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.85)";
+            e.currentTarget.style.boxShadow = "0 20px 48px rgba(0, 0, 0, 0.65), 0 0 45px rgba(241, 96, 1, 0.24), inset 0 1px 1px rgba(255, 255, 255, 0.3)";
+            e.currentTarget.style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.48)";
+            e.currentTarget.style.boxShadow = "0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(241, 96, 1, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+          >
             {/* Technical Corner Brackets (Desktop Only) */}
             <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(241, 96, 1, 0.4)', borderLeft: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
             <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(241, 96, 1, 0.4)', borderRight: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
@@ -2059,16 +2092,30 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
           {/* Card 3: CUSTOM */}
           <div className="pricing-card-item mobile-card-24" style={{
-            backgroundColor: '#13151B',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            borderRadius: '8px',
-            padding: 'clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)',
-            display: 'flex',
-            flexDirection: 'column',
-            position: 'relative',
-            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)',
-            transition: 'all 0.2s ease'
-          }}>
+            background: "linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(19, 21, 27, 0.6) 100%)",
+            backdropFilter: "blur(18px) saturate(140%)",
+            WebkitBackdropFilter: "blur(18px) saturate(140%)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.28)",
+            borderRadius: "14px",
+            padding: "clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)",
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+            boxShadow: "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)",
+            transition: "all 0.25s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.boxShadow = "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+          >
             {/* Technical Corner Brackets (Desktop Only) */}
             <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
             <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
@@ -2114,7 +2161,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 height: '48px',
                 marginTop: '24px',
                 backgroundColor: '#FFFFFF',
-                color: '#0B0C0E',
+                color: '#000000',
                 border: 'none',
                 borderRadius: '6px',
                 fontSize: '13.5px',
@@ -2174,7 +2221,7 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
 const GuaranteeBanner = ({ onAssessmentClick }) => (
   <section id="guarantee" className="section-spacious" style={{
-    backgroundColor: '#0B0C0E',
+    backgroundColor: '#000000',
     padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)',
     borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
     display: 'flex',
@@ -2190,8 +2237,12 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
             width: '64px',
             height: '64px',
             borderRadius: '16px',
-            backgroundColor: 'rgba(255, 255, 255, 0.06)',
-            border: '1px solid rgba(255, 255, 255, 0.12)',
+            background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(19, 21, 27, 0.6) 100%)",
+            backdropFilter: "blur(18px) saturate(140%)",
+            WebkitBackdropFilter: "blur(18px) saturate(140%)",
+            border: "1px solid rgba(255, 255, 255, 0.14)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.3)",
+            boxShadow: "0 10px 28px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.15)",
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -2228,33 +2279,65 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       {/* 3 Reference-Styled Boxes (Horizontal Layout on desktop, single column on mobile) */}
       <div className="guarantee-grid">
         {/* Card 1: CORE DELIVERY */}
-        <div className="guarantee-card-item" style={{
-          backgroundColor: '#13151B',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '16px',
-          padding: 'clamp(22px, 3.5vw, 28px) clamp(18px, 3vw, 24px)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
-          transition: 'all 0.2s ease'
-        }}>
+        <div
+          className="guarantee-card-item"
+          style={{
+            background: "linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(19, 21, 27, 0.6) 100%)",
+            backdropFilter: "blur(18px) saturate(140%)",
+            WebkitBackdropFilter: "blur(18px) saturate(140%)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.28)",
+            borderRadius: "14px",
+            padding: "clamp(24px, 3.5vw, 32px) clamp(20px, 3vw, 28px)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            boxShadow: "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)",
+            transition: "all 0.25s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.boxShadow = "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+        >
           <div className="guarantee-card-header">
-            <Zap size={22} color="#FF6400" strokeWidth={1.8} />
+            <div
+              className="desktop-only"
+              style={{
+                width: "44px",
+                height: "44px",
+                borderRadius: "10px",
+                backgroundColor: "rgba(241, 96, 1, 0.12)",
+                border: "1px solid rgba(241, 96, 1, 0.25)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0
+              }}
+            >
+              <Zap size={20} color="#FF6400" strokeWidth={2} />
+            </div>
+            <Zap className="mobile-only" size={20} color="#FF6400" strokeWidth={2} />
             <h3 style={{
               fontFamily: "'Switzer', 'Inter', sans-serif",
               fontSize: '18px',
               fontWeight: 700,
               color: '#FFFFFF',
               letterSpacing: '-0.015em',
-              margin: '16px 0 8px 0'
+              margin: '14px 0 8px 0'
             }}>
               CORE DELIVERY
             </h3>
           </div>
           <p style={{
-            fontSize: '14.5px',
-            color: '#949BA8',
+            fontSize: "14.5px",
+            color: "#E2E8F0",
             lineHeight: 1.55,
             margin: 0
           }}>
@@ -2263,33 +2346,65 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
         </div>
 
         {/* Card 2: FULL INFRASTRUCTURE */}
-        <div className="guarantee-card-item" style={{
-          backgroundColor: '#13151B',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '16px',
-          padding: 'clamp(22px, 3.5vw, 28px) clamp(18px, 3vw, 24px)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
-          transition: 'all 0.2s ease'
-        }}>
+        <div
+          className="guarantee-card-item"
+          style={{
+            background: "linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(19, 21, 27, 0.6) 100%)",
+            backdropFilter: "blur(18px) saturate(140%)",
+            WebkitBackdropFilter: "blur(18px) saturate(140%)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.28)",
+            borderRadius: "14px",
+            padding: "clamp(24px, 3.5vw, 32px) clamp(20px, 3vw, 28px)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            boxShadow: "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)",
+            transition: "all 0.25s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.boxShadow = "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+        >
           <div className="guarantee-card-header">
-            <Rocket size={22} color="#FF6400" strokeWidth={1.8} />
+            <div
+              className="desktop-only"
+              style={{
+                width: "44px",
+                height: "44px",
+                borderRadius: "10px",
+                backgroundColor: "rgba(241, 96, 1, 0.12)",
+                border: "1px solid rgba(241, 96, 1, 0.25)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0
+              }}
+            >
+              <Rocket size={20} color="#FF6400" strokeWidth={2} />
+            </div>
+            <Rocket className="mobile-only" size={20} color="#FF6400" strokeWidth={2} />
             <h3 style={{
               fontFamily: "'Switzer', 'Inter', sans-serif",
               fontSize: '18px',
               fontWeight: 700,
               color: '#FFFFFF',
               letterSpacing: '-0.015em',
-              margin: '16px 0 8px 0'
+              margin: '14px 0 8px 0'
             }}>
               FULL INFRASTRUCTURE
             </h3>
           </div>
           <p style={{
-            fontSize: '14.5px',
-            color: '#949BA8',
+            fontSize: "14.5px",
+            color: "#E2E8F0",
             lineHeight: 1.55,
             margin: 0
           }}>
@@ -2298,33 +2413,65 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
         </div>
 
         {/* Card 3: PERFORMANCE REVIEW */}
-        <div className="guarantee-card-item" style={{
-          backgroundColor: '#13151B',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '16px',
-          padding: 'clamp(22px, 3.5vw, 28px) clamp(18px, 3vw, 24px)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
-          transition: 'all 0.2s ease'
-        }}>
+        <div
+          className="guarantee-card-item"
+          style={{
+            background: "linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(19, 21, 27, 0.6) 100%)",
+            backdropFilter: "blur(18px) saturate(140%)",
+            WebkitBackdropFilter: "blur(18px) saturate(140%)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.28)",
+            borderRadius: "14px",
+            padding: "clamp(24px, 3.5vw, 32px) clamp(20px, 3vw, 28px)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            boxShadow: "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)",
+            transition: "all 0.25s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.boxShadow = "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+        >
           <div className="guarantee-card-header">
-            <Clock size={22} color="#FF6400" strokeWidth={1.8} />
+            <div
+              className="desktop-only"
+              style={{
+                width: "44px",
+                height: "44px",
+                borderRadius: "10px",
+                backgroundColor: "rgba(241, 96, 1, 0.12)",
+                border: "1px solid rgba(241, 96, 1, 0.25)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0
+              }}
+            >
+              <Clock size={20} color="#FF6400" strokeWidth={2} />
+            </div>
+            <Clock className="mobile-only" size={20} color="#FF6400" strokeWidth={2} />
             <h3 style={{
               fontFamily: "'Switzer', 'Inter', sans-serif",
               fontSize: '18px',
               fontWeight: 700,
               color: '#FFFFFF',
               letterSpacing: '-0.015em',
-              margin: '16px 0 8px 0'
+              margin: '14px 0 8px 0'
             }}>
               PERFORMANCE REVIEW
             </h3>
           </div>
           <p style={{
-            fontSize: '14.5px',
-            color: '#949BA8',
+            fontSize: "14.5px",
+            color: "#E2E8F0",
             lineHeight: 1.55,
             margin: 0
           }}>
@@ -2336,7 +2483,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
       {/* Closing Commitment Statement */}
       <p className="guarantee-commitment-text" style={{
         fontSize: '15px',
-        color: '#949BA8',
+        color: '#CBD5E1',
         maxWidth: '740px',
         margin: '0 auto 36px auto',
         lineHeight: 1.6
@@ -2372,7 +2519,7 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
         >
           Book a Growth Infrastructure Review
         </button>
-        <div className="guarantee-ticks-row" style={{ color: '#949BA8' }}>
+        <div className="guarantee-ticks-row" style={{ color: '#CBD5E1' }}>
           <span>✓ WORKING BY DAY 30 OR WE FIX IT FREE</span>
           <span>✓ FULL REFUND IF DELIVERY FAILS</span>
           <span>✓ YOU KEEP EVERYTHING WE BUILD</span>
@@ -2420,7 +2567,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" style={{ backgroundColor: '#0B0C0E', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
+    <section id="faq" style={{ backgroundColor: '#000000', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         
         {/* Eyebrow Pill */}
@@ -2450,7 +2597,7 @@ const FAQSection = () => {
           <h2 style={{ fontSize: 'clamp(26px, 4.2vw, 48px)', fontWeight: 700, color: '#FFFFFF', marginBottom: '14px', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
             Clear Answers. Before We Begin.
           </h2>
-          <p style={{ fontSize: 'clamp(14px, 1.6vw, 16px)', color: '#949BA8', margin: 0 }}>
+          <p style={{ fontSize: 'clamp(14px, 1.6vw, 16px)', color: '#CBD5E1', margin: 0 }}>
             Everything you need to understand about working with ASENZO.
           </p>
         </div>
@@ -2501,7 +2648,7 @@ const FAQSection = () => {
                 >
                   <div style={{ overflow: 'hidden' }}>
                     <div style={{ paddingTop: '14px', paddingLeft: 'clamp(0px, 3vw, 36px)', paddingRight: '8px' }}>
-                      <p className="faq-ans-text" style={{ fontSize: '15px', lineHeight: 1.6, color: '#949BA8', margin: 0 }}>
+                      <p className="faq-ans-text" style={{ fontSize: '15px', lineHeight: 1.6, color: '#D1D5DB', margin: 0 }}>
                         {faq.a}
                       </p>
                     </div>
@@ -2571,12 +2718,12 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
   return (
     <>
-      {/* 1. DESKTOP ENVELOPE (1024px+): 100% UNCHANGED PIXEL-IDENTICAL PINNED SCROLL ANIMATION */}
+      {/* 1. DESKTOP ENVELOPE (1024px+): LUXURY CREAM WHITE ENVELOPE WITH SHINY GLASSY ORANGE CARD */}
       <section
         ref={containerRef}
         className="envelope-outer-section desktop-only"
         style={{
-          backgroundColor: '#0E1015',
+          backgroundColor: '#000000',
           height: '135vh',
           position: 'relative',
           zIndex: 200
@@ -2596,6 +2743,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             overflow: 'hidden'
           }}
         >
+          {/* Ambient Warm Glow behind the Cream White Envelope */}
           <div
             style={{
               position: 'absolute',
@@ -2603,7 +2751,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               left: 0,
               right: 0,
               bottom: 0,
-              background: 'radial-gradient(circle at 50% 55%, rgba(255, 110, 0, 0.14) 0%, rgba(14, 16, 21, 0) 65%)',
+              background: 'radial-gradient(circle at 50% 55%, rgba(255, 110, 0, 0.22) 0%, rgba(255, 60, 0, 0.06) 45%, rgba(0, 0, 0, 0) 70%)',
               zIndex: 0
             }}
           />
@@ -2621,18 +2769,19 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               boxSizing: 'border-box'
             }}
           >
-            {/* Top Flap (Behind the card) */}
+            {/* Top Flap (Behind the card) - Warm Cream Paper */}
             <svg style={{ position: 'absolute', bottom: '378px', left: 0, right: 0, zIndex: 1 }} width="100%" height="240" viewBox="0 0 640 240" preserveAspectRatio="none">
               <defs>
-                <linearGradient id="topFlapGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-                  <stop offset="0%" stopColor="rgba(255, 69, 0, 0.18)" />
-                  <stop offset="100%" stopColor="#18181b" />
+                <linearGradient id="topFlapCreamGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#DFD8CC" />
+                  <stop offset="45%" stopColor="#ECE6DC" />
+                  <stop offset="100%" stopColor="#FAF7F2" />
                 </linearGradient>
               </defs>
-              <polygon points="320,0 0,240 640,240" fill="url(#topFlapGrad)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+              <polygon points="320,0 0,240 640,240" fill="url(#topFlapCreamGrad)" stroke="rgba(0, 0, 0, 0.08)" strokeWidth="1" />
             </svg>
 
-            {/* Envelope Back Base */}
+            {/* Envelope Back Base - Cream White Paper Pocket Interior */}
             <div
               style={{
                 position: 'absolute',
@@ -2640,13 +2789,15 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
                 left: 0,
                 right: 0,
                 height: '380px',
-                backgroundColor: '#111113',
-                borderRadius: '6px',
+                backgroundColor: '#F3EFE7',
+                backgroundImage: 'linear-gradient(180deg, #E4DED2 0%, #F3EFE7 35%, #FAF7F2 100%)',
+                borderRadius: '8px',
+                boxShadow: 'inset 0 10px 24px rgba(0, 0, 0, 0.08)',
                 zIndex: 1
               }}
             />
 
-            {/* The Glowing Card */}
+            {/* The Shiny Glassy Orange Card (Emerges out on scroll) */}
             <div
               style={{
                 position: 'absolute',
@@ -2654,10 +2805,16 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
                 left: 'clamp(10px, 2.5vw, 24px)',
                 right: 'clamp(10px, 2.5vw, 24px)',
                 minHeight: '390px',
-                backgroundColor: '#D83300',
-                borderRadius: '12px',
-                padding: 'clamp(22px, 3.5vw, 36px) clamp(14px, 3vw, 28px) clamp(18px, 2.8vw, 26px) clamp(14px, 3vw, 28px)',
-                boxShadow: '0 -20px 60px rgba(255, 69, 0, 0.45)',
+                backgroundColor: '#E53B00',
+                background: 'radial-gradient(ellipse 90% 70% at 25% 15%, #FF6400 0%, #E63B00 45%, #BA1E00 100%)',
+                backdropFilter: 'blur(28px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(28px) saturate(180%)',
+                borderRadius: '20px',
+                border: '1px solid rgba(255, 185, 130, 0.4)',
+                borderTop: '1px solid rgba(255, 255, 255, 0.75)',
+                borderLeft: '1px solid rgba(255, 255, 255, 0.4)',
+                padding: 'clamp(24px, 3.5vw, 36px) clamp(16px, 3vw, 30px) clamp(20px, 2.8vw, 28px) clamp(16px, 3vw, 30px)',
+                boxShadow: '0 24px 60px rgba(0, 0, 0, 0.45), 0 0 45px rgba(255, 85, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.65), inset 0 -1px 1px rgba(0, 0, 0, 0.25)',
                 transform: `translateY(${0 - (Math.min(scrollProgress * 1.15, 1) * 155)}px)`,
                 transition: 'transform 0.05s linear',
                 zIndex: 2,
@@ -2665,26 +2822,67 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'flex-start',
-                borderTop: '1px solid rgba(255,200,150,0.5)',
-                borderLeft: '1px solid rgba(255,100,50,0.2)',
-                borderRight: '1px solid rgba(255,100,50,0.2)'
+                overflow: 'hidden'
               }}
             >
-              <div style={{ position: 'absolute', top: '16px', left: '16px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderLeft: '2px solid rgba(255,255,255,0.5)' }} />
-              <div style={{ position: 'absolute', top: '16px', right: '16px', width: '12px', height: '12px', borderTop: '2px solid rgba(255,255,255,0.5)', borderRight: '2px solid rgba(255,255,255,0.5)' }} />
+              {/* Fine Luminous Micro-Dot Grid */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px)',
+                  backgroundSize: '14px 14px',
+                  maskImage: 'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 65%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 65%, transparent 100%)',
+                  pointerEvents: 'none',
+                  zIndex: 1
+                }}
+              />
+
+              {/* Glossy Specular Glass Reflection Sheen */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '55%',
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.08) 35%, transparent 65%)',
+                  pointerEvents: 'none',
+                  zIndex: 1
+                }}
+              />
+
+              {/* Radiant Ambient Orb */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '-20%',
+                  left: '-15%',
+                  width: '340px',
+                  height: '340px',
+                  background: 'radial-gradient(circle, rgba(255, 175, 70, 0.45) 0%, rgba(255, 100, 0, 0.15) 50%, transparent 75%)',
+                  filter: 'blur(35px)',
+                  pointerEvents: 'none',
+                  zIndex: 1
+                }}
+              />
 
               <h2
                 className="envelope-card-headline"
                 style={{
-                  fontSize: 'clamp(13px, 2.2vw, 19px)',
+                  fontFamily: "'Switzer', 'Inter', sans-serif",
+                  fontSize: 'clamp(14px, 2.2vw, 20px)',
                   fontWeight: 800,
-                  letterSpacing: '0.03em',
+                  letterSpacing: '0.02em',
                   lineHeight: 1.25,
                   color: '#FFFFFF',
-                  marginBottom: '10px',
+                  marginBottom: '12px',
                   maxWidth: '520px',
                   textAlign: 'center',
-                  textTransform: 'uppercase'
+                  textTransform: 'uppercase',
+                  position: 'relative',
+                  zIndex: 2
                 }}
               >
                 NOT EVERYONE IS WILLING TO CHOOSE GREATNESS. YOU AREN'T EVERYONE.
@@ -2693,56 +2891,77 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               <p
                 className="envelope-card-body"
                 style={{
-                  fontSize: 'clamp(11px, 1.5vw, 12.5px)',
-                  color: 'rgba(255,255,255,0.92)',
-                  marginBottom: '10px',
-                  lineHeight: 1.45,
+                  fontSize: 'clamp(11.5px, 1.5vw, 13px)',
+                  color: 'rgba(255, 255, 255, 0.95)',
+                  marginBottom: '14px',
+                  lineHeight: 1.5,
                   fontWeight: 400,
                   maxWidth: '510px',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  position: 'relative',
+                  zIndex: 2
                 }}
               >
                 You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take action, the conviction to think differently, and the ambition to become the exception.
               </p>
 
-              <p
-                className="envelope-card-italic"
+              {/* Straight Manifesto Line (Upright & prominent, NOT italic) */}
+              <div
                 style={{
-                  fontSize: 'clamp(11.5px, 1.6vw, 13px)',
-                  color: '#FFFFFF',
-                  marginBottom: '14px',
-                  lineHeight: 1.35,
-                  fontWeight: 600,
-                  maxWidth: '490px',
-                  textAlign: 'center',
-                  fontStyle: 'italic'
+                  borderLeft: '2.5px solid #FFFFFF',
+                  paddingLeft: '14px',
+                  marginBottom: '16px',
+                  position: 'relative',
+                  zIndex: 2,
+                  maxWidth: '490px'
                 }}
               >
-                You weren't here to follow the standard. You were here to set it.
-              </p>
+                <p
+                  style={{
+                    fontSize: 'clamp(12px, 1.6vw, 13.5px)',
+                    fontStyle: 'normal',
+                    fontWeight: 700,
+                    color: '#FFFFFF',
+                    margin: 0,
+                    lineHeight: 1.4,
+                    letterSpacing: '-0.01em',
+                    textAlign: 'left'
+                  }}
+                >
+                  You weren't here to follow the standard. You were here to set it.
+                </p>
+              </div>
 
               <button
                 onClick={onAssessmentClick}
-                className="envelope-card-btn mobile-btn-52"
+                className="envelope-card-btn"
                 style={{
                   minHeight: '44px',
                   height: '44px',
                   backgroundColor: '#FFFFFF',
                   color: '#000000',
                   border: 'none',
-                  borderRadius: '6px',
-                  padding: '0 clamp(18px, 3vw, 28px)',
-                  fontSize: '13px',
+                  borderRadius: '12px',
+                  padding: '0 clamp(20px, 3vw, 32px)',
+                  fontSize: '13.5px',
                   fontWeight: 700,
                   letterSpacing: '0.04em',
                   cursor: 'pointer',
-                  transition: 'all 0.2s',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
                   pointerEvents: 'auto',
-                  boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
-                  textTransform: 'uppercase'
+                  boxShadow: '0 6px 20px rgba(0, 0, 0, 0.25)',
+                  textTransform: 'uppercase',
+                  position: 'relative',
+                  zIndex: 2
                 }}
-                onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#E5E5E5'; }}
-                onMouseOut={(e) => { e.currentTarget.style.backgroundColor = '#FFFFFF'; }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.backgroundColor = '#F4F4F5';
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FFFFFF';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
               >
                 I CHOOSE GREATNESS.
               </button>
@@ -2750,26 +2969,37 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               <span
                 style={{
                   fontSize: '12px',
-                  color: 'rgba(255,255,255,0.85)',
+                  color: 'rgba(255, 255, 255, 0.85)',
                   marginTop: '10px',
                   fontWeight: 500,
                   letterSpacing: '0.02em',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  position: 'relative',
+                  zIndex: 2
                 }}
               >
                 The next move is yours.
               </span>
             </div>
 
-            {/* Envelope Front SVG */}
-            <svg style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 3, pointerEvents: 'none' }} width="100%" height="380" viewBox="0 0 640 380" preserveAspectRatio="none">
+            {/* Envelope Front SVG - Cream White Paper Fold Shapes */}
+            <svg style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 3, pointerEvents: 'none', filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6))' }} width="100%" height="380" viewBox="0 0 640 380" preserveAspectRatio="none">
               <defs>
-                <filter id="envelopeShadow" x="-10%" y="-10%" width="120%" height="120%">
-                  <feDropShadow dx="0" dy="-4" stdDeviation="6" floodColor="#000000" floodOpacity="0.4" />
+                <linearGradient id="frontSidesCreamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#FAF8F3" />
+                  <stop offset="100%" stopColor="#ECE6DC" />
+                </linearGradient>
+                <linearGradient id="frontBottomCreamGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#E5DFD3" />
+                  <stop offset="55%" stopColor="#F5F1E8" />
+                  <stop offset="100%" stopColor="#FAF8F4" />
+                </linearGradient>
+                <filter id="envelopeFrontShadow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="-4" stdDeviation="7" floodColor="#000000" floodOpacity="0.16" />
                 </filter>
               </defs>
-              <polygon points="0,0 320,280 640,0 640,380 0,380" fill="#141416" stroke="rgba(255,255,255,0.06)" strokeWidth="1" filter="url(#envelopeShadow)" />
-              <polygon points="0,380 320,280 640,380" fill="#1a1a1e" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+              <polygon points="0,0 320,280 640,0 640,380 0,380" fill="url(#frontSidesCreamGrad)" stroke="rgba(0, 0, 0, 0.08)" strokeWidth="1" filter="url(#envelopeFrontShadow)" />
+              <polygon points="0,380 320,280 640,380" fill="url(#frontBottomCreamGrad)" stroke="rgba(0, 0, 0, 0.08)" strokeWidth="1" />
             </svg>
           </div>
         </div>
@@ -2971,7 +3201,7 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
 
 const CalendarBookingSection = ({ onAssessmentClick }) => {
   return (
-    <section id="booking" className="section-spacious" style={{ backgroundColor: '#0B0C0E', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
+    <section id="booking" className="section-spacious" style={{ backgroundColor: '#000000', padding: 'clamp(56px, 8vw, 120px) clamp(16px, 4vw, 24px)', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
       {/* DESKTOP VIEW (1024px+) - Centered Text with Button (No Calendar) */}
       <div className="desktop-only" style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
@@ -3010,7 +3240,7 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
         <p style={{
           fontSize: 'clamp(16px, 1.6vw, 18px)',
           lineHeight: 1.6,
-          color: '#949BA8',
+          color: '#CBD5E1',
           maxWidth: '520px',
           margin: '0 auto 36px auto',
           textAlign: 'center'
@@ -3114,7 +3344,7 @@ const CalendarBookingSection = ({ onAssessmentClick }) => {
           style={{
             fontSize: '15.5px',
             lineHeight: 1.6,
-            color: '#A3A3A3',
+            color: '#CBD5E1',
             maxWidth: '460px',
             margin: '0 auto 28px auto',
             textAlign: 'center'
@@ -3257,7 +3487,7 @@ const LetsConnectSwipeButton = ({ onClick }) => {
 
 // 11. Master Footer
 const MasterFooter = ({ onAssessmentClick }) => (
-  <footer style={{ backgroundColor: '#0B0C0E', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: 'clamp(48px, 6vw, 72px)', paddingBottom: '32px', overflow: 'hidden', width: '100%' }}>
+  <footer style={{ backgroundColor: '#000000', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: 'clamp(48px, 6vw, 72px)', paddingBottom: '32px', overflow: 'hidden', width: '100%' }}>
     <div style={{ width: '100%', maxWidth: '100%', padding: '0 clamp(16px, 4vw, 80px)', margin: '0 auto', boxSizing: 'border-box' }}>
       
       {/* Top Flex Container: Stretches across the full website width */}
@@ -3311,7 +3541,7 @@ const MasterFooter = ({ onAssessmentClick }) => (
           <div style={{ marginTop: '4px', width: 'fit-content' }}>
             <LetsConnectSwipeButton onClick={onAssessmentClick} />
           </div>
-          <div className="footer-copy-text" style={{ fontSize: '12px', color: '#6B7280', marginTop: '12px' }}>
+          <div className="footer-copy-text" style={{ fontSize: '12px', color: '#94A3B8', marginTop: '12px' }}>
             © 2026 Asenzo. All rights reserved.
           </div>
         </div>

@@ -1,20 +1,20 @@
 @import "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap";
 
 :root {
-  /* ASENZO OFFICIAL DESIGN SYSTEM: DEEP CHARCOAL / MIDNIGHT TITANIUM */
-  --color-page-bg: #0B0C0E;
-  --color-surface-dashboard: #0E1015;
-  --color-surface-elevated: #13151B;
-  --color-surface-secondary: #171922;
+  /* ASENZO OFFICIAL DESIGN SYSTEM: PURE BLACK / MIDNIGHT TITANIUM */
+  --color-page-bg: #000000;
+  --color-surface-dashboard: #0A0A0C;
+  --color-surface-elevated: #111114;
+  --color-surface-secondary: #16161A;
   --color-border-graphite: rgba(255, 255, 255, 0.08);
   --color-border-subtle: rgba(255, 255, 255, 0.06);
-  --color-border-hover: rgba(255, 255, 255, 0.18);
+  --color-border-hover: rgba(255, 255, 255, 0.2);
   
   /* Typography */
-  --color-text-warm-white: #F4F4F6;
+  --color-text-warm-white: #FFFFFF;
   --color-text-pure-white: #FFFFFF;
   --color-text-secondary: #949BA8;
-  --color-text-muted: #6B7280;
+  --color-text-muted: #71717A;
   
   /* Brand Accents */
   --color-burnt-orange: #F16001;
@@ -35,12 +35,12 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #0B0C0E;
+  background-color: #000000;
 }
 
 body {
-  background-color: #0B0C0E;
-  color: #F4F4F6;
+  background-color: #000000;
+  color: #FFFFFF;
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.6;
@@ -435,7 +435,7 @@ body {
     font-size: 13.5px !important;
     line-height: 1.6 !important;
     letter-spacing: 0.04em !important;
-    color: var(--text-muted) !important;
+    color: #CBD5E1 !important;
     margin: 0 auto var(--s6) auto !important;
     padding: 0 4px !important;
     animation: mobileHeroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
