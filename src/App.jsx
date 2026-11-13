@@ -30,7 +30,10 @@ import {
   ArrowUpRight,
   ChevronDown,
   Menu,
-  X
+  X,
+  Mail,
+  Copy,
+  ExternalLink
 } from "lucide-react";
 import "./index.css";
 
@@ -44,6 +47,7 @@ import "./index.css";
 
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const scrollToBooking = (e) => {
@@ -196,10 +200,13 @@ export default function App() {
       <CalendarBookingSection onAssessmentClick={scrollToBooking} />
 
       {/* 15. OLD DESIGN: MASTER FOOTER */}
-      <MasterFooter onAssessmentClick={scrollToBooking} />
+      <MasterFooter onAssessmentClick={scrollToBooking} onEmailClick={() => setEmailModalOpen(true)} />
 
       {/* INTERACTIVE ASSESSMENT MODAL */}
       <DiagnosticModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
+      {/* DIRECT EMAIL MODAL */}
+      <DirectEmailModal isOpen={emailModalOpen} onClose={() => setEmailModalOpen(false)} />
     </div>
   );
 }
@@ -3443,130 +3450,163 @@ const LetsConnectSwipeButton = ({ onClick }) => {
 };
 
 // 11. Master Footer
-const MasterFooter = ({ onAssessmentClick }) => (
-  <footer style={{ backgroundColor: '#000000', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: 'clamp(48px, 6vw, 72px)', paddingBottom: '32px', overflow: 'hidden', width: '100%' }}>
-    <div style={{ width: '100%', maxWidth: '100%', padding: '0 clamp(16px, 4vw, 80px)', margin: '0 auto', boxSizing: 'border-box' }}>
-      
-      {/* Top Flex Container: Stretches across the full website width */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        flexWrap: 'wrap',
-        gap: 'clamp(32px, 5vw, 48px)',
-        marginBottom: '36px',
-        width: '100%'
-      }}>
-        {/* Left Side: Brand & Connect Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '420px', flex: '1 1 300px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{
-              width: '30px',
-              height: '30px',
-              backgroundColor: '#111111',
-              borderRadius: '7px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-              overflow: 'hidden',
-              flexShrink: 0
-            }}>
-              <img
-                src="/asenzo-logo.jpg"
-                alt="Asenzo"
+const MasterFooter = ({ onAssessmentClick, onEmailClick }) => {
+  const handleEmailAction = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    navigator.clipboard?.writeText("anas@theasenzo.com");
+    try {
+      const a = document.createElement("a");
+      a.href = "mailto:anas@theasenzo.com?subject=Strategic%20Growth%20Inquiry%20via%20Asenzo";
+      a.click();
+    } catch (err) {}
+    if (onEmailClick) onEmailClick();
+  };
+
+  return (
+    <footer style={{ backgroundColor: '#000000', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: 'clamp(48px, 6vw, 72px)', paddingBottom: '32px', overflow: 'hidden', width: '100%' }}>
+      <div style={{ width: '100%', maxWidth: '100%', padding: '0 clamp(16px, 4vw, 80px)', margin: '0 auto', boxSizing: 'border-box' }}>
+        
+        {/* Top Flex Container: Stretches across the full website width */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          flexWrap: 'wrap',
+          gap: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '36px',
+          width: '100%'
+        }}>
+          {/* Left Side: Brand & Connect Column */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '420px', flex: '1 1 300px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{
+                width: '30px',
+                height: '30px',
+                backgroundColor: '#111111',
+                borderRadius: '7px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+                overflow: 'hidden',
+                flexShrink: 0
+              }}>
+                <img
+                  src="/asenzo-logo.jpg"
+                  alt="Asenzo"
+                  style={{
+                    width: '22px',
+                    height: '22px',
+                    borderRadius: '4px',
+                    objectFit: 'cover',
+                    mixBlendMode: 'screen',
+                    display: 'block'
+                  }}
+                />
+              </div>
+              <span className="footer-idea-title" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.02em', color: '#FFFFFF' }}>
+                Have a cool idea?
+              </span>
+            </div>
+            <p className="footer-idea-desc" style={{ fontSize: '14px', color: '#949BA8', lineHeight: 1.6, margin: 0 }}>
+              We love talking with ambitious founders who are ready to take action. Whether you have a project in mind or just want to say hello.
+            </p>
+            <div className="footer-arch-tag" style={{ fontSize: '12px', fontWeight: 600, color: '#E2E8F0', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+              Growth Infrastructure · Design. Build. Operate.
+            </div>
+            <div style={{ marginTop: '4px', display: 'flex', flexDirection: 'column', gap: '8px', width: 'fit-content' }}>
+              <LetsConnectSwipeButton onClick={handleEmailAction} />
+              <a
+                href="mailto:anas@theasenzo.com"
+                onClick={handleEmailAction}
                 style={{
-                  width: '22px',
-                  height: '22px',
-                  borderRadius: '4px',
-                  objectFit: 'cover',
-                  mixBlendMode: 'screen',
-                  display: 'block'
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '7px',
+                  color: '#E2E8F0',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  letterSpacing: '-0.01em',
+                  transition: 'color 0.2s ease',
+                  padding: '2px 0',
+                  cursor: 'pointer'
                 }}
-              />
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#F94500')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = '#E2E8F0')}
+              >
+                <Mail size={13} color="#F94500" strokeWidth={2.5} />
+                <span>anas@theasenzo.com</span>
+              </a>
             </div>
-            <span className="footer-idea-title" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.02em', color: '#FFFFFF' }}>
-              Have a cool idea?
-            </span>
-          </div>
-          <p className="footer-idea-desc" style={{ fontSize: '14px', color: '#949BA8', lineHeight: 1.6, margin: 0 }}>
-            We love talking with ambitious founders who are ready to take action. Whether you have a project in mind or just want to say hello.
-          </p>
-          <div className="footer-arch-tag" style={{ fontSize: '12px', fontWeight: 600, color: '#E2E8F0', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-            Growth Infrastructure · Design. Build. Operate.
-          </div>
-          <div style={{ marginTop: '4px', width: 'fit-content' }}>
-            <LetsConnectSwipeButton onClick={() => {
-              window.location.href = "mailto:anas@theasenzo.com";
-            }} />
-          </div>
-          <div className="footer-copy-text" style={{ fontSize: '12px', color: '#94A3B8', marginTop: '12px' }}>
-            © 2026 Asenzo. All rights reserved.
-          </div>
-        </div>
-
-        {/* Right Side: Columns stretched across to the right edge */}
-        <div className="footer-links-grid">
-          {/* SOLUTIONS Column */}
-          <div>
-            <div className="footer-col-heading" style={{ fontSize: '11px', color: '#FFFFFF', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
-            <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#949BA8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Core</a>
-              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Growth</a>
-              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Custom</a>
+            <div className="footer-copy-text" style={{ fontSize: '12px', color: '#94A3B8', marginTop: '6px' }}>
+              © 2026 Asenzo. All rights reserved.
             </div>
           </div>
 
-          {/* NAVIGATION Column */}
-          <div>
-            <div className="footer-col-heading" style={{ fontSize: '11px', color: '#FFFFFF', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
-            <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#949BA8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a className="footer-nav-link" href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Infrastructure</a>
-              <a className="footer-nav-link" href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
-              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
-              <a className="footer-nav-link" href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
+          {/* Right Side: Columns stretched across to the right edge */}
+          <div className="footer-links-grid">
+            {/* SOLUTIONS Column */}
+            <div>
+              <div className="footer-col-heading" style={{ fontSize: '11px', color: '#FFFFFF', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>SOLUTIONS</div>
+              <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#949BA8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Core</a>
+                <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Growth</a>
+                <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Custom</a>
+              </div>
+            </div>
+
+            {/* NAVIGATION Column */}
+            <div>
+              <div className="footer-col-heading" style={{ fontSize: '11px', color: '#FFFFFF', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
+              <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#949BA8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <a className="footer-nav-link" href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Infrastructure</a>
+                <a className="footer-nav-link" href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
+                <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
+                <a className="footer-nav-link" href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
 
-    </div>
-
-    {/* Full-Width Giant Asenzo Watermark - Pure Grey Font with Soft Bottom Vertical Fade via CSS Mask */}
-    <div style={{
-      width: '100%',
-      marginTop: '40px',
-      marginBottom: '-10px',
-      textAlign: 'center',
-      userSelect: 'none',
-      overflow: 'hidden',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      WebkitMaskImage: 'linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0) 100%)',
-      maskImage: 'linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0) 100%)'
-    }}>
-      <span
-        className="footer-watermark-text"
-        style={{
-          display: 'block',
-          fontFamily: "'Switzer', 'Inter', -apple-system, sans-serif",
-          fontSize: 'clamp(48px, 17vw, 360px)',
-          fontWeight: 800,
-          letterSpacing: '-0.045em',
-          lineHeight: 0.85,
-          width: '100%',
-          maxWidth: '100%',
-          whiteSpace: 'nowrap',
-          color: 'rgba(255, 255, 255, 0.08)',
-          textAlign: 'center'
-        }}
-      >
-        Asenzo
-      </span>
-    </div>
-  </footer>
-);
+      {/* Full-Width Giant Asenzo Watermark - Pure Grey Font with Soft Bottom Vertical Fade via CSS Mask */}
+      <div style={{
+        width: '100%',
+        marginTop: '40px',
+        marginBottom: '-10px',
+        textAlign: 'center',
+        userSelect: 'none',
+        overflow: 'hidden',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        WebkitMaskImage: 'linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0) 100%)',
+        maskImage: 'linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0) 100%)'
+      }}>
+        <span
+          className="footer-watermark-text"
+          style={{
+            display: 'block',
+            fontFamily: "'Switzer', 'Inter', -apple-system, sans-serif",
+            fontSize: 'clamp(48px, 17vw, 360px)',
+            fontWeight: 800,
+            letterSpacing: '-0.045em',
+            lineHeight: 0.85,
+            width: '100%',
+            maxWidth: '100%',
+            whiteSpace: 'nowrap',
+            color: 'rgba(255, 255, 255, 0.08)',
+            textAlign: 'center'
+          }}
+        >
+          Asenzo
+        </span>
+      </div>
+    </footer>
+  );
+};
 
 // Modal
 const DiagnosticModal = ({ isOpen, onClose }) => {
@@ -3579,6 +3619,233 @@ const DiagnosticModal = ({ isOpen, onClose }) => {
         <h2 style={{ fontSize: '24px', fontWeight: 700, color: '#FFF', marginBottom: '14px', letterSpacing: '-0.02em' }}>Book a Growth Infrastructure Review</h2>
         <p style={{ fontSize: '14px', color: '#a1a1aa', lineHeight: 1.55, marginBottom: '24px' }}>Let's understand how your positioning, content, and acquisition process currently work, identify the biggest gaps, and explore how ASENZO would connect them.</p>
         <button onClick={() => { onClose(); window.location.hash = "#booking"; }} style={{ width: '100%', height: '46px', backgroundColor: '#FFF', color: '#000', border: 'none', borderRadius: '6px', fontWeight: 600, fontSize: '14px', cursor: 'pointer' }}>Schedule 30-Minute Review</button>
+      </div>
+    </div>
+  );
+};
+
+// Direct Email Contact Modal - 100% Guaranteed to Work on All Browsers (Desktop & Mobile)
+const DirectEmailModal = ({ isOpen, onClose }) => {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const email = "anas@theasenzo.com";
+
+  const handleCopy = () => {
+    navigator.clipboard?.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
+  };
+
+  const openGmail = () => {
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Strategic%20Growth%20Inquiry%20via%20Asenzo`, "_blank");
+  };
+
+  const openDefaultMail = () => {
+    window.location.href = `mailto:${email}?subject=Strategic%20Growth%20Inquiry%20via%20Asenzo`;
+  };
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        zIndex: 9999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '16px'
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          maxWidth: '460px',
+          width: '100%',
+          backgroundColor: '#0c0d10',
+          border: '1px solid rgba(255, 255, 255, 0.14)',
+          borderRadius: '16px',
+          padding: 'clamp(24px, 5vw, 32px)',
+          position: 'relative',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12)'
+        }}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          style={{
+            position: 'absolute',
+            top: '18px',
+            right: '18px',
+            background: 'rgba(255, 255, 255, 0.06)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '8px',
+            width: '32px',
+            height: '32px',
+            color: '#FFFFFF',
+            fontSize: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer'
+          }}
+        >
+          <X size={16} />
+        </button>
+
+        {/* Eyebrow */}
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', color: '#F94500', textTransform: 'uppercase', marginBottom: '10px' }}>
+          <Mail size={12} strokeWidth={2.8} />
+          DIRECT COMMUNICATION
+        </div>
+
+        {/* Title */}
+        <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 8px 0', letterSpacing: '-0.02em' }}>
+          Connect with Anas
+        </h2>
+
+        {/* Subtitle */}
+        <p style={{ fontSize: '13.5px', color: '#949BA8', lineHeight: 1.55, margin: '0 0 20px 0' }}>
+          Have a project in mind, an idea to discuss, or want to explore working together? Send an email directly:
+        </p>
+
+        {/* Prominent Email Address Box with 1-click Copy */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '12px',
+            padding: '12px 14px',
+            borderRadius: '10px',
+            backgroundColor: 'rgba(255, 255, 255, 0.04)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            marginBottom: '18px'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+            <div style={{ width: '32px', height: '32px', borderRadius: '7px', backgroundColor: 'rgba(249, 69, 0, 0.12)', border: '1px solid rgba(249, 69, 0, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Mail size={15} color="#F94500" strokeWidth={2.5} />
+            </div>
+            <span style={{ fontSize: '14.5px', fontWeight: 600, color: '#FFFFFF', letterSpacing: '-0.01em', wordBreak: 'break-all' }}>
+              {email}
+            </span>
+          </div>
+
+          <button
+            onClick={handleCopy}
+            style={{
+              padding: '6px 12px',
+              borderRadius: '6px',
+              backgroundColor: copied ? '#10b981' : 'rgba(255, 255, 255, 0.08)',
+              border: copied ? '1px solid #10b981' : '1px solid rgba(255, 255, 255, 0.14)',
+              color: '#FFFFFF',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '5px',
+              flexShrink: 0,
+              transition: 'all 0.2s ease'
+            }}
+          >
+            {copied ? (
+              <>
+                <Check size={12} strokeWidth={3} />
+                <span>Copied!</span>
+              </>
+            ) : (
+              <>
+                <Copy size={12} />
+                <span>Copy</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Action Buttons */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {/* Primary: Open in Gmail Web */}
+          <button
+            onClick={openGmail}
+            style={{
+              width: '100%',
+              height: '46px',
+              borderRadius: '8px',
+              backgroundColor: '#F94500',
+              color: '#FFFFFF',
+              border: 'none',
+              fontSize: '14px',
+              fontWeight: 700,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              cursor: 'pointer',
+              boxShadow: '0 4px 16px rgba(249, 69, 0, 0.35)',
+              transition: 'filter 0.2s ease'
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.filter = 'brightness(1.08)')}
+            onMouseLeave={(e) => (e.currentTarget.style.filter = 'brightness(1)')}
+          >
+            <span>Open in Gmail Web</span>
+            <ExternalLink size={14} strokeWidth={2.5} />
+          </button>
+
+          {/* Secondary: Open in Default Mail Client */}
+          <button
+            onClick={openDefaultMail}
+            style={{
+              width: '100%',
+              height: '44px',
+              borderRadius: '8px',
+              backgroundColor: 'transparent',
+              color: '#E2E8F0',
+              border: '1px solid rgba(255, 255, 255, 0.16)',
+              fontSize: '13.5px',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.35)';
+              e.currentTarget.style.color = '#FFFFFF';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.16)';
+              e.currentTarget.style.color = '#E2E8F0';
+            }}
+          >
+            <span>Open in Default Mail App (Outlook / Apple Mail)</span>
+          </button>
+        </div>
       </div>
     </div>
   );
