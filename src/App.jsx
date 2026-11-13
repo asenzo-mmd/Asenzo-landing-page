@@ -1492,32 +1492,32 @@ function CompactIntegrationCard({ group, index = 0 }) {
 function KeyBenefitsSection() {
   const benefits = [
     {
-      icon: <Zap size={20} color="#F16001" strokeWidth={2.2} />,
+      icon: <Zap size={24} color="#F16001" strokeWidth={2.2} />,
       title: "Clear Market Positioning",
       desc: "Make your expertise, differentiation, and business value easier for the market to understand."
     },
     {
-      icon: <ShieldCheck size={20} color="#F16001" strokeWidth={2.2} />,
+      icon: <ShieldCheck size={24} color="#F16001" strokeWidth={2.2} />,
       title: "Strategic Content Direction",
       desc: "Give your content a defined purpose in attracting, educating, and building buyer trust."
     },
     {
-      icon: <Clock size={20} color="#F16001" strokeWidth={2.2} />,
+      icon: <Clock size={24} color="#F16001" strokeWidth={2.2} />,
       title: "Consistent Demand Generation",
       desc: "Build a structured content operation around your expertise and market."
     },
     {
-      icon: <DollarSign size={20} color="#F16001" strokeWidth={2.2} />,
+      icon: <DollarSign size={24} color="#F16001" strokeWidth={2.2} />,
       title: "Structured Prospect Capture",
       desc: "Give interested prospects clear entry points through your content, resources, and enquiries."
     },
     {
-      icon: <PieChart size={20} color="#F16001" strokeWidth={2.2} />,
+      icon: <PieChart size={24} color="#F16001" strokeWidth={2.2} />,
       title: "Prepared Sales Conversations",
       desc: "Organise prospect information and give your team the context needed before calls."
     },
     {
-      icon: <BarChart3 size={20} color="#F16001" strokeWidth={2.2} />,
+      icon: <BarChart3 size={24} color="#F16001" strokeWidth={2.2} />,
       title: "Acquisition Visibility",
       desc: "Understand prospect sources, enquiries, qualification, bookings, and recorded sales outcomes."
     }
@@ -1624,14 +1624,16 @@ function KeyBenefitsSection() {
               <div
                 className="benefit-icon-tile"
                 style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "10px",
-                  backgroundColor: "rgba(241, 96, 1, 0.12)",
-                  border: "1px solid rgba(241, 96, 1, 0.25)",
+                  width: "60px",
+                  height: "60px",
+                  borderRadius: "16px",
+                  backgroundColor: "#0c0c0c",
+                  border: "1px solid rgba(255, 255, 255, 0.12)",
+                  boxShadow: "inset 0 -12px 20px rgba(241, 96, 1, 0.15)",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center"
+                  justifyContent: "center",
+                  flexShrink: 0
                 }}
               >
                 {item.icon}
@@ -1694,17 +1696,23 @@ const HandHoldingPhoneSection = () => (
       </div>
 
       {/* Editorial Pull-Quote Block */}
-      <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', position: 'relative' }}>
+      <div style={{ maxWidth: '820px', margin: '0 auto', textAlign: 'center', position: 'relative' }}>
         <blockquote className="client-story-quote" style={{
-          fontSize: 'clamp(18px, 3.6vw, 42px)',
+          fontSize: 'clamp(16px, 1.9vw, 21px)',
           fontWeight: 400,
-          lineHeight: 1.3,
-          letterSpacing: '-0.025em',
-          color: '#FFFFFF',
+          lineHeight: 1.7,
+          letterSpacing: '-0.015em',
+          color: '#F1F5F9',
           margin: '0 0 28px 0',
-          textAlign: 'center'
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px'
         }}>
-          "From starting with zero to becoming impossible to ignore. Within one month, our following grew to 30,000 with 1.9M+ views, and we began receiving consistent, qualified enquiries far beyond our network."
+          <p style={{ margin: 0 }}>“A month ago, nobody outside our circle knew we existed. Every client came through referrals. We even tried ads, but nothing turned into real sales, and the market kept asking, ‘Why should we choose you?’ We were always compared on price.</p>
+          <p style={{ margin: 0 }}>Then Anas helped us diagnose our real business problem. It wasn’t visibility. It was our positioning and authority. I liked his approach and the way he showed us the path.</p>
+          <p style={{ margin: 0 }}>Once we worked with Asenzo, everything flipped. We went from invisible to impossible to ignore. We generated lakhs of views, but that’s not what mattered. What mattered was that the attention turned into qualified leads, booked calls, and real sales.</p>
+          <p style={{ margin: 0 }}>Decision-makers we’d never met reached out, already knowing who we were. Within a month, we closed a high-ticket corporate deal, powered by our brand and Asenzo’s systems.”</p>
         </blockquote>
 
         {/* Quiet Inline Avatar + Attribution Line with 20px gap */}
@@ -1830,8 +1838,8 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             transition: "all 0.25s ease"
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
-            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.35)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
             e.currentTarget.style.transform = "translateY(-2px)";
           }}
           onMouseLeave={(e) => {
@@ -1939,35 +1947,35 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
 
           {/* Card 2: GROWTH (FLAGSHIP ENGAGEMENT) */}
           <div className="pricing-card-item pricing-card-growth mobile-card-24" style={{
-            background: "linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(26, 20, 24, 0.65) 100%)",
+            background: "linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(19, 21, 27, 0.6) 100%)",
             backdropFilter: "blur(18px) saturate(140%)",
             WebkitBackdropFilter: "blur(18px) saturate(140%)",
-            border: "1px solid rgba(241, 96, 1, 0.48)",
-            borderTop: "1px solid rgba(255, 185, 130, 0.65)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.28)",
             borderRadius: "14px",
             padding: "clamp(26px, 3.5vw, 38px) clamp(18px, 3vw, 30px)",
             display: "flex",
             flexDirection: "column",
             position: "relative",
-            boxShadow: "0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(241, 96, 1, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.2)",
+            boxShadow: "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)",
             transition: "all 0.25s ease"
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.85)";
-            e.currentTarget.style.boxShadow = "0 20px 48px rgba(0, 0, 0, 0.65), 0 0 45px rgba(241, 96, 1, 0.24), inset 0 1px 1px rgba(255, 255, 255, 0.3)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.35)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
             e.currentTarget.style.transform = "translateY(-2px)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.48)";
-            e.currentTarget.style.boxShadow = "0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(241, 96, 1, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.boxShadow = "0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12)";
             e.currentTarget.style.transform = "translateY(0)";
           }}
           >
             {/* Technical Corner Brackets (Desktop Only) */}
-            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(241, 96, 1, 0.4)', borderLeft: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(241, 96, 1, 0.4)', borderRight: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(241, 96, 1, 0.4)', borderLeft: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
-            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(241, 96, 1, 0.4)', borderRight: '1.5px solid rgba(241, 96, 1, 0.4)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, left: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
+            <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
 
             <div className="pricing-card-header" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '28px' }}>
               <div>
@@ -1985,15 +1993,15 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
               <div
                 className="pricing-flagship-badge"
                 style={{
-                  border: '1px solid rgba(241, 96, 1, 0.35)',
+                  border: '1px solid rgba(255, 255, 255, 0.18)',
                   padding: '4px 8px',
                   fontSize: '9.5px',
                   fontWeight: 800,
                   letterSpacing: '0.08em',
-                  color: '#FF6400',
+                  color: '#FFFFFF',
                   textTransform: 'uppercase',
                   borderRadius: '3px',
-                  backgroundColor: 'rgba(241, 96, 1, 0.12)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
                   whiteSpace: 'nowrap'
                 }}
               >
@@ -2027,21 +2035,18 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                 minHeight: '48px',
                 height: '48px',
                 marginTop: '24px',
-                background: 'radial-gradient(ellipse 90% 70% at 25% 15%, #FF6400 0%, #E63B00 45%, #BA1E00 100%)',
-                color: '#ffffff',
-                border: '1px solid rgba(255, 185, 130, 0.4)',
-                borderTop: '1px solid rgba(255, 255, 255, 0.65)',
+                backgroundColor: '#FFFFFF',
+                color: '#000000',
+                border: 'none',
                 borderRadius: '6px',
                 fontSize: '13.5px',
                 fontWeight: 700,
                 cursor: 'pointer',
-                transition: 'filter 0.2s ease, transform 0.15s ease',
-                boxShadow: '0 4px 16px rgba(241, 96, 1, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.55)',
-                position: 'relative',
-                overflow: 'hidden'
+                transition: 'filter 0.2s ease',
+                boxShadow: '0 2px 10px rgba(255, 255, 255, 0.1)'
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.filter = 'brightness(1.1)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.filter = 'brightness(1)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.filter = 'brightness(0.92)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.filter = 'brightness(1)'; }}
             >
               Explore Growth
             </button>
@@ -2106,8 +2111,8 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             transition: "all 0.25s ease"
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
-            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.35)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
             e.currentTarget.style.transform = "translateY(-2px)";
           }}
           onMouseLeave={(e) => {
@@ -2296,8 +2301,8 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
             transition: "all 0.25s ease"
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
-            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.35)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
             e.currentTarget.style.transform = "translateY(-2px)";
           }}
           onMouseLeave={(e) => {
@@ -2363,8 +2368,8 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
             transition: "all 0.25s ease"
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
-            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.35)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
             e.currentTarget.style.transform = "translateY(-2px)";
           }}
           onMouseLeave={(e) => {
@@ -2430,8 +2435,8 @@ const GuaranteeBanner = ({ onAssessmentClick }) => (
             transition: "all 0.25s ease"
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "rgba(241, 96, 1, 0.55)";
-            e.currentTarget.style.boxShadow = "0 14px 36px rgba(241, 96, 1, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.35)";
+            e.currentTarget.style.boxShadow = "0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2)";
             e.currentTarget.style.transform = "translateY(-2px)";
           }}
           onMouseLeave={(e) => {
@@ -2743,19 +2748,6 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             overflow: 'hidden'
           }}
         >
-          {/* Ambient Warm Glow behind the Cream White Envelope */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'radial-gradient(circle at 50% 55%, rgba(255, 110, 0, 0.22) 0%, rgba(255, 60, 0, 0.06) 45%, rgba(0, 0, 0, 0) 70%)',
-              zIndex: 0
-            }}
-          />
-
           <div
             className="envelope-mobile-wrap"
             style={{
@@ -2904,33 +2896,6 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
               >
                 You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take action, the conviction to think differently, and the ambition to become the exception.
               </p>
-
-              {/* Straight Manifesto Line (Upright & prominent, NOT italic) */}
-              <div
-                style={{
-                  borderLeft: '2.5px solid #FFFFFF',
-                  paddingLeft: '14px',
-                  marginBottom: '16px',
-                  position: 'relative',
-                  zIndex: 2,
-                  maxWidth: '490px'
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: 'clamp(12px, 1.6vw, 13.5px)',
-                    fontStyle: 'normal',
-                    fontWeight: 700,
-                    color: '#FFFFFF',
-                    margin: 0,
-                    lineHeight: 1.4,
-                    letterSpacing: '-0.01em',
-                    textAlign: 'left'
-                  }}
-                >
-                  You weren't here to follow the standard. You were here to set it.
-                </p>
-              </div>
 
               <button
                 onClick={onAssessmentClick}
@@ -3120,31 +3085,6 @@ const FinalCTAHero = ({ onAssessmentClick }) => {
             >
               You know there's a difference between what is comfortable and what you're capable of. You don't wait for certainty, follow the familiar, or settle for standards set by others. You have the courage to take action, the conviction to think differently, and the ambition to become the exception.
             </p>
-
-            {/* Straight Manifesto Line (Upright & prominent with sleek accent indicator) */}
-            <div
-              style={{
-                borderLeft: '2.5px solid #FFFFFF',
-                paddingLeft: '14px',
-                margin: '0 0 24px 0',
-                position: 'relative',
-                zIndex: 2
-              }}
-            >
-              <p
-                style={{
-                  fontSize: '15px',
-                  fontStyle: 'normal',
-                  fontWeight: 700,
-                  color: '#FFFFFF',
-                  margin: 0,
-                  lineHeight: 1.45,
-                  letterSpacing: '-0.01em'
-                }}
-              >
-                You weren't here to follow the standard. You were here to set it.
-              </p>
-            </div>
 
             {/* Full-width 52px button */}
             <button
@@ -3539,7 +3479,9 @@ const MasterFooter = ({ onAssessmentClick }) => (
             Growth Infrastructure · Design. Build. Operate.
           </div>
           <div style={{ marginTop: '4px', width: 'fit-content' }}>
-            <LetsConnectSwipeButton onClick={onAssessmentClick} />
+            <LetsConnectSwipeButton onClick={() => {
+              window.open("https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call", "_blank") || (window.location.href = "https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call");
+            }} />
           </div>
           <div className="footer-copy-text" style={{ fontSize: '12px', color: '#94A3B8', marginTop: '12px' }}>
             © 2026 Asenzo. All rights reserved.

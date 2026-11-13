@@ -735,8 +735,8 @@ body {
   /* 5.4 CLIENT STORY */
   /* ==================================================== */
   .client-story-quote {
-    font-size: clamp(20px, 5.5vw, 24px) !important;
-    line-height: 1.4 !important;
+    font-size: clamp(15px, 4.2vw, 17px) !important;
+    line-height: 1.65 !important;
     padding: 0 !important;
     margin: 0 0 var(--s5) 0 !important;
     color: var(--text) !important;
