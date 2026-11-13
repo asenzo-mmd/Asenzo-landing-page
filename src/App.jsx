@@ -259,14 +259,14 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
   const navLinksDesktop = [
     { label: "The System", href: "#features" },
     { label: "Infrastructure", href: "#integrations" },
-    { label: "Engagements", href: "#pricing" },
+    { label: "Services", href: "#pricing" },
     { label: "FAQ", href: "#faq", hideOnScroll: true }
   ];
 
   const navLinksMobile = [
     { label: "The System", href: "#features" },
     { label: "Infrastructure", href: "#integrations" },
-    { label: "Engagements", href: "#pricing" },
+    { label: "Services", href: "#pricing" },
     { label: "Guarantee", href: "#guarantee" },
     { label: "FAQ", href: "#faq" }
   ];
@@ -706,7 +706,7 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
                   { label: "Features", href: "#features" },
                   { label: "Integrations", href: "#integrations" },
                   { label: "Testimonials", href: "#guarantee" },
-                  { label: "Pricing", href: "#pricing" },
+                  { label: "Services", href: "#pricing" },
                   { label: "FAQ", href: "#faq" }
                 ].map((item) => (
                   <a
@@ -3516,7 +3516,7 @@ const MasterFooter = ({ onAssessmentClick }) => (
             <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#949BA8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <a className="footer-nav-link" href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
               <a className="footer-nav-link" href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Infrastructure</a>
-              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Engagements</a>
+              <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
               <a className="footer-nav-link" href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
             </div>
           </div>
