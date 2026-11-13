@@ -739,7 +739,7 @@ body {
     line-height: 1.65 !important;
     padding: 0 !important;
     margin: 0 0 var(--s5) 0 !important;
-    color: var(--text) !important;
+    color: #FFFFFF !important;
     text-align: center !important;
   }
   .client-author-name {
