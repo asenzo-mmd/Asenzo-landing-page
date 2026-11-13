@@ -1222,6 +1222,22 @@ body {
     gap: 24px;
     align-items: stretch;
   }
+  .pricing-card-top-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 205px;
+  }
+  .pricing-card-top-content .pricing-card-header {
+    min-height: 145px;
+    margin-bottom: 16px !important;
+  }
+  .pricing-card-top-content .pricing-card-scope {
+    margin-top: auto;
+    margin-bottom: 0 !important;
+  }
+  .pricing-card-item .pricing-btn-action {
+    margin-top: 24px !important;
+  }
   .guarantee-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

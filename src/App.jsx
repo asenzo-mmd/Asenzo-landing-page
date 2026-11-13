@@ -257,15 +257,15 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
   }, []);
 
   const navLinksDesktop = [
-    { label: "The System", href: "#features" },
     { label: "Infrastructure", href: "#integrations" },
+    { label: "The System", href: "#features" },
     { label: "Services", href: "#pricing" },
     { label: "FAQ", href: "#faq", hideOnScroll: true }
   ];
 
   const navLinksMobile = [
-    { label: "The System", href: "#features" },
     { label: "Infrastructure", href: "#integrations" },
+    { label: "The System", href: "#features" },
     { label: "Services", href: "#pricing" },
     { label: "Guarantee", href: "#guarantee" },
     { label: "FAQ", href: "#faq" }
@@ -284,8 +284,9 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
   };
 
   const handleMobileCta = (e) => {
+    e.preventDefault();
     setMobileMenuOpen(false);
-    onOpenModal(e);
+    window.open("https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call", "_blank") || (window.location.href = "https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call");
   };
 
   return (
@@ -443,7 +444,10 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
           {/* Desktop Right CTA Button */}
           <div style={{ display: "flex", alignItems: "center", flexShrink: 0, zIndex: 2 }}>
             <button
-              onClick={onOpenModal}
+              onClick={(e) => {
+                e.preventDefault();
+                window.open("https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call", "_blank") || (window.location.href = "https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call");
+              }}
               style={{
                 height: 38,
                 padding: isScrolled ? "0 18px" : "0 22px",
@@ -703,10 +707,10 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
                 }}
               >
                 {[
-                  { label: "Features", href: "#features" },
-                  { label: "Integrations", href: "#integrations" },
-                  { label: "Testimonials", href: "#guarantee" },
+                  { label: "Infrastructure", href: "#integrations" },
+                  { label: "The System", href: "#features" },
                   { label: "Services", href: "#pricing" },
+                  { label: "Testimonials", href: "#guarantee" },
                   { label: "FAQ", href: "#faq" }
                 ].map((item) => (
                   <a
@@ -1864,33 +1868,34 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
             <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
 
-            <div className="pricing-card-header" style={{ marginBottom: '28px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#949BA8', textTransform: 'uppercase', marginBottom: '6px' }}>
-                Growth Foundation
+            <div className="pricing-card-top-content">
+              <div className="pricing-card-header">
+                <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#949BA8', textTransform: 'uppercase', marginBottom: '6px' }}>
+                  Growth Foundation
+                </div>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
+                  CORE
+                </h3>
+                <p style={{ fontSize: '14.5px', color: '#949BA8', lineHeight: 1.55, margin: 0 }}>
+                  Establish the essential foundations connecting your online presence to prospect enquiries, built through focused, project-based work.
+                </p>
               </div>
-              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
-                CORE
-              </h3>
-              <p style={{ fontSize: '14.5px', color: '#949BA8', lineHeight: 1.55, margin: 0 }}>
-                Establish the essential foundations connecting your online presence to prospect enquiries, built through focused, project-based work.
-              </p>
-            </div>
 
-            {/* Scope Badge */}
-            <div className="pricing-card-scope" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              padding: '4px 10px',
-              borderRadius: '4px',
-              backgroundColor: 'rgba(255, 255, 255, 0.06)',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              fontSize: '11px',
-              fontWeight: 600,
-              color: '#E2E8F0',
-              marginBottom: '28px',
-              width: 'fit-content'
-            }}>
-              Scoped to requirements
+              {/* Scope Badge */}
+              <div className="pricing-card-scope" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: '4px 10px',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                fontSize: '11px',
+                fontWeight: 600,
+                color: '#E2E8F0',
+                width: 'fit-content'
+              }}>
+                Scoped to requirements
+              </div>
             </div>
 
             {/* Explore Core Button */}
@@ -1987,10 +1992,30 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
             <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
 
-            <div className="pricing-card-header" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '28px' }}>
-              <div>
-                <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#949BA8', textTransform: 'uppercase', marginBottom: '6px' }}>
-                  Authority Growth System
+            <div className="pricing-card-top-content">
+              <div className="pricing-card-header">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                  <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#949BA8', textTransform: 'uppercase' }}>
+                    Authority Growth System
+                  </div>
+                  {/* Flagship Badge */}
+                  <div
+                    className="pricing-flagship-badge"
+                    style={{
+                      border: '1px solid rgba(255, 255, 255, 0.18)',
+                      padding: '4px 8px',
+                      fontSize: '9.5px',
+                      fontWeight: 800,
+                      letterSpacing: '0.08em',
+                      color: '#FFFFFF',
+                      textTransform: 'uppercase',
+                      borderRadius: '3px',
+                      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    FLAGSHIP
+                  </div>
                 </div>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
                   GROWTH
@@ -1999,41 +2024,22 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
                   The complete ASENZO engagement connecting positioning, demand gen, content, and acquisition infrastructure.
                 </p>
               </div>
-              {/* Flagship Badge */}
-              <div
-                className="pricing-flagship-badge"
-                style={{
-                  border: '1px solid rgba(255, 255, 255, 0.18)',
-                  padding: '4px 8px',
-                  fontSize: '9.5px',
-                  fontWeight: 800,
-                  letterSpacing: '0.08em',
-                  color: '#FFFFFF',
-                  textTransform: 'uppercase',
-                  borderRadius: '3px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                FLAGSHIP
-              </div>
-            </div>
 
-            {/* Scope Badge */}
-            <div className="pricing-card-scope" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              padding: '4px 10px',
-              borderRadius: '4px',
-              backgroundColor: 'rgba(255, 255, 255, 0.06)',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              fontSize: '11px',
-              fontWeight: 600,
-              color: '#E2E8F0',
-              marginBottom: '28px',
-              width: 'fit-content'
-            }}>
-              Build and Operate
+              {/* Scope Badge */}
+              <div className="pricing-card-scope" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: '4px 10px',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                fontSize: '11px',
+                fontWeight: 600,
+                color: '#E2E8F0',
+                width: 'fit-content'
+              }}>
+                Build and Operate
+              </div>
             </div>
 
             {/* Explore Growth Button */}
@@ -2137,33 +2143,34 @@ const ThreeWaysToWorkSection = ({ onAssessmentClick }) => {
             <div className="desktop-only" style={{ position: 'absolute', bottom: 8, left: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderLeft: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
             <div className="desktop-only" style={{ position: 'absolute', bottom: 8, right: 8, width: 8, height: 8, borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', borderRight: '1.5px solid rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
 
-            <div className="pricing-card-header" style={{ marginBottom: '28px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#949BA8', textTransform: 'uppercase', marginBottom: '6px' }}>
-                Custom Infrastructure
+            <div className="pricing-card-top-content">
+              <div className="pricing-card-header">
+                <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', color: '#949BA8', textTransform: 'uppercase', marginBottom: '6px' }}>
+                  Custom Infrastructure
+                </div>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
+                  CUSTOM
+                </h3>
+                <p style={{ fontSize: '14.5px', color: '#949BA8', lineHeight: 1.55, margin: 0 }}>
+                  Specialised growth and operational systems developed around individual business requirements.
+                </p>
               </div>
-              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
-                CUSTOM
-              </h3>
-              <p style={{ fontSize: '14.5px', color: '#949BA8', lineHeight: 1.55, margin: 0 }}>
-                Specialised growth and operational systems developed around individual business requirements.
-              </p>
-            </div>
 
-            {/* Scope Badge */}
-            <div className="pricing-card-scope" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              padding: '4px 10px',
-              borderRadius: '4px',
-              backgroundColor: 'rgba(255, 255, 255, 0.06)',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              fontSize: '11px',
-              fontWeight: 600,
-              color: '#E2E8F0',
-              marginBottom: '28px',
-              width: 'fit-content'
-            }}>
-              Custom Scope
+              {/* Scope Badge */}
+              <div className="pricing-card-scope" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: '4px 10px',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                fontSize: '11px',
+                fontWeight: 600,
+                color: '#E2E8F0',
+                width: 'fit-content'
+              }}>
+                Custom Scope
+              </div>
             </div>
 
             {/* Discuss a Custom Project Button */}
@@ -3490,7 +3497,7 @@ const MasterFooter = ({ onAssessmentClick }) => (
           </div>
           <div style={{ marginTop: '4px', width: 'fit-content' }}>
             <LetsConnectSwipeButton onClick={() => {
-              window.open("https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call", "_blank") || (window.location.href = "https://app.cal.com/mmd-asenzo/brandgrowth-strategy-call");
+              window.location.href = "mailto:anas@theasenzo.com";
             }} />
           </div>
           <div className="footer-copy-text" style={{ fontSize: '12px', color: '#94A3B8', marginTop: '12px' }}>
@@ -3514,8 +3521,8 @@ const MasterFooter = ({ onAssessmentClick }) => (
           <div>
             <div className="footer-col-heading" style={{ fontSize: '11px', color: '#FFFFFF', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>NAVIGATION</div>
             <div className="footer-nav-col" style={{ fontSize: '13.5px', color: '#949BA8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a className="footer-nav-link" href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
               <a className="footer-nav-link" href="#integrations" style={{ color: 'inherit', textDecoration: 'none' }}>Infrastructure</a>
+              <a className="footer-nav-link" href="#features" style={{ color: 'inherit', textDecoration: 'none' }}>The System</a>
               <a className="footer-nav-link" href="#pricing" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
               <a className="footer-nav-link" href="#faq" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a>
             </div>
