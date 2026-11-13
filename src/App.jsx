@@ -1700,19 +1700,13 @@ const HandHoldingPhoneSection = () => (
         <blockquote className="client-story-quote" style={{
           fontSize: 'clamp(16px, 1.9vw, 21px)',
           fontWeight: 400,
-          lineHeight: 1.7,
+          lineHeight: 1.75,
           letterSpacing: '-0.015em',
-          color: '#F1F5F9',
+          color: '#94A3B8',
           margin: '0 0 28px 0',
-          textAlign: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px'
+          textAlign: 'center'
         }}>
-          <p style={{ margin: 0 }}>“A month ago, nobody outside our circle knew we existed. Every client came through referrals. We even tried ads, but nothing turned into real sales, and the market kept asking, ‘Why should we choose you?’ We were always compared on price.</p>
-          <p style={{ margin: 0 }}>Then Anas helped us diagnose our real business problem. It wasn’t visibility. It was our positioning and authority. I liked his approach and the way he showed us the path.</p>
-          <p style={{ margin: 0 }}>Once we worked with Asenzo, everything flipped. We went from invisible to impossible to ignore. We generated lakhs of views, but that’s not what mattered. What mattered was that the attention turned into qualified leads, booked calls, and real sales.</p>
-          <p style={{ margin: 0 }}>Decision-makers we’d never met reached out, already knowing who we were. Within a month, we closed a high-ticket corporate deal, powered by our brand and Asenzo’s systems.”</p>
+          “A month ago, nobody outside our circle knew we existed. Every client came through referrals. We even tried ads, but nothing turned into real sales, and the market kept asking, ‘Why should we choose you?’ We were always compared on price. Then Anas helped us diagnose our real business problem. It wasn’t visibility. It was our <span style={{ color: '#FFFFFF', fontWeight: 600 }}>positioning and authority</span>. I liked his approach and the way he showed us the path. Once we worked with Asenzo, everything flipped. We went from <span style={{ color: '#FFFFFF', fontWeight: 600 }}>invisible to impossible to ignore</span>. We generated lakhs of views, but that’s not what mattered. What mattered was that the attention turned into <span style={{ color: '#FFFFFF', fontWeight: 600 }}>qualified leads, booked calls, and real sales</span>. Decision-makers we’d never met reached out, already knowing who we were. Within a month, we closed a <span style={{ color: '#FFFFFF', fontWeight: 600 }}>high-ticket corporate deal</span>, powered by our brand and Asenzo’s systems.”
         </blockquote>
 
         {/* Quiet Inline Avatar + Attribution Line with 20px gap */}
