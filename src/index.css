@@ -455,12 +455,18 @@ body {
     animation: mobileHeroBtnPop 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
   }
 
-  /* Mobile Floating Navbar: Silver gradient top outline, faded bottom */
+  /* Mobile Floating Navbar: Same refined dark glassmorphism border as desktop website */
   .mobile-nav-root > div[role="button"] {
-    border: 1px solid transparent !important;
-    background: linear-gradient(#0A0A0A, #0A0A0A) padding-box,
-                linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(200, 215, 235, 0.5) 35%, rgba(130, 145, 165, 0.15) 70%, transparent 100%) border-box !important;
-    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    background-color: rgba(11, 12, 14, 0.85) !important;
+    background: rgba(11, 12, 14, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
   }
 
   /* Staggered Hero Title Text Line Entrance */

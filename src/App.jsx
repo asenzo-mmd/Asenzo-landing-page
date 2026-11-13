@@ -495,13 +495,15 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             maxWidth: mobileScrolled ? 46 : 460,
             margin: mobileScrolled ? 0 : "0 auto",
             height: 46,
-            borderRadius: 10,
-            backgroundColor: "#0A0A0A",
+            borderRadius: 14,
+            backgroundColor: "rgba(11, 12, 14, 0.85)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid transparent",
-            background: "linear-gradient(#0A0A0A, #0A0A0A) padding-box, linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(200, 215, 235, 0.45) 35%, rgba(130, 145, 165, 0.12) 70%, transparent 100%) border-box",
-            boxShadow: "0 10px 32px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.55)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.18)",
+            borderLeft: "1px solid rgba(255, 255, 255, 0.08)",
+            borderRight: "1px solid rgba(255, 255, 255, 0.08)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.02)",
+            boxShadow: "0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12)",
             zIndex: 1000,
             display: "flex",
             alignItems: "center",
@@ -513,6 +515,20 @@ function AccretionNavbar({ isScrolled, onOpenModal }) {
             boxSizing: "border-box"
           }}
         >
+          {/* Top-to-Bottom Fading Gradient Outline Overlay like Desktop */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: 14,
+              padding: 1,
+              background: "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 60%, transparent 100%)",
+              WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              WebkitMaskComposite: "xor",
+              maskComposite: "exclude",
+              pointerEvents: "none"
+            }}
+          />
           {/* Scrolled state: ONLY the logo icon itself, no nested bordered box or outer grid */}
           {mobileScrolled ? (
             <img
